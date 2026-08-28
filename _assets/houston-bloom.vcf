@@ -1,0 +1,32 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Ducote;Megan;;;
+FN:Megan Ducote
+ORG:Houston Bloom
+TITLE:Design leader | Relational & civic technologist
+EMAIL;TYPE=INTERNET,PREF:ducotemegan@gmail.com
+EMAIL;TYPE=INTERNET,WORK:houstonbloom@protonmail.com
+URL;TYPE=WORK:https://houstonbloom.github.io/houstonbloom/
+item1.URL:https://substack.com/@houstonbloom
+item1.X-ABLabel:Substack
+item2.URL:https://www.youtube.com/@gardens_not_platforms
+item2.X-ABLabel:YouTube
+item3.URL:https://www.instagram.com/gardens_not_platforms
+item3.X-ABLabel:Instagram
+item4.URL:https://www.linkedin.com/in/megan-ducote-b73458113/
+item4.X-ABLabel:LinkedIn
+item5.URL:https://github.com/HoustonBloom
+item5.X-ABLabel:GitHub
+item6.URL:https://discord.gg/FZtNmKRyq
+item6.X-ABLabel:Co-Creation Commons
+item7.URL:https://luma.com/houstonbloom
+item7.X-ABLabel:Calendar
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/megan-ducote-b73458113/
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/gardens_not_platforms
+ADR;TYPE=WORK:;;;Houston;Texas;;US
+NOTE:Cultivating the conditions for co-creation of citizen infrastructure th
+ rough peer-to-peer education programs and matchmaking events in Houston Tex
+ as. Houston Bloom is a chapter of Bloom Network.
+UID:ducotemegan@gmail.com
+REV:2026-08-11T17:30:00Z
+END:VCARD
