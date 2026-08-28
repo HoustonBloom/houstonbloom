@@ -478,8 +478,16 @@ strong{font-weight:800}
    --on-dark rather than --on-dark-soft, measured 6.33:1 on the garden panel.
    It sits above the answers in the hierarchy, so it should not be the dimmer
    of the two. */
-.cmp-q{font-family:var(--mono);font-size:var(--t-lg);letter-spacing:.06em;text-transform:uppercase;
-  color:var(--on-dark);font-weight:400;white-space:nowrap;text-align:center;width:1%}
+/* The four topics are set in the script face. Caps come off with it: Caveat has
+   no real capitals to speak of and uppercase in a hand face reads as shouting
+   rather than writing. Larger to compensate, since a script at 20px sits
+   visually smaller than a mono at the same size.
+
+   28.8px on --green measures 6.33:1, and at that size the threshold is 3:1
+   anyway, so it clears both. */
+.cmp-q{font-family:var(--script);font-size:1.8rem;letter-spacing:0;text-transform:none;
+  color:var(--on-dark);font-weight:400;white-space:nowrap;text-align:center;width:1%;
+  line-height:1.15}
 .cmp-g{font-family:var(--sans);font-weight:800;font-size:var(--t-sm);color:var(--butter)}
 .cmp-p{font-size:var(--t-sm);color:var(--on-dark-soft);text-align:right}
 @media (max-width:600px){
@@ -493,8 +501,13 @@ strong{font-weight:800}
 
      It was display:block with order:-1 on the question, and order is inert on
      a block container, so the label sat between the sides it heads. */
-  .cmp tr{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s4);
+  /* The two answer columns get every pixel the shell can spare. At 390 they
+     were 163px each and Community owns access needs about 165, so nearly
+     every row broke a line early. A narrower gutter and a narrower section
+     inset buy about 24px a column, which is the difference. */
+  .cmp tr{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s2);
     border-bottom:1px solid var(--edge-dark);padding-block:var(--s5)}
+  #s-gardens .shell{padding-inline:var(--s3)}
   .cmp th,.cmp td{border:0;padding:0}
   /* rows are explicit. With only the columns set, auto-placement kept source
      order and gave each cell its own row, so the question landed between the
@@ -891,11 +904,12 @@ strong{font-weight:800}
 <!-- ─── 2 · gardens, not platforms ───────────────────────────────────────── -->
 <section class="panel panel-dark panel-garden centered" id="s-gardens" data-dot="Gardens, not platforms">
   <div class="shell">
-    <!-- No heading and no lede. The two column heads are the heading: they name
-         the sides and the table answers four questions about them. A title and a
-         44-word definition above that put three levels of label in front of a
-         reader before the comparison starts. The table's caption carries the
-         accessible name. -->
+    <h2>Shift your world view.</h2>
+
+    <!-- Heading only. The 44-word definition that used to sit under it is still
+         gone: the two column heads and the four topics carry the comparison, and
+         a definition on top of those is a third level of label before the reader
+         reaches an actual answer. -->
     <table class="cmp rv">
       <caption class="sr-only">Gardens compared with platforms on data, infrastructure, rules and exit</caption>
       <thead>
