@@ -488,8 +488,10 @@ strong{font-weight:800}
 .cmp-q{font-family:var(--script);font-size:1.8rem;letter-spacing:0;text-transform:none;
   color:var(--on-dark);font-weight:400;white-space:nowrap;text-align:center;width:1%;
   line-height:1.15}
-.cmp-g{font-family:var(--sans);font-weight:800;font-size:var(--t-sm);color:var(--butter)}
-.cmp-p{font-size:var(--t-sm);color:var(--on-dark-soft);text-align:right}
+/* platforms is the left column now and gardens the right, so the alignment
+   swaps with them: each side still hugs its own outer edge. */
+.cmp-p{font-size:var(--t-sm);color:var(--on-dark-soft)}
+.cmp-g{font-family:var(--sans);font-weight:800;font-size:var(--t-sm);color:var(--butter);text-align:right}
 @media (max-width:600px){
   .cmp,.cmp tbody{display:block}
   .cmp thead{display:none}
@@ -516,8 +518,8 @@ strong{font-weight:800}
      the row and it carries the section on its own */
   .cmp-q{grid-row:1;grid-column:1 / -1;width:auto;text-align:center;
     margin-bottom:var(--s4);white-space:normal}
-  .cmp-g{grid-row:2;grid-column:1;text-align:left}
-  .cmp-p{grid-row:2;grid-column:2;text-align:right}
+  .cmp-p{grid-row:2;grid-column:1;text-align:left}
+  .cmp-g{grid-row:2;grid-column:2;text-align:right}
   .cmp-g::before,.cmp-p::before{display:block;font-family:var(--mono);
     font-size:var(--t-micro);letter-spacing:.1em;text-transform:uppercase;
     font-weight:400;margin-bottom:var(--s2)}
@@ -904,27 +906,33 @@ strong{font-weight:800}
 <!-- ─── 2 · gardens, not platforms ───────────────────────────────────────── -->
 <section class="panel panel-dark panel-garden centered" id="s-gardens" data-dot="Gardens, not platforms">
   <div class="shell">
-    <h2>Shift your world view.</h2>
+    <span class="eyebrow">A world view</span>
+    <h2>From platforms to gardens.</h2>
 
-    <!-- Heading only. The 44-word definition that used to sit under it is still
-         gone: the two column heads and the four topics carry the comparison, and
-         a definition on top of those is a third level of label before the reader
-         reaches an actual answer. -->
+    <!-- Platforms first, gardens second: the reader is standing in the left
+         column and the heading names the direction of travel, so the order is
+         the argument. Swapped in the markup rather than with CSS ordering, so
+         a screen reader and the tab order read it the same way round as the
+         eye does.
+
+         Still no lede. The two column heads and the four topics carry the
+         comparison, and a definition on top of those is a third level of label
+         before the reader reaches an actual answer. -->
     <table class="cmp rv">
-      <caption class="sr-only">Gardens compared with platforms on data, infrastructure, rules and exit</caption>
+      <caption class="sr-only">Platforms compared with gardens on data, infrastructure, rules and exit</caption>
       <thead>
-        <tr><th scope="col" class="cmp-g">Gardens</th><th scope="col" class="cmp-q"></th>
-            <th scope="col" class="cmp-p">Platforms</th></tr>
+        <tr><th scope="col" class="cmp-p">Platforms</th><th scope="col" class="cmp-q"></th>
+            <th scope="col" class="cmp-g">Gardens</th></tr>
       </thead>
       <tbody>
-        <tr><td class="cmp-g">You own it</td><th scope="row" class="cmp-q">Data</th>
-            <td class="cmp-p">They sell it</td></tr>
-        <tr><td class="cmp-g">Community owns access</td><th scope="row" class="cmp-q">Infrastructure</th>
-            <td class="cmp-p">You rent access</td></tr>
-        <tr><td class="cmp-g">Transparent governance</td><th scope="row" class="cmp-q">Rules</th>
-            <td class="cmp-p">Opaque algorithms</td></tr>
-        <tr><td class="cmp-g">Everything is portable</td><th scope="row" class="cmp-q">Exit</th>
-            <td class="cmp-p">You leave empty-handed</td></tr>
+        <tr><td class="cmp-p">They sell it</td><th scope="row" class="cmp-q">Data</th>
+            <td class="cmp-g">You own it</td></tr>
+        <tr><td class="cmp-p">You rent access</td><th scope="row" class="cmp-q">Infrastructure</th>
+            <td class="cmp-g">Community owns access</td></tr>
+        <tr><td class="cmp-p">Opaque algorithms</td><th scope="row" class="cmp-q">Rules</th>
+            <td class="cmp-g">Transparent governance</td></tr>
+        <tr><td class="cmp-p">You leave empty-handed</td><th scope="row" class="cmp-q">Exit</th>
+            <td class="cmp-g">Everything is portable</td></tr>
       </tbody>
     </table>
 
