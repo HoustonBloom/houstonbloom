@@ -421,12 +421,11 @@ strong{font-weight:800}
 /* the heading travels with the stage rather than scrolling off it, so the
    question stays in front of the reader while the answers change under it */
 #s-phases.swap-on{padding-block:0}
-/* The outro. Over the last stretch of the final beat the stage steps back, so
-   the figure below is arrived at rather than cut to. Short on purpose: an
-   earlier attempt gave the handoff a whole beat and bought a full screen of
-   faded timeline with the figure still off screen. This is a beat's tail. */
-#s-phases.swap-on .tl-stage{transition:opacity .45s ease,transform .45s ease}
-#s-phases.swap-on[data-outro="1"] .tl-stage{opacity:.32;transform:translateY(-18px)}
+/* REMOVED 2026-08-28: an outro that faded the stage to .32 over the last 12%
+   of the track, to soften the handoff into the figure. On a phone the whole
+   section washes out to unreadable while it is still the only thing on
+   screen, and the figure that was meant to justify it is a screen away. The
+   handoff is the figure arriving, and it does not need help. */
 #s-phases{padding-bottom:var(--s7)}
 #s-phases .timeline{margin-bottom:0}
 
@@ -469,15 +468,30 @@ strong{font-weight:800}
 .cmp-g{font-family:var(--sans);font-weight:800;font-size:var(--t-sm);color:var(--butter)}
 .cmp-p{font-size:var(--t-sm);color:var(--on-dark-soft);text-align:right}
 @media (max-width:600px){
-  .cmp,.cmp tbody,.cmp tr,.cmp td,.cmp th{display:block}
+  .cmp,.cmp tbody{display:block}
   .cmp thead{display:none}
-  .cmp tr{border-bottom:1px solid var(--edge-dark);padding-block:var(--s3)}
-  .cmp th,.cmp td{border:0;padding:2px 0;text-align:center}
-  .cmp-q{width:auto;order:-1}
-  .cmp-p::before{content:"Platforms: ";font-family:var(--mono);font-size:var(--t-micro);
-    letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-soft)}
-  .cmp-g::before{content:"Gardens: ";font-family:var(--mono);font-size:var(--t-micro);
-    letter-spacing:.1em;text-transform:uppercase;color:var(--butter);font-weight:400}
+  /* Still a comparison on a phone, so it keeps two columns rather than
+     collapsing to one. The row is a grid: the question spans both and heads
+     them, then Gardens and Platforms sit side by side with their own label
+     over each answer. The two sides stay opposed, left and right, which is
+     what the desktop table does and what the argument is.
+
+     It was display:block with order:-1 on the question, and order is inert on
+     a block container, so the label sat between the sides it heads. */
+  .cmp tr{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s4);
+    border-bottom:1px solid var(--edge-dark);padding-block:var(--s5)}
+  .cmp th,.cmp td{border:0;padding:0}
+  /* rows are explicit. With only the columns set, auto-placement kept source
+     order and gave each cell its own row, so the question landed between the
+     two answers again instead of above them. */
+  .cmp-q{grid-row:1;grid-column:1 / -1;width:auto;text-align:center;margin-bottom:var(--s4)}
+  .cmp-g{grid-row:2;grid-column:1;text-align:left}
+  .cmp-p{grid-row:2;grid-column:2;text-align:right}
+  .cmp-g::before,.cmp-p::before{display:block;font-family:var(--mono);
+    font-size:var(--t-micro);letter-spacing:.1em;text-transform:uppercase;
+    font-weight:400;margin-bottom:var(--s2)}
+  .cmp-g::before{content:"Gardens";color:var(--butter)}
+  .cmp-p::before{content:"Platforms";color:var(--on-dark-soft)}
 }
 
 /* ── talks ────────────────────────────────────────────────────────────────── */
@@ -1264,7 +1278,7 @@ strong{font-weight:800}
        below 1000px and the reveal was never started. Nothing looked broken,
        because rows are visible until something hides them, which is exactly
        why it would have shipped. */
-    var on = null, last = -1, lastOutro = null;
+    var on = null, last = -1;
 
     function show(i) {
       if (i === last) return;
@@ -1300,8 +1314,6 @@ strong{font-weight:800}
          mothers-ago line under it says the same thing a second way. */
       tl.style.setProperty('--tl-p', p.toFixed(4));
       tl.style.setProperty('--tl-live', eras[i].style.getPropertyValue('--era-c') || '');
-      var outro = p > 0.92 ? '1' : '0';
-      if (outro !== lastOutro) { sec.setAttribute('data-outro', outro); lastOutro = outro; }
     }
 
     /* the reveal, used whenever the stage is not pinned */
@@ -1342,7 +1354,6 @@ strong{font-weight:800}
         tl.style.removeProperty('--tl-p');
         tl.style.removeProperty('--tl-live');
         eras.forEach(function(el){ el.classList.remove('current'); });
-        sec.removeAttribute('data-outro');
         last = -1; lastOutro = null;
         startReveal();
       }
