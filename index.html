@@ -332,11 +332,21 @@ strong{font-weight:800}
    1440, so a viewport-height stage framed it in half a screen of empty cream
    above and below. The hold was worse than the problem it solved. */
 .strip{background:var(--cream-3);padding-block:0}
-/* the banner carries readable labels at 1920px. below about 680 they turn to mush,
-   so the figure pans instead of shrinking. the scroller clips, so this can never
-   widen the document. */
+/* The banner carries readable labels at 1920px, so above 680 it pans inside
+   its own scroller rather than shrinking, and the scroller clips so it can
+   never widen the document.
+
+   On a phone it fits instead. At 390 the pan showed 57% of the image and hid
+   290px of it, which is the entire right panel: the garden the picture is
+   arguing towards, reachable only by a sideways swipe inside a figure nobody
+   would think to swipe. Fitting costs the small labels and keeps the before
+   and after, which is the argument. The labels are all in the alt text. */
 .strip-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .strip img{width:100%;min-width:680px}
+@media (max-width:680px){
+  .strip img{min-width:0}
+  .strip-scroll{overflow-x:visible}
+}
 .strip figcaption{font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.06em;
   text-transform:uppercase;color:var(--ink-soft);text-align:center;padding:var(--s3) var(--s5)}
 .strip figcaption a{color:var(--green);font-weight:700;text-decoration:none;margin-left:var(--s2);
@@ -465,7 +475,6 @@ strong{font-weight:800}
      inset buy about 24px a column, which is the difference. */
   .cmp tr{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s2);
     border-bottom:1px solid var(--edge-dark);padding-block:var(--s5)}
-  #s-gardens .shell{padding-inline:var(--s3)}
   .cmp th,.cmp td{border:0;padding:0}
   /* rows are explicit. With only the columns set, auto-placement kept source
      order and gave each cell its own row, so the question landed between the
@@ -487,9 +496,13 @@ strong{font-weight:800}
 .talks-label{display:inline-block;margin-top:var(--s8)}
 .talks{list-style:none;display:grid;gap:var(--s4);max-width:820px;margin:var(--s4) auto 0}
 @media (min-width:720px){.talks{grid-template-columns:1fr 1fr}}
-.talks a{display:block;text-decoration:none;padding:var(--s5);border:1px solid var(--edge-dark);
+/* the cards sit on the mid green, so they take the deep green as their own
+   ground rather than being outlines on the panel. On --green-deep the card
+   text measures 12.24:1, its meta line 8.38:1 and the play mark 10.97:1. */
+.talks a{display:block;text-decoration:none;padding:var(--s5);background:var(--green-deep);
+  border:1px solid var(--edge-dark);
   border-radius:var(--radius);transition:background .2s ease,border-color .2s ease}
-.talks a:hover{background:rgba(236,229,214,.08);border-color:var(--butter)}
+.talks a:hover{background:#16382583;border-color:var(--butter)}
 .talk-play{display:block;font-size:var(--t-sm);color:var(--butter);line-height:1}
 .talk-t{display:block;font-family:var(--display);font-size:var(--t-lg);color:var(--on-dark);
   margin-top:var(--s3);line-height:1.2}
