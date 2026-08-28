@@ -344,95 +344,51 @@ strong{font-weight:800}
 .strip figcaption a:hover{text-decoration:underline}
 
 /* ── civilization phases ──────────────────────────────────────────────────────
-   The section is the shared Timeline component now, inlined from
-   _build/components.css. Everything here is host tokens, not component rules:
-   the contract is that a host restates the palette and touches nothing else.
+   The section is the EraSequence component, inlined from
+   _build/components.css. Everything here is host tokens: the contract is that
+   a host restates the palette and touches nothing else.
 
    Measured against this panel, #0f2a1c:
 
-     --ink-soft / --ink-softer  #c6bfae   8.38:1   era description, era time
-     --rust                     #f3d88b  10.97:1   the mothers line, the percent
-     --era-label-c              #ece5d6  12.24:1   every era name
+     --eseq-name-c     #ece5d6  12.24:1   the name the system used
+     --eseq-pct-c      #f3d88b  10.97:1   the share of history
+     --eseq-mothers-c  #ece5d6  12.24:1   the mothers line
+     --eseq-yrs-c      #c6bfae   8.38:1   the years
+     --eseq-desc-c     #c6bfae   8.38:1   the description
 
-   The label is the one worth saying out loud. The component ties it to --era-c
-   by default, and this phase ramp bottoms out at 3.73:1 on this panel, which
-   clears the 3:1 graphics threshold and fails the 4.5:1 one for text. So the
-   dot keeps carrying the colour and the name is written in the panel's own
-   foreground. That is the same call the old bar made about its durations.
-
-   --cream is the dot's fill: set to the panel colour so a dot reads as a hole
-   punched through the spine rather than a light disc sitting on it. */
+   The name is not tinted with the era colour. The phase ramp bottoms out at
+   3.73:1 on this panel, which clears the 3:1 graphics threshold and fails the
+   4.5:1 one for text, so the colour is carried by the marker on the rail and
+   the name is written in the panel's own foreground. */
 #s-phases{
-  --ink-soft:var(--on-dark-soft); --ink-softer:var(--on-dark-soft);
-  --rust:var(--butter); --cream:var(--green-deep);
-  --era-label-c:var(--on-dark);
-  --timeline-spine:linear-gradient(to bottom,transparent,#4a8a62,#8ab06d,#cfc77e,#b48ee0,#6fbf87,transparent);
+  --eseq-name-c:var(--on-dark);
+  --eseq-pct-c:var(--butter);
+  --eseq-mothers-c:var(--on-dark);
+  --eseq-yrs-c:var(--on-dark-soft);
+  --eseq-desc-c:var(--on-dark-soft);
+  --eseq-mark-bg:var(--green-deep);
+  --eseq-rail-c:rgba(198,191,174,.45);
+  --eseq-fill:linear-gradient(to bottom,#4a8a62,#8ab06d,#cfc77e,#b48ee0,#6fbf87);
+  --eseq-name-size:clamp(1.6rem,1.2rem + 1.6vw,2.3rem);
 }
-/* the handoff. The section stops at the final row so the figure below butts
-   against it, and the last era and the figure read as one move rather than two
-   beats with a gap between them. */
-/* Centred, but scoped to the two elements rather than the shell. Centring
-   .shell would cascade into .era-content and centre every era name and
-   description, which is the one thing the two-column reading depends on
-   staying left. The eyebrow is an inline-block pill, so it centres by
-   becoming a fit-content block with auto margins, not by text-align. */
-#s-phases .tl-stage > h2{text-align:center}
-#s-phases .tl-stage > .eyebrow{display:block;width:fit-content;margin-inline:auto}
-/* the heading sits in the pinned stage, so it holds while the eras change
-   under it. That is the point of the mode: the question stays in front of
-   the reader and only the answer is replaced. */
-/* 64px here plus the swap floor below put 239px between the heading and the
-   row it introduces, which read as two unrelated things on one screen. */
-#s-phases.swap-on .tl-stage > h2{margin-bottom:var(--s6)}
-/* The rail is the spine of the pinned view, so it runs the height of it.
-   Left to the content it filled 34% of the stage and read as a stub floating
-   in the middle. flex:1 because .tl-stage is a flex column; the era stays
-   centred because the timeline is a grid with align-items:center. */
-#s-phases.swap-on .timeline{flex:1}
-#s-phases.swap-on{--timeline-swap-min:0}
-/* The time column is one stack now: the year, the share of history, then the
-   mothers line. Reading down it, the same span is said three ways, each in a
-   different register: measured, proportional, and human.
-
-   The two faces swap. The percent takes the bold sans the mothers line used to
-   have, and the mothers line takes the script, because the mothers reframe is
-   the authored aside and the percent is the figure. Both stay butter, 10.97:1
-   on this panel.
-
-   Caveat is inlined at 500 and 700 only, so the script line asks for 700 rather
-   than the 800 it inherits, which would otherwise be synthesised. It is also set
-   larger, because a script face at .92rem is decoration rather than text. */
-#s-phases{
-  --timeline-gap:124px;
-  --era-pct-font:var(--sans); --era-pct-size:var(--t-sm); --era-pct-weight:800;
-  --era-mothers-font:var(--script); --era-mothers-size:1.35rem;
-  --era-mothers-weight:700; --era-mothers-gap:2px;
-  /* the script line is the page's own foreground, 12.24:1 on this panel. The
-     butter is doing enough work on the percent above it; two yellows stacked
-     made the aside compete with the figure. */
-  --era-mothers-colour:var(--on-dark);
-  --era-desc-gap:14px;
-}
-/* The stage. Gated on .swap-on, which the handler adds and nothing else
-   does, so every failure path renders the plain stacked list: no script, no
-   sticky, reduced motion, or anything under 1000px where a two-column row
-   has already collapsed to one. */
+/* The stage. Gated on .swap-on, which the handler sets and nothing else
+   does, so every failure path renders the slides as a plain stacked list.
+   The topbar is sticky at top:0, so this has to start below it or it parks
+   its own content underneath. */
 #s-phases .tl-track{position:relative}
 #s-phases.swap-on .tl-track{height:var(--swap-h)}
 #s-phases.swap-on .tl-stage{position:sticky;top:var(--topbar-h);
   min-height:calc(100vh - var(--topbar-h));
   display:flex;flex-direction:column;justify-content:center;
   padding-block:var(--s7)}
-/* the heading travels with the stage rather than scrolling off it, so the
-   question stays in front of the reader while the answers change under it */
 #s-phases.swap-on{padding-block:0}
-/* REMOVED 2026-08-28: an outro that faded the stage to .32 over the last 12%
-   of the track, to soften the handoff into the figure. On a phone the whole
-   section washes out to unreadable while it is still the only thing on
-   screen, and the figure that was meant to justify it is a screen away. The
-   handoff is the figure arriving, and it does not need help. */
-#s-phases{padding-bottom:var(--s7)}
-#s-phases .timeline{margin-bottom:0}
+#s-phases.swap-on > .tl-track > .tl-stage > .shell{display:flex;flex-direction:column;flex:1}
+
+/* the pill holds its place at the top of the stage while the slides change
+   under it, and the closing statement centres with it when it arrives */
+#s-phases .tl-stage > .shell > .eyebrow{display:block;width:fit-content;margin-inline:auto}
+#s-phases .eseq{margin-top:var(--s8)}
+#s-phases.swap-on .eseq{flex:1;align-content:center}
 
 /* ── centred section ──────────────────────────────────────────────────────────
    Only the gardens panel uses this now. The rules that centred the phase cards
@@ -711,147 +667,62 @@ strong{font-weight:800}
 .mono-list {font-family: var(--mono); font-size: 0.82rem; line-height: 1.8; color: var(--ink-soft); padding: 12px 16px; background: rgba(26,26,26,0.04); border-radius: 6px; margin: 8px 0;}
 
 
-/* ── Timeline v1.1, from _build/components.css ─────────────────────────── */
-.timeline { position: relative; padding: 18px 0; margin: 28px 0; }
-.timeline::before {
-  content: ""; position: absolute; left: var(--tl-rail-x, 50%); top: 0; bottom: 0; width: 2px; transform: translateX(-1px);
-  background: var(--timeline-spine,
-    linear-gradient(to bottom, transparent, var(--butter), var(--peach), var(--rust), var(--green), transparent));
+/* ── EraSequence v1.0, from _build/components.css ──────────────────────── */
+.eseq { position: relative; padding-left: var(--eseq-rail-gap, 46px); }
+
+/* the rail. Dotted for its whole length with a solid fill to the marker, so
+   the reader can see both how far the sequence runs and where they are. */
+.eseq::before, .eseq::after {
+  content: ""; position: absolute; left: 0; width: 2px; border-radius: 2px;
 }
-.era { display: flex; align-items: center; gap: 30px; margin-bottom: var(--timeline-gap, 38px); }
-.era:last-child { margin-bottom: 0; }
-.era:nth-child(even) { flex-direction: row-reverse; }
-.era-time { flex: 1; text-align: right; font-family: var(--mono); font-size: .76rem; letter-spacing: .05em; color: var(--ink-softer); }
-.era:nth-child(even) .era-time { text-align: left; }
-.era-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cream); border: 3px solid var(--era-c, var(--rust)); flex-shrink: 0; z-index: 2; }
-.era-content { flex: 1; }
-.era-label { font-family: var(--sans); font-size: 1.1rem; font-weight: 800; color: var(--era-label-c, var(--era-c, var(--ink))); }
-.era-mothers { font-family: var(--era-mothers-font, var(--sans)); font-size: var(--era-mothers-size, .92rem); font-weight: var(--era-mothers-weight, 800); color: var(--era-mothers-colour, var(--rust)); margin-top: var(--era-mothers-gap, 2px); }
-.era-pct { font-family: var(--era-pct-font, var(--script)); font-size: var(--era-pct-size, 1.4rem); font-weight: var(--era-pct-weight, 400); color: var(--rust); }
-.era-desc { font-size: .85rem; line-height: 1.55; color: var(--ink-soft); margin-top: var(--era-desc-gap, 4px); max-width: 46ch; }
-@media (max-width: 720px) {
-  .timeline { --tl-rail-x: 20px; }
-  .era, .era:nth-child(even) { flex-direction: column; align-items: flex-start; gap: 6px; text-align: left; padding-left: 46px; position: relative; }
-  .era-time, .era:nth-child(even) .era-time { text-align: left; }
-  .era-dot { position: absolute; left: 13px; top: 5px; }
+.eseq::before {
+  top: 0; bottom: 0;
+  background: var(--eseq-rail, repeating-linear-gradient(to bottom,
+    var(--eseq-rail-c, rgba(198,191,174,.5)) 0 3px, transparent 3px 12px));
 }
-
-/* the entrance. left column slides in from the left, right column from the
-   right, which is why the offset is signed off nth-child rather than shared. */
-.timeline[data-reveal] .era {
-  opacity: 0; transform: translateX(-20px);
-  transition: opacity .7s ease, transform .7s ease;
+.eseq::after {
+  top: 0; height: calc(var(--eseq-p, 0) * 100%);
+  background: var(--eseq-fill, linear-gradient(to bottom, var(--green), var(--butter)));
 }
-.timeline[data-reveal] .era:nth-child(even) { transform: translateX(20px); }
-.timeline[data-reveal] .era.visible { opacity: 1; transform: translateX(0); }
-@media (prefers-reduced-motion: reduce) {
-  .timeline[data-reveal] .era,
-  .timeline[data-reveal] .era:nth-child(even) {
-    opacity: 1; transform: none; transition: none;
-  }
-}
-
-/* ── Timeline v1.3 · two optional modes ─────────────────────────────────────
-
-   FIXED ALIGNMENT, .tl-fixed. Every row the same way round, name on the left
-   and its measures on the right. The alternating default reads as two columns
-   filling in; fixed reads as one column of names with their figures beside
-   them, which is what you want when the rows are compared rather than walked.
-   Applies with or without script, so it is a class and not an attribute.
-
-   SWAP, [data-swap]. The rows stop moving. Every era occupies the same grid
-   cell and the host shows one at a time, so scrolling replaces the text in a
-   frame that holds still instead of sliding the rows past. The host owns the
-   pinning and decides which era is .current; the component only stacks them.
-
-   OPT IN, same rule as the reveal. data-swap is set from script, so no-JS, a
-   dead observer, or reduced motion all render the ordinary stacked list. A
-   mode that hides four of five rows must never be the default. */
-/* Two classes plus an element outranks the max-width block below, so these have
-   to be bounded or they hold the row two-column on a phone, where the name gets
-   a 135px measure. Above the breakpoint, fixed alignment; below it, the
-   component's own stacking wins. */
-@media (min-width: 721px) {
-  /* figures on the left, hugging the rail; the name and its sentence on the
-     right. Row order in the markup is time, dot, content, so plain `row` puts
-     the figures first and text-align:right pushes them up against the rail. */
-  .timeline.tl-fixed .era,
-  .timeline.tl-fixed .era:nth-child(even) { flex-direction: row; }
-  .timeline.tl-fixed .era-time,
-  .timeline.tl-fixed .era:nth-child(even) .era-time { text-align: right; }
-}
-/* with one alignment there is no side to arrive from, so the entrance is a
-   lift rather than a slide in from left and right */
-.timeline.tl-fixed[data-reveal] .era,
-.timeline.tl-fixed[data-reveal] .era:nth-child(even) { transform: translateY(16px); }
-.timeline.tl-fixed[data-reveal] .era.visible { transform: none; }
-
-/* the spine is drawn on .timeline, and in swap mode that box is one era tall,
-   so without a floor it collapses to a stub beside the dot. The floor also
-   stops the frame resizing as eras of different lengths take turns in it. */
-.timeline[data-swap] { display: grid; align-items: center;
-  min-height: var(--timeline-swap-min, 42vh); }
-.timeline[data-swap] .era {
-  grid-area: 1 / 1; margin-bottom: 0; opacity: 0; pointer-events: none;
-  transform: translateY(var(--era-swap-rise, 14px));
-  transition: opacity .5s ease, transform .5s ease;
-}
-.timeline[data-swap] .era.current { opacity: 1; transform: none; pointer-events: auto; }
-/* the dot stays put and takes the live era's colour: with the rows stacked in
-   one cell it is the only thing on the spine, so it reads as the marker for
-   wherever you are rather than five dots on top of each other */
-@media (prefers-reduced-motion: reduce) {
-  .timeline[data-swap] .era { transition: none; }
-}
-
-/* ── Timeline v1.4 · the rail shows progress ────────────────────────────────
-
-   In swap mode the rail goes dotted and a solid fill grows down it, with a
-   marker riding the leading edge. That is the only thing left on screen that
-   moves, so it is what tells a reader they are advancing rather than stuck:
-   the rows are being replaced in place, which reads as still by design.
-
-   The host writes two custom properties on .timeline each scroll: --tl-p, the
-   progress from 0 to 1, and --tl-live, the colour of the era currently up.
-   Nothing else. Both have defaults here, so a host that sets neither gets a
-   rail at zero rather than a broken one.
-
-   Everything hangs off [data-swap], which is script-set, so the ordinary
-   stacked timeline keeps its plain gradient rail and its per-era dots. */
-.timeline[data-swap]::before {
-  background: var(--timeline-rail-dotted,
-    repeating-linear-gradient(to bottom,
-      var(--tl-rail-c, rgba(198,191,174,.55)) 0 3px, transparent 3px 12px));
-}
-/* the fill. Height is the progress, so it is one property to animate and the
-   marker below reads the same number. */
-.timeline[data-swap]::after {
-  content: ""; position: absolute; left: var(--tl-rail-x, 50%); top: 0; width: 2px;
-  transform: translateX(-1px); border-radius: 2px;
-  height: calc(var(--tl-p, 0) * 100%);
-  background: var(--timeline-spine,
-    linear-gradient(to bottom, transparent, var(--butter), var(--peach), var(--rust), var(--green), transparent));
-  /* NO transition on height. --tl-p is written from the scroll position, so
-     the fill has to be a pure function of it. Easing toward the value means
-     the rail is permanently chasing the reader, and lags the opposite way on
-     the way back up, which reads as the page not returning to where it was. */
-}
-.tl-marker { display: none; }
-.timeline[data-swap] .tl-marker {
-  display: block; position: absolute; left: var(--tl-rail-x, 50%);
-  top: calc(var(--tl-p, 0) * 100%);
-  width: 14px; height: 14px; border-radius: 50%; z-index: 3;
-  background: var(--cream); border: 3px solid var(--tl-live, var(--rust));
+.eseq-mark {
+  position: absolute; left: 0; top: calc(var(--eseq-p, 0) * 100%);
+  width: 13px; height: 13px; border-radius: 50%; z-index: 2;
   transform: translate(-50%, -50%);
-  /* same: position is scroll, so it is not animated. Only the colour, which
-     changes on a beat rather than continuously, gets a transition. */
+  background: var(--eseq-mark-bg, var(--cream));
+  border: 3px solid var(--eseq-live, var(--green));
   transition: border-color .3s ease;
 }
-/* the per-era dots would stack in one place in swap mode, so the marker takes
-   over and they step aside */
-.timeline[data-swap] .era-dot { opacity: 0; }
+
+/* slides share one cell, so the frame does not resize as they take turns */
+.eseq[data-seq] { display: grid; align-items: center; }
+.eseq[data-seq] .eseq-slide {
+  grid-area: 1 / 1; opacity: 0; pointer-events: none;
+  transform: translateY(var(--eseq-rise, 12px));
+  transition: opacity .45s ease, transform .45s ease;
+}
+.eseq[data-seq] .eseq-slide.current { opacity: 1; transform: none; pointer-events: auto; }
+.eseq:not([data-seq]) .eseq-slide + .eseq-slide { margin-top: var(--eseq-gap, 56px); }
+
+.eseq-name { font-family: var(--display); font-size: var(--eseq-name-size, 2rem);
+  line-height: 1.1; color: var(--eseq-name-c, var(--ink)); }
+.eseq-pct { font-family: var(--sans); font-weight: 800;
+  font-size: var(--eseq-pct-size, 1.15rem); color: var(--eseq-pct-c, var(--butter));
+  margin-top: var(--s3, 12px); }
+.eseq-mothers { font-family: var(--script); font-size: var(--eseq-mothers-size, 1.5rem);
+  font-weight: 700; color: var(--eseq-mothers-c, var(--ink)); margin-top: 2px; }
+.eseq-yrs { font-family: var(--mono); font-size: var(--eseq-yrs-size, .74rem);
+  letter-spacing: .05em; color: var(--eseq-yrs-c, var(--ink-softer)); margin-top: var(--s3, 12px); }
+.eseq-desc { font-size: var(--eseq-desc-size, .95rem); line-height: 1.6;
+  color: var(--eseq-desc-c, var(--ink-soft)); margin-top: var(--s4, 16px); max-width: 46ch; }
+
+/* the closing slide. Not an era: no figures, just the line the sequence was
+   making the case for. */
+.eseq-final .eseq-statement { font-family: var(--display);
+  font-size: var(--eseq-final-size, clamp(1.9rem, 1.35rem + 2.6vw, 2.9rem));
+  line-height: 1.12; color: var(--eseq-name-c, var(--ink)); max-width: 18ch; }
+
 @media (prefers-reduced-motion: reduce) {
-  .timeline[data-swap] .tl-marker { transition: none; }
+  .eseq[data-seq] .eseq-slide { transition: none; }
 }
 </style>
 </head>
@@ -960,58 +831,58 @@ strong{font-weight:800}
 
 <!-- ─── 3 · civilization phases ──────────────────────────────────────────── -->
 <section class="panel panel-dark" id="s-phases" data-dot="Some perspective">
-  <div class="shell">
-    <div class="tl-track">
-      <div class="tl-stage">
+  <div class="tl-track">
+    <div class="tl-stage">
+      <div class="shell">
         <span class="eyebrow">Some perspective</span>
-        <h2>For almost all of human history,<br>there were no platforms.</h2>
-        <div class="timeline tl-fixed">
-          <span class="tl-marker" aria-hidden="true"></span>
-          <div class="era" style="--era-c:#4a8a62">
-        <div class="era-time">~300,000 yrs<div class="era-pct">98% of human history</div><div class="era-mothers">~17,000 mothers ago</div></div>
-        <div class="era-dot"></div>
-        <div class="era-content">
-          <div class="era-label">Indigenous Peoples</div>
-          <div class="era-desc">Trust, reciprocity, shared knowledge at Dunbar scale. Tribal groups governed by proximity, kinship, and the relationships you could hold in your head. No one coordinated from above because no one needed to.</div>
+        <div class="eseq">
+          <span class="eseq-mark" aria-hidden="true"></span>
+        <div class="eseq-slide" style="--eseq-live-c:#4a8a62">
+          <p class="eseq-name">Indigenous Peoples</p>
+          <p class="eseq-pct">98% of human history</p>
+          <p class="eseq-mothers">~17,000 mothers ago</p>
+          <p class="eseq-yrs">~300,000 yrs</p>
+          <p class="eseq-desc">Trust, reciprocity, shared knowledge at Dunbar scale. Tribal groups governed by proximity, kinship, and the relationships you could hold in your head. No one coordinated from above because no one needed to.</p>
         </div>
-      </div>
-      <div class="era" style="--era-c:#8ab06d">
-        <div class="era-time">~5,400 yrs<div class="era-pct">1.7% of human history</div><div class="era-mothers">~280 mothers ago</div></div>
-        <div class="era-dot"></div>
-        <div class="era-content">
-          <div class="era-label">Subject</div>
-          <div class="era-desc">Writing. Math. The Printing Press. Kings, priests, states. Coordination above Dunbar scale required vertical structures.</div>
+        <div class="eseq-slide" style="--eseq-live-c:#8ab06d">
+          <p class="eseq-name">Subject</p>
+          <p class="eseq-pct">1.7% of human history</p>
+          <p class="eseq-mothers">~280 mothers ago</p>
+          <p class="eseq-yrs">~5,400 yrs</p>
+          <p class="eseq-desc">Writing. Math. The Printing Press. Kings, priests, states. Coordination above Dunbar scale required vertical structures.</p>
         </div>
-      </div>
-      <div class="era" style="--era-c:#cfc77e">
-        <div class="era-time">~175 yrs<div class="era-pct">0.05% of human history</div><div class="era-mothers">~7 mothers ago</div></div>
-        <div class="era-dot"></div>
-        <div class="era-content">
-          <div class="era-label">Consumer</div>
-          <div class="era-desc">Industrial revolution. Owning became production. People became consumers. The top changed hands. The structure never did.</div>
+        <div class="eseq-slide" style="--eseq-live-c:#cfc77e">
+          <p class="eseq-name">Consumer</p>
+          <p class="eseq-pct">0.05% of human history</p>
+          <p class="eseq-mothers">~7 mothers ago</p>
+          <p class="eseq-yrs">~175 yrs</p>
+          <p class="eseq-desc">Industrial revolution. Owning became production. People became consumers. The top changed hands. The structure never did.</p>
         </div>
-      </div>
-      <div class="era" style="--era-c:#b48ee0">
-        <div class="era-time">~25 yrs<div class="era-pct">0.008% of human history</div><div class="era-mothers">1 mother ago</div></div>
-        <div class="era-dot"></div>
-        <div class="era-content">
-          <div class="era-label">User</div>
-          <div class="era-desc">The internet. Owning became renting. Production became data. Consumers became users. Five companies became the town square.</div>
+        <div class="eseq-slide" style="--eseq-live-c:#b48ee0">
+          <p class="eseq-name">User</p>
+          <p class="eseq-pct">0.008% of human history</p>
+          <p class="eseq-mothers">1 mother ago</p>
+          <p class="eseq-yrs">~25 yrs</p>
+          <p class="eseq-desc">The internet. Owning became renting. Production became data. Consumers became users. Five companies became the town square.</p>
         </div>
-      </div>
-      <div class="era" style="--era-c:#6fbf87">
-        <div class="era-time">Now</div>
-        <div class="era-dot"></div>
-        <div class="era-content">
-          <div class="era-label">Citizen</div>
-          <div class="era-desc">Gen AI. Local-first. Open models. For the first time, the easier option can be the lateral one. What happens next is a design choice.</div>
+        <div class="eseq-slide" style="--eseq-live-c:#6fbf87">
+          <p class="eseq-name">Citizen</p>
+          
+          
+          <p class="eseq-yrs">Now</p>
+          <p class="eseq-desc">Gen AI. Local-first. Open models. For the first time, the easier option can be the lateral one. What happens next is a design choice.</p>
         </div>
-      </div>
+        <div class="eseq-slide eseq-final">
+          <h2 class="eseq-statement">For almost all of human history,<br>there were no platforms.</h2>
+        </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+
 
 <!-- ─── 4 · the strip · surfaces as the stage above it unpins ────────────────────────────────────────────────────── -->
 <figure class="strip rv" id="s-strip" data-dot="The transition">
@@ -1275,56 +1146,50 @@ strong{font-weight:800}
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
   })();
 
-  /* Timeline host wiring: reveal, or swap.
+  /* EraSequence host wiring.
 
-     SWAP is the mode Megan asked for: the frame holds still and scrolling
-     replaces the text. The section becomes a tall track with the stage pinned
-     inside it, and progress across that track picks which era is .current.
+     The section becomes a tall track with the stage pinned inside it, and
+     scroll position picks which slide is up. Equal scroll per slide, including
+     the closing statement, which gets a beat of its own so it is read rather
+     than passed.
 
-     Three gates, and failing any one falls back to the reveal: motion allowed,
-     at least 1000px, and sticky supported. Under 1000px the two-column row has
-     already collapsed, so there is nothing to hold still.
+     The rail is linear in the slide index, not in each era's share of history.
+     Tying it to the share was tried and removed: one era owns almost all of it,
+     so the rest crawl and the last one stalls.
 
-     data-swap and .swap-on are both set here and nowhere else, so a browser
-     that never reaches this line renders five plain stacked rows. A mode that
-     hides four of five rows can never be what the markup ships.
+     Three gates, and failing any leaves the slides stacked as an ordinary list:
+     motion allowed, at least 520px of viewport height, and sticky supported.
+     data-seq and .swap-on are set here and nowhere else, so a browser that
+     never reaches this line shows every slide. A mode that hides five of six
+     can never be what the markup ships.
 
-     No requestAnimationFrame anywhere in the scroll path. Two bugs in this
-     codebase came from rAF not firing in a frame that is not being rendered,
-     and a pinned section whose state never updates strands the reader. */
+     No requestAnimationFrame in the scroll path: rAF does not fire in a frame
+     that is not being rendered, and a pinned section whose state never updates
+     strands the reader. */
   (function(){
     var sec = document.getElementById('s-phases');
     if (!sec) return;
-    var tl = sec.querySelector('.timeline');
     var track = sec.querySelector('.tl-track');
-    if (!tl || !track) return;
-    var eras = Array.prototype.slice.call(tl.querySelectorAll('.era'));
-    if (!eras.length) return;
+    var seq = sec.querySelector('.eseq');
+    if (!track || !seq) return;
+    var slides = Array.prototype.slice.call(seq.querySelectorAll('.eseq-slide'));
+    if (!slides.length) return;
 
-    /* 90 made five beats 550vh of scrolling, which Megan called too much.
-       55 puts the whole sequence in 375vh. */
     var BEAT_VH = 55;
     var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-    /* width is no longer the question. The mode works stacked, so it runs on
-       a phone too; what it actually needs is enough height to pin a heading
-       and one era without cropping either. 520px excludes a landscape phone
-       and nothing else. */
     var tall  = window.matchMedia('(min-height: 520px)');
     var sticky = typeof CSS !== 'undefined' && CSS.supports
                  && CSS.supports('position', 'sticky');
-    /* null, not false. apply() returns early when the wanted state already
-       matches, so starting at false meant the first call did nothing at all
-       below 1000px and the reveal was never started. Nothing looked broken,
-       because rows are visible until something hides them, which is exactly
-       why it would have shipped. */
     var on = null, last = -1;
 
     function show(i) {
       if (i === last) return;
-      for (var k = 0; k < eras.length; k++) {
-        if (k === i) eras[k].classList.add('current');
-        else eras[k].classList.remove('current');
+      for (var k = 0; k < slides.length; k++) {
+        if (k === i) slides[k].classList.add('current');
+        else slides[k].classList.remove('current');
       }
+      seq.style.setProperty('--eseq-live',
+        slides[i].style.getPropertyValue('--eseq-live-c') || '');
       last = i;
     }
 
@@ -1334,32 +1199,8 @@ strong{font-weight:800}
       if (span <= 0) return;
       var p = -track.getBoundingClientRect().top / span;
       p = p < 0 ? 0 : (p > 1 ? 1 : p);
-      var i = Math.min(eras.length - 1, Math.floor(p * eras.length));
-      show(i);
-      /* the rail is the only thing still moving once the rows swap in place,
-         so it carries the sense of progress. Two properties, nothing else. */
-      tl.style.setProperty('--tl-p', p.toFixed(4));
-      tl.style.setProperty('--tl-live', eras[i].style.getPropertyValue('--era-c') || '');
-    }
-
-    /* the reveal, used whenever the stage is not pinned */
-    var seen = null;
-    function startReveal() {
-      if (seen || !('IntersectionObserver' in window)) return;
-      tl.setAttribute('data-reveal', '');
-      seen = new IntersectionObserver(function(es){
-        es.forEach(function(e){
-          if (!e.isIntersecting) return;
-          e.target.classList.add('visible');
-          seen.unobserve(e.target);
-        });
-      }, {threshold: 0.15, rootMargin: '0px 0px -60px 0px'});
-      eras.forEach(function(el){ seen.observe(el); });
-    }
-    function stopReveal() {
-      if (seen) { seen.disconnect(); seen = null; }
-      tl.removeAttribute('data-reveal');
-      eras.forEach(function(el){ el.classList.remove('visible'); });
+      seq.style.setProperty('--eseq-p', p.toFixed(4));
+      show(Math.min(slides.length - 1, Math.floor(p * slides.length)));
     }
 
     function apply() {
@@ -1367,21 +1208,18 @@ strong{font-weight:800}
       if (want === on) return;
       on = want;
       if (on) {
-        stopReveal();
-        sec.style.setProperty('--swap-h', (eras.length * BEAT_VH + 100) + 'vh');
+        sec.style.setProperty('--swap-h', (slides.length * BEAT_VH + 100) + 'vh');
         sec.classList.add('swap-on');
-        tl.setAttribute('data-swap', '');
+        seq.setAttribute('data-seq', '');
         last = -1;
         onScroll();
       } else {
         sec.classList.remove('swap-on');
         sec.style.removeProperty('--swap-h');
-        tl.removeAttribute('data-swap');
-        tl.style.removeProperty('--tl-p');
-        tl.style.removeProperty('--tl-live');
-        eras.forEach(function(el){ el.classList.remove('current'); });
-        last = -1; lastOutro = null;
-        startReveal();
+        seq.removeAttribute('data-seq');
+        seq.style.removeProperty('--eseq-p');
+        slides.forEach(function(el){ el.classList.remove('current'); });
+        last = -1;
       }
     }
 
