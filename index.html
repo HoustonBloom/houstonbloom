@@ -829,10 +829,18 @@ strong{font-weight:800}
   height: calc(var(--tl-p, 0) * 100%);
   background: var(--timeline-spine,
     linear-gradient(to bottom, transparent, var(--butter), var(--peach), var(--rust), var(--green), transparent));
-  /* NO transition on height. --tl-p is written from the scroll position, so
-     the fill has to be a pure function of it. Easing toward the value means
-     the rail is permanently chasing the reader, and lags the opposite way on
-     the way back up, which reads as the page not returning to where it was. */
+  /* The transition is correct again, and it was wrong before, for the same
+     reason: --tl-p is no longer written from scroll position. It is set once
+     per era, to that era's share of history, so the fill has a fixed target
+     to travel to and easing toward it is the animation rather than a lag.
+     When it tracked the scrollbar, easing meant the rail permanently chased
+     the reader and chased the other way coming back up.
+
+     min-height keeps the small shares visible. Consumer is 0.05% of history,
+     which on a 485px rail is a quarter of a pixel: true, and indistinguishable
+     from a bug. A 6px nub still reads as almost nothing, which is the point. */
+  min-height: var(--tl-fill-min, 6px);
+  transition: height var(--tl-anim, .9s) cubic-bezier(.22,1,.36,1);
 }
 .tl-marker { display: none; }
 .timeline[data-swap] .tl-marker {
@@ -843,13 +851,15 @@ strong{font-weight:800}
   transform: translate(-50%, -50%);
   /* same: position is scroll, so it is not animated. Only the colour, which
      changes on a beat rather than continuously, gets a transition. */
-  transition: border-color .3s ease;
+  transition: top var(--tl-anim, .9s) cubic-bezier(.22,1,.36,1),
+              border-color .3s ease;
 }
 /* the per-era dots would stack in one place in swap mode, so the marker takes
    over and they step aside */
 .timeline[data-swap] .era-dot { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
-  .timeline[data-swap] .tl-marker { transition: none; }
+  .timeline[data-swap] .tl-marker,
+  .timeline[data-swap]::after { transition: none; }
 }
 </style>
 </head>
@@ -959,39 +969,39 @@ strong{font-weight:800}
         <h2>For almost all of human history,<br>there were no platforms.</h2>
         <div class="timeline tl-fixed">
           <span class="tl-marker" aria-hidden="true"></span>
-          <div class="era" style="--era-c:#4a8a62">
-        <div class="era-time">~300,000 yrs<div class="era-pct">98% of human history</div><div class="era-mothers">~17,000 mothers ago</div></div>
+          <div class="era" data-share="98" style="--era-c:#4a8a62">
+        <div class="era-time"><span class="cnt" data-to="300000" data-dec="0" data-pre="~" data-suf=" yrs">~300,000 yrs</span><div class="era-pct"><span class="cnt" data-to="98" data-dec="0" data-suf="% of human history">98% of human history</span></div><div class="era-mothers"><span class="cnt" data-to="17000" data-dec="0" data-pre="~" data-suf=" mothers ago">~17,000 mothers ago</span></div></div>
         <div class="era-dot"></div>
         <div class="era-content">
           <div class="era-label">Indigenous Peoples</div>
           <div class="era-desc">Trust, reciprocity, shared knowledge at Dunbar scale. Tribal groups governed by proximity, kinship, and the relationships you could hold in your head. No one coordinated from above because no one needed to.</div>
         </div>
       </div>
-      <div class="era" style="--era-c:#8ab06d">
-        <div class="era-time">~5,400 yrs<div class="era-pct">1.7% of human history</div><div class="era-mothers">~280 mothers ago</div></div>
+      <div class="era" data-share="1.7" style="--era-c:#8ab06d">
+        <div class="era-time"><span class="cnt" data-to="5400" data-dec="0" data-pre="~" data-suf=" yrs">~5,400 yrs</span><div class="era-pct"><span class="cnt" data-to="1.7" data-dec="1" data-suf="% of human history">1.7% of human history</span></div><div class="era-mothers"><span class="cnt" data-to="280" data-dec="0" data-pre="~" data-suf=" mothers ago">~280 mothers ago</span></div></div>
         <div class="era-dot"></div>
         <div class="era-content">
           <div class="era-label">Subject</div>
           <div class="era-desc">Writing. Math. The Printing Press. Kings, priests, states. Coordination above Dunbar scale required vertical structures.</div>
         </div>
       </div>
-      <div class="era" style="--era-c:#cfc77e">
-        <div class="era-time">~175 yrs<div class="era-pct">0.05% of human history</div><div class="era-mothers">~7 mothers ago</div></div>
+      <div class="era" data-share="0.05" style="--era-c:#cfc77e">
+        <div class="era-time"><span class="cnt" data-to="175" data-dec="0" data-pre="~" data-suf=" yrs">~175 yrs</span><div class="era-pct"><span class="cnt" data-to="0.05" data-dec="2" data-suf="% of human history">0.05% of human history</span></div><div class="era-mothers"><span class="cnt" data-to="7" data-dec="0" data-pre="~" data-suf=" mothers ago">~7 mothers ago</span></div></div>
         <div class="era-dot"></div>
         <div class="era-content">
           <div class="era-label">Consumer</div>
           <div class="era-desc">Industrial revolution. Owning became production. People became consumers. The top changed hands. The structure never did.</div>
         </div>
       </div>
-      <div class="era" style="--era-c:#b48ee0">
-        <div class="era-time">~25 yrs<div class="era-pct">0.008% of human history</div><div class="era-mothers">1 mother ago</div></div>
+      <div class="era" data-share="0.008" style="--era-c:#b48ee0">
+        <div class="era-time"><span class="cnt" data-to="25" data-dec="0" data-pre="~" data-suf=" yrs">~25 yrs</span><div class="era-pct"><span class="cnt" data-to="0.008" data-dec="3" data-suf="% of human history">0.008% of human history</span></div><div class="era-mothers"><span class="cnt" data-to="1" data-dec="0" data-pre="" data-suf=" mother ago">1 mother ago</span></div></div>
         <div class="era-dot"></div>
         <div class="era-content">
           <div class="era-label">User</div>
           <div class="era-desc">The internet. Owning became renting. Production became data. Consumers became users. Five companies became the town square.</div>
         </div>
       </div>
-      <div class="era" style="--era-c:#6fbf87">
+      <div class="era" data-share="100.0" style="--era-c:#6fbf87">
         <div class="era-time">Now</div>
         <div class="era-dot"></div>
         <div class="era-content">
@@ -1022,8 +1032,7 @@ strong{font-weight:800}
   <div class="shell">
     <span class="eyebrow">The three horizons</span>
     <h2>Citizen infrastructure is the transition.</h2>
-    <p class="lede">Horizon one is what dominates now. Horizon three is what we are aiming at. The middle
-      is the part most visions skip.</p>
+    <p class="lede">From passive consumer to active citizen.</p>
     <div class="hz rv">
       <article class="hz-card hz-1">
         <p class="hz-k">Horizon 1 &#183; data ownership</p>
@@ -1312,12 +1321,49 @@ strong{font-weight:800}
        why it would have shipped. */
     var on = null, last = -1;
 
+    /* Counting up to a figure, and landing on the exact string the build
+       already rendered. The tween is numeric, but the last thing written is
+       always the element's own original text, so an animation cannot leave a
+       wrong number on the page, and a browser that never runs this shows the
+       real value from the start. */
+    function count(root) {
+      var spans = root.querySelectorAll('.cnt');
+      for (var n = 0; n < spans.length; n++) { (function(el){
+        if (el.__final === undefined) el.__final = el.textContent;
+        if (el.__raf) cancelAnimationFrame(el.__raf);
+        var to = parseFloat(el.getAttribute('data-to'));
+        if (still.matches || isNaN(to)) { el.textContent = el.__final; return; }
+        var dec = parseInt(el.getAttribute('data-dec'), 10) || 0;
+        var pre = el.getAttribute('data-pre') || '';
+        var suf = el.getAttribute('data-suf') || '';
+        var fmt = function(v){ return pre + v.toLocaleString(undefined, {
+          minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf; };
+        var t0 = null, dur = 900;
+        var step = function(ts){
+          if (t0 === null) t0 = ts;
+          var u = Math.min(1, (ts - t0) / dur);
+          if (u < 1) {
+            el.textContent = fmt(to * (1 - Math.pow(1 - u, 3)));
+            el.__raf = requestAnimationFrame(step);
+          } else { el.textContent = el.__final; el.__raf = 0; }
+        };
+        el.textContent = fmt(0);
+        el.__raf = requestAnimationFrame(step);
+      })(spans[n]); }
+    }
+
     function show(i) {
       if (i === last) return;
       for (var k = 0; k < eras.length; k++) {
         if (k === i) eras[k].classList.add('current');
         else eras[k].classList.remove('current');
       }
+      /* the rail is the era's own share of history and nothing else, so it
+         animates to a fixed target on arrival rather than tracking scroll */
+      var share = parseFloat(eras[i].getAttribute('data-share'));
+      tl.style.setProperty('--tl-p', (isNaN(share) ? 0 : share / 100).toFixed(5));
+      tl.style.setProperty('--tl-live', eras[i].style.getPropertyValue('--era-c') || '');
+      count(eras[i]);
       last = i;
     }
 
@@ -1331,21 +1377,11 @@ strong{font-weight:800}
       show(i);
       /* the rail is the only thing still moving once the rows swap in place,
          so it carries the sense of progress. Two properties, nothing else. */
-      /* The marker is scroll position and nothing else, so equal scrolling
-         always moves it equally.
-
-         It briefly carried each era's real share of history instead. That is
-         a truer picture and it is unusable: Indigenous Peoples owns 80% of
-         the rail, so the other four crawl and the last one, which has no
-         elapsed span at all, pins the marker at 100% for the whole final
-         fifth of the scroll. The marker is the only thing on screen still
-         moving, so when it stops the page reads as stuck even though the
-         scroll is working. Equal scroll has to mean equal travel.
-
-         The proportion is not lost. Every row prints its own share, and the
-         mothers-ago line under it says the same thing a second way. */
-      tl.style.setProperty('--tl-p', p.toFixed(4));
-      tl.style.setProperty('--tl-live', eras[i].style.getPropertyValue('--era-c') || '');
+      /* scroll picks the era and nothing more. The rail and the figures are
+         animated by show() on arrival, so every era gets the same scroll
+         distance and the same animation regardless of how much of history it
+         covers. Tying the rail to the scrollbar was the mistake: it made the
+         first era race and the last four crawl. */
     }
 
     /* the reveal, used whenever the stage is not pinned */
