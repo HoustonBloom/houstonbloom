@@ -913,7 +913,7 @@ strong{font-weight:800}
         <h2>For almost all of human history,<br>there were no platforms.</h2>
         <div class="timeline tl-fixed">
           <span class="tl-marker" aria-hidden="true"></span>
-          <div class="era" data-rail-a="0.000" data-rail-b="80.632" style="--era-c:#4a8a62">
+          <div class="era" style="--era-c:#4a8a62">
         <div class="era-time">~300,000 yrs<div class="era-pct">98% of human history</div><div class="era-mothers">~17,000 mothers ago</div></div>
         <div class="era-dot"></div>
         <div class="era-content">
@@ -921,7 +921,7 @@ strong{font-weight:800}
           <div class="era-desc">Trust, reciprocity, shared knowledge at Dunbar scale. Tribal groups governed by proximity, kinship, and the relationships you could hold in your head. No one coordinated from above because no one needed to.</div>
         </div>
       </div>
-      <div class="era" data-rail-a="80.632" data-rail-b="87.956" style="--era-c:#8ab06d">
+      <div class="era" style="--era-c:#8ab06d">
         <div class="era-time">~5,400 yrs<div class="era-pct">1.7% of human history</div><div class="era-mothers">~280 mothers ago</div></div>
         <div class="era-dot"></div>
         <div class="era-content">
@@ -929,7 +929,7 @@ strong{font-weight:800}
           <div class="era-desc">Writing. Math. The Printing Press. Kings, priests, states. Coordination above Dunbar scale required vertical structures.</div>
         </div>
       </div>
-      <div class="era" data-rail-a="87.956" data-rail-b="93.994" style="--era-c:#cfc77e">
+      <div class="era" style="--era-c:#cfc77e">
         <div class="era-time">~175 yrs<div class="era-pct">0.05% of human history</div><div class="era-mothers">~7 mothers ago</div></div>
         <div class="era-dot"></div>
         <div class="era-content">
@@ -937,7 +937,7 @@ strong{font-weight:800}
           <div class="era-desc">Industrial revolution. Owning became production. People became consumers. The top changed hands. The structure never did.</div>
         </div>
       </div>
-      <div class="era" data-rail-a="93.994" data-rail-b="100.000" style="--era-c:#b48ee0">
+      <div class="era" style="--era-c:#b48ee0">
         <div class="era-time">~25 yrs<div class="era-pct">0.008% of human history</div><div class="era-mothers">1 mother ago</div></div>
         <div class="era-dot"></div>
         <div class="era-content">
@@ -945,7 +945,7 @@ strong{font-weight:800}
           <div class="era-desc">The internet. Owning became renting. Production became data. Consumers became users. Five companies became the town square.</div>
         </div>
       </div>
-      <div class="era" data-rail-a="100.000" data-rail-b="100.000" style="--era-c:#6fbf87">
+      <div class="era" style="--era-c:#6fbf87">
         <div class="era-time">Now</div>
         <div class="era-dot"></div>
         <div class="era-content">
@@ -1285,15 +1285,20 @@ strong{font-weight:800}
       show(i);
       /* the rail is the only thing still moving once the rows swap in place,
          so it carries the sense of progress. Two properties, nothing else. */
-      /* the marker sits at the era's real place in history, not its place in
-         the list, so the first name owns most of the rail and the last four
-         are crowded into the end of it. */
-      var t = p * eras.length - i;
-      if (t < 0) t = 0; if (t > 1) t = 1;
-      var ra = parseFloat(eras[i].getAttribute('data-rail-a')) || 0;
-      var rb = parseFloat(eras[i].getAttribute('data-rail-b'));
-      if (isNaN(rb)) rb = ra;
-      tl.style.setProperty('--tl-p', ((ra + (rb - ra) * t) / 100).toFixed(4));
+      /* The marker is scroll position and nothing else, so equal scrolling
+         always moves it equally.
+
+         It briefly carried each era's real share of history instead. That is
+         a truer picture and it is unusable: Indigenous Peoples owns 80% of
+         the rail, so the other four crawl and the last one, which has no
+         elapsed span at all, pins the marker at 100% for the whole final
+         fifth of the scroll. The marker is the only thing on screen still
+         moving, so when it stops the page reads as stuck even though the
+         scroll is working. Equal scroll has to mean equal travel.
+
+         The proportion is not lost. Every row prints its own share, and the
+         mothers-ago line under it says the same thing a second way. */
+      tl.style.setProperty('--tl-p', p.toFixed(4));
       tl.style.setProperty('--tl-live', eras[i].style.getPropertyValue('--era-c') || '');
       var outro = p > 0.92 ? '1' : '0';
       if (outro !== lastOutro) { sec.setAttribute('data-outro', outro); lastOutro = outro; }
