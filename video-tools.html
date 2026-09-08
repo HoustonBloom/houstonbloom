@@ -901,7 +901,7 @@ If that fails on this machine, send me to https://ffmpeg.org/download.html and s
 <span class="kw">6. Reply with the OS and the three version numbers</span> and nothing else.
 
 If you get stuck at any step, tell me which step and the exact error. Don't guess.</pre></div>
-    </div></article><article class="hz-card " style="--hz-c:var(--gold)"><p class="hz-k">Step 4</p><p class="hz-t">Drop the video in</p><p class="hz-d">Put your video file in a folder inside it. Get it from whoever runs the channel; nothing here downloads from YouTube. No captions? The prompt makes them.</p></article><article class="hz-card " style="--hz-c:var(--green-light)"><p class="hz-k">Step 5</p><p class="hz-t">Run a tool</p><p class="hz-d">Paste this for the walkthrough.</p><div class="prompt-wrap">
+    </div></article><article class="hz-card " style="--hz-c:var(--gold)"><p class="hz-k">Step 4</p><p class="hz-t">Drop the video in</p><p class="hz-d">Put your video file in a folder inside it, from whoever runs the channel. No captions? The prompt makes them.</p></article><article class="hz-card " style="--hz-c:var(--green-light)"><p class="hz-k">Step 5</p><p class="hz-t">Run a tool</p><p class="hz-d">The first for the walkthrough, the second for the stills.</p><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-for-a-walkthrough.txt</span>
@@ -920,6 +920,25 @@ If you get stuck at any step, tell me which step and the exact error. Don't gues
 <span class="kw">5. Do the read it asks for:</span> the whole transcript against the checklist in readthrough/SKILL.md, write segments.json, rebuild.
 
 <span class="kw">6. Reply with the absolute path to walkthrough.html at the top,</span> then who was featured and what was found. Do not bury the path.
+
+If it fails, tell me which step and the exact error. Don't guess.</pre></div>
+    </div><div class="prompt-wrap">
+      <div class="prompt-bar">
+        <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="label">prompt-for-the-stills.txt</span>
+        <button class="copy-btn" type="button" data-copy-target="p-stills" aria-label="Copy prompt to clipboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+      </div>
+      <div class="prompt-body"><pre id="p-stills">Hi. Pull the best frames out of a recording.
+
+<span class="kw">1. Read stills/README.md first.</span> If you cannot find it, tell me and stop.
+
+<span class="kw">2. My video:</span> <span class="ph">[paste the path]</span>. I want <span class="ph">[how many]</span> frames<span class="ph">[, from MM:SS to MM:SS, or say the whole thing]</span>.
+
+<span class="kw">3. Run</span> stills/scripts/pick_stills.py with those, then stills/scripts/build_sheet.py on the folder it wrote.
+
+<span class="kw">4. Reply with the absolute path to contact-sheet.html at the top,</span> then how many frames it analysed and kept. Do not bury the path.
+
+Nothing here knows who is in a frame. I look at every picture before one goes out.
 
 If it fails, tell me which step and the exact error. Don't guess.</pre></div>
     </div></article></div>
