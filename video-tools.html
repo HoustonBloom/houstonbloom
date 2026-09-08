@@ -896,7 +896,7 @@ strong{font-weight:800}
   <div class="shell">
     <span class="eyebrow">Start here</span>
     <h2>Getting started</h2>
-    <div class="hz"><article class="hz-card hz-1"><p class="hz-k">Step 1</p><p class="hz-t">Get the local AI</p><p class="hz-d">These run on a computer, not a phone. On <a href="https://lmstudio.ai/download">lmstudio.ai/download</a> choose <b>Bionic</b>, copy the download link, paste it into the browser on the computer you will use, and open the downloaded file to install.</p></article><article class="hz-card hz-2"><p class="hz-k">Step 2</p><p class="hz-t">Point it at the folder</p><p class="hz-d">Download the code from <a href="https://github.com/HoustonBloom/video-tools">GitHub</a>, or give your agent this prompt. Then open Bionic, make a new project, and choose that folder (<a href="https://lmstudio.ai/docs/bionic/quick-start">its docs</a>).</p><details class="pw"><summary>Show the prompt that fetches it</summary><div class="prompt-wrap">
+    <div class="hz"><article class="hz-card hz-1"><p class="hz-k">Step 1</p><p class="hz-t">Get the local AI</p><p class="hz-d">These run on a computer, not a phone. On <a href="https://lmstudio.ai/download">lmstudio.ai/download</a> choose <b>Bionic</b>, copy the download link, paste it into the browser on the computer you will use, and open the downloaded file to install.</p></article><article class="hz-card hz-2"><p class="hz-k">Step 2</p><p class="hz-t">Download the tools, point your AI at it</p><p class="hz-d">Download the folder from <a href="https://github.com/HoustonBloom/video-tools">GitHub</a> and put it wherever you keep projects, or give your AI this prompt. Then open Bionic, make a new project, and choose that folder (<a href="https://lmstudio.ai/docs/bionic/quick-start">its docs</a>).</p><details class="pw"><summary>Show the prompt that fetches it</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-to-get-the-tools.txt</span>
@@ -904,9 +904,11 @@ strong{font-weight:800}
       </div>
       <div class="prompt-body"><pre id="p-get">Hi. Get me the video tools from Houston Bloom.
 
-<span class="kw">1. Clone</span> https://github.com/HoustonBloom/video-tools into a folder called video-tools, somewhere I keep projects. If git is not on this computer, download https://github.com/HoustonBloom/video-tools/archive/refs/heads/main.zip instead and unzip it there.
+<span class="kw">1. Ask me where I keep projects</span> before you put anything anywhere. If I have no answer, suggest a sensible place on this computer and wait for a yes.
 
-<span class="kw">2. Reply with the absolute path to that folder</span> and nothing else. I will point my agent at it.
+<span class="kw">2. Get</span> https://github.com/HoustonBloom/video-tools into a folder called video-tools inside that place: clone it if git is on this computer, otherwise download https://github.com/HoustonBloom/video-tools/archive/refs/heads/main.zip and unzip it there.
+
+<span class="kw">3. Reply with the full path to the folder,</span> so I can point Bionic at it.
 
 If you get stuck, tell me which step and the exact error. Don't guess.</pre></div>
     </div></details></article><article class="hz-card hz-3"><p class="hz-k">Step 3</p><p class="hz-t">Paste this to set up</p><p class="hz-d">It asks which computer it is on, installs Python and ffmpeg for that one, and stops with the exact error if anything fails.</p><details class="pw"><summary>Show the set-up prompt</summary><div class="prompt-wrap">
