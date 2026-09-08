@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Video tools &#183; Six tools that read and cut video.</title>
-<meta name="description" content="Each runs alone, on any video.">
+<meta name="description" content="Each runs alone.">
 <style>
 /* Offline-inlined fonts: variable axes instanced to weight, subset to Latin
    plus cut punctuation/symbols, base64 woff2, no runtime network.
@@ -843,7 +843,7 @@ strong{font-weight:800}
       <li><a href="#s-runs">How it runs</a></li>
       <li><a href="#s-steps">Start</a></li>
       <li><a href="#s-tools">Tools</a></li>
-      <li><a href="tools/video-tools.zip">Download</a></li>
+      <li><a href="https://github.com/HoustonBloom/video-tools" target="_blank" rel="noopener">GitHub</a></li>
     </ul></nav>
   </div>
 </header>
@@ -854,7 +854,7 @@ strong{font-weight:800}
   <div class="shell">
     <p class="script">read a recording so you never watch it twice</p>
     <h1>Six tools that read and cut video.</h1>
-    <p class="lede measure">Each runs alone, on any video.</p>
+    <p class="lede measure">Each runs alone.</p>
     <hr class="hero-rule">
     <p class="btn-row">
       <a class="btn" href="#s-steps">Start here</a>
@@ -876,7 +876,20 @@ strong{font-weight:800}
   <div class="shell">
     <span class="eyebrow">Start here</span>
     <h2>Five steps, in this order.</h2>
-    <div class="hz"><article class="hz-card hz-1"><p class="hz-k">Step 1</p><p class="hz-t">Get the local AI</p><p class="hz-d"><a href="https://lmstudio.ai/">LM Studio Bionic</a>, the agent that runs open models on your own computer and works inside a folder. Download it from lmstudio.ai on the machine you will use.</p></article><article class="hz-card hz-2"><p class="hz-k">Step 2</p><p class="hz-t">Point it at the folder</p><p class="hz-d">Get the folder: <a href="tools/video-tools.zip">download the tools</a>, unzip. In Bionic: new Project, name it, toggle Allow coding, Choose a folder, pick that one, Create, pick a model (<a href="https://lmstudio.ai/docs/bionic/quick-start">its docs</a>).</p></article><article class="hz-card hz-3"><p class="hz-k">Step 3</p><p class="hz-t">Paste this to set up</p><p class="hz-d">It asks which computer it is on, installs Python and ffmpeg for that one, and stops with the exact error if anything fails.</p><div class="prompt-wrap">
+    <div class="hz"><article class="hz-card hz-1"><p class="hz-k">Step 1</p><p class="hz-t">Get the local AI</p><p class="hz-d"><a href="https://lmstudio.ai/">LM Studio Bionic</a>, the agent that runs open models on your own computer and works inside a folder. Download it from lmstudio.ai on the machine you will use.</p></article><article class="hz-card hz-2"><p class="hz-k">Step 2</p><p class="hz-t">Point it at the folder</p><p class="hz-d">Get the folder from <a href="https://github.com/HoustonBloom/video-tools">GitHub</a>, or paste this to your AI. Then in Bionic: new Project, Allow coding, Choose a folder, pick that one, Create, pick a model (<a href="https://lmstudio.ai/docs/bionic/quick-start">its docs</a>).</p><div class="prompt-wrap">
+      <div class="prompt-bar">
+        <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="label">prompt-to-get-the-tools.txt</span>
+        <button class="copy-btn" type="button" data-copy-target="p-get" aria-label="Copy prompt to clipboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
+      </div>
+      <div class="prompt-body"><pre id="p-get">Hi. Get me the video tools from Houston Bloom.
+
+<span class="kw">1. Clone</span> https://github.com/HoustonBloom/video-tools into a folder called video-tools, somewhere I keep projects. If git is not on this computer, download https://github.com/HoustonBloom/video-tools/archive/refs/heads/main.zip instead and unzip it there.
+
+<span class="kw">2. Reply with the absolute path to that folder</span> and nothing else. I will point my agent at it.
+
+If you get stuck, tell me which step and the exact error. Don't guess.</pre></div>
+    </div></article><article class="hz-card hz-3"><p class="hz-k">Step 3</p><p class="hz-t">Paste this to set up</p><p class="hz-d">It asks which computer it is on, installs Python and ffmpeg for that one, and stops with the exact error if anything fails.</p><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-to-set-up.txt</span>
