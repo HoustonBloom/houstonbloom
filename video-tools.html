@@ -902,80 +902,78 @@ strong{font-weight:800}
         <span class="label">prompt-to-get-the-tools.txt</span>
         <button class="copy-btn" type="button" data-copy-target="p-get" aria-label="Copy prompt to clipboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
       </div>
-      <div class="prompt-body"><pre id="p-get">Hi. Get me the video tools from Houston Bloom.
+      <div class="prompt-body"><pre id="p-get">Get me the video tools from Houston Bloom.
 
-<span class="kw">1. Ask me where I keep projects</span> before you put anything anywhere. If I have no answer, suggest a sensible place on this computer and wait for a yes.
+<span class="kw">1. Ask me where I keep projects</span> before you put anything anywhere. If I have no answer, suggest a place on this computer and wait for a yes.
 
-<span class="kw">2. Get</span> https://github.com/HoustonBloom/video-tools into a folder called video-tools inside that place: clone it if git is on this computer, otherwise download https://github.com/HoustonBloom/video-tools/archive/refs/heads/main.zip and unzip it there.
+<span class="kw">2. Get</span> https://github.com/HoustonBloom/video-tools into a folder called video-tools in that place: clone it if git is on this computer, otherwise download https://github.com/HoustonBloom/video-tools/archive/refs/heads/main.zip and unzip it there.
 
-<span class="kw">3. Reply with the full path to the folder,</span> so I can point Bionic at it.
+<span class="kw">3. Give me the full path to the folder,</span> so I can point Bionic at it.
 
-If you get stuck, tell me which step and the exact error. Don't guess.</pre></div>
+If something fails, tell me which step and the exact error.</pre></div>
     </div></details></article><article class="hz-card hz-3"><p class="hz-k">Step 3</p><p class="hz-t">Paste this to set up</p><p class="hz-d">It asks which computer it is on, installs Python and ffmpeg for that one, and stops with the exact error if anything fails.</p><details class="pw"><summary>Show the set-up prompt</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-to-set-up.txt</span>
         <button class="copy-btn" type="button" data-copy-target="p-setup" aria-label="Copy prompt to clipboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
       </div>
-      <div class="prompt-body"><pre id="p-setup">Hi. Set me up to run some local video tools on this computer.
+      <div class="prompt-body"><pre id="p-setup">Set me up to run the video tools on this computer.
 
 <span class="kw">1. Say which operating system this is,</span> Mac, Windows or Linux, and use that row in step 3.
 
-<span class="kw">2. Check Python 3.12 or later, the version these ran on.</span> Try <span class="kw">python --version</span>, then <span class="kw">python3 --version</span>, whichever answers. If neither, send me to https://www.python.org/downloads/ and stop.
+<span class="kw">2. Check Python 3.12 or later.</span> Try <span class="kw">python --version</span>, then <span class="kw">python3 --version</span>. If neither answers, send me to https://www.python.org/downloads/ and stop.
 
 <span class="kw">3. Install ffmpeg and ffprobe if missing.</span>
-  Mac: <span class="kw">brew install ffmpeg</span>
-  Windows: <span class="kw">winget install -e --id Gyan.FFmpeg</span>
-  Linux: <span class="kw">sudo apt install ffmpeg</span>
+  Mac: brew install ffmpeg
+  Windows: winget install -e --id Gyan.FFmpeg
+  Linux: sudo apt install ffmpeg
 The Mac and Linux lines have not been run by us; if one fails, send me to https://ffmpeg.org/download.html and stop.
 
-<span class="kw">4. Open a NEW terminal and confirm both answer:</span> <span class="kw">ffmpeg -version</span> and <span class="kw">ffprobe -version</span>. If either says not found, fix my PATH and tell me what you changed.
+<span class="kw">4. Open a new terminal and confirm both answer:</span> <span class="kw">ffmpeg -version</span> and <span class="kw">ffprobe -version</span>. If either says not found, fix my PATH and tell me what you changed.
 
-<span class="kw">5. In this folder run</span> <span class="kw">pip install -r requirements.txt</span>. The first transcription also downloads a 464MB model, once.
+<span class="kw">5. In this folder run</span> <span class="kw">pip install -r requirements.txt</span>.
 
-<span class="kw">6. Reply with the OS and the three version numbers</span> and nothing else.
+<span class="kw">6. Tell me the OS and the three version numbers.</span>
 
-If you get stuck at any step, tell me which step and the exact error. Don't guess.</pre></div>
+If something fails, tell me which step and the exact error.</pre></div>
     </div></details></article><article class="hz-card " style="--hz-c:var(--gold)"><p class="hz-k">Step 4</p><p class="hz-t">Drop the video in the inbox</p><p class="hz-d">Put the video file in <code>video-tools/inbox/</code>, with its caption file if the platform gave you one. No captions? The walkthrough prompt makes them.</p></article><article class="hz-card " style="--hz-c:var(--green-light)"><p class="hz-k">Step 5</p><p class="hz-t">Run a tool</p><p class="hz-d">Paste the first for the walkthrough, the second for the stills.</p><details class="pw"><summary>Show the walkthrough prompt</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-for-a-walkthrough.txt</span>
         <button class="copy-btn" type="button" data-copy-target="p-run" aria-label="Copy prompt to clipboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
       </div>
-      <div class="prompt-body"><pre id="p-run">Hi. Give me a walkthrough of a recording.
+      <div class="prompt-body"><pre id="p-run">Make me a walkthrough of a recording.
 
-<span class="kw">1. Read readthrough/README.md first.</span> If you cannot find it, tell me and stop.
+<span class="kw">1. Read readthrough/README.md.</span>
 
-<span class="kw">2. My video:</span> <span class="ph">[paste the path]</span>. Captions: <span class="ph">[paste the path to the .vtt, or say none]</span>.
+<span class="kw">2. List the video files in inbox/ and ask me which one.</span> If there is only one, confirm it with me.
 
-<span class="kw">3. No captions?</span> pip install -r transcribe/requirements.txt, then run transcribe/scripts/transcribe.py on the video. An hour took twenty minutes on one computer with no GPU.
+<span class="kw">3. If it has no caption file beside it, make one first</span> with transcribe/scripts/transcribe.py (pip install -r transcribe/requirements.txt if needed). Tell me it takes about a third of the video's length, and the first run downloads a 464MB model.
 
-<span class="kw">4. Run</span> readthrough/scripts/run.py with both, writing into a folder inside inbox named after the video. It ends in walkthrough.html or exits non-zero.
+<span class="kw">4. Run readthrough/scripts/run.py,</span> writing into a folder inside inbox named after the video. It ends in walkthrough.html or exits non-zero.
 
 <span class="kw">5. Do the read it asks for:</span> the whole transcript against the checklist in readthrough/SKILL.md, write segments.json, rebuild.
 
-<span class="kw">6. Reply with the absolute path to walkthrough.html at the top,</span> then who was featured and what was found. Do not bury the path.
+<span class="kw">6. Give me the path to walkthrough.html,</span> then who was featured and what was found.
 
-If it fails, tell me which step and the exact error. Don't guess.</pre></div>
+If something fails, tell me which step and the exact error.</pre></div>
     </div></details><details class="pw"><summary>Show the stills prompt</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-for-the-stills.txt</span>
         <button class="copy-btn" type="button" data-copy-target="p-stills" aria-label="Copy prompt to clipboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy</span></button>
       </div>
-      <div class="prompt-body"><pre id="p-stills">Hi. Pull the best frames out of a recording.
+      <div class="prompt-body"><pre id="p-stills">Pull the best frames out of a recording.
 
-<span class="kw">1. Read stills/README.md first.</span> If you cannot find it, tell me and stop.
+<span class="kw">1. Read stills/README.md.</span>
 
-<span class="kw">2. My video:</span> <span class="ph">[paste the path]</span>. I want <span class="ph">[how many]</span> frames<span class="ph">[, from MM:SS to MM:SS, or say the whole thing]</span>.
+<span class="kw">2. List the video files in inbox/ and ask me</span> which one, how many frames I want, and whether the whole thing or a stretch of it.
 
-<span class="kw">3. Run</span> stills/scripts/pick_stills.py with those, writing into a folder inside inbox named after the video, then stills/scripts/build_sheet.py on that folder.
+<span class="kw">3. Run stills/scripts/pick_stills.py with my answers,</span> writing into a folder inside inbox named after the video, then stills/scripts/build_sheet.py on that folder.
 
-<span class="kw">4. Reply with the absolute path to contact-sheet.html at the top,</span> then how many frames it analysed and kept. Do not bury the path.
+<span class="kw">4. Give me the path to contact-sheet.html,</span> then how many frames it analysed and kept. Nothing here knows who is in a frame; I look before one goes out.
 
-Nothing here knows who is in a frame. I look at every picture before one goes out.
-
-If it fails, tell me which step and the exact error. Don't guess.</pre></div>
+If something fails, tell me which step and the exact error.</pre></div>
     </div></details></article></div>
   </div>
 </section>
