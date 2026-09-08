@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Video tools &#183; Six tools that read and cut video.</title>
-<meta name="description" content="Each runs alone, on any video.">
+<title>Video tools &#183; Have your local AI edit your community's videos.</title>
+<meta name="description" content="Six tools that run on your own computer. A video in, a page out, and a prompt for each thing you want cut.">
 <style>
 /* Offline-inlined fonts: variable axes instanced to weight, subset to Latin
    plus cut punctuation/symbols, base64 woff2, no runtime network.
@@ -826,7 +826,15 @@ strong{font-weight:800}
    grid stretched every card to its tallest neighbour, so a two-sentence step
    was 1279px of empty cream beside a prompt. The prompts fold away until asked
    for. Megan: "the large copy prompts are making the layout all spread out". */
-.shell .hz{grid-template-columns:1fr;max-width:720px;margin-left:auto;margin-right:auto}
+.shell .hz{grid-template-columns:1fr;max-width:720px;margin-left:0;margin-right:auto}
+.hz-card{padding-top:var(--s5)}
+.talk-h{display:flex;align-items:center;justify-content:space-between;gap:var(--s3)}
+.talk-t{text-transform:none}
+.talk-s{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:3px;border:1px solid currentColor;white-space:nowrap}
+.talk-s.ready{color:var(--green-light)}
+.talk-s.soon{color:var(--butter)}
+.talks a.talk-soon{opacity:.55;cursor:default}
+.talks a.talk-soon:hover{background:transparent;border-color:inherit}
 .hz-card{min-width:0}
 .pw{margin-top:var(--s3)}
 .pw summary{cursor:pointer;list-style:none;display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
@@ -864,9 +872,9 @@ strong{font-weight:800}
 
 <section class="panel hero" id="s-hero">
   <div class="shell">
-    <p class="script">read a recording so you never watch it twice</p>
-    <h1>Six tools that read and cut video.</h1>
-    <p class="lede measure">Each runs alone, on any video.</p>
+    <p class="script">for community organisers</p>
+    <h1>Have your local AI edit your community's videos.</h1>
+    <p class="lede measure">Six tools that run on your own computer. A video in, a page out, and a prompt for each thing you want cut.</p>
     <hr class="hero-rule">
     <p class="btn-row">
       <a class="btn" href="#s-steps">Start here</a>
@@ -878,8 +886,8 @@ strong{font-weight:800}
 <section class="panel panel-tint" id="s-runs">
   <div class="shell">
     <span class="eyebrow">How it runs</span>
-    <h2>Your video, down to one page.</h2>
-    <p class="lede measure">One script per arrow. Each writes a file the next one reads.</p>
+    <h2>One video in, one page out.</h2>
+    <p class="lede measure">The page tells you what is in the recording. Every other tool is a prompt you paste after that.</p>
     <svg viewBox="0 0 460 454" width="100%" style="max-width:640px;display:block;margin:var(--s6) auto 0" role="img" aria-label="Your video becomes captions, then moments, then stills, then one page"><rect x="20" y="14" width="250" height="58" rx="6" fill="var(--cream)" stroke="var(--green)" stroke-width="2"/><text x="36" y="38" font-family="var(--mono)" font-size="15" letter-spacing="2" fill="var(--ink)">YOUR VIDEO</text><text x="36" y="58" font-family="var(--sans)" font-size="13" fill="var(--ink-softer)">any recording, any length</text><path d="M145 76 v22" stroke="var(--green)" stroke-width="2" fill="none"/><path d="M139 94 l6 8 l6 -8" fill="none" stroke="var(--green)" stroke-width="2"/><rect x="20" y="106" width="250" height="58" rx="6" fill="var(--cream)" stroke="var(--green)" stroke-width="2"/><text x="36" y="130" font-family="var(--mono)" font-size="15" letter-spacing="2" fill="var(--ink)">CAPTIONS</text><text x="36" y="150" font-family="var(--sans)" font-size="13" fill="var(--ink-softer)">what was said, and when</text><text x="288" y="139" font-family="var(--mono)" font-size="11" fill="var(--gold)">captions, or transcribe</text><path d="M145 168 v22" stroke="var(--green)" stroke-width="2" fill="none"/><path d="M139 186 l6 8 l6 -8" fill="none" stroke="var(--green)" stroke-width="2"/><rect x="20" y="198" width="250" height="58" rx="6" fill="var(--cream)" stroke="var(--green)" stroke-width="2"/><text x="36" y="222" font-family="var(--mono)" font-size="15" letter-spacing="2" fill="var(--ink)">MOMENTS</text><text x="36" y="242" font-family="var(--sans)" font-size="13" fill="var(--ink-softer)">who was up, what happened</text><text x="288" y="231" font-family="var(--mono)" font-size="11" fill="var(--gold)">find_moments.py</text><path d="M145 260 v22" stroke="var(--green)" stroke-width="2" fill="none"/><path d="M139 278 l6 8 l6 -8" fill="none" stroke="var(--green)" stroke-width="2"/><rect x="20" y="290" width="250" height="58" rx="6" fill="var(--cream)" stroke="var(--green)" stroke-width="2"/><text x="36" y="314" font-family="var(--mono)" font-size="15" letter-spacing="2" fill="var(--ink)">STILLS</text><text x="36" y="334" font-family="var(--sans)" font-size="13" fill="var(--ink-softer)">one frame per stretch</text><text x="288" y="323" font-family="var(--mono)" font-size="11" fill="var(--gold)">pick_turn_stills.py</text><path d="M145 352 v22" stroke="var(--green)" stroke-width="2" fill="none"/><path d="M139 370 l6 8 l6 -8" fill="none" stroke="var(--green)" stroke-width="2"/><rect x="20" y="382" width="250" height="58" rx="6" fill="var(--green-deep)" stroke="var(--green-deep)" stroke-width="2"/><text x="36" y="406" font-family="var(--mono)" font-size="15" letter-spacing="2" fill="var(--butter)">ONE PAGE</text><text x="36" y="426" font-family="var(--sans)" font-size="13" fill="var(--on-dark-soft)">walkthrough.html</text><text x="288" y="415" font-family="var(--mono)" font-size="11" fill="var(--gold)">build_readthrough.mjs</text></svg>
   </div>
 </section>
@@ -887,7 +895,7 @@ strong{font-weight:800}
 <section class="panel" id="s-steps">
   <div class="shell">
     <span class="eyebrow">Start here</span>
-    <h2>Five steps, in this order.</h2>
+    <h2>Getting started</h2>
     <div class="hz"><article class="hz-card hz-1"><p class="hz-k">Step 1</p><p class="hz-t">Get the local AI</p><p class="hz-d">These run on a computer, not a phone. On <a href="https://lmstudio.ai/download">lmstudio.ai/download</a> choose <b>Bionic</b>, copy the download link, paste it into the browser on the computer you will use, and open the downloaded file to install. Bionic is a separate app from LM Studio. Windows today; check the page for yours.</p></article><article class="hz-card hz-2"><p class="hz-k">Step 2</p><p class="hz-t">Point it at the folder</p><p class="hz-d">Get the folder from <a href="https://github.com/HoustonBloom/video-tools">GitHub</a>: Code, Download ZIP, unzip. Or paste this to your AI. Then in Bionic: new Project, Allow coding, Choose a folder, pick that one, Create, pick a model (<a href="https://lmstudio.ai/docs/bionic/quick-start">its docs</a>).</p><details class="pw"><summary>Show the prompt that fetches it</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
@@ -973,9 +981,9 @@ If it fails, tell me which step and the exact error. Don't guess.</pre></div>
 <section class="panel panel-dark" id="s-tools">
   <div class="shell">
     <span class="eyebrow">The parts</span>
-    <h2>Six tools, one coming.</h2>
-    <p class="lede">Each one alone. Name the tool and the file.</p>
-    <ul class="talks"><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/transcribe" target="_blank" rel="noopener"><span class="talk-t">transcribe</span><span class="talk-m">No captions? This makes them. An hour took twenty minutes, one computer, no GPU.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/readthrough" target="_blank" rel="noopener"><span class="talk-t">readthrough</span><span class="talk-m">The walkthrough. A recording in, one page of who was up and the cuts to make.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/shorts" target="_blank" rel="noopener"><span class="talk-t">shorts</span><span class="talk-m">Talk footage in, a vertical Short out, from a plan you approve first.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/tighten" target="_blank" rel="noopener"><span class="talk-t">tighten</span><span class="talk-m">A slow take in, the same take with dead air and filler gone. No word rewritten.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/stills" target="_blank" rel="noopener"><span class="talk-t">stills</span><span class="talk-m">A video in, the frames worth keeping out, and a page to pick them on.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/loudness" target="_blank" rel="noopener"><span class="talk-t">loudness</span><span class="talk-m">Any render in, the same file corrected to the loudness you asked for.</span></a></li><li><a class="talk-soon" aria-disabled="true"><span class="talk-t">compositions</span><span class="talk-m">Longer pieces from clips. Coming soon.</span></a></li></ul>
+    <h2>The tools</h2>
+    <p class="lede">Each one runs on its own. Click one for its page on GitHub.</p>
+    <ul class="talks"><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/transcribe" target="_blank" rel="noopener"><span class="talk-h"><span class="talk-t">Transcribe</span><span class="talk-s ready">Ready</span></span><span class="talk-m">Captions for a video that has none. About twenty minutes for an hour of video.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/readthrough" target="_blank" rel="noopener"><span class="talk-h"><span class="talk-t">Readthrough</span><span class="talk-s ready">Ready</span></span><span class="talk-m">One page after you submit a video: who was up, when, and the cuts to make.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/shorts" target="_blank" rel="noopener"><span class="talk-h"><span class="talk-t">Shorts</span><span class="talk-s ready">Ready</span></span><span class="talk-m">A vertical clip cut from your video, from a plan you approve first.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/tighten" target="_blank" rel="noopener"><span class="talk-h"><span class="talk-t">Tighten</span><span class="talk-s ready">Ready</span></span><span class="talk-m">Your video cut down: the ums and the dead space removed, nothing rewritten.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/stills" target="_blank" rel="noopener"><span class="talk-h"><span class="talk-t">Stills</span><span class="talk-s ready">Ready</span></span><span class="talk-m">Frames taken throughout your video, on a page to pick from.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/loudness" target="_blank" rel="noopener"><span class="talk-h"><span class="talk-t">Loudness</span><span class="talk-s ready">Ready</span></span><span class="talk-m">Adjusts the volume of whoever is speaking to a set level.</span></a></li><li><a class="talk-soon" aria-disabled="true"><span class="talk-h"><span class="talk-t">Compositions</span><span class="talk-s soon">Coming soon</span></span><span class="talk-m">Longer pieces built from your clips.</span></a></li></ul>
     <p class="btn-row">
       <a class="btn" href="https://lmstudio.ai/download" target="_blank" rel="noopener">Get LM Studio Bionic</a>
       <a class="btn btn-ghost" href="https://github.com/HoustonBloom/video-tools" target="_blank" rel="noopener">The tools on GitHub</a>
@@ -989,7 +997,7 @@ If it fails, tell me which step and the exact error. Don't guess.</pre></div>
 <footer class="foot" id="s-foot">
   <div class="shell">
     <h2>Get involved.</h2>
-    <p class="lede">Come to a training, join the Discord, or fork it.</p>
+    <p class="lede">Come to a training, or join the Discord.</p>
     <ul class="chan"><li><a href="https://substack.com/@houstonbloom" target="_blank" rel="noopener" title="Substack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16"/><path d="M4 9h16"/><path d="M4 14h16v6l-8-4-8 4z"/></svg><span class="sr-only">Substack</span></a></li><li><a href="https://www.youtube.com/@gardens_not_platforms" target="_blank" rel="noopener" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.2l5 2.8-5 2.8z"/></svg><span class="sr-only">YouTube</span></a></li><li><a href="https://www.instagram.com/gardens_not_platforms" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.3" cy="6.7" r=".8" fill="currentColor"/></svg><span class="sr-only">Instagram</span></a></li><li><a href="https://www.linkedin.com/in/megan-ducote-b73458113/" target="_blank" rel="noopener" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="4" height="12"/><circle cx="5" cy="5" r="2"/><path d="M11 21v-7a3 3 0 0 1 6 0v7"/><path d="M11 9v12"/></svg><span class="sr-only">LinkedIn</span></a></li><li><a href="https://discord.gg/FZtNmKRyq" target="_blank" rel="noopener" title="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 15c1.5 1 2.5 1 4 1s2.5 0 4-1"/><path d="M6 6.5A14 14 0 0 1 12 5a14 14 0 0 1 6 1.5l2 9.5-3 2-1.5-2.5c-2.5 1-4.5 1-7 0L7 18l-3-2z"/><circle cx="9.5" cy="12" r="1" fill="currentColor"/><circle cx="14.5" cy="12" r="1" fill="currentColor"/></svg><span class="sr-only">Discord</span></a></li><li><a href="https://github.com/HoustonBloom" target="_blank" rel="noopener" title="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2m12 4v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6 0C6.8 2.8 5.8 3.1 5.8 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg><span class="sr-only">GitHub</span></a></li><li><a href="https://luma.com/houstonbloom?k=c" target="_blank" rel="noopener" title="Calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/></svg><span class="sr-only">Calendar</span></a></li></ul>
   </div>
 </footer>
