@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Video tools &#183; Six tools that read and cut video.</title>
-<meta name="description" content="Each runs alone.">
+<meta name="description" content="Each runs alone, on any video.">
 <style>
 /* Offline-inlined fonts: variable axes instanced to weight, subset to Latin
    plus cut punctuation/symbols, base64 woff2, no runtime network.
@@ -822,7 +822,19 @@ strong{font-weight:800}
    line is wider than a phone; and the second card's title read 3.28:1 on
    cream. Titles take the deep green on every card; the border keeps the
    horizon colour. */
+/* One column, at every width. Measured 2026-09-08 at 1280px: the three-column
+   grid stretched every card to its tallest neighbour, so a two-sentence step
+   was 1279px of empty cream beside a prompt. The prompts fold away until asked
+   for. Megan: "the large copy prompts are making the layout all spread out". */
+.shell .hz{grid-template-columns:1fr;max-width:720px;margin-left:auto;margin-right:auto}
 .hz-card{min-width:0}
+.pw{margin-top:var(--s3)}
+.pw summary{cursor:pointer;list-style:none;display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--green-deep);border:1.5px solid var(--green-deep);border-radius:3px;padding:6px 10px}
+.pw summary::-webkit-details-marker{display:none}
+.pw summary::before{content:"+ "}
+.pw[open] summary::before{content:"- "}
+.pw[open] summary{background:var(--green-deep);color:var(--cream)}
 .hz-card .hz-t{color:var(--green-deep)}
 .prompt-body pre{white-space:pre-wrap;overflow-wrap:anywhere}
 .hz-card svg,.flow svg{max-width:100%;height:auto}
@@ -834,7 +846,7 @@ strong{font-weight:800}
 
 <header class="topbar">
   <div class="topbar-in">
-    <a class="brand" href="#s-hero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+    <a class="brand" href="https://houstonbloom.github.io/houstonbloom/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
         <circle cx="12" cy="12" r="2.6"/>
         <path d="M12 9.4C12 6 10.3 4 12 2c1.7 2 0 4 0 7.4z"/><path d="M14.6 12c3.4 0 5.4-1.7 7.4 0-2 1.7-4 0-7.4 0z"/>
         <path d="M12 14.6c0 3.4 1.7 5.4 0 7.4-1.7-2 0-4 0-7.4z"/><path d="M9.4 12c-3.4 0-5.4 1.7-7.4 0 2-1.7 4 0 7.4 0z"/>
@@ -854,7 +866,7 @@ strong{font-weight:800}
   <div class="shell">
     <p class="script">read a recording so you never watch it twice</p>
     <h1>Six tools that read and cut video.</h1>
-    <p class="lede measure">Each runs alone.</p>
+    <p class="lede measure">Each runs alone, on any video.</p>
     <hr class="hero-rule">
     <p class="btn-row">
       <a class="btn" href="#s-steps">Start here</a>
@@ -876,7 +888,7 @@ strong{font-weight:800}
   <div class="shell">
     <span class="eyebrow">Start here</span>
     <h2>Five steps, in this order.</h2>
-    <div class="hz"><article class="hz-card hz-1"><p class="hz-k">Step 1</p><p class="hz-t">Get the local AI</p><p class="hz-d"><a href="https://lmstudio.ai/">LM Studio Bionic</a>, the agent that runs open models on your own computer and works inside a folder. Download it from lmstudio.ai on the machine you will use.</p></article><article class="hz-card hz-2"><p class="hz-k">Step 2</p><p class="hz-t">Point it at the folder</p><p class="hz-d">Get the folder from <a href="https://github.com/HoustonBloom/video-tools">GitHub</a>, or paste this to your AI. Then in Bionic: new Project, Allow coding, Choose a folder, pick that one, Create, pick a model (<a href="https://lmstudio.ai/docs/bionic/quick-start">its docs</a>).</p><div class="prompt-wrap">
+    <div class="hz"><article class="hz-card hz-1"><p class="hz-k">Step 1</p><p class="hz-t">Get the local AI</p><p class="hz-d">These run on a computer, not a phone. On <a href="https://lmstudio.ai/download">lmstudio.ai/download</a> choose <b>Bionic</b>, copy the download link, paste it into the browser on the computer you will use, and open the downloaded file to install. Bionic is a separate app from LM Studio. Windows today; check the page for yours.</p></article><article class="hz-card hz-2"><p class="hz-k">Step 2</p><p class="hz-t">Point it at the folder</p><p class="hz-d">Get the folder from <a href="https://github.com/HoustonBloom/video-tools">GitHub</a>: Code, Download ZIP, unzip. Or paste this to your AI. Then in Bionic: new Project, Allow coding, Choose a folder, pick that one, Create, pick a model (<a href="https://lmstudio.ai/docs/bionic/quick-start">its docs</a>).</p><details class="pw"><summary>Show the prompt that fetches it</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-to-get-the-tools.txt</span>
@@ -889,7 +901,7 @@ strong{font-weight:800}
 <span class="kw">2. Reply with the absolute path to that folder</span> and nothing else. I will point my agent at it.
 
 If you get stuck, tell me which step and the exact error. Don't guess.</pre></div>
-    </div></article><article class="hz-card hz-3"><p class="hz-k">Step 3</p><p class="hz-t">Paste this to set up</p><p class="hz-d">It asks which computer it is on, installs Python and ffmpeg for that one, and stops with the exact error if anything fails.</p><div class="prompt-wrap">
+    </div></details></article><article class="hz-card hz-3"><p class="hz-k">Step 3</p><p class="hz-t">Paste this to set up</p><p class="hz-d">It asks which computer it is on, installs Python and ffmpeg for that one, and stops with the exact error if anything fails.</p><details class="pw"><summary>Show the set-up prompt</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-to-set-up.txt</span>
@@ -899,13 +911,13 @@ If you get stuck, tell me which step and the exact error. Don't guess.</pre></di
 
 <span class="kw">1. Say which operating system this is,</span> Mac, Windows or Linux, and use that row in step 3.
 
-<span class="kw">2. Check Python 3.8 or later.</span> Try <span class="kw">python --version</span>, then <span class="kw">python3 --version</span>, whichever answers. If neither, send me to https://www.python.org/downloads/ and stop.
+<span class="kw">2. Check Python 3.12 or later, the version these ran on.</span> Try <span class="kw">python --version</span>, then <span class="kw">python3 --version</span>, whichever answers. If neither, send me to https://www.python.org/downloads/ and stop.
 
 <span class="kw">3. Install ffmpeg and ffprobe if missing.</span>
   Mac: <span class="kw">brew install ffmpeg</span>
   Windows: <span class="kw">winget install -e --id Gyan.FFmpeg</span>
   Linux: <span class="kw">sudo apt install ffmpeg</span>
-If that fails on this machine, send me to https://ffmpeg.org/download.html and stop.
+The Mac and Linux lines have not been run by us; if one fails, send me to https://ffmpeg.org/download.html and stop.
 
 <span class="kw">4. Open a NEW terminal and confirm both answer:</span> <span class="kw">ffmpeg -version</span> and <span class="kw">ffprobe -version</span>. If either says not found, fix my PATH and tell me what you changed.
 
@@ -914,7 +926,7 @@ If that fails on this machine, send me to https://ffmpeg.org/download.html and s
 <span class="kw">6. Reply with the OS and the three version numbers</span> and nothing else.
 
 If you get stuck at any step, tell me which step and the exact error. Don't guess.</pre></div>
-    </div></article><article class="hz-card " style="--hz-c:var(--gold)"><p class="hz-k">Step 4</p><p class="hz-t">Drop the video in</p><p class="hz-d">Put your video file in a folder inside it, from whoever runs the channel. No captions? The prompt makes them.</p></article><article class="hz-card " style="--hz-c:var(--green-light)"><p class="hz-k">Step 5</p><p class="hz-t">Run a tool</p><p class="hz-d">The first for the walkthrough, the second for the stills.</p><div class="prompt-wrap">
+    </div></details></article><article class="hz-card " style="--hz-c:var(--gold)"><p class="hz-k">Step 4</p><p class="hz-t">Drop the video in</p><p class="hz-d">Put your video file in a folder inside it, from whoever runs the channel. No captions? The walkthrough prompt makes them.</p></article><article class="hz-card " style="--hz-c:var(--green-light)"><p class="hz-k">Step 5</p><p class="hz-t">Run a tool</p><p class="hz-d">Paste the first for the walkthrough, the second for the stills.</p><details class="pw"><summary>Show the walkthrough prompt</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-for-a-walkthrough.txt</span>
@@ -926,7 +938,7 @@ If you get stuck at any step, tell me which step and the exact error. Don't gues
 
 <span class="kw">2. My video:</span> <span class="ph">[paste the path]</span>. Captions: <span class="ph">[paste the path to the .vtt, or say none]</span>.
 
-<span class="kw">3. No captions?</span> pip install -r transcribe/requirements.txt, then run transcribe/scripts/transcribe.py on the video. An hour takes about twenty minutes.
+<span class="kw">3. No captions?</span> pip install -r transcribe/requirements.txt, then run transcribe/scripts/transcribe.py on the video. An hour took twenty minutes on one computer with no GPU.
 
 <span class="kw">4. Run</span> readthrough/scripts/run.py with both. It ends in walkthrough.html or exits non-zero.
 
@@ -935,7 +947,7 @@ If you get stuck at any step, tell me which step and the exact error. Don't gues
 <span class="kw">6. Reply with the absolute path to walkthrough.html at the top,</span> then who was featured and what was found. Do not bury the path.
 
 If it fails, tell me which step and the exact error. Don't guess.</pre></div>
-    </div><div class="prompt-wrap">
+    </div></details><details class="pw"><summary>Show the stills prompt</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-for-the-stills.txt</span>
@@ -954,7 +966,7 @@ If it fails, tell me which step and the exact error. Don't guess.</pre></div>
 Nothing here knows who is in a frame. I look at every picture before one goes out.
 
 If it fails, tell me which step and the exact error. Don't guess.</pre></div>
-    </div></article></div>
+    </div></details></article></div>
   </div>
 </section>
 
@@ -962,11 +974,11 @@ If it fails, tell me which step and the exact error. Don't guess.</pre></div>
   <div class="shell">
     <span class="eyebrow">The parts</span>
     <h2>Six tools, one coming.</h2>
-    <p class="lede">Each one runs alone.</p>
-    <ul class="talks"><li><a href="tools/transcribe.zip"><span class="talk-t">transcribe</span><span class="talk-m">No captions? This makes them. An hour takes twenty minutes.</span></a></li><li><a href="tools/readthrough.zip"><span class="talk-t">readthrough</span><span class="talk-m">The walkthrough. A recording in, one page of who was up and the cuts to make.</span></a></li><li><a href="tools/shorts-director.zip"><span class="talk-t">shorts</span><span class="talk-m">Talk footage in, a vertical Short out, from a plan you approve first.</span></a></li><li><a href="tools/tightening-pass.zip"><span class="talk-t">tighten</span><span class="talk-m">A slow take in, the same take with dead air and filler gone. No word rewritten.</span></a></li><li><a href="tools/stills.zip"><span class="talk-t">stills</span><span class="talk-m">A video in, the frames worth keeping out, and a page to pick them on.</span></a></li><li><a href="tools/loudness.zip"><span class="talk-t">loudness</span><span class="talk-m">Any render in, the same file corrected to the loudness you asked for.</span></a></li><li><a class="talk-soon" aria-disabled="true"><span class="talk-t">compositions</span><span class="talk-m">Longer pieces from clips. Coming soon.</span></a></li></ul>
+    <p class="lede">Each one alone. Name the tool and the file.</p>
+    <ul class="talks"><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/transcribe" target="_blank" rel="noopener"><span class="talk-t">transcribe</span><span class="talk-m">No captions? This makes them. An hour took twenty minutes, one computer, no GPU.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/readthrough" target="_blank" rel="noopener"><span class="talk-t">readthrough</span><span class="talk-m">The walkthrough. A recording in, one page of who was up and the cuts to make.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/shorts" target="_blank" rel="noopener"><span class="talk-t">shorts</span><span class="talk-m">Talk footage in, a vertical Short out, from a plan you approve first.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/tighten" target="_blank" rel="noopener"><span class="talk-t">tighten</span><span class="talk-m">A slow take in, the same take with dead air and filler gone. No word rewritten.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/stills" target="_blank" rel="noopener"><span class="talk-t">stills</span><span class="talk-m">A video in, the frames worth keeping out, and a page to pick them on.</span></a></li><li><a href="https://github.com/HoustonBloom/video-tools/tree/main/loudness" target="_blank" rel="noopener"><span class="talk-t">loudness</span><span class="talk-m">Any render in, the same file corrected to the loudness you asked for.</span></a></li><li><a class="talk-soon" aria-disabled="true"><span class="talk-t">compositions</span><span class="talk-m">Longer pieces from clips. Coming soon.</span></a></li></ul>
     <p class="btn-row">
-      <a class="btn" href="https://lmstudio.ai/" target="_blank" rel="noopener">Get LM Studio Bionic</a>
-      <a class="btn btn-ghost" href="tools/video-tools.zip">Download the tools</a>
+      <a class="btn" href="https://lmstudio.ai/download" target="_blank" rel="noopener">Get LM Studio Bionic</a>
+      <a class="btn btn-ghost" href="https://github.com/HoustonBloom/video-tools" target="_blank" rel="noopener">The tools on GitHub</a>
     </p>
   </div>
 </section>
