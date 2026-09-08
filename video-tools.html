@@ -911,7 +911,7 @@ strong{font-weight:800}
 <span class="kw">3. Give me the full path to the folder,</span> so I can point Bionic at it.
 
 If something fails, tell me which step and the exact error.</pre></div>
-    </div></details></article><article class="hz-card hz-3"><p class="hz-k">Step 3</p><p class="hz-t">Paste this to set up</p><p class="hz-d">It asks which computer it is on, installs Python and ffmpeg for that one, and stops with the exact error if anything fails.</p><details class="pw"><summary>Show the set-up prompt</summary><div class="prompt-wrap">
+    </div></details></article><article class="hz-card hz-3"><p class="hz-k">Step 3</p><p class="hz-t">Paste this to set up</p><p class="hz-d">It checks Python, ffmpeg and Node for this computer, installs what it can, and stops with the exact error if anything fails.</p><details class="pw"><summary>Show the set-up prompt</summary><div class="prompt-wrap">
       <div class="prompt-bar">
         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
         <span class="label">prompt-to-set-up.txt</span>
@@ -931,9 +931,11 @@ The Mac and Linux lines have not been run by us; if one fails, send me to https:
 
 <span class="kw">4. Open a new terminal and confirm both answer:</span> <span class="kw">ffmpeg -version</span> and <span class="kw">ffprobe -version</span>. If either says not found, fix my PATH and tell me what you changed.
 
-<span class="kw">5. In this folder run</span> <span class="kw">pip install -r requirements.txt</span>.
+<span class="kw">5. Check Node 18 or later:</span> <span class="kw">node --version</span>. If it is missing, send me to https://nodejs.org/en/download and stop. The readthrough page is built with it.
 
-<span class="kw">6. Tell me the OS and the three version numbers.</span>
+<span class="kw">6. In this folder run</span> <span class="kw">pip install -r requirements.txt</span>.
+
+<span class="kw">7. Tell me the OS and the four version numbers.</span>
 
 If something fails, tell me which step and the exact error.</pre></div>
     </div></details></article><article class="hz-card " style="--hz-c:var(--gold)"><p class="hz-k">Step 4</p><p class="hz-t">Drop the video in the inbox</p><p class="hz-d">Put the video file in <code>video-tools/inbox/</code>, with its caption file if the platform gave you one. No captions? The readthrough prompt makes them.</p></article><article class="hz-card " style="--hz-c:var(--green-light)"><p class="hz-k">Step 5</p><p class="hz-t">Run a tool</p><p class="hz-d">Paste the first for the readthrough, the second for the stills.</p><details class="pw"><summary>Show the readthrough prompt</summary><div class="prompt-wrap">
