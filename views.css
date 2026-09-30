@@ -64,10 +64,6 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 .tpl--links .llib-chips{justify-content:center}
 
 /* the Houston Bloom mark is an image: fixed height, width follows */
-.nav-bar .brand-logo{width:auto;height:52px}
-.nav-bar .brand-logo img{display:block;height:100
-
-/* the Houston Bloom mark is an image: fixed height, width follows */
 .nav-bar .brand-logo { width: auto; height: 52px; }
 .nav-bar .brand-logo img { display: block; height: 100%; width: auto; }
 .tpl--links .links-mark { width: auto; height: 72px; }
