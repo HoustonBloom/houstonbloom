@@ -532,6 +532,29 @@ html{scroll-padding-top:var(--topbar-h)}
 #s-phases .eseq-yrs{color:var(--eseq-yrs-c)}
 #s-phases .eseq-desc{color:var(--eseq-desc-c)}
 
+/* ── type hierarchy of the era slides, 2026-09-30 ──────────────────────────────
+   Megan: improve the hierarchy. Type only: the stage, the pinning, the slide
+   timing and the markup are untouched. The four lines had four voices at nearly
+   one weight (serif title, yellow sans share, script mothers, tiny mono years),
+   so the eye had no order to follow. Now it reads in four steps:
+     1  the era name, the largest thing, display serif
+     2  the mothers line, the hook, sans 800 at about half the title
+     3  one mono meta row: share of history and years, small caps, a rule between
+     4  the description, 17px, the quietest colour but the longest read
+   Share and years sit on one row by grid placement, not by moving markup. */
+#s-phases{--eseq-name-size:clamp(2rem,1.45rem + 2.2vw,2.9rem);--eseq-mothers-size:clamp(1.35rem,1.1rem + 1vw,1.75rem);--eseq-desc-size:1.0625rem}
+#s-phases .eseq-slide:not(.eseq-opening):not(.eseq-turn-slide){display:grid;grid-template-columns:auto 1fr;justify-items:start;align-content:center}
+#s-phases .eseq-name{grid-area:1 / 1 / 2 / 3;line-height:1.04;letter-spacing:-.005em}
+#s-phases .eseq-mothers{grid-area:2 / 1 / 3 / 3;font-family:var(--sans);font-weight:800;letter-spacing:-.012em;line-height:1.15;margin-top:var(--s3,12px)}
+#s-phases .eseq-pct{grid-area:3 / 1;font-family:var(--mono);font-weight:500;font-size:var(--t-xs,.82rem);letter-spacing:.12em;text-transform:uppercase;line-height:1.4;margin-top:var(--s3,12px)}
+#s-phases .eseq-yrs{grid-area:3 / 2;font-size:var(--t-xs,.82rem);letter-spacing:.12em;text-transform:uppercase;line-height:1.4;margin-top:var(--s3,12px);margin-left:var(--s3,12px);padding-left:var(--s3,12px);border-left:1px solid rgba(198,191,174,.5)}
+#s-phases .eseq-desc{grid-area:4 / 1 / 5 / 3;margin-top:var(--s4,16px);max-width:50ch}
+@media (max-width:520px){
+  /* one row would wrap mid-label on a phone, so the years drop under the share */
+  #s-phases .eseq-yrs{grid-area:4 / 1 / 5 / 3;margin:2px 0 0;padding-left:0;border-left:0}
+  #s-phases .eseq-desc{grid-area:5 / 1 / 6 / 3}
+}
+
 
 #s-phases.swap-on .eseq{flex:1;align-content:center}
 
@@ -1131,7 +1154,7 @@ html{scroll-padding-top:var(--topbar-h)}
 <section class="cluster" id="s-horizon-1">
   <div class="wrap">
     <p class="hnum"><span class="hdot" style="background:var(--h1)"></span> Horizon 1 · today · <span class="badge run">Running</span></p>
-    <h2 style="margin:0 0 var(--s3)">Cultivate local legibility</h2>
+    <h2 style="margin:0 0 var(--s3)">Gardening Tools</h2>
     <p class="lead">In the age of AI, anyone can build any tool. But to do this, we need to be able to leverage AI and harness it on our own data. Cultivating local legibility means moving your data off of platforms and building your own tools, ideally with your own local AI.</p>
     <figure class="svg-figure" data-lightbox>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="One person, one vault, an AI bridge, and a published surface with local files held back">
@@ -1185,7 +1208,7 @@ html{scroll-padding-top:var(--topbar-h)}
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8L12 4l8.5 4v8.5L12 20.5l-8.5-4z"/><path d="M3.5 8L12 12l8.5-4M12 12v8.5"/><path d="M7.8 6l8.4 4"/></svg></span>
             <span data-slot="text">
-              <a data-slot="name" href="https://houstonbloom.github.io/local-legibility/" target="_blank" rel="noopener">Intelligence Packet <span data-slot="kind">Template</span></a>
+              <a data-slot="name" href="https://houstonbloom.github.io/local-legibility/" target="_blank" rel="noopener">Intelligence Packet</a>
               <span data-slot="summary">An AI workflow system anyone can adopt to make their local systems more legible.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Get started</span></span>
@@ -1193,7 +1216,7 @@ html{scroll-padding-top:var(--topbar-h)}
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="13" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="18.5" cy="18" r="2"/><path d="M7.6 7.2l2.9 4.2M16.4 8.3l-3 3.3M10.4 14.2l-3.7 2.7M13.8 13.9l3.1 2.9M8 6.2h8"/></svg></span>
             <span data-slot="text">
-              <a data-slot="name" href="https://github.com/HoustonBloom/node-app-template" target="_blank" rel="noopener">Node graph <span data-slot="kind">Template</span></a>
+              <a data-slot="name" href="https://github.com/HoustonBloom/node-app-template" target="_blank" rel="noopener">Node graph</a>
               <span data-slot="summary">A map of your stuff, drawn as a web of connected dots. Your AI fills it from one of your apps and you get a single file you can open and share.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">View on GitHub</span></span>
@@ -1201,7 +1224,7 @@ html{scroll-padding-top:var(--topbar-h)}
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10.5 8.5v5l4-2.5z"/><path d="M7 20h10"/><path d="M12 17v3"/></svg></span>
             <span data-slot="text">
-              <a data-slot="name" href="video-tools.html" target="_blank" rel="noopener">Video tools <span data-slot="kind">Template</span></a>
+              <a data-slot="name" href="video-tools.html" target="_blank" rel="noopener">Video tools</a>
               <span data-slot="summary">Six tools that run on your own computer. A video in, a page out, and a prompt for each thing you want cut.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Open the tools</span></span>
@@ -1209,7 +1232,7 @@ html{scroll-padding-top:var(--topbar-h)}
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l-1 5 3 3H7l3-3z"/><path d="M12 11v7"/><path d="M4 21h16"/></svg></span>
             <span data-slot="text">
-              <a data-slot="name" href="https://github.com/HoustonBloom/PinboardMCP" target="_blank" rel="noopener">Pinboard MCP <span data-slot="kind">Template</span></a>
+              <a data-slot="name" href="https://github.com/HoustonBloom/PinboardMCP" target="_blank" rel="noopener">Pinboard MCP</a>
               <span data-slot="summary">Members&#8217; bookmarks, tagged by a shared convention, become a commons you can query in Claude. No central database.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">View on GitHub</span></span>
@@ -1217,7 +1240,7 @@ html{scroll-padding-top:var(--topbar-h)}
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h7l3 3v6"/><path d="M11 3v3h3"/><path d="M4 3v16h6"/><circle cx="15" cy="16" r="1.6"/><circle cx="20" cy="12.5" r="1.6"/><circle cx="20" cy="20" r="1.6"/><path d="M16.4 15.1l2.2-1.6M16.4 16.9l2.2 2.1"/></svg></span>
             <span data-slot="text">
-              <a data-slot="name" href="https://chatgpt-pdt.vercel.app/" target="_blank" rel="noopener">ChatGPT Data Transformer <span data-slot="kind">Template</span></a>
+              <a data-slot="name" href="https://chatgpt-pdt.vercel.app/" target="_blank" rel="noopener">ChatGPT Data Transformer</a>
               <span data-slot="summary">Turns your ChatGPT export into an MCP server, so Claude can search thousands of past conversations.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Try it live</span></span>
