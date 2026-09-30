@@ -1,0 +1,106 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/templates/links.css
+   version  1.1.0
+   refresh  node sync.mjs --template links "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   links.css · v1.1.0 · a destination handed to someone, usually on a phone
+
+   Promoted 2026-09-26 from the first consumer site's links view, where it was
+   inline. DESIGN.md Part 5.5 gives the regions:
+
+     identity   required   mark, title, one line
+     actions    optional   at most two buttons, one primary
+     links      required   the link-library component
+     footer     optional   short form
+
+   This is template CSS, so it sets composition and nothing else: no colour, no
+   typeface, no shadow of its own. Every visual value reads a semantic token,
+   and the link list itself is components/link-library, styled by its own
+   --llib-* surface. The block at the bottom maps that surface onto layer 2 so
+   the list follows the style and the theme like everything else.
+
+   Markup
+     <main class="tpl tpl--links">
+       <div class="links-inner">
+         <header class="links-id">
+           <span class="links-mark" aria-hidden="true"> svg </span>
+           <h1>Name</h1>
+           <p>One line.</p>
+         </header>
+         <div class="links-actions"> one or two buttons </div>   optional
+         ... link-library markup ...
+         <footer class="links-foot"> short footer </footer>       optional
+       </div>
+     </main>
+
+   At 375px: unchanged. The column is the phone width already.
+   ============================================================================ */
+
+/* Every selector here opens with :where(.tpl--links), so the template adds
+   no specificity of its own. A rule the consuming site writes for the same
+   element wins, and a site that writes none gets these defaults. */
+
+:where(.tpl--links), :where(.tpl--links) *, :where(.tpl--links) *::before, :where(.tpl--links) *::after { box-sizing: border-box; }
+:where(.tpl--links) {
+  position: relative;
+  min-height: 100dvh;
+  padding: var(--space-2xl) var(--gutter) var(--space-3xl);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+/* One column. 35rem holds a thumbnail, a two-line label and the arrow on a
+   desktop without the rows turning into a table. */
+:where(.tpl--links) .links-inner { max-width: 35rem; margin: 0 auto; }
+
+:where(.tpl--links) .links-id { text-align: center; margin-bottom: var(--space-xl); }
+:where(.tpl--links) .links-mark {
+  display: block;
+  width: var(--space-3xl);
+  height: var(--space-3xl);
+  margin: 0 auto var(--space-base);
+  color: var(--color-brand, var(--color-accent));
+}
+:where(.tpl--links) .links-mark svg { width: 100%; height: 100%; display: block; }
+:where(.tpl--links) .links-id h1 {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-display);
+  font-variation-settings: var(--display-axes, normal);
+  font-size: var(--text-heading-lg);
+  font-weight: var(--heading-weight, 500);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-heading, var(--color-text));
+  text-wrap: balance;
+}
+:where(.tpl--links) .links-id p { margin: 0 auto; max-width: 40ch; color: var(--color-text-muted); }
+
+:where(.tpl--links) .links-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+:where(.tpl--links) .links-foot {
+  margin-top: var(--space-2xl);
+  text-align: center;
+  font-size: var(--text-body-sm);
+  color: var(--color-text-faint);
+}
+
+/* Rows are tappable at 56px minimum (DESIGN.md 5.5). Directory rows carry
+   their own 64px grid; this covers the plain list. */
+:where(.tpl--links) .llib-item > a:not(.llib-row) { display: flex; align-items: center; min-height: 56px; }
+
+/* link-library 2.0.0 reads layer 2 by default, so this template maps nothing
+   onto it. Until 1.1.0 of this file a --llib-* map sat here; it is gone
+   because the component now carries it. */

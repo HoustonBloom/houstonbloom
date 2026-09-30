@@ -1,0 +1,232 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/components/button/component.css
+   version  1.0.0
+   refresh  node sync.mjs button "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   button · v1.0.0 · atom
+
+   The second member of the atom level, after action-link. Until 2026-09-29 the
+   button was a paragraph in DESIGN.md Part 2.4 and no file, so every consumer
+   hand-rolled it, and two of them shipped a filled control and an outlined one
+   with nothing between them and no way to say "a quiet action."
+
+   One control, three intents. The intents are structural and stay fixed. How each
+   one looks is a token.
+
+     default   the one action the block exists for. Filled.
+     outline   a real action that is not the lead. Edge and label, no fill at rest.
+     clear     an action that should read as a link with a button's tap target.
+               Label and a rule under it. No edge, no fill.
+
+   A block carries at most one default. Two defaults side by side are two leads,
+   and the reader cannot tell which one the block is asking for.
+
+   Markup
+     <a class="btn" data-component="button" href="...">
+       <span data-slot="label">Subscribe</span>
+     </a>
+     <a class="btn btn--outline" ...>...</a>
+     <a class="btn btn--clear"  ...>...</a>
+   A <button> takes the same classes. An arrow or other glyph goes in a
+   data-slot="glyph" span and is decorative (aria-hidden).
+
+   On a dark band set data-tone="inverse" on the button or on any ancestor. The
+   colours move to the inverse set. That is one token swap, not a second component.
+
+   Naming. Every token below is named for what the control does, never for the
+   colour it happens to be. --btn-default-fill is "the fill of the lead action";
+   it is a green in one style and an orange in another and the name is right in
+   both.
+
+   Token surface, every one falling back to layer 2:
+     shape        --btn-gap --btn-min-h --btn-pad-y --btn-pad-x --btn-radius
+                  --btn-border-width --btn-font --btn-size --btn-weight
+                  --btn-tracking --btn-transform --btn-shadow-rest
+                  --btn-shadow-hover --btn-lift --btn-dur
+     default      --btn-default-fill  --btn-default-text  --btn-default-edge
+                  --btn-default-fill-hover  --btn-default-text-hover
+     outline      --btn-outline-fill  --btn-outline-text  --btn-outline-edge
+                  --btn-outline-fill-hover  --btn-outline-text-hover
+     clear        --btn-clear-text  --btn-clear-rule  --btn-clear-wash-hover
+     icon         --btn-icon-size  --btn-icon-radius (a .btn--icon square that
+                  takes the default, outline or clear colours beside it)
+     inverse      the same names with -inverse before the state suffix, set on
+                  [data-tone="inverse"] from --field-ink and the accent
+
+   Contrast is the style's job, and check-tokens gates the pairs this component
+   reads: --color-text-inverse on --color-accent (the default hover), and
+   --color-accent-text on the ground (outline and clear). A style that bends the
+   default fill to a colour that fails white text must also bend
+   --btn-default-text, which is what a brand green at 2.7:1 on white does.
+
+   At 375px: a row of buttons wraps. Inside .btn-row, default and outline fill the
+   row width below 480px so the tap target is the whole line; clear stays its own
+   width. Labels wrap rather than truncate. Min height 48px, clear 44px.
+   ============================================================================ */
+
+.btn {
+  --_edge-w: var(--btn-border-width, var(--border-width, 1px));
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap, var(--space-md));
+  min-height: var(--btn-min-h, 48px);
+  padding: var(--btn-pad-y, 12px) var(--btn-pad-x, 22px);
+  border-radius: var(--btn-radius, var(--radius-full));
+  border: var(--_edge-w) var(--border-style, solid) transparent;
+  font-family: var(--btn-font, var(--font-body));
+  font-size: var(--btn-size, var(--text-body-sm));
+  font-weight: var(--btn-weight, 600);
+  letter-spacing: var(--btn-tracking, 0.02em);
+  text-transform: var(--btn-transform, none);
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: var(--btn-shadow-rest, none);
+  cursor: pointer;
+  transition:
+    background-color var(--btn-dur, var(--dur-base, 220ms)) var(--ease, ease),
+    color            var(--btn-dur, var(--dur-base, 220ms)) var(--ease, ease),
+    border-color     var(--btn-dur, var(--dur-base, 220ms)) var(--ease, ease),
+    transform        var(--btn-dur, var(--dur-base, 220ms)) var(--ease, ease),
+    box-shadow       var(--btn-dur, var(--dur-base, 220ms)) var(--ease, ease);
+}
+.btn > * { pointer-events: none; }
+.btn:hover {
+  transform: translateY(var(--btn-lift, 0));
+  box-shadow: var(--btn-shadow-hover, var(--btn-shadow-rest, none));
+}
+.btn:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* ---- default: the lead action --------------------------------------------- */
+.btn {
+  background-color: var(--btn-default-fill, var(--color-accent));
+  color: var(--btn-default-text, var(--color-text-inverse));
+  border-color: var(--btn-default-edge, var(--btn-default-fill, var(--color-accent)));
+}
+.btn:hover {
+  background-color: var(--btn-default-fill-hover, var(--color-accent-deep));
+  color: var(--btn-default-text-hover, var(--color-text-inverse));
+  border-color: var(--btn-default-fill-hover, var(--color-accent-deep));
+}
+
+/* ---- outline: a real action, not the lead --------------------------------- */
+.btn--outline {
+  background-color: var(--btn-outline-fill, transparent);
+  color: var(--btn-outline-text, var(--color-accent-text, var(--color-accent-deep)));
+  border-color: var(--btn-outline-edge, var(--color-accent-text, var(--color-accent-deep)));
+}
+.btn--outline:hover {
+  background-color: var(--btn-outline-fill-hover, var(--color-accent-text, var(--color-accent-deep)));
+  color: var(--btn-outline-text-hover, var(--color-text-inverse));
+  border-color: var(--btn-outline-fill-hover, var(--color-accent-text, var(--color-accent-deep)));
+}
+
+/* ---- clear: a link with a button's tap target ------------------------------ */
+.btn--clear {
+  min-height: 44px;
+  padding-inline: var(--space-xs, 4px);
+  background-color: transparent;
+  color: var(--btn-clear-text, var(--color-accent-text, var(--color-accent-deep)));
+  border-color: transparent;
+  border-radius: var(--radius-sm, 4px);
+  box-shadow: none;
+}
+.btn--clear > [data-slot="label"] {
+  /* The rule is a background so it can thicken on hover without moving the
+     baseline. Same technique as action-link. */
+  background-image: linear-gradient(var(--btn-clear-rule, var(--color-accent)), var(--btn-clear-rule, var(--color-accent)));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  padding-bottom: 3px;
+  transition: background-size var(--btn-dur, var(--dur-fast, 150ms)) var(--ease, ease);
+}
+.btn--clear:hover {
+  background-color: var(--btn-clear-wash-hover, transparent);
+  color: var(--btn-clear-text, var(--color-accent-text, var(--color-accent-deep)));
+  border-color: transparent;
+  transform: none;
+  box-shadow: none;
+}
+.btn--clear:hover > [data-slot="label"] { background-size: 100% 2px; }
+
+/* ---- icon: a square control that carries a glyph only ---------------------- */
+.btn--icon {
+  width: var(--btn-icon-size, 44px);
+  height: var(--btn-icon-size, 44px);
+  min-height: 0;
+  padding: 0;
+  border-radius: var(--btn-icon-radius, 50%);
+}
+
+/* ---- glyph ---------------------------------------------------------------- */
+.btn > [data-slot="glyph"] {
+  transition: transform var(--btn-dur, var(--dur-fast, 150ms)) var(--ease, ease);
+}
+.btn:hover > [data-slot="glyph"] { transform: translateX(3px); }
+
+/* ---- inverse tone, for a dark band ----------------------------------------- */
+[data-tone="inverse"] .btn, .btn[data-tone="inverse"] {
+  background-color: var(--btn-default-fill-inverse, var(--color-brand, var(--color-accent-soft)));
+  color: var(--btn-default-text-inverse, var(--color-text));
+  border-color: var(--btn-default-fill-inverse, var(--color-brand, var(--color-accent-soft)));
+}
+[data-tone="inverse"] .btn:hover, .btn[data-tone="inverse"]:hover {
+  background-color: var(--btn-default-fill-hover-inverse, var(--color-accent-soft));
+  border-color: var(--btn-default-fill-hover-inverse, var(--color-accent-soft));
+  color: var(--btn-default-text-hover-inverse, var(--color-text));
+}
+[data-tone="inverse"] .btn--outline, .btn--outline[data-tone="inverse"] {
+  background-color: transparent;
+  color: var(--btn-outline-text-inverse, var(--field-ink, var(--color-text-inverse)));
+  border-color: var(--btn-outline-edge-inverse, var(--field-ink, var(--color-text-inverse)));
+}
+[data-tone="inverse"] .btn--outline:hover, .btn--outline[data-tone="inverse"]:hover {
+  background-color: var(--btn-outline-fill-hover-inverse, var(--field-ink, var(--color-text-inverse)));
+  color: var(--btn-outline-text-hover-inverse, var(--field-bg, var(--color-text)));
+  border-color: var(--btn-outline-fill-hover-inverse, var(--field-ink, var(--color-text-inverse)));
+}
+[data-tone="inverse"] .btn--clear, .btn--clear[data-tone="inverse"] {
+  background-color: transparent;
+  color: var(--btn-clear-text-inverse, var(--field-ink, var(--color-text-inverse)));
+  border-color: transparent;
+}
+[data-tone="inverse"] .btn--clear > [data-slot="label"],
+.btn--clear[data-tone="inverse"] > [data-slot="label"] {
+  background-image: linear-gradient(var(--btn-clear-rule-inverse, var(--color-brand, var(--color-accent-soft))), var(--btn-clear-rule-inverse, var(--color-brand, var(--color-accent-soft))));
+}
+[data-tone="inverse"] .btn--clear:hover, .btn--clear[data-tone="inverse"]:hover {
+  background-color: transparent;
+  color: var(--btn-clear-text-inverse, var(--field-ink, var(--color-text-inverse)));
+}
+[data-tone="inverse"] .btn:focus-visible, .btn[data-tone="inverse"]:focus-visible {
+  outline-color: var(--field-ink, var(--color-text-inverse));
+}
+
+/* ---- a row of them ---------------------------------------------------------- */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md, 12px) var(--space-base, 16px);
+  margin-top: var(--space-lg, 24px);
+}
+@media (max-width: 480px) {
+  .btn-row > .btn:not(.btn--clear) { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn > [data-slot="glyph"], .btn--clear > [data-slot="label"] { transition: none; }
+  .btn:hover { transform: none; }
+  .btn:hover > [data-slot="glyph"] { transform: none; }
+}

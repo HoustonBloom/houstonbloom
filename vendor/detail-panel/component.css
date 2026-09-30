@@ -1,0 +1,130 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/components/detail-panel/component.css
+   version  1.0.0
+   refresh  node sync.mjs detail-panel "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   detail-panel · v1.0.0 · component
+
+   What the reader is looking at, in words: the day under the playhead, or
+   the node under the pointer or selected. Fills on hover, persists on select
+   (templates/activity-map.md, recognition over recall). Every entry it lists
+   links to the real artifact when the log gives one; it never paraphrases.
+
+   Content budget: a heading, one meta line, a chip row of links, and at most
+   six entries, each a date, a label and one summary line clamped to two
+   lines. The panel scrolls inside itself rather than growing the page.
+
+   Markup (rendered by the activity-map runtime)
+     <section class="detail-panel" data-component="detail-panel" aria-live="polite">
+       <p data-slot="kicker">..</p><h2 data-slot="title">..</h2><p data-slot="meta">..</p>
+       <ul data-slot="chips">..</ul>
+       <ol data-slot="entries"><li><time>..</time><b>..</b><span>..</span></li></ol>
+       <a data-slot="open">Open</a>
+     </section>
+   ============================================================================ */
+
+.detail-panel {
+  display: grid;
+  align-content: start;
+  gap: var(--space-sm);
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-base);
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  font-family: var(--font-body);
+  scrollbar-width: thin;
+}
+.detail-panel [data-slot="kicker"] {
+  margin: 0;
+  font-family: var(--font-eyebrow, var(--font-body));
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case, uppercase);
+  color: var(--color-text-muted);
+}
+.detail-panel [data-slot="title"] {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-card);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-display);
+  color: var(--color-text);
+}
+.detail-panel [data-slot="meta"] { margin: 0; font-size: var(--text-caption); color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.detail-panel [data-slot="chips"] { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin: 0; padding: 0; list-style: none; }
+.detail-panel [data-slot="chips"] li {
+  padding: 2px var(--space-sm);
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+}
+.detail-panel [data-slot="entries"] { display: grid; gap: var(--space-sm); margin: var(--space-xs) 0 0; padding: 0; list-style: none; }
+.detail-panel [data-slot="entries"] li {
+  display: grid;
+  gap: 2px;
+  padding-top: var(--space-sm);
+  border-top: var(--border-width) var(--border-style) var(--color-border);
+  font-size: var(--text-body-sm);
+  line-height: 1.4;
+}
+.detail-panel [data-slot="entries"] time { font-family: var(--font-mono, var(--font-body)); font-size: var(--text-caption); color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.detail-panel [data-slot="entries"] b { font-weight: 600; color: var(--color-text); }
+.detail-panel [data-slot="entries"] span {
+  color: var(--color-text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.detail-panel [data-slot="empty"] { margin: 0; font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.detail-panel [data-slot="open"] {
+  justify-self: start;
+  font-size: var(--text-body-sm);
+  font-weight: 600;
+  color: var(--color-accent-text, var(--color-accent-deep));
+}
+.detail-panel [data-slot="open"]:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+/* Connected to, Same group: the Node App Template's two lists. Buttons, so
+   they move the map; each carries its node's shape in its category colour. */
+.detail-panel [data-slot="related"] { margin-top: var(--space-sm); }
+.detail-panel [data-slot="rh"] {
+  margin: 0 0 var(--space-xs);
+  font-family: var(--font-eyebrow, var(--font-body));
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case, uppercase);
+  color: var(--color-text-muted);
+}
+.detail-panel [data-slot="related"] ul { margin: 0; padding: 0; list-style: none; }
+.detail-panel [data-slot="related"] li + li { border-top: var(--border-width) var(--border-style) var(--color-border); }
+.detail-panel [data-slot="related"] button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  text-align: left;
+  cursor: pointer;
+}
+.detail-panel [data-slot="related"] button:hover { color: var(--color-text); }
+.detail-panel [data-slot="related"] button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.detail-panel [data-slot="related"] img { width: 14px; height: 14px; flex: none; }
+.detail-panel [data-slot="related"] svg { width: 11px; height: 11px; flex: none; color: var(--map-cat-1, var(--color-accent)); }
+.detail-panel [data-slot="related"] button[data-cat="2"] svg { color: var(--map-cat-2, var(--color-accent-deep)); }
+.detail-panel [data-slot="related"] button[data-cat="3"] svg { color: var(--map-cat-3, var(--color-text-muted)); }
+.detail-panel [data-slot="related"] button[data-cat="4"] svg { color: var(--map-cat-4, var(--color-border-strong)); }
+.detail-panel [data-slot="related"] svg * { fill: currentColor; stroke: currentColor; }

@@ -1,0 +1,70 @@
+/* ============================================================================
+   views.css · Houston Bloom site · owns the look of the shared header and of
+   the links and activity views.
+
+   The design system's components read layer-2 tokens. vendor/styles.css carries
+   the `editorial` style, whose paper (#faf8f3) and line (#e5dfd2) are the
+   header colours in Megan's Figma. This file repoints the editorial accent and
+   the four faces at the landing page's own palette, so the three views read as
+   one site. It is the only place those values are set for the new views. A
+   proper `houston-bloom` style in the design system would replace it; until
+   that is registered this stays local. The style list is in
+   _activity/Handoff - Figma changes to implement.md.
+
+   Scope: the header carries data-style="editorial" itself, so the landing page
+   (which has its own private palette) is not touched. links.html and
+   activity.html set it on <html>.
+   ============================================================================ */
+
+:is(html, .nav-bar)[data-style="editorial"] {
+  --palette-accent:       #2d5a3f;   /* the landing page green */
+  --palette-accent-deep:  #1e4630;
+  --palette-accent-soft:  #e3eadb;
+  --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
+  --font-body:    "Plus Jakarta Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* the new views sit on the landing page's cream; the header stays on paper */
+html[data-style="editorial"] {
+  --color-bg: #ece5d6;
+  --color-surface-alt: #e3dccb;
+}
+html[data-style="editorial"] body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+
+/* ── header ─────────────────────────────────────────────────────────────── */
+.nav-bar { --nav-bg: var(--palette-paper); --nav-link-font: var(--font-body); --color-text-muted: var(--palette-ink); }
+.nav-bar .inner { padding-block: 18px; padding-inline: 24px; max-width: none; }
+.nav-bar .brand-logo { width: 52px; height: 52px; }
+.nav-bar nav { gap: 28px; }
+.nav-bar nav a { padding: 12px 0; }
+.nav-bar nav a.active, .nav-bar nav a[aria-current="page"] { color: var(--palette-accent); }
+.nav-bar nav a:hover { color: var(--palette-accent); }
+/* the pill is one label and one caret; the list opens under it */
+.nav-bar .template-menu { --tmenu-ink: var(--palette-accent); }
+
+/* below 800px the four links tighten, then below 600px the header stops
+   sticking and the links scroll sideways on their own row. A sticky header
+   that is two rows tall takes a fifth of a phone screen. */
+@media (max-width: 800px) { .nav-bar nav { gap: 16px; } }
+@media (max-width: 600px) {
+  .nav-bar { position: static; }
+  .nav-bar nav { overflow-x: auto; max-width: 100%; justify-content: flex-start; gap: 20px; scrollbar-width: none; }
+  .nav-bar nav::-webkit-scrollbar { display: none; }
+  .nav-bar nav a { white-space: nowrap; }
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* links view: no search box, and the filter chips centre under the intro */
+.tpl--links .llib-search{display:none}
+.tpl--links .llib-chips{justify-content:center}
+
+/* the Houston Bloom mark is an image: fixed height, width follows */
+.nav-bar .brand-logo{width:auto;height:52px}
+.nav-bar .brand-logo img{display:block;height:100
+
+/* the Houston Bloom mark is an image: fixed height, width follows */
+.nav-bar .brand-logo { width: auto; height: 52px; }
+.nav-bar .brand-logo img { display: block; height: 100%; width: auto; }
+.tpl--links .links-mark { width: auto; height: 72px; }
+.tpl--links .links-mark img { display: block; height: 100%; width: auto; margin: 0 auto; }

@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en" data-style="editorial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Houston Bloom · links</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%232d5a3f'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="vendor/fonts.css">
+<link rel="stylesheet" href="vendor/styles.css">
+<link rel="stylesheet" href="vendor/nav-bar/component.css">
+<link rel="stylesheet" href="vendor/template-menu/component.css">
+<link rel="stylesheet" href="vendor/templates/links.css">
+<link rel="stylesheet" href="views.css">
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/bloom-logo.png" width="49" height="52" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="index.html">Houston Bloom</a>
+        <a href="index.html#s-horizon-1">Gardening Tools</a>
+        <a href="index.html#s-horizons">Community Legibility Spec</a>
+        <a href="index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Links. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.7 9.3a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8"/><path d="M9.3 6.7a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8"/></svg><span data-slot="label">Links</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 5.5h13"/><path d="M4 8.5h5M4 11h7"/></svg><span data-slot="label">Website</span></a></li>
+          <li><a href="links.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.7 9.3a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8"/><path d="M9.3 6.7a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8"/></svg><span data-slot="label">Links</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<main class="tpl tpl--links" id="main">
+  <div class="links-inner">
+    <header class="links-id">
+      <span class="links-mark" aria-hidden="true"><img src="_assets/bloom-logo.png" width="49" height="52" alt=""></span>
+      <h1>Houston Bloom</h1>
+      <p>Everything in one list: the templates, the papers, the talks, and where to join.</p>
+    </header>
+    <style>
+.llib{--llib-ink:var(--color-text,var(--ink));
+  --llib-ink-soft:var(--color-text-muted,var(--ink-soft));
+  --llib-ink-softer:var(--color-text-muted,var(--ink-softer));
+  --llib-ink-faint:var(--color-text-faint,var(--ink-faint));
+  --llib-accent:var(--color-accent-text,var(--color-accent-deep,var(--accent-deep)));
+  --llib-on-accent:var(--color-text-inverse,var(--cream));
+  --llib-wash:var(--color-accent-soft,var(--accent-soft));
+  --llib-paper:var(--color-surface,var(--paper-white));
+  --llib-card:var(--color-surface-alt,var(--bg-card));
+  --llib-cream:var(--color-text-inverse,var(--cream));
+  --llib-rule:var(--color-border-strong,var(--rule));
+  --llib-rule-soft:var(--color-border,var(--rule-soft));
+  --llib-mono:var(--font-mono,var(--mono));
+  --llib-display:var(--font-display);
+  --llib-feat-ground:var(--field-bg,var(--color-text,var(--ink)));
+  --llib-feat-ink:var(--field-ink,var(--color-text-inverse,var(--cream)));
+  --llib-bw:var(--border-width,1px);
+  --llib-fast:var(--dur-fast,0s);
+  --llib-slow:var(--dur-slow,0s);
+  --llib-ease:var(--ease,ease)}
+
+.llib-controls{display:none;flex-wrap:wrap;align-items:center;gap:var(--space-sm) var(--space-base);margin-bottom:var(--space-base)}
+.llib.is-live .llib-controls{display:flex}
+.llib-chips{display:flex;flex-wrap:wrap;gap:var(--space-xs)}
+
+/* The gallery chip, followed rather than reinterpreted. */
+.llib-chip{padding:var(--space-xs) var(--space-base);border:var(--llib-bw) solid var(--llib-rule);border-radius:var(--radius-full);
+  background:var(--llib-paper);font-family:var(--llib-mono);font-size:var(--text-caption);
+  letter-spacing:0.04em;color:var(--llib-ink-soft);cursor:pointer;
+  transition:border-color var(--llib-fast) var(--llib-ease),color var(--llib-fast) var(--llib-ease),background var(--llib-fast) var(--llib-ease);
+  white-space:nowrap;display:inline-flex;align-items:center;gap:var(--space-xs);line-height:1.2}
+.llib-chip:hover{border-color:var(--llib-ink);color:var(--llib-ink)}
+.llib-chip:focus-visible{outline:2px solid var(--llib-accent);outline-offset:2px}
+/* Selected state is a class. aria-pressed rides alongside it for screen
+   readers rather than doing the painting. */
+.llib-chip.active{background:var(--llib-ink);color:var(--llib-cream);border-color:var(--llib-ink)}
+.llib-count-n{font-size:var(--text-caption);color:var(--llib-ink-softer);margin-left:2px}
+.llib-chip.active .llib-count-n{color:var(--llib-cream);opacity:0.75}
+.llib-chip--clear{color:var(--llib-ink-softer);border-style:dashed}
+.llib-chip--clear:hover{color:var(--llib-accent);border-color:var(--llib-accent)}
+.llib-chip--clear[hidden]{display:none}
+
+.llib-search{position:relative;display:inline-flex;align-items:center;flex:1 1 190px;max-width:270px}
+.llib-search input{width:100%;font-family:var(--llib-mono);font-size:var(--text-caption);
+  letter-spacing:0.04em;color:var(--llib-ink);background:var(--llib-paper);
+  border:var(--llib-bw) solid var(--llib-rule);border-radius:var(--radius-full);padding:var(--space-xs) var(--space-base);
+  transition:border-color var(--llib-fast) var(--llib-ease)}
+.llib-search input:hover{border-color:var(--llib-ink)}
+.llib-search input:focus-visible{outline:2px solid var(--llib-accent);outline-offset:1px;border-color:var(--llib-accent)}
+.llib-search input::placeholder{color:var(--llib-ink-softer)}
+.llib-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* The active-filters panel names what is being filtered, each filter
+   removable. Without it a narrowed list looks like a short list. */
+.llib-af{display:flex;flex-wrap:wrap;gap:var(--space-xs);align-items:center;padding:var(--space-sm) var(--space-base);
+  background:var(--llib-wash);border:var(--llib-bw) dashed var(--llib-accent);
+  border-radius:var(--radius-lg);margin-bottom:var(--space-base)}
+.llib-af[hidden]{display:none}
+.llib-af-label{font-family:var(--llib-mono);font-size:var(--text-eyebrow);letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--llib-accent);margin-right:var(--space-xs);font-weight:600}
+.llib-af-chip{display:inline-flex;align-items:center;gap:var(--space-xs);
+  padding:var(--space-xs) var(--space-xs) var(--space-xs) var(--space-sm);background:var(--llib-paper);
+  border:var(--llib-bw) solid var(--llib-accent);border-radius:var(--radius-full);
+  font-family:var(--llib-mono);font-size:var(--text-caption);color:var(--llib-accent)}
+.llib-af-x{width:18px;height:18px;border:0;background:var(--llib-accent);color:var(--llib-on-accent);
+  border-radius:var(--radius-full);font-size:var(--text-eyebrow);line-height:1;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;padding:0}
+.llib-af-x:hover{opacity:0.82}
+.llib-af-x:focus-visible{outline:2px solid var(--llib-ink);outline-offset:2px}
+
+/* ink-soft, not ink-softer: ink-softer measured 4.35:1 against a 4.5 floor on
+   a cream card, 2026-08-31. */
+.llib-count{font-family:var(--llib-mono);font-size:var(--text-caption);color:var(--llib-ink-soft);margin-bottom:var(--space-base)}
+.llib:not(.is-live) .llib-count{display:none}
+
+.llib-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-sm) var(--space-xl)}
+.llib-group[hidden]{display:none}
+.llib-group h3{font-family:var(--llib-mono);font-size:var(--text-eyebrow);letter-spacing:0.16em;
+  text-transform:uppercase;font-weight:600;color:var(--llib-ink-soft);
+  padding-bottom:var(--space-xs);margin:0 0 var(--space-xs);border-bottom:var(--llib-bw) solid var(--llib-rule-soft)}
+.llib-group ul{list-style:none;margin:0;padding:0}
+.llib-item{padding:var(--space-xs) 0}
+.llib-item[hidden]{display:none}
+.llib-item a{font-size:var(--text-body-sm);color:var(--llib-ink);text-decoration:none}
+.llib-item a:hover{color:var(--llib-accent);text-decoration:underline;text-underline-offset:3px}
+.llib-item a:focus-visible{outline:2px solid var(--llib-accent);outline-offset:2px;border-radius:var(--radius-sm)}
+.llib-detail{display:block;font-size:var(--text-caption);color:var(--llib-ink-soft);margin-top:1px}
+.llib-empty{font-size:var(--text-body-sm);color:var(--llib-ink-soft);background:var(--llib-card);
+  border:var(--llib-bw) dashed var(--llib-rule);border-radius:var(--radius-lg);padding:var(--space-base)}
+.llib-empty[hidden]{display:none}
+
+/* ---- directory layout: opt-in with html(groups, { layout: 'directory' }) */
+.llib--dir .llib-controls{flex-direction:column;align-items:stretch;gap:var(--space-md)}
+.llib--dir .llib-search{max-width:none;flex-basis:auto}
+.llib--dir .llib-search input{font-family:inherit;font-size:var(--text-body);letter-spacing:0;
+  padding:var(--space-md) calc(var(--space-2xl) - var(--space-xs)) var(--space-md) var(--space-base)}
+.llib-kbd{position:absolute;right:var(--space-md);font-family:var(--llib-mono);font-size:var(--text-eyebrow);
+  line-height:1;padding:3px 6px;border:var(--llib-bw) solid var(--llib-rule);border-radius:var(--radius-sm);
+  color:var(--llib-ink-soft);pointer-events:none}
+.llib--dir .llib-chips{gap:var(--space-sm)}
+/* In the directory the chips are navigation, not metadata, so they take the
+   body face, and the selected one takes the accent with its own ink. */
+.llib--dir .llib-chip{font-family:inherit;font-size:var(--text-body-sm);letter-spacing:0;padding:var(--space-sm) var(--space-base);
+  min-height:40px;color:var(--llib-ink-soft)}
+.llib--dir .llib-chip:hover{border-color:var(--llib-accent);color:var(--llib-ink)}
+.llib--dir .llib-chip.active{background:var(--llib-accent);border-color:var(--llib-accent);
+  color:var(--llib-on-accent);font-weight:600}
+.llib--dir .llib-chip.active .llib-count-n{color:inherit;opacity:0.8}
+.llib--dir .llib-count-n{font-family:var(--llib-mono);font-size:var(--text-caption)}
+/* All and Escape already clear, so the Clear button stays in the markup and
+   is hidden here. */
+.llib--dir .llib-chip--clear{display:none}
+.llib--dir .llib-af,.llib--dir .llib-count{display:none}
+.llib--dir .llib-groups{grid-template-columns:1fr;gap:var(--space-lg)}
+.llib--dir .llib-group h3{border-bottom:0;margin-bottom:var(--space-xs);padding:0 var(--space-sm)}
+.llib--dir .llib-item{padding:0}
+.llib-row{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:var(--space-md);
+  align-items:center;min-height:64px;padding:var(--space-sm);border-radius:var(--radius-lg);
+  color:var(--llib-ink);text-decoration:none;transition:background-color var(--llib-fast) var(--llib-ease)}
+.llib--dir .llib-item a.llib-row{font-size:inherit;color:var(--llib-ink);text-decoration:none}
+.llib-row:hover,.llib-row.is-active{background:var(--llib-card)}
+.llib-thumb{width:48px;height:48px;border-radius:var(--radius-md);overflow:hidden;display:grid;
+  place-items:center;background:var(--llib-paper);border:var(--llib-bw) solid var(--llib-rule);
+  color:var(--llib-accent);font-family:var(--llib-display);font-size:var(--text-body-lg)}
+.llib-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.llib-thumb svg{width:55%;height:55%}
+.llib-t{display:grid;min-width:0;gap:2px}
+.llib-t b{font-size:var(--text-body);font-weight:600;line-height:1.3}
+.llib-t small{font-size:var(--text-caption);color:var(--llib-ink-soft);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.llib-arrow{color:var(--llib-ink-soft);transition:transform var(--llib-fast) var(--llib-ease)}
+.llib-row:hover .llib-arrow,.llib-row.is-active .llib-arrow{color:var(--llib-ink);transform:translate(2px,-2px)}
+.llib-feat{position:relative;display:grid;min-height:168px;margin-bottom:var(--space-base);
+  border-radius:var(--radius-xl);overflow:hidden;text-decoration:none;background:var(--llib-feat-ground)}
+.llib-feat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform var(--llib-slow) var(--llib-ease)}
+.llib-feat:hover img{transform:scale(1.03)}
+.llib-feat::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,color-mix(in oklch,var(--llib-feat-ground) 85%,transparent),transparent 75%)}
+.llib-feat-t{position:relative;z-index:1;align-self:end;display:grid;gap:2px;padding:var(--space-base) var(--space-lg);
+  color:var(--llib-feat-ink)}
+.llib-feat-t small{font-size:var(--text-caption);opacity:0.85}
+.llib-feat-t b{font-size:var(--text-body-lg);font-weight:600}
+.llib-feat:focus-visible,.llib-row:focus-visible{outline:2px solid var(--llib-accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.llib-row,.llib-arrow,.llib-feat img,.llib-chip,.llib-search input{transition:none}}
+
+@media (max-width:640px){
+  .llib-groups{grid-template-columns:1fr}
+  .llib-search{max-width:none;flex-basis:100%}
+}</style>
+    <div class="llib llib--dir" data-llib>
+    <div class="llib-controls">
+      <label class="llib-search">
+        <span class="llib-sr" data-audit-ignore>Search links</span>
+        <input type="search" data-llib-search placeholder="Search" autocomplete="off"><kbd class="llib-kbd" aria-hidden="true">/</kbd>
+      </label>
+      <div class="llib-chips" role="group" aria-label="Filter links by group"><button type="button" class="llib-chip active" data-llib-filter="*" data-llib-label="All" aria-pressed="true">All <span class="llib-count-n">24</span></button><button type="button" class="llib-chip" data-llib-filter="g0" data-llib-label="Templates to run yourself" aria-pressed="false">Templates to run yourself <span class="llib-count-n">5</span></button><button type="button" class="llib-chip" data-llib-filter="g1" data-llib-label="Papers" aria-pressed="false">Papers <span class="llib-count-n">3</span></button><button type="button" class="llib-chip" data-llib-filter="g2" data-llib-label="Talks and episodes" aria-pressed="false">Talks and episodes <span class="llib-count-n">7</span></button><button type="button" class="llib-chip" data-llib-filter="g3" data-llib-label="Join in" aria-pressed="false">Join in <span class="llib-count-n">5</span></button><button type="button" class="llib-chip" data-llib-filter="g4" data-llib-label="Find us" aria-pressed="false">Find us <span class="llib-count-n">4</span></button></div>
+      <button type="button" class="llib-chip llib-chip--clear" data-llib-clear hidden>Clear</button>
+    </div>
+    <div class="llib-af" data-llib-af hidden>
+      <span class="llib-af-label">Filtering by</span>
+      <span data-llib-af-list></span>
+    </div>
+    <p class="llib-count" data-llib-count>Showing all 24</p>
+    <div class="llib-groups">
+      <section class="llib-group" data-llib-group="g0">
+        <h3>Templates to run yourself</h3>
+        <ul>
+          <li class="llib-item" data-llib-item data-llib-text="intelligence packet an ai workflow system anyone can adopt. templates to run yourself">
+            <a class="llib-row" href="https://houstonbloom.github.io/local-legibility/" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8L12 4l8.5 4v8.5L12 20.5l-8.5-4z"/><path d="M3.5 8L12 12l8.5-4M12 12v8.5"/><path d="M7.8 6l8.4 4"/></svg></span><span class="llib-t"><b>Intelligence Packet</b><small>An AI workflow system anyone can adopt.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="node graph a map of your stuff, drawn as a web of connected dots. templates to run yourself">
+            <a class="llib-row" href="https://github.com/HoustonBloom/node-app-template" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="13" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="18.5" cy="18" r="2"/><path d="M7.6 7.2l2.9 4.2M16.4 8.3l-3 3.3M10.4 14.2l-3.7 2.7M13.8 13.9l3.1 2.9M8 6.2h8"/></svg></span><span class="llib-t"><b>Node graph</b><small>A map of your stuff, drawn as a web of connected dots.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="video tools six tools on your own computer. a video in, a page out. templates to run yourself">
+            <a class="llib-row" href="video-tools.html"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10.5 8.5v5l4-2.5z"/><path d="M7 20h10"/><path d="M12 17v3"/></svg></span><span class="llib-t"><b>Video tools</b><small>Six tools on your own computer. A video in, a page out.</small></span><span class="llib-arrow" aria-hidden="true">&#8594;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="pinboard mcp members’ bookmarks become a commons you can query in claude. templates to run yourself">
+            <a class="llib-row" href="https://github.com/HoustonBloom/PinboardMCP" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l-1 5 3 3H7l3-3z"/><path d="M12 11v7"/><path d="M4 21h16"/></svg></span><span class="llib-t"><b>Pinboard MCP</b><small>Members’ bookmarks become a commons you can query in Claude.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="chatgpt data transformer turns your chatgpt export into an mcp server for claude. templates to run yourself">
+            <a class="llib-row" href="https://chatgpt-pdt.vercel.app/" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h7l3 3v6"/><path d="M11 3v3h3"/><path d="M4 3v16h6"/><circle cx="15" cy="16" r="1.6"/><circle cx="20" cy="12.5" r="1.6"/><circle cx="20" cy="20" r="1.6"/><path d="M16.4 15.1l2.2-1.6M16.4 16.9l2.2 2.1"/></svg></span><span class="llib-t"><b>ChatGPT Data Transformer</b><small>Turns your ChatGPT export into an MCP server for Claude.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+        </ul>
+      </section>
+      <section class="llib-group" data-llib-group="g1">
+        <h3>Papers</h3>
+        <ul>
+          <li class="llib-item" data-llib-item data-llib-text="dual-ledger authentication paper, community legibility spec. papers">
+            <a class="llib-row" href="https://doi.org/10.6084/m9.figshare.32576631" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span><span class="llib-t"><b>Dual-Ledger Authentication</b><small>Paper, Community Legibility Spec.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="local assembly paper, community legibility spec. papers">
+            <a class="llib-row" href="https://doi.org/10.6084/m9.figshare.32772147" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span><span class="llib-t"><b>Local Assembly</b><small>Paper, Community Legibility Spec.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="community data centers article on community data centers. papers">
+            <a class="llib-row" href="https://relationalbuilder.org/s/community-data-centers-artefact/" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="6" rx="2"/><rect x="4" y="14" width="16" height="6" rx="2"/><path d="M8 7h.01M8 17h.01M12 10v4"/></svg></span><span class="llib-t"><b>Community data centers</b><small>Article on community data centers.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+        </ul>
+      </section>
+      <section class="llib-group" data-llib-group="g2">
+        <h3>Talks and episodes</h3>
+        <ul>
+          <li class="llib-item" data-llib-item data-llib-text="gardens, not platforms: the slides speaking series, talk 1. talks and episodes">
+            <a class="llib-row" href="https://www.figma.com/deck/I517UzM0AK5cWEeQTyt2x8/Gardens--Not-Platforms--marketing-material-" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 12.5l3-3 2 2 3-3"/><path d="M12 16v4M8 20h8"/></svg></span><span class="llib-t"><b>Gardens, Not Platforms: the slides</b><small>Speaking Series, Talk 1.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="speaking series, talk 2 on youtube. talks and episodes">
+            <a class="llib-row" href="https://www.youtube.com/watch?v=eIQ0qgIrdzY&amp;list=PLsdtxOUtf3YRN2eQB3cEyeYp7y1kWV0PT&amp;index=15" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10.5 9.5v5l4.5-2.5z"/></svg></span><span class="llib-t"><b>Speaking Series, Talk 2</b><small>On YouTube.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="the talk at code4y’all gardens, not platforms, at code4y’all. talks and episodes">
+            <a class="llib-row" href="https://code4yall.com/gardens-not-platforms/" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg></span><span class="llib-t"><b>The talk at Code4Y’all</b><small>Gardens, Not Platforms, at Code4Y’all.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="all talks on youtube the gardens not platforms channel. talks and episodes">
+            <a class="llib-row" href="https://www.youtube.com/@gardens_not_platforms" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10.5 9.5v5l4.5-2.5z"/></svg></span><span class="llib-t"><b>All talks on YouTube</b><small>The Gardens Not Platforms channel.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="founder’s couch, episode one full episode on youtube. talks and episodes">
+            <a class="llib-row" href="https://www.youtube.com/watch?v=lxEeOjjOynA" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10.5 9.5v5l4.5-2.5z"/></svg></span><span class="llib-t"><b>Founder’s Couch, episode one</b><small>Full episode on YouTube.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="founder’s couch, episode two on youtube. talks and episodes">
+            <a class="llib-row" href="https://www.youtube.com/watch?v=PGo0ONgblRc" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10.5 9.5v5l4.5-2.5z"/></svg></span><span class="llib-t"><b>Founder’s Couch, episode two</b><small>On YouTube.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="founder’s couch, episode three on youtube. talks and episodes">
+            <a class="llib-row" href="https://www.youtube.com/live/rGSTU8zDbFM" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10.5 9.5v5l4.5-2.5z"/></svg></span><span class="llib-t"><b>Founder’s Couch, episode three</b><small>On YouTube.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+        </ul>
+      </section>
+      <section class="llib-group" data-llib-group="g3">
+        <h3>Join in</h3>
+        <ul>
+          <li class="llib-item" data-llib-item data-llib-text="newsletter new talks, workshops and tools, as they are announced. join in">
+            <a class="llib-row" href="https://houstonbloom.substack.com/subscribe" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span><span class="llib-t"><b>Newsletter</b><small>New talks, workshops and tools, as they are announced.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="discord join the discord. join in">
+            <a class="llib-row" href="https://discord.gg/FZtNmKRyq" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11h-9l-4 4v-4H4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg></span><span class="llib-t"><b>Discord</b><small>Join the Discord.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="events calendar trainings calendar on luma. join in">
+            <a class="llib-row" href="https://luma.com/houstonbloom?k=c" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><span class="llib-t"><b>Events calendar</b><small>Trainings calendar on Luma.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="founder’s couch on instagram watch on instagram. join in">
+            <a class="llib-row" href="https://instagram.com/founders_couch_houston" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><path d="M16.8 7.2h.01"/></svg></span><span class="llib-t"><b>Founder’s Couch on Instagram</b><small>Watch on Instagram.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="gardens not platforms on instagram follow on instagram. join in">
+            <a class="llib-row" href="https://www.instagram.com/gardens_not_platforms" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><path d="M16.8 7.2h.01"/></svg></span><span class="llib-t"><b>Gardens Not Platforms on Instagram</b><small>Follow on Instagram.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+        </ul>
+      </section>
+      <section class="llib-group" data-llib-group="g4">
+        <h3>Find us</h3>
+        <ul>
+          <li class="llib-item" data-llib-item data-llib-text="substack houston bloom on substack. find us">
+            <a class="llib-row" href="https://substack.com/@houstonbloom" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14M5 9h14"/><path d="M5 14h14v7l-7-4-7 4z"/></svg></span><span class="llib-t"><b>Substack</b><small>Houston Bloom on Substack.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="github houston bloom on github. find us">
+            <a class="llib-row" href="https://github.com/HoustonBloom" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="9" r="2"/><path d="M6 8v8M18 11c0 4-6 3-10 6"/></svg></span><span class="llib-t"><b>GitHub</b><small>Houston Bloom on GitHub.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="linkedin megan ducote. find us">
+            <a class="llib-row" href="https://www.linkedin.com/in/megan-ducote-b73458113/" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></span><span class="llib-t"><b>LinkedIn</b><small>Megan Ducote.</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+          <li class="llib-item" data-llib-item data-llib-text="bloom network bloomnetwork.earth find us">
+            <a class="llib-row" href="https://bloomnetwork.earth" target="_blank" rel="noopener"><span class="llib-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c3 3.3 3 13.7 0 17M12 3.5c-3 3.3-3 13.7 0 17"/></svg></span><span class="llib-t"><b>Bloom Network</b><small>bloomnetwork.earth</small></span><span class="llib-arrow" aria-hidden="true">&#8599;</span></a>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <p class="llib-empty" data-llib-empty hidden>Nothing matches that. Clear the search or pick All.</p>
+  </div>
+    <footer class="links-foot">Peer to peer education and community matchmaking, leveraging the Community Legibility Spec.</footer>
+  </div>
+</main>
+<script src="vendor/template-menu/behavior.js"></script>
+<script>
+(function(){
+  Array.prototype.forEach.call(document.querySelectorAll('[data-llib]'), function(root){
+    var chips  = root.querySelectorAll('[data-llib-filter]');
+    var search = root.querySelector('[data-llib-search]');
+    var countEl= root.querySelector('[data-llib-count]');
+    var emptyEl= root.querySelector('[data-llib-empty]');
+    var afEl   = root.querySelector('[data-llib-af]');
+    var afList = root.querySelector('[data-llib-af-list]');
+    var clearEl= root.querySelector('[data-llib-clear]');
+    var groups = root.querySelectorAll('[data-llib-group]');
+    var items  = root.querySelectorAll('[data-llib-item]');
+    var active = '*';
+
+    function labelOf(id){
+      for (var i = 0; i < chips.length; i++) {
+        if (chips[i].getAttribute('data-llib-filter') === id) {
+          return chips[i].getAttribute('data-llib-label') || id;
+        }
+      }
+      return id;
+    }
+    function setGroup(id){
+      active = id;
+      Array.prototype.forEach.call(chips, function(c){
+        var on = c.getAttribute('data-llib-filter') === id;
+        c.setAttribute('aria-pressed', String(on));   // for a screen reader
+        c.classList.toggle('active', on);              // for the eye, per the gallery
+      });
+      apply();
+    }
+    function chipEl(text, onRemove){
+      var s = document.createElement('span');
+      s.className = 'llib-af-chip';
+      s.appendChild(document.createTextNode(text));
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'llib-af-x';
+      b.setAttribute('aria-label', 'Remove filter: ' + text);
+      b.appendChild(document.createTextNode('\u00d7'));
+      b.addEventListener('click', onRemove);
+      s.appendChild(b);
+      return s;
+    }
+
+    function apply(){
+      var q = (search && search.value || '').trim().toLowerCase();
+      var shown = 0;
+      Array.prototype.forEach.call(groups, function(g){
+        var gid = g.getAttribute('data-llib-group');
+        var inGroup = 0;
+        Array.prototype.forEach.call(g.querySelectorAll('[data-llib-item]'), function(li){
+          var on = (active === '*' || active === gid)
+                && (!q || (li.getAttribute('data-llib-text') || '').indexOf(q) !== -1);
+          li.hidden = !on;
+          if (on) { inGroup++; shown++; }
+        });
+        g.hidden = inGroup === 0;
+      });
+
+      if (countEl) {
+        countEl.textContent = shown === items.length
+          ? 'Showing all ' + items.length
+          : 'Showing ' + shown + ' of ' + items.length;
+      }
+      if (emptyEl) emptyEl.hidden = shown !== 0;
+
+      var filtering = (active !== '*') || !!q;
+      if (clearEl) clearEl.hidden = !filtering;
+      if (afEl && afList) {
+        afList.innerHTML = '';
+        if (active !== '*') afList.appendChild(chipEl(labelOf(active), function(){ setGroup('*'); }));
+        if (q) afList.appendChild(chipEl('"' + q + '"', function(){ search.value = ''; apply(); }));
+        afEl.hidden = !filtering;
+      }
+    }
+
+    var dir = root.classList.contains('llib--dir');
+    var at = -1;
+    function rows(){
+      return Array.prototype.filter.call(root.querySelectorAll('.llib-row'), function(r){
+        return !r.closest('[hidden]');
+      });
+    }
+    function mark(i){
+      var rs = rows();
+      rs.forEach(function(r){ r.classList.remove('is-active'); });
+      at = (i < 0 || !rs.length) ? -1 : Math.min(i, rs.length - 1);
+      if (at >= 0) rs[at].classList.add('is-active');
+    }
+    Array.prototype.forEach.call(chips, function(c){
+      c.addEventListener('click', function(){ setGroup(c.getAttribute('data-llib-filter')); if (dir) mark(-1); });
+    });
+    if (search) {
+      search.addEventListener('input', function(){ apply(); if (dir) mark(search.value.trim() ? 0 : -1); });
+      search.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') { search.value = ''; apply(); if (dir) mark(-1); }
+        if (!dir) return;
+        if (e.key === 'ArrowDown') { e.preventDefault(); mark(at + 1); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); mark(at - 1); }
+        else if (e.key === 'Enter' && at >= 0) { e.preventDefault(); rows()[at].click(); }
+      });
+    }
+    if (dir && search) {
+      document.addEventListener('keydown', function(e){
+        if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+        var a = document.activeElement;
+        if (a && (/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) || a.isContentEditable)) return;
+        if (!root.offsetParent) return;
+        e.preventDefault(); search.focus();
+      });
+    }
+    if (clearEl) {
+      clearEl.addEventListener('click', function(){
+        if (search) search.value = '';
+        setGroup('*');
+      });
+    }
+    root.classList.add('is-live');
+    apply();
+  });
+})();</script>
+</body>
+</html>

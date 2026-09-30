@@ -1,0 +1,132 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/components/node-graph/component.css
+   version  2.0.0
+   refresh  node sync.mjs node-graph "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   node-graph · v2.0.0 · component
+
+   The map of an activity-map, drawn by a port of the Node App Template engine
+   (behavior.js has the full list of what it inherits). This file styles the
+   HTML around the canvas: the zoom column, the hint line, and the hidden
+   list of node buttons that a keyboard or a screen reader uses. The canvas
+   itself reads its colours from tokens at draw time.
+
+   Encoding, per templates/activity-map.md and the template's own rule:
+     fill + shape  category. Colour is never alone: each category carries a
+                   shape (circle, square, triangle, star by series, or the
+                   category's own `shape`)
+     size          entries up to the current position
+     ring          worked on the current day, in the node's own colour
+   The rail's category list is the key: it draws the same shapes in the
+   same colours, beside live counts.
+
+   Token surface, falling back to layer 2:
+     --map-cat-1..4   category colours, set by the style on the page, never
+                      on this element (a declaration here would shadow them)
+   The canvas also reads --color-bg (label halo, dot outline), --color-text
+   (labels, hub), --color-border (orbit guides) and --font-body.
+
+   At 375px the zoom column stays, the hint line hides (a phone has no
+   scroll wheel to explain), and labels thin by priority on their own.
+   ============================================================================ */
+
+.node-graph {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+.node-graph [data-slot="canvas"] {
+  position: absolute;
+  inset: 0;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+
+.node-graph [data-slot="zoom"] {
+  position: absolute;
+  right: var(--space-md);
+  bottom: calc(var(--space-2xl) + var(--space-xs));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.node-graph [data-slot="zoom"] button {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.node-graph [data-slot="zoom"] button::after { content: ""; position: absolute; inset: -5px; }
+.node-graph [data-slot="zoom"] button:hover { background: var(--color-surface-alt); }
+.node-graph [data-slot="zoom"] button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.node-graph [data-slot="hint"] {
+  position: absolute;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  margin: 0;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklch, var(--color-bg) 78%, transparent);
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+/* The accessible mirror: off screen until a keyboard lands in it, then a
+   compact strip at the top of the map so the focused button is visible. */
+.node-graph [data-slot="a11y"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.node-graph [data-slot="a11y"]:focus-within {
+  width: auto;
+  height: auto;
+  clip-path: none;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  right: var(--space-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  z-index: 2;
+}
+.node-graph [data-slot="a11y"] button {
+  padding: var(--space-xs) var(--space-sm);
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  cursor: pointer;
+}
+.node-graph [data-slot="a11y"] button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+@media (max-width: 719px) {
+  .node-graph [data-slot="hint"] { display: none; }
+  .node-graph [data-slot="zoom"] { bottom: var(--space-md); right: var(--space-sm); }
+}

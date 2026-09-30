@@ -1,0 +1,254 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/components/orbit-map/component.css
+   version  1.0.0
+   refresh  node sync.mjs orbit-map "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   orbit-map · v1.0.0 · component
+
+   The Explorer view of a personal website, as an activity-map graph. See
+   behavior.js for the behaviours it carries over. This file is its look, in
+   tokens: the source's violet glass on deep space reads --color-accent,
+   --color-accent-deep, --color-surface and --color-text, so it holds in
+   every registered style, and in galaxy dark it is the source.
+
+   Sizes carried over from the source: ghost icons 20px (32 for series 1,
+   the missions), active icons 56px, 44px minimum hit area, glass label chips
+   at 11px, the Activity ring at 140px (110 below 720px), a 40px grid.
+
+   Token surface, falling back to layer 2:
+     --orbit-beam-a / -b   beam gradient ends     --color-accent, --color-accent-deep
+     --orbit-ring-a / -b   Activity ring gradient, top to bottom   --color-accent, then 12% toward white
+     --orbit-ink           text on the ring   --color-text-inverse
+     --orbit-grid          the 40px grid lines    --color-accent at 7%
+     --orbit-energy        the trail to the playhead  --color-text
+     --orbit-cut           the detail cut out of a lit glyph  --color-bg
+     glyph colours         --map-cat-1..4, the same values the rail key reads
+   ============================================================================ */
+
+.orbit-map {
+  --orbit-beam-a: var(--color-accent);
+  --orbit-beam-b: var(--color-accent-deep);
+  --orbit-ring-a: var(--color-accent);
+  --orbit-ring-b: color-mix(in oklch, var(--color-accent) 88%, white);
+  --orbit-ink: var(--color-text-inverse);
+  --orbit-grid: color-mix(in oklch, var(--color-accent) 7%, transparent);
+  --orbit-energy: var(--color-text);
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  font-family: var(--font-body);
+  background-image:
+    linear-gradient(var(--orbit-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--orbit-grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.orbit-map [data-slot="energy"],
+.orbit-map [data-slot="beams"] { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.orbit-map [data-slot="beams"] { z-index: 1; }
+.orbit-map [data-stop="a"] { stop-color: var(--orbit-beam-a); }
+.orbit-map [data-stop="b"] { stop-color: var(--orbit-beam-b); }
+.orbit-map [data-slot="energy"] path { fill: none; stroke: var(--orbit-energy); stroke-linecap: round; }
+.orbit-map [data-slot="haze"] { filter: blur(10px); opacity: 0.18; }
+.orbit-map [data-slot="strand"] { animation: orbit-flow 1.5s linear infinite; }
+@keyframes orbit-flow { to { stroke-dashoffset: -60; } }
+
+/* The mesh: five oversized, blurred colour blobs behind everything, drifting slowly. Only transform animates,
+   so it stays cheap. The colours are the four category colours and the brand, thinned to a wash. */
+.orbit-map { --orbit-wash: 30%; }
+.orbit-map [data-slot="mesh"] { position: absolute; inset: -12%; z-index: 0; pointer-events: none; filter: blur(64px); opacity: 0.55; }
+.orbit-map [data-slot="mesh"] i {
+  position: absolute;
+  width: 52%;
+  height: 58%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--blob) 0%, transparent 100%);
+  will-change: transform;
+  animation: orbit-mesh-a 41s ease-in-out infinite alternate;
+}
+.orbit-map [data-slot="mesh"] i:nth-child(1) { --blob: color-mix(in oklch, var(--map-cat-1, var(--color-accent)) var(--orbit-wash), transparent); left: 2%; top: 4%; }
+.orbit-map [data-slot="mesh"] i:nth-child(2) { --blob: color-mix(in oklch, var(--map-cat-3, var(--color-accent)) var(--orbit-wash), transparent); right: 0; top: 10%; animation: orbit-mesh-b 53s ease-in-out infinite alternate; }
+.orbit-map [data-slot="mesh"] i:nth-child(3) { --blob: color-mix(in oklch, var(--map-cat-2, var(--color-accent)) var(--orbit-wash), transparent); left: 22%; bottom: 0; animation: orbit-mesh-c 47s ease-in-out infinite alternate; }
+.orbit-map [data-slot="mesh"] i:nth-child(4) { --blob: color-mix(in oklch, var(--map-cat-4, var(--color-accent)) var(--orbit-wash), transparent); right: 6%; bottom: 4%; animation: orbit-mesh-a 59s ease-in-out infinite alternate-reverse; }
+.orbit-map [data-slot="mesh"] i:nth-child(5) { --blob: color-mix(in oklch, var(--color-brand, var(--color-accent)) var(--orbit-wash), transparent); left: 30%; top: 26%; width: 40%; height: 46%; animation: orbit-mesh-b 67s ease-in-out infinite alternate-reverse; }
+@keyframes orbit-mesh-a { from { transform: translate3d(-6%, -4%, 0) scale(1); } to { transform: translate3d(8%, 6%, 0) scale(1.14); } }
+@keyframes orbit-mesh-b { from { transform: translate3d(6%, -6%, 0) scale(1.1); } to { transform: translate3d(-8%, 4%, 0) scale(0.94); } }
+@keyframes orbit-mesh-c { from { transform: translate3d(-4%, 6%, 0) scale(0.96); } to { transform: translate3d(6%, -6%, 0) scale(1.12); } }
+
+/* Glyph paint: each category fills from its gradient, the colour swung 14 degrees either way along hue at the
+   same lightness, then 12% toward the text colour, which pushes every icon away from its ground in light and dark alike. Older browsers take the flat colour. */
+.orbit-map [data-slot="paint"] { position: absolute; }
+[data-slot="paint"] stop { stop-color: var(--map-cat-1); }
+[data-slot="paint"] stop[data-n="2"] { stop-color: var(--map-cat-2); }
+[data-slot="paint"] stop[data-n="3"] { stop-color: var(--map-cat-3); }
+[data-slot="paint"] stop[data-n="4"] { stop-color: var(--map-cat-4); }
+@supports (color: oklch(from red l c h)) {
+  [data-slot="paint"] stop[data-n="1"][data-end="a"] { stop-color: color-mix(in oklch, oklch(from var(--map-cat-1) l calc(c * 1.06) calc(h - 14)) 88%, var(--color-text)); }
+  [data-slot="paint"] stop[data-n="1"][data-end="b"] { stop-color: color-mix(in oklch, oklch(from var(--map-cat-1) l calc(c * 1.06) calc(h + 14)) 88%, var(--color-text)); }
+  [data-slot="paint"] stop[data-n="2"][data-end="a"] { stop-color: color-mix(in oklch, oklch(from var(--map-cat-2) l calc(c * 1.06) calc(h - 14)) 88%, var(--color-text)); }
+  [data-slot="paint"] stop[data-n="2"][data-end="b"] { stop-color: color-mix(in oklch, oklch(from var(--map-cat-2) l calc(c * 1.06) calc(h + 14)) 88%, var(--color-text)); }
+  [data-slot="paint"] stop[data-n="3"][data-end="a"] { stop-color: color-mix(in oklch, oklch(from var(--map-cat-3) l calc(c * 1.06) calc(h - 14)) 88%, var(--color-text)); }
+  [data-slot="paint"] stop[data-n="3"][data-end="b"] { stop-color: color-mix(in oklch, oklch(from var(--map-cat-3) l calc(c * 1.06) calc(h + 14)) 88%, var(--color-text)); }
+  [data-slot="paint"] stop[data-n="4"][data-end="a"] { stop-color: color-mix(in oklch, oklch(from var(--map-cat-4) l calc(c * 1.06) calc(h - 14)) 88%, var(--color-text)); }
+  [data-slot="paint"] stop[data-n="4"][data-end="b"] { stop-color: color-mix(in oklch, oklch(from var(--map-cat-4) l calc(c * 1.06) calc(h + 14)) 88%, var(--color-text)); }
+}
+[data-cat="1"] { --orbit-paint: url(#og-g1); }
+[data-cat="2"] { --orbit-paint: url(#og-g2); }
+[data-cat="3"] { --orbit-paint: url(#og-g3); }
+[data-cat="4"] { --orbit-paint: url(#og-g4); }
+
+/* The hover: every glyph floats a few pixels on its own clock, so the map breathes and never ticks in unison. */
+@keyframes orbit-float { 0%, 100% { translate: 0 0; rotate: -1.5deg; } 50% { translate: 0 -4px; rotate: 1.5deg; } }
+.orbit-map [data-slot="glyph"] > [data-v] {
+  animation: orbit-float calc(6s + (var(--n, 0) * 0.83s)) ease-in-out infinite;
+  animation-delay: calc(var(--n, 0) * -1.7s);
+}
+
+/* the Activity ring: a solid gradient disc, "Today" on it, the date on a chip */
+.orbit-map [data-slot="centre"] {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  z-index: 5;
+  width: 140px;
+  height: 140px;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-xs);
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--orbit-ring-a), var(--orbit-ring-b));
+  box-shadow: var(--shadow-raise);
+  color: var(--orbit-ink);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.orbit-map[data-focus] [data-slot="centre"] { opacity: 0.3; }
+.orbit-map [data-slot="centre"] i, .orbit-map [data-slot="c-kicker"] { display: none; }
+.orbit-map [data-slot="c-big"] { font-family: var(--font-display); font-size: var(--text-heading-md); font-weight: 700; line-height: 1; }
+.orbit-map [data-slot="c-unit"] { font-size: 11px; letter-spacing: 0.02em; }
+.orbit-map [data-slot="c-unit"]:empty { display: none; }
+.orbit-map [data-slot="c-date"] { padding: 2px var(--space-sm); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text); font-size: var(--text-caption); font-weight: 600; line-height: 1.3; }
+
+/* items and stars */
+.orbit-map [data-slot="item"],
+.orbit-map [data-slot="star"] {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: left 500ms var(--ease), top 500ms var(--ease), opacity var(--dur-base) var(--ease), filter var(--dur-base) var(--ease);
+}
+.orbit-map [data-slot="item"][hidden], .orbit-map [data-slot="star"][hidden] { display: none; }
+.orbit-map [data-slot="glyph"] {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.orbit-map [data-slot="glyph"] svg { display: block; overflow: visible; width: 20px; height: 20px; transition: width 500ms var(--ease), height 500ms var(--ease); }
+.orbit-map [data-slot="item"][data-cat="1"] [data-slot="glyph"] svg { width: 32px; height: 32px; }
+.orbit-map [data-slot="item"][data-icon="research"] [data-slot="glyph"] svg { width: 18px; height: 18px; }
+.orbit-map [data-slot="star"] [data-slot="glyph"] svg { width: 26px; height: 26px; }
+.orbit-map [data-v="lit"] { display: none; }
+.orbit-map :is([data-active], [data-state="on"], [data-state="near"]) [data-v="lit"] { display: block; }
+.orbit-map :is([data-active], [data-state="on"], [data-state="near"]) [data-v="dim"] { display: none; }
+
+/* glyph paint: category colour from the style, the cut in the ground colour */
+.orbit-map { --orbit-cut: var(--color-bg); }
+.orbit-map [data-cat="1"] { color: var(--map-cat-1, var(--color-accent)); }
+.orbit-map [data-cat="2"] { color: var(--map-cat-2, var(--color-accent-deep)); }
+.orbit-map [data-cat="3"] { color: var(--map-cat-3, var(--color-text-muted)); }
+.orbit-map [data-cat="4"] { color: var(--map-cat-4, var(--color-border-strong)); }
+/* at rest the ghosts and stars are neutral; a category colour arrives when a project is active, hovered or called from the rail */
+.orbit-map [data-slot="item"][data-state="rest"]:not([data-active]),
+.orbit-map [data-slot="star"][data-state="rest"] { color: var(--color-text-muted); }
+svg.og [data-body] { fill: var(--orbit-paint, currentColor); stroke: none; }
+svg.og [data-cut] { fill: var(--orbit-cut, var(--color-surface)); stroke: none; }
+svg.og [data-cut][fill="none"] { fill: none; stroke: var(--orbit-cut, var(--color-surface)); }
+svg.og[data-mode="dim"] [data-body] { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+svg.og[data-mode="dim"] [data-cut] { display: none; }
+
+/* at rest: ghosts faint, the day's projects forward */
+.orbit-map [data-slot="item"][data-state="rest"] { opacity: 0.9; }
+.orbit-map [data-slot="item"][data-active] { opacity: 1; z-index: 8; }
+.orbit-map [data-slot="item"][data-active] [data-slot="glyph"] svg { width: 56px; height: 56px; }
+.orbit-map [data-slot="item"][data-active][data-state="rest"] { animation: orbit-drift 9s ease-in-out infinite; }
+.orbit-map [data-slot="item"][data-active]:nth-child(2n)[data-state="rest"] { animation-duration: 11s; animation-delay: -3s; }
+@keyframes orbit-drift {
+  0%, 100% { transform: translate(-50%, -50%); }
+  25% { transform: translate(-50%, -50%) translate(3px, -2px); }
+  50% { transform: translate(-50%, -50%) translate(0, -4px); }
+  75% { transform: translate(-50%, -50%) translate(-3px, -2px); }
+}
+.orbit-map [data-slot="star"][data-state="rest"] { opacity: 0.85; }
+.orbit-map [data-slot="star"][data-state="rest"] [data-slot="glyph"] { animation: orbit-twinkle 3.2s ease-in-out infinite; }
+.orbit-map [data-slot="star"]:nth-of-type(2n)[data-state="rest"] [data-slot="glyph"] { animation-duration: 4.1s; animation-delay: -1.2s; }
+@keyframes orbit-twinkle { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.18); } }
+
+/* focus: one thing on, its connections near, the rest back */
+.orbit-map [data-state="on"] { opacity: 1; z-index: 30; filter: drop-shadow(0 0 14px color-mix(in oklch, var(--color-accent) 50%, transparent)); }
+.orbit-map [data-slot="item"][data-state="on"] [data-slot="glyph"] { border-color: var(--color-text); }
+.orbit-map [data-state="near"] { opacity: 0.85; z-index: 20; }
+.orbit-map [data-state="off"] { opacity: 0.15; }
+.orbit-map [data-slot="star"][data-state="off"] { opacity: 0.2; }
+.orbit-map [data-selected] [data-slot="glyph"] { border-color: var(--color-accent); }
+.orbit-map button:focus-visible { outline: none; }
+.orbit-map button:focus-visible [data-slot="glyph"] { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+/* glass label chips, placed away from the centre */
+.orbit-map [data-slot="label"] {
+  position: absolute;
+  z-index: 40;
+  padding: 2px 10px;
+  border: 1px solid color-mix(in oklch, var(--color-text) 15%, transparent);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklch, var(--color-surface) 70%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 12px color-mix(in oklch, var(--color-bg) 70%, transparent);
+  color: var(--color-text);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.orbit-map [data-slot="item"][data-cat="1"] [data-slot="label"] { font-size: 12px; font-weight: 600; }
+.orbit-map [data-state="on"] [data-slot="label"],
+.orbit-map:not([data-focus]) [data-active] [data-slot="label"] { opacity: 1; }
+.orbit-map [data-place="right"] [data-slot="label"] { left: 100%; top: 50%; transform: translateY(-50%); margin-left: 4px; }
+.orbit-map [data-place="left"] [data-slot="label"] { right: 100%; top: 50%; transform: translateY(-50%); margin-right: 4px; }
+.orbit-map [data-place="above"] [data-slot="label"] { bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 2px; }
+.orbit-map [data-place="below"] [data-slot="label"] { top: 100%; left: 50%; transform: translateX(-50%); margin-top: 2px; }
+
+@media (max-width: 719px) {
+  .orbit-map [data-slot="centre"] { width: 110px; height: 110px; }
+  .orbit-map [data-slot="c-big"] { font-size: var(--text-card); }
+  .orbit-map [data-slot="item"][data-active] [data-slot="glyph"] svg { width: 40px; height: 40px; }
+  /* a 110px ring: "Today" and a small date chip */
+  .orbit-map [data-slot="c-date"] { font-size: 10px; padding: 1px 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-map *, .orbit-map [data-slot="item"] { animation: none !important; transition: none !important; }
+}

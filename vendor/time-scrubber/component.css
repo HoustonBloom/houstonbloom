@@ -1,0 +1,325 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/components/time-scrubber/component.css
+   version  1.0.0
+   refresh  node sync.mjs time-scrubber "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   time-scrubber · v1.0.0 · component
+
+   The time axis of an activity-map: a track you drag, click or key through,
+   transport controls, and a Live stop. It owns the one position every other
+   part of the page reads (behavior.js, DSTimeState), so the rail counts, the
+   graph and the detail panel can never disagree with it.
+   templates/activity-map.md: "The scrubber is not a filter. It moves the
+   whole view."
+
+   Sizes are from research recorded 2026-09-29 (WCAG 2.5.8 and 2.5.7, the APG
+   slider pattern, Apple HIG and Material 3 slider defaults, kepler.gl's
+   playback bar, d3's time tick ladder):
+     track        4px, 6px while hovered, focused or dragged
+     hit band     44px desktop and 52px below 720px; the whole band is the target
+     thumb        20px, inside a 44px hit area
+     controls     32px visible inside a 44px hit area (play 36px)
+     tick labels  12px, tabular numerals, at least 80px apart (64px narrow)
+     markers      a histogram of active days behind the track in the brand
+                  colour, never one glyph per event: bars merge when closer than 6px (10px
+                  narrow), which is what keeps a busy month legible
+
+   Layout, after the source site's timeline slider and its Key Screens board:
+   one row, the track on the left and the transport on the right (first,
+   back, play, forward, last, then Live). The date is not in the bar when the
+   graph already shows it (the orbit's Activity ring, data-readout="external");
+   otherwise it rides above the playhead as a flag. The readout stays in the
+   DOM for screen readers either way. Below 720px the track takes the first
+   row and the transport the second, as on the board's phone frame.
+
+   Markup (rendered by DSTimeScrubber.mount; see behavior.js)
+     <div class="time-scrubber" data-component="time-scrubber" data-readout="flag|external">
+       <div data-slot="bar">
+         <div data-slot="stage">
+           <div data-slot="track" role="slider" tabindex="0" aria-valuetext="..">
+             <div data-slot="hist"> one <i> per bin </i> </div>
+             <div data-slot="rail"></div><div data-slot="fill"></div>
+             <div data-slot="breaks"> gap marks </div>
+             <div data-slot="thumb"></div><div data-slot="flag"></div>
+             <div data-slot="tip" hidden></div>
+           </div>
+           <div data-slot="ticks"> labels </div>
+         </div>
+         <div data-slot="transport">
+           <div data-slot="controls"> first, prev, play, next, last </div>
+           <button data-slot="live" aria-pressed="true">Live</button>
+         </div>
+       </div>
+       <p data-slot="readout"> screen-reader readout </p>
+     </div>
+
+   Token surface, falling back to layer 2:
+     --scrub-rail      track                     --color-border-strong
+     --scrub-fill      Live stop                 --color-accent-text
+     --scrub-elapsed   elapsed track, pin thumb  --color-text
+     --scrub-bar       histogram bars            --color-brand, falling back to --color-accent
+     --scrub-grad-a/b  transport gradient        --color-accent, then 12% toward white
+     --scrub-on        icons on the gradient     --color-text-inverse
+     --scrub-ink       readout, labels           --color-text
+     --scrub-muted     ticks, relative time      --color-text-muted
+     --scrub-bg        bar ground                --color-surface
+     --scrub-hist      histogram bars            the category colour, via --scrub-cat-1..4
+     --scrub-cat-1..4  category colours          --map-cat-1..4, the node-graph's ramp
+   ============================================================================ */
+
+.time-scrubber {
+  --scrub-rail: var(--color-border-strong);
+  --scrub-fill: var(--color-accent-text, var(--color-accent-deep));
+  --scrub-elapsed: var(--color-text);
+  --scrub-bar: var(--color-brand, var(--color-accent));
+  --scrub-grad-a: var(--color-accent);
+  --scrub-grad-b: color-mix(in oklch, var(--color-accent) 88%, white);
+  --scrub-on: var(--color-text-inverse);
+  --scrub-ink: var(--color-text);
+  --scrub-muted: var(--color-text-muted);
+  --scrub-bg: var(--color-surface);
+  --scrub-cat-1: var(--map-cat-1, var(--color-accent));
+  --scrub-cat-2: var(--map-cat-2, var(--color-accent-deep));
+  --scrub-cat-3: var(--map-cat-3, var(--color-text-muted));
+  --scrub-cat-4: var(--map-cat-4, var(--color-border-strong));
+
+  padding: var(--space-sm) var(--space-xl) calc(var(--space-sm) + env(safe-area-inset-bottom, 0px));
+  background: var(--scrub-bg);
+  border-top: var(--border-width) var(--border-style) var(--color-border);
+  color: var(--scrub-ink);
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---- the bar: stage (track and ticks) beside the transport ---------------- */
+.time-scrubber [data-slot="bar"] { display: flex; align-items: flex-start; gap: var(--space-xl); min-width: 0; }
+.time-scrubber [data-slot="stage"] { flex: 1 1 auto; min-width: 0; display: grid; }
+/* the flag needs a row of its own above the track, only when the bar carries the date */
+.time-scrubber[data-readout="flag"] [data-slot="stage"] { padding-top: 26px; }
+.time-scrubber [data-slot="transport"] { flex: none; display: flex; align-items: center; gap: var(--space-md); margin-top: 14px; }
+.time-scrubber[data-readout="flag"] [data-slot="transport"] { margin-top: 40px; }
+
+/* the transport is one segmented control */
+.time-scrubber [data-slot="controls"] {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--scrub-grad-a), var(--scrub-grad-b));
+}
+.time-scrubber button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: var(--border-width) var(--border-style) transparent;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--scrub-ink);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+/* 44px hit area around a 32px control */
+.time-scrubber button::after { content: ""; position: absolute; inset: -6px; }
+.time-scrubber [data-slot="controls"] button { color: var(--scrub-on); }
+.time-scrubber [data-slot="controls"] button:hover { background: color-mix(in oklch, var(--scrub-on) 18%, transparent); }
+.time-scrubber button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.time-scrubber button svg { width: 14px; height: 14px; }
+.time-scrubber [data-slot="controls"] [data-slot="play"] { width: 36px; height: 36px; background: var(--scrub-on); color: var(--scrub-grad-a); }
+.time-scrubber [data-slot="controls"] [data-slot="play"]:hover { background: var(--scrub-on); }
+
+.time-scrubber [data-slot="live"] {
+  width: auto;
+  height: 32px;
+  padding: 0 var(--space-md);
+  gap: var(--space-sm);
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  border-color: var(--color-border);
+  font-family: var(--font-eyebrow, var(--font-body));
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case, uppercase);
+}
+.time-scrubber [data-slot="live"]:hover { border-color: var(--scrub-fill); }
+.time-scrubber [data-slot="live"]::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--scrub-muted);
+}
+.time-scrubber [data-slot="live"][aria-pressed="true"] { border-color: var(--scrub-fill); color: var(--scrub-fill); }
+.time-scrubber [data-slot="live"][aria-pressed="true"]::before { background: var(--scrub-fill); box-shadow: 0 0 0 3px color-mix(in oklch, var(--scrub-fill) 25%, transparent); }
+
+/* the readout is for screen readers; the ring or the flag shows the date */
+.time-scrubber [data-slot="readout"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- the track ------------------------------------------------------------ */
+.time-scrubber [data-slot="track"] {
+  --pos: 1;
+  position: relative;
+  height: 44px;
+  touch-action: none;
+  cursor: pointer;
+  outline: none;
+}
+.time-scrubber [data-slot="hist"] {
+  position: absolute;
+  inset: 0 0 20px;
+  pointer-events: none;
+}
+.time-scrubber [data-slot="hist"] i {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  margin-left: -2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--scrub-bar);
+  opacity: 0.4;
+}
+.time-scrubber [data-slot="hist"] i[data-past] { opacity: 1; }
+
+.time-scrubber [data-slot="rail"],
+.time-scrubber [data-slot="fill"] {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  transition: height var(--dur-fast) var(--ease), bottom var(--dur-fast) var(--ease);
+}
+.time-scrubber [data-slot="rail"] { right: 0; background: var(--scrub-rail); }
+.time-scrubber [data-slot="fill"] { width: calc(var(--pos) * 100%); background: var(--scrub-elapsed); }
+.time-scrubber [data-slot="track"]:hover :is([data-slot="rail"], [data-slot="fill"]),
+.time-scrubber [data-slot="track"]:focus-visible :is([data-slot="rail"], [data-slot="fill"]),
+.time-scrubber[data-dragging] :is([data-slot="rail"], [data-slot="fill"]) { height: 6px; bottom: 9px; }
+
+.time-scrubber [data-slot="breaks"] { position: absolute; inset: 0; pointer-events: none; }
+/* A gap in the log is a cut in the rail: 2px of ground, slanted, on the rail
+   only, so a reader sees where time passed without a mark competing with the data. */
+.time-scrubber [data-slot="breaks"] span {
+  position: absolute;
+  bottom: 9px;
+  width: 2px;
+  height: 6px;
+  margin-left: -1px;
+  background: var(--scrub-bg);
+  transform: skewX(-24deg);
+}
+
+.time-scrubber [data-slot="thumb"] {
+  position: absolute;
+  left: calc(var(--pos) * 100%);
+  bottom: 12px;
+  width: 20px;
+  height: 20px;
+  margin: 0 0 -10px -10px;
+  border-radius: 50%;
+  background: var(--scrub-elapsed);
+  box-shadow: 0 0 0 3px var(--scrub-bg), var(--shadow-raise);
+  pointer-events: none;
+  transition: transform var(--dur-fast) var(--ease);
+}
+/* the playhead is a pin: a disc on the rail, a point above it */
+.time-scrubber [data-slot="thumb"]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 70%;
+  width: 0;
+  height: 0;
+  margin-left: -7px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 14px solid var(--scrub-elapsed);
+}
+.time-scrubber[data-dragging] [data-slot="thumb"] { transform: scale(1.2); }
+.time-scrubber [data-slot="track"]:focus-visible [data-slot="thumb"] { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+/* the date, riding above the playhead (only while data-readout="flag") */
+.time-scrubber [data-slot="flag"] {
+  position: absolute;
+  left: calc(var(--pos) * 100%);
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: var(--scrub-ink);
+  color: var(--scrub-bg);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.time-scrubber [data-slot="flag"][data-edge="end"] { transform: translateX(calc(-100% + 14px)); }
+.time-scrubber [data-slot="flag"][data-edge="start"] { transform: translateX(-14px); }
+.time-scrubber[data-readout="external"] [data-slot="flag"] { display: none; }
+
+.time-scrubber [data-slot="tip"] {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  transform: translateX(-50%);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: var(--scrub-ink);
+  color: var(--scrub-bg);
+  font-size: var(--text-caption);
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--shadow-raise);
+}
+.time-scrubber [data-slot="tip"][hidden] { display: none; }
+
+.time-scrubber [data-slot="ticks"] {
+  position: relative;
+  height: 16px;
+  font-size: var(--text-caption);
+  color: var(--scrub-muted);
+}
+.time-scrubber [data-slot="ticks"] span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.time-scrubber [data-slot="ticks"] span[data-year] { color: var(--scrub-ink); font-weight: 600; }
+
+/* phone: the track takes the first row, the transport the second, as on the board's phone frame */
+@media (max-width: 719px) {
+  .time-scrubber { padding-left: var(--space-base); padding-right: var(--space-base); }
+  .time-scrubber [data-slot="bar"] { flex-direction: column; align-items: stretch; gap: var(--space-xs); }
+  .time-scrubber [data-slot="transport"],
+  .time-scrubber[data-readout="flag"] [data-slot="transport"] { margin-top: 0; justify-content: space-between; }
+  .time-scrubber [data-slot="track"] { height: 52px; }
+  .time-scrubber [data-slot="hist"] { inset: 0 0 24px; }
+  .time-scrubber [data-slot="rail"], .time-scrubber [data-slot="fill"] { bottom: 12px; }
+  .time-scrubber [data-slot="thumb"] { bottom: 14px; }
+  .time-scrubber [data-slot="breaks"] span { bottom: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .time-scrubber *, .time-scrubber *::before { transition: none !important; }
+}

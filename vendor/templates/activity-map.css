@@ -1,0 +1,165 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/templates/activity-map.css
+   version  1.0.0
+   refresh  node sync.mjs --template activity-map "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   activity-map.css · v1.0.0 · the one-screen map, as templates/activity-map.md
+   specifies it
+
+   A stage, like slides: the root is 100dvh and never scrolls. Three rows:
+     head   the host's nav-bar, one compact row
+     body   the rail beside the map above 880px; below it, the category chips
+            above the map and the detail panel over the map's foot
+     time   the time-scrubber, pinned to the bottom edge
+   Every selector is scoped under .tpl--activity-map, and the viewport lock
+   under html:has(.tpl--activity-map), so a page that renders the map as one
+   of several views loses its scroll only while the map is on screen.
+
+   Template CSS sets composition only: no colour, no typeface, no shadow.
+   The parts are components (time-scrubber, node-graph, category-list,
+   detail-panel); this file places them. The runtime that feeds them is
+   activity-map.js, the one template that ships behaviour, because it is the
+   one template whose page is a function of time.
+   ============================================================================ */
+
+html:has(.tpl--activity-map),
+html:has(.tpl--activity-map) body { height: 100%; margin: 0; overflow: hidden; }
+
+html:has(.tpl--activity-map) body {
+  background: var(--color-bg);
+  background-image: var(--atmosphere-layer, none);
+  background-size: var(--atmosphere-size, auto);
+  background-position: var(--atmosphere-position, 0 0);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.tpl--activity-map, .tpl--activity-map *, .tpl--activity-map *::before, .tpl--activity-map *::after { box-sizing: border-box; }
+
+.tpl--activity-map {
+  --title-size: var(--text-heading-lg);
+  --rail: 300px;
+  /* Opaque, and above anything a host paints behind its pages (a site's
+     animated field, say): the map is the whole view, so nothing shows through. */
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg);
+  background-image: var(--atmosphere-layer, none);
+  background-size: var(--atmosphere-size, auto);
+  background-position: var(--atmosphere-position, 0 0);
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 0;
+}
+/* The head sits a layer above the body: the body is positioned and comes later,
+   so without this a menu opening from the header draws under the map and
+   takes no clicks (found 2026-09-29, the same fault slides 1.0.1 fixed). */
+/* Stacking, top to bottom: the header and its menus, the time bar and its tooltips, the graph switch and the
+   panel, then the map, which is its own stacking context so nothing inside it can climb over a menu. */
+.tpl--activity-map > .am-head { position: relative; z-index: 20; min-width: 0; }
+.tpl--activity-map > .am-time { position: relative; z-index: 10; }
+.tpl--activity-map .am-map { isolation: isolate; z-index: 0; }
+.tpl--activity-map > .am-head .nav-bar { position: static; }
+/* The stage is full-bleed, so the header is too: the brand lines up with the rail's text and the
+   actions with the map's right edge, instead of the component's centred max width. */
+@media (min-width: 880px) {
+  .tpl--activity-map > .am-head .nav-bar .inner { max-width: none; padding-left: var(--space-xl); padding-right: var(--space-xl); }
+}
+
+.tpl--activity-map > .am-body {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+}
+.tpl--activity-map .am-rail {
+  background: var(--color-surface);
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr);
+  gap: var(--space-sm) var(--space-base);
+  min-height: 0;
+  padding: var(--space-lg) var(--space-base) var(--space-base) var(--space-xl);
+}
+.tpl--activity-map .am-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--title-size);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-text);
+}
+.tpl--activity-map .am-span {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+.tpl--activity-map .am-map { position: relative; min-height: 0; min-width: 0; }
+
+/* Below 880px a 300px rail beside a graph leaves neither usable: the chips
+   run above the map and the detail panel sits over the map's foot, closed
+   until the reader picks something. */
+@media (max-width: 879px) {
+  .tpl--activity-map > .am-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .tpl--activity-map .am-rail { display: contents; }
+  .tpl--activity-map .am-title, .tpl--activity-map .am-span { display: none; }
+  .tpl--activity-map .category-list { padding: var(--space-sm) var(--space-base); }
+  .tpl--activity-map .am-map { grid-row: 2; }
+  .tpl--activity-map .detail-panel {
+    position: absolute;
+    left: var(--space-sm);
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+    max-height: 46%;
+    z-index: 3;
+    box-shadow: var(--shadow-high);
+  }
+  .tpl--activity-map .detail-panel[data-idle] { display: none; }
+  .tpl--activity-map .node-graph [data-slot="legend"] { display: none; }
+}
+
+/* Orbit or Graph: the two graphs this template can draw, when a build offers
+   both. A segmented pair under the title; the choice rides in the URL. */
+.tpl--activity-map .am-graphs {
+  display: inline-flex;
+  justify-self: start;
+  padding: 2px;
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+}
+.tpl--activity-map .am-graphs button {
+  min-height: 32px;
+  padding: 0 var(--space-md);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  cursor: pointer;
+}
+.tpl--activity-map .am-graphs button[aria-pressed="true"] { background: var(--color-accent); color: var(--color-text-inverse); }
+.tpl--activity-map .am-graphs button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+/* Both maps open clean: no day list until the reader picks something, because the labels on the map
+   already say what is there. The orbit also drops the span line.
+   The switch sits at the map's top right, raised off the grid. */
+.tpl--activity-map[data-graph="orbit"] .am-span,
+.tpl--activity-map .detail-panel[data-idle] { display: none; }
+.tpl--activity-map .am-graphs { position: absolute; z-index: 4; right: var(--space-lg); top: var(--space-lg); box-shadow: var(--shadow-raise); }
+/* the orbit's key: the category icons, a size up from the shapes */
+.tpl--activity-map .category-list[data-key="orbit"] [data-slot="row"] { grid-template-columns: 24px minmax(0, 1fr) auto; }
+.tpl--activity-map .category-list[data-key="orbit"] [data-slot="swatch"] { width: 22px; height: 22px; display: grid; place-items: center; }
+.tpl--activity-map .category-list[data-key="orbit"] [data-slot="swatch"] svg { width: 22px; height: 22px; display: block; }
+@media (max-width: 879px) {
+  .tpl--activity-map .am-graphs { right: var(--space-sm); top: calc(44px + var(--space-md)); }
+}

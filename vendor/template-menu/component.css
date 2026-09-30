@@ -1,0 +1,141 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/components/template-menu/component.css
+   version  1.1.0
+   refresh  node sync.mjs template-menu "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   template-menu · v1.1.0 · component
+
+   Switches the page between the templates it can be read as: website, links,
+   slides. A menu button, not a set of tabs: the current template is the
+   button's label, the others open under it, because a reader picks a template
+   once and then reads, so the choice does not earn a permanent row.
+
+   From a design frame, 2026-09-24: an outlined pill in the accent with
+   an icon, an uppercase label and a solid caret, sitting top right of the
+   header, opening a column of the same pills. Built to that frame rather than
+   invented.
+
+   Markup
+     <div class="template-menu" data-component="template-menu">
+       <button type="button" data-slot="trigger" aria-haspopup="true"
+               aria-expanded="false" aria-controls="tm-list">
+         <svg data-slot="icon" ...></svg>
+         <span data-slot="label">Website</span>
+         <svg data-slot="caret" ...></svg>
+       </button>
+       <ul id="tm-list" data-slot="list" hidden>
+         <li><a href="#/" aria-current="page"><svg data-slot="icon" ...></svg>
+           <span data-slot="label">Website</span></a></li>
+         ...
+       </ul>
+     </div>
+   Behaviour ships in behavior.js (1.1.0, 2026-09-29): toggle aria-expanded
+   and [hidden] on click, close on a pick, on Escape and on a click outside,
+   return focus to the trigger. One listener serves every menu on the page.
+
+   Token surface, falling back to layer 2:
+     --tmenu-ink      label, icon, border     --color-accent-deep
+     --tmenu-rule     pill border             --tmenu-ink (one colour with the label)
+     --tmenu-bg       pill ground             --color-surface
+     --tmenu-hover    pill ground on hover    --color-accent-soft
+     --tmenu-radius                           --radius-full
+
+   Text sits on --color-accent-deep, not --color-accent, because in civic and
+   grid the accent fails AA as text (2.72:1 and 2.62:1, measured 2026-09-24).
+   The border reads the same token as the label (2026-09-26): two tokens with
+   one value drift apart the first time one changes.
+
+   At 375px: the trigger drops its label to an icon and a caret, and keeps an
+   aria-label naming the current template. The open list keeps its labels and
+   anchors to the right edge so it never leaves the viewport.
+   ============================================================================ */
+
+.template-menu {
+  --tmenu-ink: var(--color-accent-text, var(--color-accent-deep, var(--color-accent)));
+  --tmenu-rule: var(--tmenu-ink);   /* one token for label and outline, 2026-09-26 */
+  --tmenu-bg: var(--color-surface);
+  --tmenu-hover: var(--color-accent-soft);
+  --tmenu-radius: var(--radius-full);
+
+  position: relative;
+  display: inline-block;
+}
+
+.template-menu [data-slot="trigger"],
+.template-menu [data-slot="list"] a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 44px;
+  padding: 0 var(--space-base);
+  background: var(--tmenu-bg);
+  color: var(--tmenu-ink);
+  border: var(--border-width) var(--border-style) var(--tmenu-rule);
+  border-radius: var(--tmenu-radius);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case, uppercase);
+  text-decoration: none;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.template-menu [data-slot="trigger"]:hover,
+.template-menu [data-slot="list"] a:hover { background: var(--tmenu-hover); }
+
+.template-menu [data-slot="trigger"]:focus-visible,
+.template-menu [data-slot="list"] a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.template-menu [data-slot="icon"] { width: 16px; height: 16px; flex: none; }
+.template-menu [data-slot="caret"] {
+  width: 10px; height: 10px; flex: none;
+  margin-left: var(--space-xs);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.template-menu [aria-expanded="true"] [data-slot="caret"] { transform: rotate(180deg); }
+
+.template-menu [data-slot="list"] {
+  position: absolute;
+  top: calc(100% + var(--space-sm));
+  right: 0;
+  z-index: 60;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-sm);
+  min-width: 100%;
+}
+.template-menu [data-slot="list"][hidden] { display: none; }
+.template-menu [data-slot="list"] a { width: 100%; box-shadow: var(--shadow-raise); }
+.template-menu [data-slot="list"] a[aria-current="page"] {
+  background: var(--tmenu-ink);
+  color: var(--color-text-inverse);
+  border-color: var(--tmenu-ink);
+}
+
+@media (max-width: 600px) {
+  .template-menu [data-slot="trigger"] { padding: 0 var(--space-md); }
+  .template-menu [data-slot="trigger"] [data-slot="label"] {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .template-menu [data-slot="caret"],
+  .template-menu [data-slot="trigger"],
+  .template-menu [data-slot="list"] a { transition: none; }
+}

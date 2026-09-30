@@ -1,0 +1,94 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   C:/Users/Megan/Documents/design-system/components/category-list/component.css
+   version  1.0.0
+   refresh  node sync.mjs category-list "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   category-list · v1.0.0 · component
+
+   The rail of an activity-map: one row per category, its colour and shape,
+   its name, and a live count of what is in the set at the current position.
+   A row is a toggle: pressing it brings that category forward on the map and
+   rides in the URL as cat=. templates/activity-map.md: "Counts are live."
+
+   Markup (rendered by the activity-map runtime)
+     <ul class="category-list" data-component="category-list">
+       <li><button data-slot="row" data-cat="1" aria-pressed="false">
+         <svg data-slot="swatch">..</svg><span data-slot="label">Missions</span>
+         <span data-slot="count">3</span></button></li>
+     </ul>
+
+   Token surface: the swatch reads --map-cat-1..4 so it can never disagree
+   with the graph; rows read layer 2. Rows are 44px tall at every width.
+   Below 880px the list is a single scrolling row of chips.
+   ============================================================================ */
+
+.category-list {
+  --clist-cat-1: var(--map-cat-1, var(--color-accent));
+  --clist-cat-2: var(--map-cat-2, var(--color-accent-deep));
+  --clist-cat-3: var(--map-cat-3, var(--color-text-muted));
+  --clist-cat-4: var(--map-cat-4, var(--color-border-strong));
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.category-list [data-slot="row"] {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border: var(--border-width) var(--border-style) transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.category-list [data-slot="row"]:hover { background: var(--color-surface-alt); }
+.category-list [data-slot="row"][aria-pressed="true"] { border-color: var(--color-border-strong); background: var(--color-surface); }
+.category-list [data-slot="row"]:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.category-list [data-slot="swatch"] { width: 14px; height: 14px; }
+.category-list [data-slot="swatch"] { color: var(--clist-cat-1); }
+.category-list [data-slot="row"][data-cat="2"] [data-slot="swatch"] { color: var(--clist-cat-2); }
+.category-list [data-slot="row"][data-cat="3"] [data-slot="swatch"] { color: var(--clist-cat-3); }
+.category-list [data-slot="row"][data-cat="4"] [data-slot="swatch"] { color: var(--clist-cat-4); }
+/* the node-graph's shapes: circle, square, triangle, star; stroke rounds the polygons */
+.category-list [data-slot="swatch"] * { fill: currentColor; stroke: currentColor; }
+.category-list [data-slot="count"] {
+  min-width: 2.5ch;
+  font-family: var(--font-mono, var(--font-body));
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+@media (max-width: 879px) {
+  .category-list {
+    display: flex;
+    gap: var(--space-sm);
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 2px;
+  }
+  .category-list li { flex: none; }
+  .category-list [data-slot="row"] {
+    width: auto;
+    grid-template-columns: 12px auto auto;
+    gap: var(--space-sm);
+    border-color: var(--color-border);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+}
