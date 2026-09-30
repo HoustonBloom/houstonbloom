@@ -42,13 +42,17 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 /* the pill is one label and one caret; the list opens under it */
 .nav-bar .template-menu { --tmenu-ink: var(--palette-accent); }
 
-/* below 800px the four links tighten, then below 600px the header stops
-   sticking and the links scroll sideways on their own row. A sticky header
-   that is two rows tall takes a fifth of a phone screen. */
-@media (max-width: 800px) { .nav-bar nav { gap: 16px; } }
-@media (max-width: 600px) {
+/* The four links are about 500px wide and the switcher pill about 150px, so a three-column header runs out
+   of room near 900px. Between 900 and 1000 the side columns shrink to their content; at 900 and below the
+   header stops sticking and the links take their own row, scrolling sideways. A sticky header that is two
+   rows tall would take a fifth of a phone screen. */
+@media (max-width: 1000px) { .nav-bar .inner { grid-template-columns: auto 1fr auto; } .nav-bar nav { gap: 20px; } }
+@media (max-width: 900px) {
   .nav-bar { position: static; }
-  .nav-bar nav { overflow-x: auto; max-width: 100%; justify-content: flex-start; gap: 20px; scrollbar-width: none; }
+  .nav-bar .inner { grid-template-columns: auto 1fr; grid-template-areas: "brand actions" "links links"; row-gap: 4px; }
+  .nav-bar .brand { grid-area: brand; }
+  .nav-bar .header-actions { grid-area: actions; }
+  .nav-bar nav { grid-area: links; overflow-x: auto; max-width: 100%; justify-content: flex-start; gap: 20px; scrollbar-width: none; }
   .nav-bar nav::-webkit-scrollbar { display: none; }
   .nav-bar nav a { white-space: nowrap; }
 }
