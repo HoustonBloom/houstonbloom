@@ -990,8 +990,7 @@ html{scroll-padding-top:var(--topbar-h)}
   <div class="shell">
     <h1>Growing Houston&#8217;s infrastructure for co&#8209;creation.</h1>
     <p class="lede measure">Peer to peer education and community matchmaking, leveraging the
-      <button class="inline-link" type="button" data-panel-open="cls" aria-haspopup="dialog">Community
-      Legibility Spec</button>.</p>
+      <a class="inline-link" href="cls.html">Community Legibility Spec</a>.</p>
     
     <p class="btn-row">
       <a class="btn" data-component="button" href="#events">See the events</a>
@@ -1178,44 +1177,7 @@ html{scroll-padding-top:var(--topbar-h)}
      contract: [data-panel-open="id"] opens, [data-panel-close] and the scrim
      close, Escape closes. Retheming is done by mapping this page's tokens onto
      the component's var() chain in the CSS, not by editing the component. -->
-<div class="panel-scrim" data-panel-scrim hidden></div>
 
-<aside class="side-panel" data-panel="cls" role="dialog" aria-modal="true"
-       aria-labelledby="cls-title" tabindex="-1" hidden>
-  <button class="side-panel__close" type="button" data-panel-close aria-label="Close panel">&times;</button>
-  <div class="side-panel__head">
-    <span class="side-panel__badge">Deepen</span>
-    <h2 class="side-panel__title" id="cls-title">Community Legibility Spec</h2>
-    <div class="side-panel__file">The technology Houston Bloom runs on</div>
-  </div>
-  <hr class="side-panel__divider">
-  <div class="side-panel__content">
-    <p>A way for a community to see itself clearly enough to match people to each other,
-      <strong>without anyone holding everyone&#8217;s data</strong>. Your work stays on your machine.
-      Only its shape travels.</p>
-
-    <p><strong>What moves</strong> is a redacted manifest: an opaque identifier, a timestamp,
-      and the design principle the work stands on. No names, no paths, no content. The work itself
-      never moves, so you cannot leak it by contributing.</p>
-
-    <p><strong>Authentication without an authority.</strong> A community broadcasts an anonymised record
-      of its activity. Each participant keeps a private, append-only ledger. Proving membership is
-      the comparison of the two: you show your record overlaps the broadcast, without the community
-      ever naming you. Either side can end it by deleting its own half, so leaving is always available.</p>
-
-    <blockquote class="sp-quote">Instead of giving you my ID attached to my email, what if I gave you
-      the timestamps of what I shared at a networking event? I have my timestamps. The community has
-      them too. It becomes proof of action, anonymised.</blockquote>
-
-    <p class="sp-papers-h">Published papers</p>
-    <ul class="sp-papers">
-      <li><a href="https://doi.org/10.6084/m9.figshare.32576631" target="_blank" rel="noopener">
-        Dual-Ledger Authentication</a> <span>figshare, CC BY 4.0</span></li>
-      <li><a href="https://doi.org/10.6084/m9.figshare.32772147" target="_blank" rel="noopener">
-        Local Assembly</a> <span>figshare, CC BY 4.0</span></li>
-    </ul>
-  </div>
-</aside>
 
 <!-- ─── footer ───────────────────────────────────────────────────────────── -->
 <footer data-tone="inverse" class="foot" id="s-foot" data-dot="Find us">

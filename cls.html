@@ -87,6 +87,10 @@ html:has(.cls-mapframe .tpl--activity-map), html:has(.cls-mapframe .tpl--activit
 .cls-open-row { display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-base); margin: 0; }
 .cls-open-row a, .cls-links a, .cls-back a { color: var(--color-accent-text, var(--color-accent-deep)); font-size: var(--text-body-sm); font-weight: 600; text-underline-offset: 3px; }
 .cls-section { padding: var(--space-2xl) 0 0; }
+.cls-explain p { max-width: 62ch; font-size: var(--text-body-lg); }
+.cls-quote { margin: var(--space-lg) 0 0; max-width: 62ch; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
 .cls-section > h2 { margin: 0 0 var(--space-sm); font-family: var(--font-display); font-size: var(--text-heading-lg); letter-spacing: var(--tracking-display); color: var(--color-heading, var(--color-text)); }
 .cls-intro { max-width: 62ch; margin: 0 0 var(--space-lg); color: var(--color-text-muted); }
 .cls-cards { display: grid; gap: var(--space-lg); grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr)); align-items: start; }
@@ -245,6 +249,13 @@ ul.cls-leads p { grid-column: 1; }
   </section>
   <section class="cls-mapsec" id="map" aria-label="Map of the parts of the spec">
     <div class="cls-mapframe" id="cls-mapframe"></div>
+  </section>
+  <section class="cls-section cls-explain" id="what-moves">
+    <h2>What moves, and what stays</h2>
+    <p>A way for a community to see itself clearly enough to match people to each other, <strong>without anyone holding everyone&#8217;s data</strong>. Your work stays on your machine. Only its shape travels.</p>
+    <p><strong>What moves</strong> is a redacted manifest: an opaque identifier, a timestamp, and the design principle the work stands on. No names, no paths, no content. The work itself never moves, so you cannot leak it by contributing.</p>
+    <p><strong>Authentication without an authority.</strong> A community broadcasts an anonymised record of its activity. Each participant keeps a private, append-only ledger. Proving membership is the comparison of the two: you show your record overlaps the broadcast, without the community ever naming you. Either side can end it by deleting its own half, so leaving is always available.</p>
+    <figure class="cls-quote"><blockquote>Instead of giving you my ID attached to my email, what if I gave you the timestamps of what I shared at a networking event? I have my timestamps. The community has them too. It becomes proof of action, anonymised.</blockquote><figcaption>Megan Ducote, Founder&#8217;s Couch, episode one</figcaption></figure>
   </section>
   <section class="cls-section" id="parts">
     <h2>The five parts</h2>
