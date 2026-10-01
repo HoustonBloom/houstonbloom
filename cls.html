@@ -25,6 +25,16 @@ html { scroll-behavior: smooth; }
    them to bold and drew a fake one over the glyphs. Same weight and tracking as the landing hero and Gardening Tools. */
 .cls-head h1, .cls-section > h2, .cls-card h3, .cls-lb-title { font-weight: var(--heading-weight, 400); font-synthesis: none; }
 .cls-head h1, .cls-section > h2 { letter-spacing: -.01em; }
+/* The page set no body leading, so every paragraph rendered at line-height: normal (about 1.2) while the landing page
+   and Gardening Tools read at 1.6. Set it once on the shell. Elements that set their own leading keep it. */
+.cls-shell { font-size: var(--text-body); line-height: var(--leading-body, 1.6); }
+/* the kind pill and the group / status label sat touching; a flex row gives them a gap and wraps cleanly */
+.cls-card .cls-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-sm); }
+.cls-card .cls-kind { margin: 0; }
+.cls-card header h3 { margin-top: var(--space-xs); }
+/* body sizes: the intro reads at the large body size and the card description at the body size, nearer the landing page */
+.cls-intro { font-size: var(--text-body-lg); }
+.cls-what { font-size: var(--text-body); }
 .cls-count { margin: var(--space-md) 0 0; font-size: var(--text-body-sm); color: var(--color-text-faint); }
 .cls-stage { display: grid; gap: var(--space-base); grid-template-columns: 250px minmax(0, 1fr) 340px; align-items: start; padding-bottom: var(--space-xl); }
 .cls-rail { display: grid; gap: var(--space-base); grid-template-columns: minmax(0, 1fr); min-width: 0; }
