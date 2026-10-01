@@ -17,7 +17,8 @@
    ============================================================================ */
 
 :is(html, .nav-bar)[data-style="editorial"],
-:is(.cls-head, .links-id)[data-style="bloom"] {
+:is(.cls-head, .links-id)[data-style="bloom"],
+.home-map {
   --palette-accent:       #2d5a3f;   /* the landing page green */
   --palette-accent-deep:  #1e4630;
   --palette-accent-soft:  #e3eadb;

@@ -281,6 +281,12 @@
         n.x = x; n.y = y;
         var h = present ? hi(n) : 'gone';
         var b = n.el;
+        // a project that joins or leaves the day does not slide across the map: it leaves its old place and
+        // spins in at the new one, so a moving timeline reads as appearances, not traffic (2026-10-01)
+        if (!inRing && b.hasAttribute('data-active') !== isActive && !b.hidden) {
+          b.removeAttribute('data-swap'); void b.offsetWidth; b.setAttribute('data-swap', '');
+          clearTimeout(n.st); n.st = setTimeout(function () { b.removeAttribute('data-swap'); }, 560);
+        }
         b.style.left = x + '%'; b.style.top = y + '%';
         b.style.setProperty('--k', inRing ? n.rk : 0);
         b.toggleAttribute('data-ring', inRing);

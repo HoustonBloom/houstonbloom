@@ -236,6 +236,12 @@
   cursor: pointer;
   transition: left 500ms var(--ease), top 500ms var(--ease), opacity var(--dur-base) var(--ease), filter var(--dur-base) var(--ease);
 }
+/* a project joining or leaving the day: no slide, it spins in where it now belongs (2026-10-01) */
+.orbit-map [data-slot="item"][data-swap] {
+  transition: opacity var(--dur-base) var(--ease), filter var(--dur-base) var(--ease);
+  animation: orbit-swap 520ms var(--ease) both;
+}
+@keyframes orbit-swap { from { opacity: 0; scale: 0.35; rotate: -120deg; } to { opacity: 1; scale: 1; rotate: 0deg; } }
 /* a category gathering into the centre: a longer, softer ease, each item a beat after the last */
 .orbit-map :is([data-slot="item"], [data-slot="star"])[data-ring] {
   transition: left 760ms cubic-bezier(0.22, 0.9, 0.24, 1), top 760ms cubic-bezier(0.22, 0.9, 0.24, 1), opacity var(--dur-base) var(--ease), filter var(--dur-base) var(--ease);
