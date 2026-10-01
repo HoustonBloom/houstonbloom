@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-style="bloom">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -951,6 +951,52 @@ html{scroll-padding-top:var(--topbar-h)}
 @media (prefers-reduced-motion: reduce) {
   .eseq[data-seq] .eseq-slide { transition: none; }
 }
+
+/* ---- site notes, 2026-10-01 -------------------------------------------------------------------------
+   2: the era's technology leads its description, in butter, and the share of history sits under the years.
+   3: the closing line is set larger.
+   16: the rail marker wears the era's own drawing (Cuts/_assets/svg/20261001_houston-bloom_era-*.svg).
+   14: the next-event card runs its picture edge to edge like the Speaking Series card, on the white paper,
+       with the eyebrow as plain green text instead of a filled pill.
+   15: every feature card fades into the darkest green, and its talk links stack under the eyebrow. */
+#s-phases .eseq-tech{font-weight:600;color:var(--butter)}
+/* years, then the share of history, on one line (Megan, 2026-10-01) */
+#s-phases .eseq-pct{grid-area:3 / 1;margin:var(--s3,12px) 0 0;padding-left:0;border-left:0}
+#s-phases .eseq-yrs{grid-area:3 / 2;margin:var(--s3,12px) 0 0 var(--s3,12px);padding-left:var(--s3,12px);border-left:1px solid rgba(198,191,174,.5);white-space:nowrap}
+#s-phases .eseq-desc{grid-area:4 / 1 / 5 / 3}
+.eseq-turn{font-size:clamp(30px,4.4vw,56px);max-width:20ch}
+.eseq-mark:has(svg){width:34px;height:34px;display:grid;place-items:center;color:var(--eseq-live,var(--green));border-width:2px}
+.eseq-mark svg{width:20px;height:20px;display:block}
+.ev-upcoming{grid-template-columns:minmax(0,320px) 1fr;gap:0;padding:0;align-items:stretch;background:var(--paper);overflow:hidden}
+.ev-upcoming img{height:100%;aspect-ratio:auto;min-height:100%;border-radius:0}
+.ev-upcoming-body{padding:var(--card-pad);justify-content:center}
+.ev-upcoming .ev-state{border:0;background:transparent;padding:0;color:var(--green);font-weight:600}
+@media (max-width:640px){.ev-upcoming{grid-template-columns:1fr}.ev-upcoming img{max-width:none;aspect-ratio:1}}
+.ev-feature{background:var(--green-night)}
+.ev-feature::before{background:linear-gradient(to top,color-mix(in oklch,var(--green-night) 94%,transparent) 0%,color-mix(in oklch,var(--green-night) 86%,transparent) 42%,transparent 85%)}
+.ev-eps{flex-direction:row;flex-wrap:wrap;align-items:center;row-gap:var(--s2,8px);column-gap:var(--s4,16px)}
+.ev-eps>span{flex-basis:100%}
+.ev-eps .btn{min-height:32px;padding-block:4px}
+
+/* type pass, 2026-10-01 (scaled down one step the same day, Megan: the sizes read too big): the old hand-set scale reads the bloom style's tokens, so the pages share one set of
+   sizes with the design system. Names on the left are the page's own; values come from vendor/styles.css. */
+html[data-style="bloom"]{--t-micro:var(--text-eyebrow);--t-xs:var(--text-caption);--t-mono:var(--text-caption);--t-sm:var(--text-body-sm);--t-base:var(--text-body);--t-md:var(--text-body-lg);--t-lg:var(--text-body-lg);--t-xl:var(--text-card);--t-2xl:var(--text-heading-md);--t-3xl:var(--text-heading-xl)}
+html[data-style="bloom"] body{font-size:var(--text-body);line-height:var(--leading-body)}
+
+/* the page's own values win over the bloom style's for everything but type (Megan: "i hate it", the bright buttons, 2026-10-01) */
+html[data-style="bloom"]{--color-focus:var(--green);--field-ink:var(--on-dark);--btn-weight:800;--btn-default-fill:var(--brand-green-deep);--btn-default-text:var(--cream);--btn-default-fill-hover:var(--brand-green);--btn-default-text-hover:var(--ink);--btn-default-fill-inverse:var(--brand-green);--btn-default-text-inverse:var(--green-deep);--btn-default-fill-hover-inverse:var(--cream);--btn-default-text-hover-inverse:var(--green-deep)}
+
+/* the home horizon tiles: the light version of the spec page's tiles (Megan, 2026-10-01) */
+.hz-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);max-width:760px;margin:var(--s6) auto 0}
+.hz-tiles a{display:flex;flex-direction:column;align-items:center;gap:var(--s2);padding:var(--s5);background:var(--paper);color:var(--ink);border:1px solid var(--green);border-radius:12px;text-decoration:none;text-align:center;transition:background-color .2s ease}
+.hz-tiles a:hover{background:color-mix(in oklch,var(--green) 8%,var(--paper))}
+.hz-tiles a:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.hz-tile-n{font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.hz-tile-icon{display:block;width:48px;height:48px;color:var(--green)}
+.hz-tile-icon svg{display:block;width:100%;height:100%;overflow:visible}
+.hz-tile-label{line-height:1.25;text-wrap:balance}
+.hz-tile-go{margin-top:auto;font-weight:600;font-size:var(--t-sm);color:var(--green);text-decoration:underline;text-underline-offset:3px}
+@media (max-width:640px){.hz-tiles{grid-template-columns:1fr}}
 </style>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -964,12 +1010,36 @@ html{scroll-padding-top:var(--topbar-h)}
 <style>
 /* Gardening Tools hero: the darkest green on the site, flat, with the field drifting in from both edges and fading out
    before the headline, as the World view band does. */
-.tools-hero{position:relative;isolation:isolate;overflow:hidden;background:var(--green-night);color:var(--on-dark)}
+.tools-hero{position:relative;isolation:isolate;overflow:hidden;background:var(--green-mid);color:var(--on-dark)}
 .tools-hero .field{-webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%);
   mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%)}
 .tools-hero > .shell{position:relative;z-index:1}
 .tools-hero h1{color:var(--on-dark)}
-.panel-dark.tools-hero .lede{color:var(--butter)}
+.panel-dark.tools-hero .lede{color:var(--on-dark)}
+/* three jumps to the horizons below (Megan, 2026-10-01) */
+/* the horizon tiles from the spec page, centred under the description; each scrolls to its section (Megan, 2026-10-01) */
+.tools-hz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);max-width:760px;margin:var(--s6) auto 0}
+/* glass tiles, the map's look: a see-through ground, a faint line, white words, the brand green for the drawings and underlines (Megan, 2026-10-01) */
+.tools-hz a{display:flex;flex-direction:column;align-items:center;gap:var(--s2);padding:var(--s5);background:color-mix(in oklch,var(--on-dark) 7%,transparent);color:var(--on-dark);border:1px solid color-mix(in oklch,var(--on-dark) 18%,transparent);border-radius:12px;text-decoration:none;text-align:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background-color .2s ease,border-color .2s ease}
+.tools-hz a:hover{background:color-mix(in oklch,var(--on-dark) 12%,transparent);border-color:color-mix(in oklch,var(--brand-green) 70%,transparent)}
+.tools-hz a:focus-visible{outline:2px solid var(--brand-green);outline-offset:3px}
+.tools-hz-n{font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;color:color-mix(in oklch,var(--on-dark) 72%,transparent)}
+.tools-hz-icon{display:block;width:48px;height:48px;color:var(--brand-green)}
+.tools-hz-icon svg{display:block;width:100%;height:100%;overflow:visible}
+.tools-hz-label{line-height:1.25;color:var(--on-dark);text-wrap:balance}
+.tools-hz-go{margin-top:auto;font-weight:600;font-size:.9rem;color:var(--on-dark);text-decoration:underline;text-decoration-color:var(--brand-green);text-decoration-thickness:2px;text-underline-offset:4px}
+@media (max-width:640px){.tools-hz{grid-template-columns:1fr}}
+html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.cluster{scroll-margin-top:96px}
+/* the horizon sections read the bloom style for body and heading type instead of the old hand-set sizes (Megan, 2026-10-01) */
+.cls-import .lead{font-size:var(--text-body);line-height:var(--leading-body)}
+.cls-import .cluster h2{font-size:var(--text-heading-md);line-height:var(--leading-display)}
+/* each horizon: words on the left, its diagram on the right; a phone stacks them */
+.hz-split{display:grid;gap:var(--s6);align-items:center}
+.hz-split .svg-figure{margin:0}
+/* two columns need the room: the horizon sections widen so the diagram is not shrunk to a thumbnail */
+.cls-import .wrap:has(.hz-split){max-width:1180px}
+@media (min-width:900px){.hz-split{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}}
 </style>
 </head>
 <body>
@@ -1000,17 +1070,151 @@ html{scroll-padding-top:var(--topbar-h)}
 <section class="panel panel-dark hero tools-hero" style="padding-block:var(--s9) var(--s8)">
   <canvas class="field" data-field data-density="6" aria-hidden="true"></canvas>
   <div class="shell">
-    <h1>Grow Legibility</h1>
+    <h1>Tend Your Legibility</h1>
     <p class="lede measure">Gardening tools for helping you move your data off of platforms and how to leverage them to build what you need for your local context.</p>
+    <nav class="tools-hz" aria-label="The three horizons"><a href="#s-horizon-1"><span class="tools-hz-n">Horizon 1</span><span class="tools-hz-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-flower">
+<style>
+.hbi-flower .f-plant{transform-box:view-box;transform-origin:12px 22px}
+.hbi-flower .f-stem{stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.hbi-flower .f-leaf,.hbi-flower .f-core{fill:currentColor}
+.hbi-flower .f-petal{fill:currentColor;fill-opacity:.62;transform-box:view-box;transform-origin:12px 9.5px;transform:rotate(var(--a)) scale(1)}
+@media (prefers-reduced-motion:no-preference){
+.hbi-flower .f-plant{animation:hbi-sway 7s ease-in-out infinite}
+.hbi-flower .f-petal{animation:hbi-bloom 7s ease-in-out infinite}
+}
+@keyframes hbi-bloom{0%,12%{transform:rotate(calc(var(--a) * .12)) scale(.78)}42%,62%{transform:rotate(var(--a)) scale(1)}90%,100%{transform:rotate(calc(var(--a) * .12)) scale(.78)}}
+@keyframes hbi-sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+</style>
+<g class="f-plant">
+<path data-stroke class="f-stem" d="M12 11v10.5"/>
+<path data-body class="f-leaf" d="M12 18.2c-2.9.1-4.8-1.4-5.3-4.2 2.9-.1 4.8 1.4 5.3 4.2z"/>
+<path data-body class="f-leaf" d="M12 16c.4-2.6 2.2-4.1 4.9-4.1-.4 2.6-2.2 4.1-4.9 4.1z"/>
+<ellipse data-body class="f-petal" style="--a:-68deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
+<ellipse data-body class="f-petal" style="--a:68deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
+<ellipse data-body class="f-petal" style="--a:-34deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
+<ellipse data-body class="f-petal" style="--a:34deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
+<ellipse data-body class="f-petal" style="--a:0deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
+<circle data-body class="f-core" cx="12" cy="9.5" r="1.7"/>
+</g>
+</svg></span><span class="tools-hz-label">Cultivate your data</span><span class="tools-hz-go">More info</span></a><a href="#s-horizon-2"><span class="tools-hz-n">Horizon 2</span><span class="tools-hz-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-hs">
+<style>
+.hbi-hs path{fill:currentColor;transform-box:fill-box;transform-origin:50% 50%}
+.hbi-hs .h-shield{opacity:0;transform-box:fill-box;transform-origin:50% 50%}
+.hbi-hs .h-tint{fill-opacity:.62}
+@media (prefers-reduced-motion:no-preference){
+.hbi-hs .h-heart{animation:hbi-heart 6s ease-in-out infinite}
+.hbi-hs .h-shield{animation:hbi-shield 6s ease-in-out infinite}
+}
+@keyframes hbi-heart{0%,8%{opacity:1;transform:scale(1)}14%{opacity:1;transform:scale(1.08)}20%,32%{opacity:1;transform:scale(1)}46%,84%{opacity:0;transform:scale(.55)}100%{opacity:1;transform:scale(1)}}
+@keyframes hbi-shield{0%,32%{opacity:0;transform:scale(.55)}46%,84%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.55)}}
+</style>
+<path data-body class="h-heart" d="M12 20.2S4.5 15.6 4.5 9.8A4.1 4.1 0 0 1 12 7.4a4.1 4.1 0 0 1 7.5 2.4c0 5.8-7.5 10.4-7.5 10.4z"/>
+<defs><clipPath id="hbi-hs-left"><rect x="0" y="0" width="12" height="24"/></clipPath></defs>
+<g class="h-shield"><path data-body class="h-tint" d="M12 3.2l7 2.9v5.6c0 4.5-2.9 7.6-7 9.2-4.1-1.6-7-4.7-7-9.2V6.1z"/><path data-body d="M12 3.2l7 2.9v5.6c0 4.5-2.9 7.6-7 9.2-4.1-1.6-7-4.7-7-9.2V6.1z" clip-path="url(#hbi-hs-left)"/></g>
+</svg></span><span class="tools-hz-label">Protect community intelligence</span><span class="tools-hz-go">More info</span></a><a href="#s-horizon-3"><span class="tools-hz-n">Horizon 3</span><span class="tools-hz-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-murm">
+<style>
+.hbi-murm path{fill:currentColor}
+.hbi-murm .b-wing,.hbi-murm .b-wing-back{transform-box:view-box;transform-origin:11.4px 12.4px}
+.hbi-murm .m-pass{opacity:.5}
+.hbi-murm .m-pass-2{opacity:.32}
+.hbi-murm .m-pass-1 .m-glide{transform:translate(4px,4.4px) scale(.36)}
+.hbi-murm .m-pass-2 .m-glide{transform:translate(14px,15.6px) scale(.28)}
+@media (prefers-reduced-motion:no-preference){
+.hbi-murm .b-wing{animation:hbi-wing .64s ease-in-out infinite alternate}
+.hbi-murm .b-wing-back{animation:hbi-wing-back .64s ease-in-out infinite alternate}
+.hbi-murm .m-lead{animation:hbi-bob .64s ease-in-out infinite alternate}
+.hbi-murm .m-pass-1 .m-glide{animation:hbi-pass-1 5.2s linear infinite}
+.hbi-murm .m-pass-2 .m-glide{animation:hbi-pass-2 7s linear infinite;animation-delay:-3.1s}
+.hbi-murm .m-pass .b-wing,.hbi-murm .m-pass .b-wing-back,.hbi-murm .m-pass .m-lead{animation-duration:.4s}
+}
+@keyframes hbi-wing{from{transform:scaleY(1)}to{transform:scaleY(-.45)}}
+@keyframes hbi-wing-back{from{transform:scaleY(1)}to{transform:scaleY(.35)}}
+@keyframes hbi-bob{from{transform:translateY(.5px)}to{transform:translateY(-.5px)}}
+@keyframes hbi-pass-1{from{transform:translate(-9px,5.4px) scale(.36)}to{transform:translate(25px,2.6px) scale(.36)}}
+@keyframes hbi-pass-2{from{transform:translate(-8px,16.4px) scale(.28)}to{transform:translate(25px,14.4px) scale(.28)}}
+.hbi-murm .m-glide{transform-box:view-box;transform-origin:0 0}
+</style>
+<defs><clipPath id="hbi-murm-clip"><rect width="24" height="24"/></clipPath><mask id="hbi-bird-eye-a" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><circle cx="18.4" cy="9.4" r=".62" fill="#000"/></mask><mask id="hbi-bird-eye-b" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><circle cx="18.4" cy="9.4" r=".62" fill="#000"/></mask><mask id="hbi-bird-eye-c" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><circle cx="18.4" cy="9.4" r=".62" fill="#000"/></mask></defs>
+<g clip-path="url(#hbi-murm-clip)">
+<g class="m-pass m-pass-1"><g class="m-glide"><g class="m-lead"><g mask="url(#hbi-bird-eye-b)">
+<path data-body class="b-wing-back" d="M12.6 11.6 15.2 4.6 16.2 11z"/>
+<path data-body d="M6.8 13.6c1.4-2.9 4.6-4.4 8.2-3.6.6-1.8 2.4-2.8 4.2-2.2 1 .3 1.6 1 1.9 1.6l1.9.5-2 .9c.2 3.6-2.6 6.4-6.6 7-2.9.4-5.6-.8-7.6-3.4z"/>
+<path data-body d="M8.4 14.6 3 19.6l3.2.2 4.4-3.6z"/>
+<path data-body class="b-wing" d="M9.4 12.6 6.2 3.4c3.6 1.4 6.4 4.6 7.6 8.4z"/>
+</g></g></g></g>
+<g class="m-pass m-pass-2"><g class="m-glide"><g class="m-lead"><g mask="url(#hbi-bird-eye-c)">
+<path data-body class="b-wing-back" d="M12.6 11.6 15.2 4.6 16.2 11z"/>
+<path data-body d="M6.8 13.6c1.4-2.9 4.6-4.4 8.2-3.6.6-1.8 2.4-2.8 4.2-2.2 1 .3 1.6 1 1.9 1.6l1.9.5-2 .9c.2 3.6-2.6 6.4-6.6 7-2.9.4-5.6-.8-7.6-3.4z"/>
+<path data-body d="M8.4 14.6 3 19.6l3.2.2 4.4-3.6z"/>
+<path data-body class="b-wing" d="M9.4 12.6 6.2 3.4c3.6 1.4 6.4 4.6 7.6 8.4z"/>
+</g></g></g></g>
+<g class="m-lead"><g mask="url(#hbi-bird-eye-a)">
+<path data-body class="b-wing-back" d="M12.6 11.6 15.2 4.6 16.2 11z"/>
+<path data-body d="M6.8 13.6c1.4-2.9 4.6-4.4 8.2-3.6.6-1.8 2.4-2.8 4.2-2.2 1 .3 1.6 1 1.9 1.6l1.9.5-2 .9c.2 3.6-2.6 6.4-6.6 7-2.9.4-5.6-.8-7.6-3.4z"/>
+<path data-body d="M8.4 14.6 3 19.6l3.2.2 4.4-3.6z"/>
+<path data-body class="b-wing" d="M9.4 12.6 6.2 3.4c3.6 1.4 6.4 4.6 7.6 8.4z"/>
+</g></g>
+</g>
+</svg></span><span class="tools-hz-label">Enable emergent governance</span><span class="tools-hz-go">More info</span></a></nav>
   </div>
 </section>
-<div class="cls-import">
+<div class="cls-import" data-style="bloom">
 <section class="cluster" id="s-horizon-1">
   <div class="wrap">
+    <div class="hz-split">
+      <div class="hz-text">
     <p class="hnum"><span class="hdot" style="background:var(--h1)"></span> Horizon 1 · today · <span class="badge run">Running</span></p>
-    <h2 style="margin:0 0 var(--s3)">Cultivate local legibility</h2>
-    <p class="lead">In the age of AI, anyone can build any tool. But to do this, we need to be able to leverage AI and harness it on our own data. Cultivating local legibility means moving your data off of platforms and building your own tools, ideally with your own local AI.</p>
+    <h2 style="margin:0 0 var(--s3)">Cultivate your data</h2>
+    <p class="lead">In the age of AI, anyone can build any tool. But to do this, we need to be able to leverage AI and harness it on our own data. Cultivating your data means moving your data off of platforms and building your own tools, ideally with your own local AI.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="cls.html#map?cat=local"><span data-slot="label">View on map</span></a></p>
+      </div>
+      <figure class="svg-figure" data-lightbox>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="One person, one vault, an AI bridge, and a published surface with local files held back">
+  <style>
+    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
+    .h1{fill:#6b8e23}
+    .row{fill:#e7dfcd} .rowlocal{fill:#f3ead2;stroke:#b9791f;stroke-width:1.5;stroke-dasharray:3 3}
+    .t{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:14px;fill:#1a1f1a}
+    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
+    .ar{fill:none;stroke:#1a1f1a;stroke-width:2}
+  </style>
+  <!-- vault -->
+  <rect class="box" x="24" y="46" width="180" height="168" rx="10"/>
+  <rect class="h1" x="24" y="46" width="180" height="26" rx="10"/>
+  <rect class="h1" x="24" y="60" width="180" height="12"/>
+  <text class="t" x="40" y="64" style="fill:#fffdf8">the vault</text>
+  <rect class="row" x="44" y="88" width="140" height="16" rx="3"/>
+  <rect class="row" x="44" y="112" width="140" height="16" rx="3"/>
+  <rect class="rowlocal" x="44" y="136" width="140" height="16" rx="3"/>
+  <rect class="row" x="44" y="160" width="140" height="16" rx="3"/>
+  <rect class="row" x="44" y="184" width="88" height="16" rx="3"/>
+  <text class="m" x="172" y="144.5" text-anchor="end" dominant-baseline="central" style="fill:#8a5a14">local</text>
+
+  <!-- bridge -->
+  <path class="ar" d="M204,130 h72" marker-end="url(#a)"/>
+  <rect class="box" x="276" y="104" width="96" height="52" rx="10"/>
+  <text class="t" x="324" y="128" text-anchor="middle">AI</text>
+  <text class="m" x="324" y="145" text-anchor="middle">bridge</text>
+  <path class="ar" d="M372,130 h72" marker-end="url(#a)"/>
+
+  <!-- published surface -->
+  <rect class="box" x="444" y="46" width="172" height="168" rx="10"/>
+  <text class="t" x="530" y="72" text-anchor="middle">published surface</text>
+  <rect class="row" x="464" y="88" width="132" height="16" rx="3"/>
+  <rect class="row" x="464" y="112" width="132" height="16" rx="3"/>
+  <rect class="row" x="464" y="160" width="132" height="16" rx="3"/>
+  <rect class="row" x="464" y="184" width="84" height="16" rx="3"/>
+  <text class="m" x="530" y="146" text-anchor="middle">(local file absent)</text>
+
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#1a1f1a"/>
+    </marker>
+  </defs>
+</svg>
+      <figcaption class="diagram-note">The vault is the ground. The bridge renders. Local-marked files never reach the surface.</figcaption>
+    </figure>
+    </div>
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8L12 4l8.5 4v8.5L12 20.5l-8.5-4z"/><path d="M3.5 8L12 12l8.5-4M12 12v8.5"/><path d="M7.8 6l8.4 4"/></svg></span>
@@ -1057,10 +1261,65 @@ html{scroll-padding-top:var(--topbar-h)}
 </section>
 <section class="cluster" id="s-horizon-2">
   <div class="wrap">
+    <div class="hz-split">
+      <div class="hz-text">
     <p class="hnum"><span class="hdot" style="background:var(--h2)"></span> Horizon 2 · near</p>
     <div class="status-row"><h2 style="margin:0">Protect community intelligence</h2><span class="badge build">Building</span></div>
     <p class="lead">A tool you build on your own can only see what you put into it. Working with other people means connecting your data to theirs, and almost every way of doing that puts a platform in the middle holding both copies. Cultivating community legibility means information passes peer to peer and into the community data commons at in-person events. Two people record the same connection from their own side, each keeping their own half, so both have the history and neither had to hand it over.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="cls.html#map?cat=community"><span data-slot="label">View on map</span></a></p>
+      </div>
+      <figure class="svg-figure" data-lightbox>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="Two sovereign vaults holding one connection as two halves, over a faint mesh of bilateral edges">
+  <style>
+    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
+    .h2{fill:#b9791f}
+    .t{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:14px;fill:#1a1f1a}
+    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
+    .edge{stroke:#b9791f;stroke-width:3}
+    .mesh{stroke:#c9bfa8;stroke-width:1.2}
+    .node{fill:#d9cfba}
+  </style>
+  <!-- faint mesh behind -->
+  <g class="mesh" opacity="0.7">
+    <line x1="120" y1="250" x2="300" y2="210"/>
+    <line x1="300" y1="210" x2="520" y2="250"/>
+    <line x1="120" y1="250" x2="230" y2="278"/>
+    <line x1="520" y1="250" x2="410" y2="280"/>
+    <line x1="300" y1="210" x2="230" y2="278"/>
+    <line x1="300" y1="210" x2="410" y2="280"/>
+  </g>
+  <g class="node">
+    <circle cx="120" cy="250" r="6"/><circle cx="300" cy="210" r="6"/><circle cx="520" cy="250" r="6"/>
+    <circle cx="230" cy="278" r="6"/><circle cx="410" cy="280" r="6"/>
+  </g>
+
+  <!-- two vaults -->
+  <rect class="box" x="40" y="70" width="150" height="96" rx="10"/>
+  <rect class="h2" x="40" y="70" width="150" height="24" rx="10"/>
+  <rect class="h2" x="40" y="82" width="150" height="12"/>
+  <text class="t" x="60" y="88" fill="#fffdf8">vault A</text>
+  <text class="m" x="115" y="126" text-anchor="middle">holds its</text>
+  <text class="m" x="115" y="142" text-anchor="middle">own half</text>
+
+  <rect class="box" x="450" y="70" width="150" height="96" rx="10"/>
+  <rect class="h2" x="450" y="70" width="150" height="24" rx="10"/>
+  <rect class="h2" x="450" y="82" width="150" height="12"/>
+  <text class="t" x="470" y="88" fill="#fffdf8">vault B</text>
+  <text class="m" x="525" y="126" text-anchor="middle">holds its</text>
+  <text class="m" x="525" y="142" text-anchor="middle">own half</text>
+
+  <!-- the connection: two halves meeting -->
+  <line class="edge" x1="190" y1="118" x2="304" y2="118"/>
+  <line class="edge" x1="336" y1="118" x2="450" y2="118"/>
+  <circle cx="304" cy="118" r="12" fill="#b9791f"/>
+  <path d="M336,106 A12,12 0 0 0 336,130 Z" fill="#fffdf8" stroke="#b9791f" stroke-width="2"/>
+  <path d="M304,106 A12,12 0 0 1 304,130 Z" fill="#fffdf8" stroke="#b9791f" stroke-width="2"/>
+  <circle cx="336" cy="118" r="12" fill="#b9791f"/>
+  <text class="m" x="320" y="164" text-anchor="middle">one membership · two records</text>
+</svg>
+      <figcaption class="diagram-note">A membership is one connection recorded on both sides. Either side ends it by deleting its own half. The commons pools principles without names while each vault keeps the receipt. No platform saw the exchange.</figcaption>
+    </figure>
+    </div>
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row" data-static>
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><rect x="8.5" y="8.5" width="3" height="3"/><rect x="13" y="8.5" width="2.5" height="2.5"/><rect x="8.5" y="13" width="2.5" height="2.5"/><path d="M13 14h2.5M14.25 12.75v2.5"/></svg></span>
@@ -1091,10 +1350,52 @@ html{scroll-padding-top:var(--topbar-h)}
 </section>
 <section class="cluster" id="s-horizon-3">
   <div class="wrap">
+    <div class="hz-split">
+      <div class="hz-text">
     <p class="hnum"><span class="hdot" style="background:var(--h3)"></span> Horizon 3 · far</p>
     <div class="status-row"><h2 style="margin:0">Enable emergent governance</h2><span class="badge design">Designed</span></div>
     <p class="lead">Once your community keeps its own record, you still cannot see the groups outside it doing related work. A land trust needs a muralist and knows none. Every way of finding them today puts a directory in the middle. Emergent governance means two communities comparing what they stand for and what they have been doing, recognizing the match themselves, and acting on it. No directory, and nobody deciding for them.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="cls.html#map?cat=governance"><span data-slot="label">View on map</span></a></p>
+      </div>
+      <figure class="svg-figure" data-lightbox>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="An individual and a community compare the same structural fingerprint without sharing a document, authenticated by log comparison">
+  <style>
+    .h3{fill:#35626f;stroke:#35626f}
+    .dot{fill:#35626f}
+    .shape{fill:none;stroke:#35626f;stroke-width:2;stroke-dasharray:4 4}
+    .match{stroke:#35626f;stroke-width:1.6;stroke-dasharray:2 5}
+    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
+    .t{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:14px;fill:#1a1f1a}
+    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
+  </style>
+  <!-- individual A constellation -->
+  <text class="t" x="120" y="42" text-anchor="middle">individual A</text>
+  <polygon class="shape" points="70,90 170,70 200,150 110,175 60,140"/>
+  <circle class="dot" cx="70" cy="90" r="6"/><circle class="dot" cx="170" cy="70" r="6"/>
+  <circle class="dot" cx="200" cy="150" r="6"/><circle class="dot" cx="110" cy="175" r="6"/>
+  <circle class="dot" cx="60" cy="140" r="6"/>
+
+  <!-- community A constellation (same shape, offset) -->
+  <text class="t" x="520" y="42" text-anchor="middle">community A</text>
+  <polygon class="shape" points="440,90 540,70 570,150 480,175 430,140"/>
+  <circle class="dot" cx="440" cy="90" r="6"/><circle class="dot" cx="540" cy="70" r="6"/>
+  <circle class="dot" cx="570" cy="150" r="6"/><circle class="dot" cx="480" cy="175" r="6"/>
+  <circle class="dot" cx="430" cy="140" r="6"/>
+
+  <!-- match lines between matching vertices -->
+  <line class="match" x1="170" y1="70" x2="440" y2="90"/>
+  <line class="match" x1="200" y1="150" x2="430" y2="140"/>
+  <line class="match" x1="110" y1="175" x2="480" y2="175"/>
+
+  <!-- log comparison auth -->
+  <rect class="box" x="250" y="212" width="140" height="46" rx="10"/>
+  <text class="t" x="320" y="233" text-anchor="middle">two logs</text>
+  <text class="m" x="320" y="250" text-anchor="middle">confirm each other</text>
+  <text class="m" x="320" y="196" text-anchor="middle" fill="#35626f">match on a principle and a timestamp</text>
+</svg>
+      <figcaption class="diagram-note">Two records compared on principles and dated activity. No document shared, no index between. What forms after that can only be conditioned and watched for.</figcaption>
+    </figure>
+    </div>
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span>

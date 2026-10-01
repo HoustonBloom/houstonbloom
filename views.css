@@ -16,7 +16,8 @@
    activity.html set it on <html>.
    ============================================================================ */
 
-:is(html, .nav-bar)[data-style="editorial"] {
+:is(html, .nav-bar)[data-style="editorial"],
+:is(.cls-head, .links-id)[data-style="bloom"] {
   --palette-accent:       #2d5a3f;   /* the landing page green */
   --palette-accent-deep:  #1e4630;
   --palette-accent-soft:  #e3eadb;
@@ -124,3 +125,42 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 :is(.cls-mapframe, #app) .tpl--activity-map { --rail: 340px; --title-size: var(--text-heading-md); }
 :is(.cls-mapframe, #app) .tpl--activity-map .am-rail { padding: var(--space-xl) var(--space-lg) var(--space-lg) var(--space-xl); gap: var(--space-base) var(--space-base); border-right: var(--border-width) var(--border-style) var(--color-border); }
 #app > .tpl--activity-map { background: #04110b; }
+
+/* The lit part on the spec map (active, hovered, connected): a glass badge with a quiet line, at Megan's word
+   2026-10-01 ("transparent background and very subtle line"), instead of the outline key's heavy ring and tint. */
+:is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] :is([data-active], [data-state="on"], [data-state="near"]) [data-badge],
+:is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] :is([data-active], [data-state="on"], [data-state="near"]):is([data-outline="dotted"], [data-outline="double"]) [data-badge] {
+  --bw: 1px;
+  border-color: color-mix(in oklch, var(--lit) 45%, transparent);
+  background: color-mix(in oklch, var(--color-text) 10%, transparent);
+}
+:is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-outline="double"] :is([data-active], [data-state="on"], [data-state="near"]) [data-badge] { --bw: 3px; }
+
+/* The Graph view wears the Orbit view's ground: the same 40px grid and a still version of its colour wash
+   (the four category colours, thinned), so switching views keeps the same room. Megan, 2026-10-01. */
+:is(.cls-mapframe, #app) .am-map.node-graph {
+  --graph-wash: 22%;
+  background-image:
+    linear-gradient(color-mix(in oklch, var(--color-accent) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklch, var(--color-accent) 7%, transparent) 1px, transparent 1px),
+    radial-gradient(42% 48% at 12% 14%, color-mix(in oklch, var(--map-cat-1) var(--graph-wash), transparent), transparent),
+    radial-gradient(40% 46% at 90% 20%, color-mix(in oklch, var(--map-cat-3) var(--graph-wash), transparent), transparent),
+    radial-gradient(44% 50% at 30% 92%, color-mix(in oklch, var(--map-cat-2) var(--graph-wash), transparent), transparent),
+    radial-gradient(40% 46% at 86% 88%, color-mix(in oklch, var(--map-cat-4) var(--graph-wash), transparent), transparent);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* page heroes share one size on every page: the bloom display size for the title, body-lg under it (Megan, 2026-10-01) */
+.tpl--links .links-id h1{font-size:var(--text-heading-xl)}
+.tpl--links .links-id p{font-size:var(--text-body-lg)}
+
+/* Spec and Activity maps (Megan, 2026-10-01).
+   When a horizon is picked, its parts gather round the centre: Today fades out so they are not drawn over it.
+   A lit or gathered part was enlarged with `scale`, which stretches a small raster and blurs the drawing. The
+   badge is drawn at its real size instead, so the lines stay sharp. */
+:is(.cls-mapframe, #app) .orbit-map [data-slot="centre"] { transition: opacity .4s ease; }
+:is(.cls-mapframe, #app) .orbit-map:has([data-slot="item"][data-ring]) [data-slot="centre"] { opacity: 0; pointer-events: none; }
+:is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] :is([data-slot="item"], [data-slot="star"]) [data-slot="glyph"] { scale: 1 !important; }
+:is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-slot="item"]:is([data-ring], [data-state="on"]) [data-badge] { width: 60px; height: 60px; }
+:is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-slot="item"][data-state="near"] [data-badge] { width: 40px; height: 40px; }
+:is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-slot="star"][data-state="on"] [data-badge] { width: 48px; height: 48px; }

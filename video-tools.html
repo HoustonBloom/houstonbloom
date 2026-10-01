@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-style="bloom">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Video tools &#183; Have your local AI edit your community's videos.</title>
+<link rel="stylesheet" href="vendor/styles.css">
 <meta name="description" content="Fourteen tools that run on your own computer. A video in, a page of proposed cuts out. You choose what gets made.">
 <style>
 /* Offline-inlined fonts: variable axes instanced to weight, subset to Latin
@@ -1886,6 +1887,14 @@ body{
 svg{max-width:100%}
 .talk-h{display:none}
 .topbar .navlinks a{white-space:nowrap}
+
+/* type pass, 2026-10-01 (scaled down one step the same day, Megan: the sizes read too big): the old hand-set scale reads the bloom style's tokens, so the pages share one set of
+   sizes with the design system. Names on the left are the page's own; values come from vendor/styles.css. */
+html[data-style="bloom"]{--t-micro:var(--text-eyebrow);--t-xs:var(--text-caption);--t-mono:var(--text-caption);--t-sm:var(--text-body-sm);--t-base:var(--text-body);--t-md:var(--text-body-lg);--t-lg:var(--text-body-lg);--t-xl:var(--text-card);--t-2xl:var(--text-heading-md);--t-3xl:var(--text-heading-xl)}
+html[data-style="bloom"] body{font-size:var(--text-body);line-height:var(--leading-body)}
+
+/* the page's own values win over the bloom style's for everything but type (Megan: "i hate it", the bright buttons, 2026-10-01) */
+html[data-style="bloom"]{--color-focus:var(--green);--field-ink:var(--on-dark);--btn-weight:800;--btn-default-fill:var(--brand-green-deep);--btn-default-text:var(--cream);--btn-default-fill-hover:var(--brand-green);--btn-default-text-hover:var(--ink);--btn-default-fill-inverse:var(--brand-green);--btn-default-text-inverse:var(--green-deep);--btn-default-fill-hover-inverse:var(--cream);--btn-default-text-hover-inverse:var(--green-deep)}
 </style>
 </head>
 <body>

@@ -79,7 +79,7 @@ body.hb-am { display: flex; flex-direction: column; height: 100dvh; margin: 0; o
   if (window.DSOrbitMap && DSOrbitMap.registerIcon) HZ_ICONS.forEach(function (s, i) { DSOrbitMap.registerIcon('hb-horizon-' + (i + 1), s); });
   /* a part's card lives on the spec page */
   (window.CLS_MAP_DATA.nodes || []).forEach(function (n) { if (n.open && n.open.charAt(0) === '#') n.open = 'cls.html' + n.open; });
-  DSActivityMap.mount(document.getElementById('app'), window.CLS_MAP_DATA, { url: 'hash', graphs: ['orbit', 'nodes'], detail: 'drawer', title: 'Community Legibility Spec', head: '' });
+  DSActivityMap.mount(document.getElementById('app'), window.CLS_MAP_DATA, { url: 'hash', graphs: ['orbit', 'nodes'], detail: 'drawer', title: 'Community Legibility Spec', head: '', keyStyle: 'outline' });
   /* Close goes back when the reader came from this site, otherwise to the spec page's map */
   document.querySelector('[data-am-close]').addEventListener('click', function (e) {
     try { if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) { e.preventDefault(); history.back(); } } catch (err) {}
