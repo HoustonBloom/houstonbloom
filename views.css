@@ -40,7 +40,10 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 .nav-bar .brand-logo { width: 52px; height: 52px; }
 .nav-bar nav { gap: 28px; }
 .nav-bar nav a { padding: 12px 0; }
-.nav-bar nav a.active, .nav-bar nav a[aria-current="page"] { color: var(--palette-accent); }
+.nav-bar nav a { position: relative; }
+.nav-bar nav a.active, .nav-bar nav a[aria-current="page"] { color: var(--palette-accent); font-weight: 700; }
+/* The current page: a bar from the link down to the bottom edge of the white header (the .inner padding below it). */
+.nav-bar nav a.active::after, .nav-bar nav a[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -18px; height: 3px; background: var(--palette-accent); }
 .nav-bar nav a:hover { color: var(--palette-accent); }
 /* the pill is one label and one caret; the list opens under it */
 .nav-bar .template-menu { --tmenu-ink: var(--palette-accent); }
@@ -57,6 +60,9 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
   .nav-bar .header-actions { grid-area: actions; }
   .nav-bar nav { grid-area: links; overflow-x: auto; max-width: 100%; justify-content: flex-start; gap: 20px; scrollbar-width: none; }
   .nav-bar nav::-webkit-scrollbar { display: none; }
+  /* nav scrolls sideways here, which clips anything outside it: carry the header bottom padding inside nav so the bar shows */
+  .nav-bar .inner { padding-bottom: 0; }
+  .nav-bar nav { padding-bottom: 18px; }
   .nav-bar nav a { white-space: nowrap; }
 }
 
@@ -67,7 +73,7 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 .tpl--links .llib-chips{justify-content:center}
 
 /* the Houston Bloom mark is an image: fixed height, width follows */
-.nav-bar .brand-logo { width: auto; height: 30px; }
+.nav-bar .brand-logo { width: auto; height: 22px; }
 .nav-bar .brand-logo img { display: block; height: 100%; width: auto; }
 .tpl--links .links-mark { width: auto; height: 72px; }
 .tpl--links .links-mark img { display: block; height: 100%; width: auto; margin: 0 auto; }
