@@ -101,8 +101,8 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 .hb-share-note { position: fixed; right: max(var(--space-base, 16px), env(safe-area-inset-right)); bottom: calc(max(var(--space-base, 16px), env(safe-area-inset-bottom)) + 52px); z-index: 60; margin: 0; padding: var(--space-xs, 6px) var(--space-sm, 10px); font-size: var(--text-caption, 13px); color: var(--palette-paper, #faf8f3); background: var(--palette-ink, #1a1a1a); border-radius: var(--radius-md, 8px); }
 .hb-share-note[hidden] { display: none; }
 /* the full-screen activity map keeps its own controls in that corner */
-body:has(> #app .tpl--activity-map) .hb-share { bottom: calc(max(var(--space-base, 16px), env(safe-area-inset-bottom)) + 88px); }
-body:has(> #app .tpl--activity-map) .hb-share-note { bottom: calc(max(var(--space-base, 16px), env(safe-area-inset-bottom)) + 140px); }
+body.hb-am .hb-share { bottom: calc(max(var(--space-base, 16px), env(safe-area-inset-bottom)) + 88px); }
+body.hb-am .hb-share-note { bottom: calc(max(var(--space-base, 16px), env(safe-area-inset-bottom)) + 140px); }
 
 /* The map look, shared by the spec page's inline map and the Activity page: the site's darkest green, cream
    text, the butter highlight, the horizon colours, a starfield, and a roomier rail. Moved here from cls.mjs
@@ -134,3 +134,4 @@ body:has(> #app .tpl--activity-map) .hb-share-note { bottom: calc(max(var(--spac
 :is(.cls-mapframe, #app) .tpl--activity-map { --rail: 340px; --title-size: var(--text-heading-md); }
 :is(.cls-mapframe, #app) .tpl--activity-map .am-rail { padding: var(--space-xl) var(--space-lg) var(--space-lg) var(--space-xl); gap: var(--space-base) var(--space-base); border-right: var(--border-width) var(--border-style) var(--color-border); }
 #app > .tpl--activity-map { background: #04110b; }
+@media (max-width: 600px) { body.hb-am .hb-share { bottom: calc(max(var(--space-base, 16px), env(safe-area-inset-bottom)) + 124px); } }

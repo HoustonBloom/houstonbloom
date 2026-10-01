@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/orbit-map/behavior.js
-   version  1.3.0
+   version  1.4.0
    refresh  node sync.mjs orbit-map "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   orbit-map · behaviour · v1.3.0
+   orbit-map · behaviour · v1.4.0
 
    The second map for an activity-map, ported from the Explorer view of a
    personal website (its landing: projects-slide, center-node, the rail in
@@ -59,6 +59,10 @@
      DSOrbitMap.registerIcon(key, svg) adds a glyph to the set before mount, so a site can give its
      categories its own drawings (categories[].icon names the key). Mark the filled parts data-body so
      the dim (outline) mode still reads. Nothing changes for a page that registers none.
+
+   1.4.0 (2026-10-01)
+     connections show at rest. With nothing focused, each active node (the playhead's day) beams to what it
+     links to and what links to it, and those light, so the day's work shows its principles without a hover.
 
    1.3.0 (2026-10-01)
      focus shows every connection. A hovered or selected node lights and draws a beam to everything it
@@ -206,13 +210,19 @@
     var hoverId = null, selectedId = null, catHover = null, playX = null;
 
     // ---- highlight rules, from the source's getHighlight ----------------------------------
+    // At rest, a node lights when it is connected to one of the day's active nodes.
+    function nearActive(n) {
+      var hit = false;
+      state.today.forEach(function (id) { if (!hit && byId[id] && linked(byId[id], n)) hit = true; });
+      return hit;
+    }
     function hi(n) {
       var focus = hoverId || selectedId;
       var cat = catHover || state.cat;
       if (isPrinciple(n)) {
         if (focus && byId[focus]) return focus === n.id || linked(byId[focus], n) ? 'on' : 'off';
         if (cat) return byCat[cat].static ? 'on' : 'off';
-        return 'rest';
+        return nearActive(n) ? 'on' : 'rest';
       }
       if (focus && byId[focus]) {
         if (focus === n.id) return 'on';
@@ -220,7 +230,7 @@
         return 'off';
       }
       if (cat) return n.category === cat ? 'on' : 'off';
-      return 'rest';
+      return !state.today.has(n.id) && nearActive(n) ? 'near' : 'rest';
     }
 
     function play(n) {
@@ -287,6 +297,9 @@
         items.concat(principles).forEach(function (n) { if ((n.static || state.visible.has(n.id)) && linked(f, n)) lines.push([f, n, 1]); });
       } else if (!catHover && !state.cat) {
         active.forEach(function (n) { lines.push([{ x: CX, y: CY, centre: true }, n, 0.9]); });
+        active.forEach(function (n) {
+          items.concat(principles).forEach(function (m) { if ((m.static || state.visible.has(m.id)) && linked(n, m)) lines.push([n, m, 0.7]); });
+        });
       }
       beamsSvg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
       beamG.innerHTML = lines.map(function (l) {

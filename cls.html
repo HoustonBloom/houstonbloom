@@ -66,25 +66,25 @@ html:has(.cls-mapframe .tpl--activity-map), html:has(.cls-mapframe .tpl--activit
 .cls-open-row { display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-base); margin: 0; }
 .cls-open-row a, .cls-links a, .cls-back a { color: var(--color-accent-text, var(--color-accent-deep)); font-size: var(--text-body-sm); font-weight: 600; text-underline-offset: 3px; }
 .cls-section { padding: var(--space-2xl) 0 0; }
-/* Phones: the three horizon filters come out of the map and sit under the hero as tiles, each with its Horizon number
-   and a larger icon, then a link to the horizons section on the home page. A tile presses the map's own filter row, so
-   the map stays the one source of filter state. The in-map horizon chips hide at this width; Design principles stays. */
-.cls-hz, .cls-hz-more { display: none; }
+/* The three horizon filters as tiles under the hero, at every width, each with its Horizon number and a larger icon,
+   then a link to the horizons section on the home page. A tile presses the map's own filter row, so the map stays the
+   one source of filter state. White tiles on the cream page (Megan, 2026-10-01). On phones the in-map horizon chips
+   hide, since the tiles carry them; Design principles stays. */
+.cls-hz:not([hidden]) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-sm); max-width: 720px; margin: var(--space-lg) auto 0; }
+.cls-hz button { display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); min-width: 0; padding: var(--space-base) var(--space-xs); font: inherit; color: var(--palette-ink); background: #fff; border: var(--border-width) var(--border-style) var(--palette-accent); border-radius: var(--radius-lg); cursor: pointer; }
+.cls-hz button:hover { background: color-mix(in oklch, var(--palette-accent) 8%, #fff); }
+.cls-hz button:focus-visible { outline: 2px solid var(--palette-accent); outline-offset: 2px; }
+.cls-hz button[aria-pressed="true"] { color: var(--palette-paper); background: var(--palette-accent); }
+.cls-hz-go { margin-top: auto; padding-top: var(--space-xs); font-size: var(--text-caption); font-weight: 600; color: var(--palette-accent); text-decoration: underline; text-underline-offset: 3px; }
+.cls-hz button:hover .cls-hz-go { text-decoration-thickness: 2px; }
+.cls-hz button[aria-pressed="true"] .cls-hz-go { color: inherit; }
+.cls-hz-n { font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: inherit; opacity: .75; }
+.cls-hz-icon { display: block; width: 48px; height: 48px; margin: var(--space-xs) 0; color: var(--palette-accent); }
+.cls-hz button[aria-pressed="true"] .cls-hz-icon { color: var(--palette-paper); }
+.cls-hz-icon svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.cls-hz-label { font-size: var(--text-body-sm); line-height: 1.25; overflow-wrap: anywhere; }
+.cls-hz-more { display: inline-flex; margin: var(--space-base) 0 0; padding: var(--space-sm) var(--space-lg); color: var(--palette-paper); background: var(--palette-accent); font-weight: 600; text-decoration: none; border: var(--border-width) var(--border-style) var(--palette-accent); border-radius: var(--radius-full); }
 @media (max-width: 879px) {
-  .cls-hz:not([hidden]) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-sm); margin: var(--space-lg) 0 0; }
-  .cls-hz button { display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); min-width: 0; padding: var(--space-base) var(--space-xs); font: inherit; color: var(--palette-ink); background: transparent; border: var(--border-width) var(--border-style) var(--palette-accent); border-radius: var(--radius-lg); cursor: pointer; }
-  .cls-hz button:hover { background: color-mix(in oklch, var(--palette-accent) 10%, transparent); }
-  .cls-hz button:focus-visible { outline: 2px solid var(--palette-accent); outline-offset: 2px; }
-  .cls-hz button[aria-pressed="true"] { color: var(--palette-paper); background: var(--palette-accent); }
-  .cls-hz-go { margin-top: auto; padding-top: var(--space-xs); font-size: var(--text-caption); font-weight: 600; color: var(--palette-accent); text-decoration: underline; text-underline-offset: 3px; }
-  .cls-hz button:hover .cls-hz-go { text-decoration-thickness: 2px; }
-  .cls-hz button[aria-pressed="true"] .cls-hz-go { color: inherit; }
-  .cls-hz-n { font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: inherit; opacity: .75; }
-  .cls-hz-icon { display: block; width: 48px; height: 48px; margin: var(--space-xs) 0; color: var(--palette-accent); }
-  .cls-hz button[aria-pressed="true"] .cls-hz-icon { color: var(--palette-paper); }
-  .cls-hz-icon svg { display: block; width: 100%; height: 100%; overflow: visible; }
-  .cls-hz-label { font-size: var(--text-body-sm); line-height: 1.25; overflow-wrap: anywhere; }
-  .cls-hz-more { display: inline-flex; margin: var(--space-base) 0 0; padding: var(--space-sm) var(--space-lg); color: var(--palette-paper); background: var(--palette-accent); font-weight: 600; text-decoration: none; border: var(--border-width) var(--border-style) var(--palette-accent); border-radius: var(--radius-full); }
   #cls-mapframe .category-list li:has(> [data-slot="row"]:is([data-cat="1"], [data-cat="2"], [data-cat="3"])) { display: none; }
 }
 .cls-explain p { max-width: 62ch; font-size: var(--text-body-lg); }
