@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/orbit-map/behavior.js
-   version  1.2.0
+   version  1.3.0
    refresh  node sync.mjs orbit-map "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   orbit-map · behaviour · v1.2.0
+   orbit-map · behaviour · v1.3.0
 
    The second map for an activity-map, ported from the Explorer view of a
    personal website (its landing: projects-slide, center-node, the rail in
@@ -60,6 +60,12 @@
      categories its own drawings (categories[].icon names the key). Mark the filled parts data-body so
      the dim (outline) mode still reads. Nothing changes for a page that registers none.
 
+   1.3.0 (2026-10-01)
+     focus shows every connection. A hovered or selected node lights and draws a beam to everything it
+     links to and everything that links to it, principles and parts alike; it was its principles only.
+     A static node that carries meta is a part with no dated entry (the activity-map 1.2.1 rule): it sits
+     with the parts as a glyph, present at every position, not at a principle's station.
+
    Plain script, not a module, so a page that opens from disk can inline it.
    ============================================================================ */
 (function () {
@@ -100,10 +106,13 @@
     cats.forEach(function (c) { c.icon = c.icon || ICON_BY_SERIES[c.series] || 'product'; byCat[c.id] = c; });
     var nodes = opts.nodes.map(function (n) { return Object.assign({}, n); });
     var byId = {}; nodes.forEach(function (n) { byId[n.id] = n; });
-    var principles = nodes.filter(function (n) { return n.static; });
-    var items = nodes.filter(function (n) { return !n.static; })
+    var isPrinciple = function (n) { return !!n.static && !n.meta; };
+    var principles = nodes.filter(isPrinciple);
+    var items = nodes.filter(function (n) { return !isPrinciple(n); })
       .sort(function (a, b) { return (a.since || '') < (b.since || '') ? -1 : (a.since || '') > (b.since || '') ? 1 : a.id < b.id ? -1 : 1; });
-    var serves = function (n) { return (n.links || []).filter(function (l) { return byId[l] && byId[l].static; }); };
+    var serves = function (n) { return (n.links || []).filter(function (l) { return byId[l] && isPrinciple(byId[l]); }); };
+    // Two nodes are connected when either one's links name the other.
+    var linked = function (a, b) { return a !== b && ((a.links || []).indexOf(b.id) >= 0 || (b.links || []).indexOf(a.id) >= 0); };
 
     // Stable ghost positions: the golden angle on an outer ellipse.
     var golden = Math.PI * (3 - Math.sqrt(5));
@@ -200,15 +209,14 @@
     function hi(n) {
       var focus = hoverId || selectedId;
       var cat = catHover || state.cat;
-      if (n.static) {
-        if (focus && byId[focus] && !byId[focus].static) return serves(byId[focus]).indexOf(n.id) >= 0 ? 'on' : 'off';
-        if (focus && byId[focus] && byId[focus].static) return focus === n.id ? 'on' : 'off';
+      if (isPrinciple(n)) {
+        if (focus && byId[focus]) return focus === n.id || linked(byId[focus], n) ? 'on' : 'off';
         if (cat) return byCat[cat].static ? 'on' : 'off';
         return 'rest';
       }
       if (focus && byId[focus]) {
         if (focus === n.id) return 'on';
-        if (byId[focus].static) return serves(n).indexOf(focus) >= 0 ? 'near' : 'off';
+        if (linked(byId[focus], n)) return 'near';
         return 'off';
       }
       if (cat) return n.category === cat ? 'on' : 'off';
@@ -247,7 +255,7 @@
       }
       items.concat(principles).forEach(function (n) {
         var present = n.static || state.visible.has(n.id);
-        var isActive = !n.static && state.today.has(n.id);
+        var isActive = !isPrinciple(n) && state.today.has(n.id);
         var inRing = ring.indexOf(n) >= 0;
         var x = inRing ? n.rx : isActive ? n.ax : n.gx, y = inRing ? n.ry : isActive ? n.ay : n.gy;
         n.x = x; n.y = y;
@@ -266,9 +274,9 @@
         // Labels: a phone has no room beside, so above or below. On a wider map a ghost's label goes to the side,
         // away from the centre, so it never stacks against the label of a star above or below it.
         var place = placement(x, y);
-        if (!n.static && !isActive && W >= 560) place = x < 15 ? 'right' : x > 85 ? 'left' : x < CX ? 'left' : 'right';
+        if (!isPrinciple(n) && !isActive && W >= 560) place = x < 15 ? 'right' : x > 85 ? 'left' : x < CX ? 'left' : 'right';
         if (inRing) { var ca = Math.cos(n.ra), sa = Math.sin(n.ra); place = ca > 0.55 ? 'right' : ca < -0.55 ? 'left' : sa < 0 ? 'above' : 'below'; }
-        b.setAttribute('data-place', inRing ? place : W < 560 && !n.static ? (y < CY ? 'above' : 'below') : place);
+        b.setAttribute('data-place', inRing ? place : W < 560 && !isPrinciple(n) ? (y < CY ? 'above' : 'below') : place);
         b.hidden = !present;
         b.tabIndex = present ? 0 : -1;
       });
@@ -276,8 +284,7 @@
       var lines = [];
       if (focus && byId[focus]) {
         var f = byId[focus];
-        if (f.static) items.forEach(function (n) { if (state.visible.has(n.id) && serves(n).indexOf(f.id) >= 0) lines.push([f, n, 1]); });
-        else serves(f).forEach(function (p) { lines.push([f, byId[p], 1]); });
+        items.concat(principles).forEach(function (n) { if ((n.static || state.visible.has(n.id)) && linked(f, n)) lines.push([f, n, 1]); });
       } else if (!catHover && !state.cat) {
         active.forEach(function (n) { lines.push([{ x: CX, y: CY, centre: true }, n, 0.9]); });
       }
@@ -313,7 +320,7 @@
         STRANDS.map(function (s) { return '<path data-slot="strand" d="' + path(s) + '" stroke-width="' + s[4] + '" stroke-dasharray="' + s[5] + '" opacity="' + s[6] + '" style="animation-delay:' + s[7] + 's"/>'; }).join('');
     }
 
-    function hover(id) { hoverId = id; if (id && byId[id] && byId[id].el && !byId[id].static) play(byId[id]); paint(); if (opts.onHover) opts.onHover(id && byId[id] && !byId[id].static ? id : (id || null)); }
+    function hover(id) { hoverId = id; if (id && byId[id] && byId[id].el && !isPrinciple(byId[id])) play(byId[id]); paint(); if (opts.onHover) opts.onHover(id && byId[id] && !byId[id].static ? id : (id || null)); }
     function select(id, fromUser) { selectedId = id; paint(); if (fromUser && opts.onSelect) opts.onSelect(id); }
 
     if (window.ResizeObserver) new ResizeObserver(paint).observe(host); else window.addEventListener('resize', paint);
