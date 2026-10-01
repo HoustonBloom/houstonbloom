@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/time-scrubber/behavior.js
-   version  2.0.0
+   version  2.0.1
    refresh  node sync.mjs time-scrubber "C:/Users/Megan/Documents/HoustonBloom"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   time-scrubber · behaviour · v2.0.0
+   time-scrubber · behaviour · v2.0.1
 
    Two objects, one file, because they are one coupling:
 
@@ -262,6 +262,7 @@
 
     track.addEventListener('keydown', function (e) {
       var k = e.key;
+      if (k !== ' ' && /^(Arrow|Page|Home$|End$|\[$|\]$)/.test(k)) stop(); // a move by hand pauses
       if (k === 'ArrowLeft' || k === 'ArrowDown' || k === '[') time.step(-1, 'key');
       else if (k === 'ArrowRight' || k === 'ArrowUp' || k === ']') time.step(1, 'key');
       else if (k === 'PageDown') time.step(-10, 'key');

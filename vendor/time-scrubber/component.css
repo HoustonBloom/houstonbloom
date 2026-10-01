@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/time-scrubber/component.css
-   version  2.0.0
+   version  2.0.1
    refresh  node sync.mjs time-scrubber "C:/Users/Megan/Documents/HoustonBloom"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   time-scrubber · v2.0.0 · component
+   time-scrubber · v2.0.1 · component
 
    The time axis of an activity-map: a track you drag, click or key through,
    transport controls, and a Live stop. It owns the one position every other
