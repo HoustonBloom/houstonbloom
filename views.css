@@ -157,11 +157,13 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 .tpl--links .links-id p{font-size:var(--text-body-lg)}
 
 /* Spec and Activity maps (Megan, 2026-10-01).
-   When a horizon is picked, its parts gather round the centre: Today fades out so they are not drawn over it.
+   When a horizon is picked, its parts gather round the centre and Today stays in the middle of them; it fades out
+   only when the horizon is big enough for a second, inner ring, which would be drawn over it.
    A lit or gathered part was enlarged with `scale`, which stretches a small raster and blurs the drawing. The
    badge is drawn at its real size instead, so the lines stay sharp. */
 :is(.cls-mapframe, #app) .orbit-map [data-slot="centre"] { transition: opacity .4s ease; }
-:is(.cls-mapframe, #app) .orbit-map:has([data-slot="item"][data-ring]) [data-slot="centre"] { opacity: 0; pointer-events: none; }
+:is(.cls-mapframe, #app) .orbit-map[data-focus]:not([data-part-focus]) [data-slot="centre"] { opacity: 1; }
+:is(.cls-mapframe, #app) .orbit-map[data-focus][data-ring-two] [data-slot="centre"] { opacity: 0; pointer-events: none; }
 :is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] :is([data-slot="item"], [data-slot="star"]) [data-slot="glyph"] { scale: 1 !important; }
 :is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-slot="item"]:is([data-ring], [data-state="on"]) [data-badge] { width: 60px; height: 60px; }
 :is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-slot="item"][data-state="near"] [data-badge] { width: 40px; height: 40px; }
@@ -204,7 +206,7 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 :is(.cls-mapframe, #app) .orbit-map [data-slot="energy"] { transition: opacity .3s ease; }
 :is(.cls-mapframe, #app) .orbit-map:has([data-slot="item"][data-ring]) [data-slot="energy"] { opacity: 0; }
 /* and when a single part is hovered or picked */
-:is(.cls-mapframe, #app) .orbit-map[data-focus] [data-slot="centre"] { opacity: 0; visibility: hidden; pointer-events: none; }
+:is(.cls-mapframe, #app) .orbit-map[data-part-focus] [data-slot="centre"] { opacity: 0; visibility: hidden; pointer-events: none; }
 :is(.cls-mapframe, #app) .orbit-map[data-focus] [data-slot="energy"] { opacity: 0; }
 
 /* every page's hero description wraps at one measure, centred and balanced (Megan, 2026-10-01) */
