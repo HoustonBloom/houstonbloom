@@ -1,11 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
-   version  1.1.0
+   source   C:/Users/Megan/Documents/design-system/components/orbit-map/behavior.js
+   version  1.2.0
+   refresh  node sync.mjs orbit-map "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   orbit-map · behaviour · v1.1.0
+   orbit-map · behaviour · v1.2.0
 
    The second map for an activity-map, ported from the Explorer view of a
    personal website (its landing: projects-slide, center-node, the rail in
@@ -52,6 +54,11 @@
      animates them there, staggered, while everything else falls to a whisper; they return when the
      category is released. The ring is sized from the map in pixels, so it is round at any aspect.
      a project with no drawing of its own wears its category's glyph, not its initial.
+
+   1.2.0 (2026-10-01)
+     DSOrbitMap.registerIcon(key, svg) adds a glyph to the set before mount, so a site can give its
+     categories its own drawings (categories[].icon names the key). Mark the filled parts data-body so
+     the dim (outline) mode still reads. Nothing changes for a page that registers none.
 
    Plain script, not a module, so a page that opens from disk can inline it.
    ============================================================================ */
@@ -320,5 +327,6 @@
     };
   }
 
-  window.DSOrbitMap = { mount: mount, iconFor: function (key, dim) { return img(key, dim); }, ICON_BY_SERIES: ICON_BY_SERIES };
+  function registerIcon(key, svg) { if (key && typeof svg === 'string' && svg.indexOf('<svg ') === 0) ICONS[key] = svg; }
+  window.DSOrbitMap = { mount: mount, iconFor: function (key, dim) { return img(key, dim); }, registerIcon: registerIcon, ICON_BY_SERIES: ICON_BY_SERIES };
 })();

@@ -1,11 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
-   version  1.1.0
+   source   C:/Users/Megan/Documents/design-system/components/nav-bar/component.css
+   version  1.2.0
+   refresh  node sync.mjs nav-bar "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   nav-bar · v1.1.0 · component
+   nav-bar · v1.2.0 · component
 
    The header a site carries on every template: brand mark left, nav links
    centred on the page, actions right. Built 2026-09-27 from the first consumer
@@ -31,21 +33,40 @@
      --nav-blur        backdrop blur     0px
      --nav-link-font   link face         --font-body
 
-   Sticky at the top by default. A template that owns the viewport (slides)
-   sets position: static on it.
+     --navt-ink        menu button icon  --color-text
+     --navt-rule       menu button ring  --color-border-strong
+     --navt-bg         menu button fill  --color-surface
 
-   At 375px: brand, nav and actions stay on one row with tighter gaps and
-   caption-size links.
+   Sticky at the top on any screen at least 480px tall. Shorter than that
+   (a landscape phone, a desktop zoomed to 400%) it scrolls away, which is
+   WCAG technique C34 for 1.4.10 Reflow. A template that owns the viewport
+   (slides) sets position: static on it.
+
+   behavior.js is optional. Without it the header is the 1.1.0 header.
+   With it, DSNavBar.enhance() adds two things:
+     the menu button   below 480px the links fold behind a 44px button in
+                       the actions, and open as a panel over the page
+     partial sticking  below 600px the header slides away on a scroll down
+                       and back on a scroll up, never while it holds focus
+                       or its menu is open
+   Reasons and sources: _context/mobile-nav.md.
+
+   At 375px: one row, brand left and actions right, the links behind the
+   menu button. Without behavior.js the links take a second row.
    ============================================================================ */
 
 .nav-bar, .nav-bar *, .nav-bar *::before, .nav-bar *::after { box-sizing: border-box; }
 .nav-bar {
-  position: sticky; top: 0; z-index: 50;
+  position: relative; z-index: 50;
   background: var(--nav-bg, var(--color-bg));
   backdrop-filter: blur(var(--nav-blur, 0px));
   border-bottom: var(--border-width) var(--border-style) var(--color-border);
 }
+@media (min-height: 480px) {
+  .nav-bar { position: sticky; top: 0; }
+}
 .nav-bar .inner {
+  position: relative;
   max-width: var(--max);
   margin: 0 auto;
   padding: var(--space-base) var(--gutter);
@@ -110,3 +131,69 @@
   .nav-bar nav { grid-area: links; justify-self: center; }
 }
 
+/* ---- 1.2.0 (2026-09-30): the menu button and partial sticking -----------
+   Both apply only once behavior.js has set data-nav-menu, so a page without
+   the script keeps the 1.1.0 header above. Measured before the change: at
+   375px the two-row header was 93 to 102px tall across the seven styles,
+   sticky, so it held 12% of an 812px screen. */
+.nav-bar .nav-toggle {
+  --navt-ink: var(--color-text);
+  --navt-rule: var(--color-border-strong);
+  --navt-bg: var(--color-surface);
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  border: var(--border-width) var(--border-style) var(--navt-rule);
+  background: var(--navt-bg);
+  color: var(--navt-ink);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.nav-bar .nav-toggle svg { display: block; width: 20px; height: 20px; }
+.nav-bar .nav-toggle:hover { border-color: var(--color-accent-text, var(--color-accent-deep)); color: var(--color-accent-text, var(--color-accent-deep)); }
+.nav-bar .nav-toggle:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.nav-bar .nav-toggle .when-open,
+.nav-bar[data-nav-open] .nav-toggle .when-closed { display: none; }
+.nav-bar[data-nav-open] .nav-toggle .when-open { display: block; }
+
+@media (max-width: 480px) {
+  .nav-bar[data-nav-menu] .inner { grid-template-areas: "brand actions"; row-gap: 0; }
+  .nav-bar[data-nav-menu] .nav-toggle { display: grid; }
+  .nav-bar[data-nav-menu] nav { display: none; }
+  /* The open menu is an opaque panel over the page, so the header keeps its
+     height and a fixed-height template is not pushed down. */
+  .nav-bar[data-nav-menu][data-nav-open] nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 0 var(--gutter) var(--space-sm);
+    background: var(--color-bg);
+    border-bottom: var(--border-width) var(--border-style) var(--color-border);
+    box-shadow: var(--shadow-raise);
+  }
+  .nav-bar[data-nav-menu][data-nav-open] nav a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    font-size: var(--text-body);
+    border-top: var(--border-width) var(--border-style) var(--color-border);
+  }
+  .nav-bar[data-nav-menu][data-nav-open] nav a:first-child { border-top: 0; }
+}
+
+/* Partial sticking, which NN/g calls a partially persistent header. The
+   transform only moves it; behavior.js decides when. */
+@media (max-width: 600px) and (min-height: 480px) {
+  .nav-bar[data-nav-menu] { transition: transform var(--dur-base) var(--ease); }
+  .nav-bar[data-nav-hidden]:not(:focus-within):not([data-nav-open]) { transform: translateY(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-bar[data-nav-menu], .nav-bar .nav-toggle { transition: none; }
+}
