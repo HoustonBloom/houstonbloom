@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Houston Bloom &#183; from platforms to gardens</title>
+<title>Gardening Tools · Houston Bloom</title>
 <meta name="description" content="Citizen infrastructure for Houston. Peer to peer education and matchmaking events, so we can co-create without a platform in the middle.">
 <link rel="stylesheet" href="vendor/button/component.css">
 <link rel="stylesheet" href="vendor/tool-list/component.css">
@@ -955,15 +955,12 @@ html{scroll-padding-top:var(--topbar-h)}
 </head>
 <body>
 <script>document.documentElement.classList.add('js');</script>
-
 <a class="skip" href="#main">Skip to content</a>
-
-<!--hb-header-->
 <header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
     <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/bloom-logo.png" width="49" height="52" alt=""></span></a>
     <nav aria-label="Main">
-        <a href="index.html" class="active" aria-current="page">Houston Bloom</a>
-        <a href="gardening-tools.html">Gardening Tools</a>
+        <a href="index.html">Houston Bloom</a>
+        <a href="gardening-tools.html" class="active" aria-current="page">Gardening Tools</a>
         <a href="cls.html">Community Legibility Spec</a>
         <a href="index.html#s-close">Get Involved</a>
     </nav>
@@ -980,248 +977,298 @@ html{scroll-padding-top:var(--topbar-h)}
       </div>
     </div>
   </div></header>
-<!--/hb-header-->
-
-<ul class="pdots" id="pdots" aria-label="Section navigation"></ul>
-
 <main id="main">
-
-<!-- ─── 1 · hero ─────────────────────────────────────────────────────────── -->
-<section class="panel hero" id="s-hero" data-dot="Opening">
-  <img class="hero-art hero-art-l" src="_assets/hb-hero-sunflower.png" width="280" height="502" alt="" aria-hidden="true">
-  <img class="hero-art hero-art-r" src="_assets/hb-hero-daffodil.png" width="280" height="502" alt="" aria-hidden="true">
+<section class="panel hero tools-hero" style="padding-block:var(--s9) var(--s5)">
   <div class="shell">
-    <h1>Growing Houston&#8217;s infrastructure for co&#8209;creation.</h1>
-    <p class="lede measure">Peer to peer education and community matchmaking, leveraging the
-      <button class="inline-link" type="button" data-panel-open="cls" aria-haspopup="dialog">Community
-      Legibility Spec</button>.</p>
-    
-    <p class="btn-row">
-      <a class="btn" data-component="button" href="#events">See the events</a>
-      <a class="btn btn--outline" data-component="button" href="#s-horizons">Learn more</a>
-    </p>
+    <h1>Gardening Tools</h1>
+    <p class="lede measure">Used for cultivating community legibility.</p>
   </div>
 </section>
-<section class="panel-dark world-band" id="s-world" aria-labelledby="world-title">
-  <canvas class="field" data-field data-density="6" aria-hidden="true"></canvas>
-  <div class="shell">
-    <span class="eyebrow">A World view</span>
-    <h2 class="world-title" id="world-title"><span class="wb-g">Gardens</span> <span class="wb-n">not</span> <span class="wb-p">Platforms</span></h2>
-    <p class="world-tag">Stop being the product of a system and start being the builder of a new one.</p>
+    <div class="cls-import">
+<section class="cluster" id="s-horizon-1">
+  <div class="wrap">
+    <p class="hnum"><span class="hdot" style="background:var(--h1)"></span> Horizon 1 · today · <span class="badge run">Running</span></p>
+    <h2 style="margin:0 0 var(--s3)">Cultivate local legibility</h2>
+    <p class="lead">In the age of AI, anyone can build any tool. But to do this, we need to be able to leverage AI and harness it on our own data. Cultivating local legibility means moving your data off of platforms and building your own tools, ideally with your own local AI.</p>
+    <figure class="svg-figure" data-lightbox>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="One person, one vault, an AI bridge, and a published surface with local files held back">
+  <style>
+    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
+    .h1{fill:#6b8e23}
+    .row{fill:#e7dfcd} .rowlocal{fill:#f3ead2;stroke:#b9791f;stroke-width:1.5;stroke-dasharray:3 3}
+    .t{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:14px;fill:#1a1f1a}
+    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
+    .ar{fill:none;stroke:#1a1f1a;stroke-width:2}
+  </style>
+  <!-- vault -->
+  <rect class="box" x="24" y="46" width="180" height="168" rx="10"/>
+  <rect class="h1" x="24" y="46" width="180" height="26" rx="10"/>
+  <rect class="h1" x="24" y="60" width="180" height="12"/>
+  <text class="t" x="40" y="64" style="fill:#fffdf8">the vault</text>
+  <rect class="row" x="44" y="88" width="140" height="16" rx="3"/>
+  <rect class="row" x="44" y="112" width="140" height="16" rx="3"/>
+  <rect class="rowlocal" x="44" y="136" width="140" height="16" rx="3"/>
+  <rect class="row" x="44" y="160" width="140" height="16" rx="3"/>
+  <rect class="row" x="44" y="184" width="88" height="16" rx="3"/>
+  <text class="m" x="172" y="144.5" text-anchor="end" dominant-baseline="central" style="fill:#8a5a14">local</text>
+
+  <!-- bridge -->
+  <path class="ar" d="M204,130 h72" marker-end="url(#a)"/>
+  <rect class="box" x="276" y="104" width="96" height="52" rx="10"/>
+  <text class="t" x="324" y="128" text-anchor="middle">AI</text>
+  <text class="m" x="324" y="145" text-anchor="middle">bridge</text>
+  <path class="ar" d="M372,130 h72" marker-end="url(#a)"/>
+
+  <!-- published surface -->
+  <rect class="box" x="444" y="46" width="172" height="168" rx="10"/>
+  <text class="t" x="530" y="72" text-anchor="middle">published surface</text>
+  <rect class="row" x="464" y="88" width="132" height="16" rx="3"/>
+  <rect class="row" x="464" y="112" width="132" height="16" rx="3"/>
+  <rect class="row" x="464" y="160" width="132" height="16" rx="3"/>
+  <rect class="row" x="464" y="184" width="84" height="16" rx="3"/>
+  <text class="m" x="530" y="146" text-anchor="middle">(local file absent)</text>
+
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#1a1f1a"/>
+    </marker>
+  </defs>
+</svg>
+      <figcaption class="diagram-note">The vault is the ground. The bridge renders. Local-marked files never reach the surface.</figcaption>
+    </figure>
+
+      <p class="tpl-lead" id="run-it-yourself">Take one and run it yourself.</p>
+            <ul class="tool-list" data-component="tool-list" data-variant="shelf">
+          <li data-slot="row">
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8L12 4l8.5 4v8.5L12 20.5l-8.5-4z"/><path d="M3.5 8L12 12l8.5-4M12 12v8.5"/><path d="M7.8 6l8.4 4"/></svg></span>
+            <span data-slot="text">
+              <a data-slot="name" href="https://houstonbloom.github.io/local-legibility/" target="_blank" rel="noopener">Intelligence Packet</a>
+              <span data-slot="summary">An AI workflow system anyone can adopt to make their local systems more legible.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">Get started</span></span>
+          </li>
+          <li data-slot="row">
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="13" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="18.5" cy="18" r="2"/><path d="M7.6 7.2l2.9 4.2M16.4 8.3l-3 3.3M10.4 14.2l-3.7 2.7M13.8 13.9l3.1 2.9M8 6.2h8"/></svg></span>
+            <span data-slot="text">
+              <a data-slot="name" href="https://github.com/HoustonBloom/node-app-template" target="_blank" rel="noopener">Node graph</a>
+              <span data-slot="summary">A map of your stuff, drawn as a web of connected dots. Your AI fills it from one of your apps and you get a single file you can open and share.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">View on GitHub</span></span>
+          </li>
+          <li data-slot="row">
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10.5 8.5v5l4-2.5z"/><path d="M7 20h10"/><path d="M12 17v3"/></svg></span>
+            <span data-slot="text">
+              <a data-slot="name" href="video-tools.html" target="_blank" rel="noopener">Video tools</a>
+              <span data-slot="summary">Six tools that run on your own computer. A video in, a page out, and a prompt for each thing you want cut.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">Open the tools</span></span>
+          </li>
+          <li data-slot="row">
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l-1 5 3 3H7l3-3z"/><path d="M12 11v7"/><path d="M4 21h16"/></svg></span>
+            <span data-slot="text">
+              <a data-slot="name" href="https://github.com/HoustonBloom/PinboardMCP" target="_blank" rel="noopener">Pinboard MCP</a>
+              <span data-slot="summary">Members&#8217; bookmarks, tagged by a shared convention, become a commons you can query in Claude. No central database.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">View on GitHub</span></span>
+          </li>
+          <li data-slot="row">
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h7l3 3v6"/><path d="M11 3v3h3"/><path d="M4 3v16h6"/><circle cx="15" cy="16" r="1.6"/><circle cx="20" cy="12.5" r="1.6"/><circle cx="20" cy="20" r="1.6"/><path d="M16.4 15.1l2.2-1.6M16.4 16.9l2.2 2.1"/></svg></span>
+            <span data-slot="text">
+              <a data-slot="name" href="https://chatgpt-pdt.vercel.app/" target="_blank" rel="noopener">ChatGPT Data Transformer</a>
+              <span data-slot="summary">Turns your ChatGPT export into an MCP server, so Claude can search thousands of past conversations.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">Try it live</span></span>
+          </li>
+      </ul>
   </div>
 </section>
-<section class="panel panel-garden centered" id="s-gardens" data-dot="Gardens, not platforms">
-  <div class="shell">
+<section class="cluster  deep" id="s-horizon-2">
+  <div class="wrap">
+    <p class="hnum"><span class="hdot" style="background:var(--h2)"></span> Horizon 2 · near</p>
+    <div class="status-row">
+      <h2 style="margin:0">Cultivate community legibility</h2>
+      <span class="badge build">Building</span>
+    </div>
+    <p class="lead">A tool you build on your own can only see what you put into it. Working with other people means connecting your data to theirs, and almost every way of doing that puts a platform in the middle holding both copies. Cultivating community legibility means information passes peer to peer and into the community data commons at in-person events. Two people record the same connection from their own side, each keeping their own half, so both have the history and neither had to hand it over.</p>
+    <p class="lead">In the room, people see who claimed what and can vouch for it. Bytes move any time from anywhere. Vouching does not.</p>
+    <p class="actlink"><a href="https://doi.org/10.6084/m9.figshare.32772147" target="_blank" rel="noopener">Read the Local Assembly paper &#8594;</a></p>
+    <figure class="svg-figure" data-lightbox>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="Two sovereign vaults holding one connection as two halves, over a faint mesh of bilateral edges">
+  <style>
+    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
+    .h2{fill:#b9791f}
+    .t{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:14px;fill:#1a1f1a}
+    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
+    .edge{stroke:#b9791f;stroke-width:3}
+    .mesh{stroke:#c9bfa8;stroke-width:1.2}
+    .node{fill:#d9cfba}
+  </style>
+  <!-- faint mesh behind -->
+  <g class="mesh" opacity="0.7">
+    <line x1="120" y1="250" x2="300" y2="210"/>
+    <line x1="300" y1="210" x2="520" y2="250"/>
+    <line x1="120" y1="250" x2="230" y2="278"/>
+    <line x1="520" y1="250" x2="410" y2="280"/>
+    <line x1="300" y1="210" x2="230" y2="278"/>
+    <line x1="300" y1="210" x2="410" y2="280"/>
+  </g>
+  <g class="node">
+    <circle cx="120" cy="250" r="6"/><circle cx="300" cy="210" r="6"/><circle cx="520" cy="250" r="6"/>
+    <circle cx="230" cy="278" r="6"/><circle cx="410" cy="280" r="6"/>
+  </g>
 
-    <!-- Gardens left, platforms right. The markup runs in the same order as the eye,
-         so a screen reader and the tab order read it the way it is drawn. No lede:
-         the two column heads and the four topics carry the comparison. -->
-    <table class="cmp rv">
-      <caption class="sr-only">Gardens compared with platforms on data, infrastructure, rules and exit</caption>
-      <thead>
-        <tr><th scope="col" class="cmp-g">Gardens</th><th scope="col" class="cmp-q"></th>
-            <th scope="col" class="cmp-p">Platforms</th></tr>
-      </thead>
+  <!-- two vaults -->
+  <rect class="box" x="40" y="70" width="150" height="96" rx="10"/>
+  <rect class="h2" x="40" y="70" width="150" height="24" rx="10"/>
+  <rect class="h2" x="40" y="82" width="150" height="12"/>
+  <text class="t" x="60" y="88" fill="#fffdf8">vault A</text>
+  <text class="m" x="115" y="126" text-anchor="middle">holds its</text>
+  <text class="m" x="115" y="142" text-anchor="middle">own half</text>
+
+  <rect class="box" x="450" y="70" width="150" height="96" rx="10"/>
+  <rect class="h2" x="450" y="70" width="150" height="24" rx="10"/>
+  <rect class="h2" x="450" y="82" width="150" height="12"/>
+  <text class="t" x="470" y="88" fill="#fffdf8">vault B</text>
+  <text class="m" x="525" y="126" text-anchor="middle">holds its</text>
+  <text class="m" x="525" y="142" text-anchor="middle">own half</text>
+
+  <!-- the connection: two halves meeting -->
+  <line class="edge" x1="190" y1="118" x2="304" y2="118"/>
+  <line class="edge" x1="336" y1="118" x2="450" y2="118"/>
+  <circle cx="304" cy="118" r="12" fill="#b9791f"/>
+  <path d="M336,106 A12,12 0 0 0 336,130 Z" fill="#fffdf8" stroke="#b9791f" stroke-width="2"/>
+  <path d="M304,106 A12,12 0 0 1 304,130 Z" fill="#fffdf8" stroke="#b9791f" stroke-width="2"/>
+  <circle cx="336" cy="118" r="12" fill="#b9791f"/>
+  <text class="m" x="320" y="164" text-anchor="middle">one membership · two records</text>
+</svg>
+      <figcaption class="diagram-note">A membership is one connection recorded on both sides. Either side ends it by deleting its own half. The commons pools principles without names while each vault keeps the receipt. No platform saw the exchange.</figcaption>
+    </figure>
+<table class="acts-tbl">
+      <caption class="sr-only" data-audit-ignore>Each item with its status</caption>
+      <thead data-audit-ignore><tr data-audit-ignore><th scope="col">Status</th><th scope="col">What it is</th></tr></thead>
       <tbody>
-        <tr><td class="cmp-g">You own it</td><th scope="row" class="cmp-q">Data</th>
-            <td class="cmp-p">They sell it</td></tr>
-        <tr><td class="cmp-g">Community owns access</td><th scope="row" class="cmp-q">Infrastructure</th>
-            <td class="cmp-p">You rent access</td></tr>
-        <tr><td class="cmp-g">Transparent governance</td><th scope="row" class="cmp-q">Rules</th>
-            <td class="cmp-p">Opaque algorithms</td></tr>
-        <tr><td class="cmp-g">Everything is portable</td><th scope="row" class="cmp-q">Exit</th>
-            <td class="cmp-p">You leave empty-handed</td></tr>
+        <tr><td class="acts-st"><span class="badge run actbadge">Running</span></td><td class="acts-wt"><p class="actname">The two-person dual ledger</p><p class="actbody">Two vaults, files moving between them, each side recording what it worked on, in what role, on what date, on what principle. This has been watched working between two people.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge build actbadge">Building</span></td><td class="acts-wt"><p class="actname">Bloom Capture</p><p class="actbody">Scan a QR at an event, get a contact card on your own phone, sort your scans into your own buckets, download a zip. Capture, sorting and export all happen on your device and the data is yours. First run at Cup of Joey.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge design actbadge">Designed</span></td><td class="acts-wt"><p class="actname">The mutual card</p><p class="actbody">Two cards per person, so the exchange goes both ways. Getting someone&#8217;s card means standing in front of them giving your own. Nobody can quietly collect a room. Scanning writes a file to the other person&#8217;s device, nothing else.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge design actbadge">Designed</span></td><td class="acts-wt"><p class="actname">Compare Connections: the matchmaking events</p><p class="actbody">You sign in, which activates the insights you contributed, and the server ranks who you should meet. Then timed networking with card scans, a working session, and a data exchange. The first run is built as a party game.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge design actbadge">Designed</span></td><td class="acts-wt"><p class="actname">The Community Data Commons</p><p class="actbody">Principles pooled with the names stripped, while your own vault keeps the receipt. Assembled by batch after each event, append only. Published in versions as one offline archive, handed to another community on a stick, no internet at any point. It sits dormant between events and wakes up when contributors are in the room.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge design actbadge">Designed</span></td><td class="acts-wt"><p class="actname">The station</p><p class="actbody">When the material outgrows what a wall can display: a projector broadcasts to the whole room by animated code, and a camera takes contributions upstream from a phone screen. No SD cards, no venue wifi, no account.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge design actbadge">Designed</span></td><td class="acts-wt"><p class="actname">The corroboration experiment</p><p class="actbody">Can two private records plus a light community witness tell a real member from someone holding a copied card? The grant funds the measurement, and the claim goes no further than whether a signal shows up.</p></td></tr>
       </tbody>
     </table>
 
-    <div class="ev-block" id="events">
-      <article class="ev-feature" data-tone="inverse" aria-labelledby="ss-title">
-        <div class="ev-photos">
-          <img src="_assets/hb-speaker-pair.webp" width="890" height="500" alt="A woman in an armchair, smiling, speaking into a microphone, with a man seated beside her" loading="lazy">
-          <img src="_assets/hb-group-wide.webp" width="1076" height="492" alt="A group seated in armchairs and couches around a low table, a woman in red and a woman in navy on the right" loading="lazy">
-        </div>
-        <div class="ev-feature-body">
-          <span class="ev-state">Gardens not Platforms</span>
-          <h3 id="ss-title">Speaking Series</h3>
-          <p class="ev-eps">
-            <span>See what you missed</span>
-            <a class="btn btn--clear" data-component="button" href="https://www.figma.com/deck/I517UzM0AK5cWEeQTyt2x8/Gardens--Not-Platforms--marketing-material-" target="_blank" rel="noopener"><span data-slot="label">Talk 1</span></a>
-            <a class="btn btn--clear" data-component="button" href="https://www.youtube.com/watch?v=eIQ0qgIrdzY&amp;list=PLsdtxOUtf3YRN2eQB3cEyeYp7y1kWV0PT&amp;index=15" target="_blank" rel="noopener"><span data-slot="label">Talk 2</span></a>
-          </p>
-        </div>
-      </article>
-      <div class="ev-subscribe">
-        <div>
-          <h3>Get future events in your inbox.</h3>
-          <p>New talks, workshops and tools, as they are announced.</p>
-        </div>
-        <a class="btn" data-component="button" href="https://houstonbloom.substack.com/subscribe" target="_blank" rel="noopener">Subscribe to the Newsletter</a>
-      </div>
+    <p class="lead">These mechanisms are chosen for the room, not for the network. Anything that moves bytes will carry it: a repo, a Pi on the venue LAN, a sync between two laptops, a stick passed by hand. A community can change carriers without changing membership.</p>
+
+      <p class="tpl-lead">Take one and run it yourself.</p>
+            <ul class="tool-list" data-component="tool-list" data-variant="shelf">
+          <li data-slot="row" data-static>
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><rect x="8.5" y="8.5" width="3" height="3"/><rect x="13" y="8.5" width="2.5" height="2.5"/><rect x="8.5" y="13" width="2.5" height="2.5"/><path d="M13 14h2.5M14.25 12.75v2.5"/></svg></span>
+            <span data-slot="text">
+              <span data-slot="name">Bloom Capture <span data-slot="kind">Template</span></span>
+              <span data-slot="summary">A single HTML file. Scan cards, build contacts, sort them, export a zip. Runs in the browser on your phone with nothing installed.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">Coming soon</span></span>
+          </li>
+          <li data-slot="row" data-static>
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><circle cx="12" cy="9.5" r="2.4"/><path d="M7.8 17c.7-2.2 2.3-3.4 4.2-3.4s3.5 1.2 4.2 3.4"/></svg></span>
+            <span data-slot="text">
+              <span data-slot="name">The card <span data-slot="kind">Template</span></span>
+              <span data-slot="summary">A one-page profile rendered from your own vault, with your principles and an issue date inside the QR. Print two.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">Coming soon</span></span>
+          </li>
+          <li data-slot="row">
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="10" height="10" rx="2"/><rect x="10.5" y="9.5" width="10" height="10" rx="2"/></svg></span>
+            <span data-slot="text">
+              <a data-slot="name" href="https://houstonbloom.github.io/local-legibility/" target="_blank" rel="noopener">Two-vault attribution <span data-slot="kind">Template</span></a>
+              <span data-slot="summary">The smallest dual ledger. Two people, two vaults, each recording what they worked on, in what role, on what date, on what principle. The pattern the rest of this horizon grows from.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">Get started</span></span>
+          </li>
+      </ul>
+  </div>
+</section>
+<section class="cluster" id="s-horizon-3">
+  <div class="wrap">
+    <p class="hnum"><span class="hdot" style="background:var(--h3)"></span> Horizon 3 · far</p>
+    <div class="status-row">
+      <h2 style="margin:0">Emergent Governance</h2>
+      <span class="badge design">Designed</span>
     </div>
+    <p class="lead">Once your community keeps its own record, you still cannot see the groups outside it doing related work. A land trust needs a muralist and knows none. Every way of finding them today puts a directory in the middle. Emergent governance means two communities comparing what they stand for and what they have been doing, recognizing the match themselves, and acting on it. No directory, and nobody deciding for them.</p>
+    <figure class="svg-figure" data-lightbox>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="An individual and a community compare the same structural fingerprint without sharing a document, authenticated by log comparison">
+  <style>
+    .h3{fill:#35626f;stroke:#35626f}
+    .dot{fill:#35626f}
+    .shape{fill:none;stroke:#35626f;stroke-width:2;stroke-dasharray:4 4}
+    .match{stroke:#35626f;stroke-width:1.6;stroke-dasharray:2 5}
+    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
+    .t{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:14px;fill:#1a1f1a}
+    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
+  </style>
+  <!-- individual A constellation -->
+  <text class="t" x="120" y="42" text-anchor="middle">individual A</text>
+  <polygon class="shape" points="70,90 170,70 200,150 110,175 60,140"/>
+  <circle class="dot" cx="70" cy="90" r="6"/><circle class="dot" cx="170" cy="70" r="6"/>
+  <circle class="dot" cx="200" cy="150" r="6"/><circle class="dot" cx="110" cy="175" r="6"/>
+  <circle class="dot" cx="60" cy="140" r="6"/>
 
+  <!-- community A constellation (same shape, offset) -->
+  <text class="t" x="520" y="42" text-anchor="middle">community A</text>
+  <polygon class="shape" points="440,90 540,70 570,150 480,175 430,140"/>
+  <circle class="dot" cx="440" cy="90" r="6"/><circle class="dot" cx="540" cy="70" r="6"/>
+  <circle class="dot" cx="570" cy="150" r="6"/><circle class="dot" cx="480" cy="175" r="6"/>
+  <circle class="dot" cx="430" cy="140" r="6"/>
+
+  <!-- match lines between matching vertices -->
+  <line class="match" x1="170" y1="70" x2="440" y2="90"/>
+  <line class="match" x1="200" y1="150" x2="430" y2="140"/>
+  <line class="match" x1="110" y1="175" x2="480" y2="175"/>
+
+  <!-- log comparison auth -->
+  <rect class="box" x="250" y="212" width="140" height="46" rx="10"/>
+  <text class="t" x="320" y="233" text-anchor="middle">two logs</text>
+  <text class="m" x="320" y="250" text-anchor="middle">confirm each other</text>
+  <text class="m" x="320" y="196" text-anchor="middle" fill="#35626f">match on a principle and a timestamp</text>
+</svg>
+      <figcaption class="diagram-note">Two records compared on principles and dated activity. No document shared, no index between. What forms after that can only be conditioned and watched for.</figcaption>
+    </figure>
+<table class="acts-tbl">
+      <caption class="sr-only" data-audit-ignore>Each item with its status</caption>
+      <thead data-audit-ignore><tr data-audit-ignore><th scope="col">Status</th><th scope="col">What it is</th></tr></thead>
+      <tbody>
+        <tr><td class="acts-st"><span class="badge build actbadge">Building</span></td><td class="acts-wt"><p class="actname">Federation transport</p><p class="actbody">Two nodes on the mesh, in two places, each holding its own community record and finding the other with no hosted directory. Tested first with synthetic data, so no real material is at stake.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge design actbadge">After the grant</span></td><td class="acts-wt"><p class="actname">Synthetic principles: the first community-to-community test</p><p class="actbody">Synthetic design principles stand in for a second community so the comparison can be tried before two real communities depend on it. This is what connects the event program to this horizon.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge design actbadge">Designed</span></td><td class="acts-wt"><p class="actname">Structural-fingerprint discovery, log-comparison authentication</p><p class="actbody">Design principles plus anonymized activity form a shape two parties can compare without sharing a document. Two records confirm each other, with no central authority. Follows the amateur-radio precedent.</p></td></tr>
+        <tr><td class="acts-st"><span class="badge design actbadge">Watching for</span></td><td class="acts-wt"><p class="actname">Governance</p><p class="actbody">Trust recorded as one person&#8217;s judgment about where they placed it, never computed. There is no build step, because nobody designs what communities do once they can see each other.</p></td></tr>
+      </tbody>
+    </table>
+
+      <p class="tpl-lead">Read the design.</p>
+            <ul class="tool-list" data-component="tool-list" data-variant="shelf">
+          <li data-slot="row">
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span>
+            <span data-slot="text">
+              <a data-slot="name" href="https://doi.org/10.6084/m9.figshare.32576631" target="_blank" rel="noopener">Dual-Ledger Authentication <span data-slot="kind">Paper</span></a>
+              <span data-slot="summary">How two paired records authenticate a real activity without a central authority.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">Read the paper</span></span>
+          </li>
+          <li data-slot="row">
+            <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span>
+            <span data-slot="text">
+              <a data-slot="name" href="https://doi.org/10.6084/m9.figshare.32772147" target="_blank" rel="noopener">Local Assembly <span data-slot="kind">Paper</span></a>
+              <span data-slot="summary">How a community assembles its own legible, portable record, which is what federation carries.</span>
+            </span>
+            <span data-slot="actions"><span data-slot="go">Read the paper</span></span>
+          </li>
+      </ul>
   </div>
 </section>
-
-
-    
-
-<!-- ─── 2 · gardens, not platforms ───────────────────────────────────────── -->
-
-<!-- ─── 4 · the turn ─────────────────────────────────────────────────────── -->
-
-<!-- ─── 3 · civilization phases ──────────────────────────────────────────── -->
-<section data-tone="inverse" class="panel panel-dark" id="s-phases" data-dot="Some perspective">
-  <div class="tl-track">
-    <div class="tl-stage">
-      <canvas class="field field-deep" data-field aria-hidden="true"></canvas>
-      <div class="shell">
-        <span class="eyebrow">Some perspective</span>
-        <div class="eseq">
-          <span class="eseq-mark" aria-hidden="true"></span>
-        <div class="eseq-slide eseq-opening">
-          <h2 class="eseq-statement">For almost all of human history,<br>there were no platforms.</h2>
-        </div>
-        
-        <div class="eseq-slide" style="--eseq-live-c:#7fbf94">
-          <p class="eseq-name">Homo Sapiens</p>
-          <p class="eseq-pct">98% of human history</p>
-          <p class="eseq-mothers">~17,000 mothers ago</p>
-          <p class="eseq-yrs">~300,000 yrs</p>
-          <p class="eseq-desc">Pre-history. Trust, reciprocity, shared knowledge at Dunbar scale. Tribal groups governed by proximity, kinship, and the relationships you could hold in your head. No one coordinated from above because no one needed to.</p>
-        </div>
-        <div class="eseq-slide" style="--eseq-live-c:#8ab06d">
-          <p class="eseq-name">Subject</p>
-          <p class="eseq-pct">1.7% of human history</p>
-          <p class="eseq-mothers">~280 mothers ago</p>
-          <p class="eseq-yrs">~5,400 yrs</p>
-          <p class="eseq-desc">Writing. Math. The Printing Press. Kings, priests, states. Coordination above Dunbar scale required vertical structures.</p>
-        </div>
-        <div class="eseq-slide" style="--eseq-live-c:#d9a83a">
-          <p class="eseq-name">Consumer</p>
-          <p class="eseq-pct">0.05% of human history</p>
-          <p class="eseq-mothers">~7 mothers ago</p>
-          <p class="eseq-yrs">~175 yrs</p>
-          <p class="eseq-desc">Industrial revolution. Owning became production. People became consumers. The top changed hands. The structure never did.</p>
-        </div>
-        <div class="eseq-slide" style="--eseq-live-c:#f3d88b">
-          <p class="eseq-name">User</p>
-          <p class="eseq-pct">0.008% of human history</p>
-          <p class="eseq-mothers">1 mother ago</p>
-          <p class="eseq-yrs">~25 yrs</p>
-          <p class="eseq-desc">The internet. Owning became renting. Production became data. Consumers became users. Five companies became the town square.</p>
-        </div>
-        <div class="eseq-slide eseq-turn-slide">
-          <p class="eseq-turn">The system has a funny habit of calling us what it needs from us.</p>
-        </div>
-        <div class="eseq-slide" style="--eseq-live-c:#6fbf87">
-          <p class="eseq-name eseq-ask">What will we be called in the age of AI?</p>
-        </div></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="panel panel-tint" id="s-horizons" data-dot="Three horizons">
-  <div class="shell">
-    <span class="eyebrow">Three horizons</span>
-    <h2 class="hz-title">Community Legibility Spec and the path from User to Citizen</h2>
-      <div class="hz rv">
-      <article class="hz-card hz-1">
-        <p class="hz-s hz-s-run"><span class="hz-dot"></span>Horizon 1</p>
-        <p class="hz-t">Cultivate local legibility</p>
-        <p class="hz-d">Your own data, your own tools, your own AI. Running today.</p>
-        <p class="hz-go"><a class="btn btn--clear" data-component="button" href="gardening-tools.html#s-horizon-1" aria-label="See the detail for Horizon 1, Cultivate local legibility"><span data-slot="label">See the detail</span><span data-slot="glyph" aria-hidden="true">&#8594;</span></a></p>
-      </article>
-      <article class="hz-card hz-2">
-        <p class="hz-s hz-s-build"><span class="hz-dot"></span>Horizon 2</p>
-        <p class="hz-t">Cultivate community legibility</p>
-        <p class="hz-d">Information passes peer to peer and into the community data commons at in-person events.</p>
-        <p class="hz-go"><a class="btn btn--clear" data-component="button" href="gardening-tools.html#s-horizon-2" aria-label="See the detail for Horizon 2, Cultivate community legibility"><span data-slot="label">See the detail</span><span data-slot="glyph" aria-hidden="true">&#8594;</span></a></p>
-      </article>
-      <article class="hz-card hz-3">
-        <p class="hz-s hz-s-spec"><span class="hz-dot hz-dot-open"></span>Horizon 3</p>
-        <p class="hz-t">Emergent Governance</p>
-        <p class="hz-d">Two communities recognize the match themselves, with no directory in the middle. Transport building, governance watched for.</p>
-        <p class="hz-go"><a class="btn btn--clear" data-component="button" href="gardening-tools.html#s-horizon-3" aria-label="See the detail for Horizon 3, Emergent Governance"><span data-slot="label">See the detail</span><span data-slot="glyph" aria-hidden="true">&#8594;</span></a></p>
-      </article>
-    </div></div>
-</section>
-
-
-
-<!-- ─── 4 · the strip · surfaces as the stage above it unpins ────────────────────────────────────────────────────── -->
-
-<!-- ─── 6 · horizon 1 ───────────────────────────── -->
-<!-- ─── 6 · the three horizons ───────────────────────────────────────────── -->
-
-
-<!-- ─── 7 · close ────────────────────────────────────────────────────────── -->
-<section data-tone="inverse" class="panel panel-dark close" id="s-close" data-dot="Cultivate">
-  <div class="shell">
-    <h2>Cultivate your own<br>local intelligence.</h2>
-    <p class="lede measure">You stop being the product of someone else&#8217;s platform and start building your own.</p>
-
-    <dl class="spec rv">
-      <div><dt>Cultivate your data</dt><dd>Off the platforms, on a device you own.</dd></div>
-      <div><dt>Own your AI models</dt><dd>Open source, running locally.</dd></div>
-      <div><dt>Protect your exit</dt><dd>Connected by protocol, so leaving costs nothing.</dd></div>
-    </dl>
-
-    <p class="btn-row">
-      <a class="btn" data-component="button" href="https://houstonbloom.substack.com/subscribe" target="_blank" rel="noopener">Subscribe</a>
-      <a class="btn btn--outline" data-component="button" href="https://discord.gg/FZtNmKRyq" target="_blank" rel="noopener">Join the Discord</a>
-    </p>
-  </div>
-</section>
-
-<!-- ─── 8 · events ───────────────────────────────────────────────────────── -->
+</div>
 
 </main>
-
-<!-- ─── side panel ───────────────────────────────────────────────────────────
-     Cuts Side Panel v1.0, from Cuts/_components/side-panel.html. Unmodified
-     contract: [data-panel-open="id"] opens, [data-panel-close] and the scrim
-     close, Escape closes. Retheming is done by mapping this page's tokens onto
-     the component's var() chain in the CSS, not by editing the component. -->
-<div class="panel-scrim" data-panel-scrim hidden></div>
-
-<aside class="side-panel" data-panel="cls" role="dialog" aria-modal="true"
-       aria-labelledby="cls-title" tabindex="-1" hidden>
-  <button class="side-panel__close" type="button" data-panel-close aria-label="Close panel">&times;</button>
-  <div class="side-panel__head">
-    <span class="side-panel__badge">Deepen</span>
-    <h2 class="side-panel__title" id="cls-title">Community Legibility Spec</h2>
-    <div class="side-panel__file">The technology Houston Bloom runs on</div>
-  </div>
-  <hr class="side-panel__divider">
-  <div class="side-panel__content">
-    <p>A way for a community to see itself clearly enough to match people to each other,
-      <strong>without anyone holding everyone&#8217;s data</strong>. Your work stays on your machine.
-      Only its shape travels.</p>
-
-    <p><strong>What moves</strong> is a redacted manifest: an opaque identifier, a timestamp,
-      and the design principle the work stands on. No names, no paths, no content. The work itself
-      never moves, so you cannot leak it by contributing.</p>
-
-    <p><strong>Authentication without an authority.</strong> A community broadcasts an anonymised record
-      of its activity. Each participant keeps a private, append-only ledger. Proving membership is just
-      the comparison of the two: you show your record overlaps the broadcast, without the community
-      ever naming you. Either side can end it by deleting its own half, so leaving is always available.</p>
-
-    <blockquote class="sp-quote">Instead of giving you my ID attached to my email, what if I gave you
-      the timestamps of what I shared at a networking event? I have my timestamps. The community has
-      them too. It becomes proof of action, anonymised.</blockquote>
-
-    <p class="sp-papers-h">Published papers</p>
-    <ul class="sp-papers">
-      <li><a href="https://doi.org/10.6084/m9.figshare.32576631" target="_blank" rel="noopener">
-        Dual-Ledger Authentication</a> <span>figshare, CC BY 4.0</span></li>
-      <li><a href="https://doi.org/10.6084/m9.figshare.32772147" target="_blank" rel="noopener">
-        Local Assembly</a> <span>figshare, CC BY 4.0</span></li>
-    </ul>
-  </div>
-</aside>
-
-<!-- ─── footer ───────────────────────────────────────────────────────────── -->
 <footer data-tone="inverse" class="foot" id="s-foot" data-dot="Find us">
   <div class="shell">
     <h2>Get involved.</h2>
@@ -1244,297 +1291,7 @@ html{scroll-padding-top:var(--topbar-h)}
       Founder&#8217;s Couch episode one.</p>
   </div>
 </footer>
-
-<script>
-(function(){
-  var secs = Array.prototype.slice.call(document.querySelectorAll('[data-dot]'));
-
-  /* progress dots, built from the sections so they cannot fall out of step */
-  var rail = document.getElementById('pdots');
-  secs.forEach(function(s){
-    var li = document.createElement('li');
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.setAttribute('aria-label', s.dataset.dot);
-    b.setAttribute('aria-current', 'false');
-    b.addEventListener('click', function(){ s.scrollIntoView({behavior:'smooth', block:'start'}); });
-    li.appendChild(b); rail.appendChild(li);
-  });
-  var dots = Array.prototype.slice.call(rail.querySelectorAll('button'));
-
-  if ('IntersectionObserver' in window) {
-    var spy = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if (!e.isIntersecting) return;
-        var i = secs.indexOf(e.target);
-        dots.forEach(function(d, j){ d.setAttribute('aria-current', j === i ? 'true' : 'false'); });
-      });
-    }, {rootMargin:'-45% 0px -45% 0px'});
-    secs.forEach(function(s){ spy.observe(s); });
-
-    var rev = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); rev.unobserve(e.target); } });
-    }, {rootMargin:'0px 0px -8% 0px'});
-    document.querySelectorAll('.rv').forEach(function(n){ rev.observe(n); });
-  } else {
-    document.querySelectorAll('.rv').forEach(function(n){ n.classList.add('in'); });
-  }
-
-  /* Cuts Side Panel v1.0 behaviour, unmodified contract:
-     [data-panel-open="id"] opens, [data-panel-close] and the scrim close, Escape closes. */
-  (function(){
-    var scrim = document.querySelector('[data-panel-scrim]');
-    var current = null, lastFocus = null;
-    function open(id, trigger){
-      var panel = document.querySelector('.side-panel[data-panel="' + id + '"]');
-      if(!panel) return;
-      if(current && current !== panel) close(true);
-      /* the trigger itself, not activeElement: a click does not focus a button in
-         every browser, and without this focus never returns on close */
-      lastFocus = trigger || document.activeElement;
-      panel.hidden = false; if(scrim) scrim.hidden = false;
-      /* force layout so the transition has a start value, then set the class
-         synchronously. requestAnimationFrame does not fire in a frame that is not
-         being rendered, which would leave the page scroll-locked with no panel. */
-      void panel.offsetHeight;
-      panel.classList.add('is-open'); if(scrim) scrim.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      panel.focus(); current = panel;
-    }
-    function close(skipScroll){
-      if(!current) return;
-      var panel = current; current = null;
-      panel.classList.remove('is-open'); if(scrim) scrim.classList.remove('is-open');
-      if(!skipScroll) document.body.style.overflow = '';
-      var done = function(){
-        panel.hidden = true; if(scrim && !current) scrim.hidden = true;
-        panel.removeEventListener('transitionend', done);
-      };
-      panel.addEventListener('transitionend', done);
-      /* transitions do not run in an offscreen frame, so never leave it stuck open */
-      setTimeout(done, 400);
-      if(lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-    document.addEventListener('click', function(e){
-      var openBtn = e.target.closest('[data-panel-open]');
-      if(openBtn){ e.preventDefault(); open(openBtn.getAttribute('data-panel-open'), openBtn); return; }
-      if(e.target.closest('[data-panel-close]') || e.target.hasAttribute('data-panel-scrim')) close();
-    });
-    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
-  })();
-
-  /* EraSequence host wiring.
-
-     The section becomes a tall track with the stage pinned inside it, and
-     scroll position picks which slide is up. Equal scroll per slide, including
-     the closing statement, which gets a beat of its own so it is read rather
-     than passed.
-
-     The rail is linear in the slide index, not in each era's share of history.
-     Tying it to the share was tried and removed: one era owns almost all of it,
-     so the rest crawl and the last one stalls.
-
-     Three gates, and failing any leaves the slides stacked as an ordinary list:
-     motion allowed, at least 520px of viewport height, and sticky supported.
-     data-seq and .swap-on are set here and nowhere else, so a browser that
-     never reaches this line shows every slide. A mode that hides five of six
-     can never be what the markup ships.
-
-     No requestAnimationFrame in the scroll path: rAF does not fire in a frame
-     that is not being rendered, and a pinned section whose state never updates
-     strands the reader. */
-  (function(){
-    var sec = document.getElementById('s-phases');
-    if (!sec) return;
-    var track = sec.querySelector('.tl-track');
-    var seq = sec.querySelector('.eseq');
-    if (!track || !seq) return;
-    var slides = Array.prototype.slice.call(seq.querySelectorAll('.eseq-slide'));
-    if (!slides.length) return;
-
-    var BEAT_VH = 55;
-    var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var tall  = window.matchMedia('(min-height: 520px)');
-    var sticky = typeof CSS !== 'undefined' && CSS.supports
-                 && CSS.supports('position', 'sticky');
-    var on = null, last = -1;
-
-    function show(i) {
-      if (i === last) return;
-      for (var k = 0; k < slides.length; k++) {
-        if (k === i) slides[k].classList.add('current');
-        else slides[k].classList.remove('current');
-      }
-      seq.style.setProperty('--eseq-live',
-        slides[i].style.getPropertyValue('--eseq-live-c') || '');
-      last = i;
-    }
-
-    function onScroll() {
-      if (!on) return;
-      var span = track.offsetHeight - window.innerHeight;
-      if (span <= 0) return;
-      var p = -track.getBoundingClientRect().top / span;
-      p = p < 0 ? 0 : (p > 1 ? 1 : p);
-      seq.style.setProperty('--eseq-p', p.toFixed(4));
-      show(Math.min(slides.length - 1, Math.floor(p * slides.length)));
-    }
-
-    function apply() {
-      var want = !still.matches && tall.matches && sticky;
-      if (want === on) return;
-      on = want;
-      if (on) {
-        sec.style.setProperty('--swap-h', (slides.length * BEAT_VH + 100) + 'vh');
-        sec.classList.add('swap-on');
-        seq.setAttribute('data-seq', '');
-        last = -1;
-        onScroll();
-      } else {
-        sec.classList.remove('swap-on');
-        sec.style.removeProperty('--swap-h');
-        seq.removeAttribute('data-seq');
-        seq.style.removeProperty('--eseq-p');
-        slides.forEach(function(el){ el.classList.remove('current'); });
-        last = -1;
-      }
-    }
-
-    [still, tall].forEach(function(q){
-      if (q.addEventListener) q.addEventListener('change', apply);
-      else if (q.addListener) q.addListener(apply);
-    });
-    window.addEventListener('scroll', onScroll, {passive:true});
-    window.addEventListener('resize', function(){ apply(); onScroll(); }, {passive:true});
-
-    /* checked three times, not once: a media query read at parse time can be
-       answered against a viewport that is not final yet */
-    apply();
-    window.addEventListener('load', function(){ apply(); onScroll(); });
-    setTimeout(function(){ apply(); onScroll(); }, 0);
-  })();
-})();
-
-/* restored with the horizon 1 section, 2026-08-28 */
-function toggleImpl(btn){ var box = btn.closest('.impl'); if(box) box.classList.toggle('open'); }
-/* ── the fields ────────────────────────────────────────────────
-   Decorative drift behind the gardens panel and the timeline, drawn from the
-   same five stops the rail uses. Three things it does on purpose:
-
-   It paints one frame synchronously on init, before scheduling anything, so a
-   frame that is never rendered still shows the field rather than a blank
-   panel. rAF does not fire in an unrendered frame and this file has been
-   caught by that four times.
-
-   Speed is read from window.scrollY inside the animation frame, never from a
-   scroll event. Scroll events do not fire for a document inside an iframe that
-   is not being composited, so an event-driven version measures as frozen under
-   the harness while working in a real browser. Sampling the position each
-   frame sidesteps that and is what the rest of this page already does.
-
-   It honours prefers-reduced-motion by painting the single frame and stopping. */
-(function () {
-  var STOPS = ['#4a8a62', '#8ab06d', '#c8951f', '#f3d88b', '#6fbf87'];
-  var canvases = [].slice.call(document.querySelectorAll('[data-field]'));
-  if (!canvases.length) return;
-
-  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var lastY = window.pageYOffset || 0;
-  var speed = 1;
-  var fields = [];
-
-  function build(cv) {
-    var ctx = cv.getContext && cv.getContext('2d');
-    if (!ctx) return null;
-    return { cv: cv, ctx: ctx, w: 0, h: 0, dots: [] };
-  }
-
-  function size(f) {
-    var r = f.cv.getBoundingClientRect();
-    f.w = Math.max(1, Math.round(r.width));
-    f.h = Math.max(1, Math.round(r.height));
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    f.cv.width = Math.round(f.w * dpr);
-    f.cv.height = Math.round(f.h * dpr);
-    f.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  function seed(f) {
-    var n = Math.round(Math.min(110, Math.max(28, (f.w * f.h) / 14000)) * (parseFloat(f.cv.getAttribute('data-density')) || 1));
-    f.dots = [];
-    for (var i = 0; i < n; i++) {
-      f.dots.push({
-        x: Math.random() * f.w,
-        y: Math.random() * f.h,
-        r: 0.8 + Math.random() * 2.2,
-        a: 0.18 + Math.random() * 0.34,
-        c: STOPS[i % STOPS.length],
-        vx: (Math.random() - 0.5) * 0.14,
-        vy: -0.05 - Math.random() * 0.16
-      });
-    }
-  }
-
-  function paint(f) {
-    f.ctx.clearRect(0, 0, f.w, f.h);
-    for (var i = 0; i < f.dots.length; i++) {
-      var d = f.dots[i];
-      f.ctx.globalAlpha = d.a;
-      f.ctx.fillStyle = d.c;
-      f.ctx.beginPath();
-      f.ctx.arc(d.x, d.y, d.r, 0, 6.283185);
-      f.ctx.fill();
-    }
-    f.ctx.globalAlpha = 1;
-  }
-
-  function advance(f) {
-    for (var i = 0; i < f.dots.length; i++) {
-      var d = f.dots[i];
-      d.x += d.vx * speed;
-      d.y += d.vy * speed;
-      if (d.y < -4) { d.y = f.h + 4; d.x = Math.random() * f.w; }
-      if (d.y > f.h + 4) { d.y = -4; d.x = Math.random() * f.w; }
-      if (d.x < -4) d.x = f.w + 4;
-      if (d.x > f.w + 4) d.x = -4;
-    }
-  }
-
-  var raf = 0;
-  function step() {
-    var y = window.pageYOffset || 0;
-    var dv = Math.abs(y - lastY);
-    lastY = y;
-    /* a still page drifts at 1x; a fast scroll pushes toward 8x and eases back */
-    var target = 1 + Math.min(dv / 5, 7);
-    speed += (target - speed) * (target > speed ? 0.35 : 0.06);
-    for (var i = 0; i < fields.length; i++) { advance(fields[i]); paint(fields[i]); }
-    raf = requestAnimationFrame(step);
-  }
-
-  function start() {
-    if (raf) cancelAnimationFrame(raf);
-    fields = [];
-    for (var i = 0; i < canvases.length; i++) {
-      var f = build(canvases[i]);
-      if (!f) continue;
-      size(f); seed(f); paint(f);
-      fields.push(f);
-    }
-    if (!still && fields.length) raf = requestAnimationFrame(step);
-  }
-
-  window.__field = { speed: function () { return speed; }, count: function () { return fields.length; } };
-
-  start();
-  window.addEventListener('load', start);
-  var t = 0;
-  window.addEventListener('resize', function () {
-    clearTimeout(t); t = setTimeout(start, 160);
-  });
-})();
-</script>
-
+<script>function toggleImpl(btn){ var box = btn.closest('.impl'); if(box) box.classList.toggle('open'); }</script>
 <script src="vendor/template-menu/behavior.js"></script>
 </body>
 </html>
