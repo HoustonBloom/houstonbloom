@@ -986,17 +986,6 @@ html[data-style="bloom"] body{font-size:var(--text-body);line-height:var(--leadi
 /* the page's own values win over the bloom style's for everything but type (Megan: "i hate it", the bright buttons, 2026-10-01) */
 html[data-style="bloom"]{--color-focus:var(--green);--field-ink:var(--on-dark);--btn-weight:800;--btn-default-fill:var(--brand-green-deep);--btn-default-text:var(--cream);--btn-default-fill-hover:var(--brand-green);--btn-default-text-hover:var(--ink);--btn-default-fill-inverse:var(--brand-green);--btn-default-text-inverse:var(--green-deep);--btn-default-fill-hover-inverse:var(--cream);--btn-default-text-hover-inverse:var(--green-deep)}
 
-/* the home horizon tiles: the light version of the spec page's tiles (Megan, 2026-10-01) */
-.hz-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);max-width:760px;margin:var(--s6) auto 0}
-.hz-tiles a{display:flex;flex-direction:column;align-items:center;gap:var(--s2);padding:var(--s5);background:var(--paper);color:var(--ink);border:1px solid var(--green);border-radius:12px;text-decoration:none;text-align:center;transition:background-color .2s ease}
-.hz-tiles a:hover{background:color-mix(in oklch,var(--green) 8%,var(--paper))}
-.hz-tiles a:focus-visible{outline:2px solid var(--green);outline-offset:3px}
-.hz-tile-n{font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
-.hz-tile-icon{display:block;width:48px;height:48px;color:var(--green)}
-.hz-tile-icon svg{display:block;width:100%;height:100%;overflow:visible}
-.hz-tile-label{line-height:1.25;text-wrap:balance}
-.hz-tile-go{margin-top:auto;font-weight:600;font-size:var(--t-sm);color:var(--green);text-decoration:underline;text-underline-offset:3px}
-@media (max-width:640px){.hz-tiles{grid-template-columns:1fr}}
 </style>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">

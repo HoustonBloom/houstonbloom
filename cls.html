@@ -72,19 +72,6 @@ html:has(.cls-mapframe .tpl--activity-map), html:has(.cls-mapframe .tpl--activit
    then a link to the horizons section on the home page. A tile presses the map's own filter row, so the map stays the
    one source of filter state. White tiles on the cream page (Megan, 2026-10-01). On phones the in-map horizon chips
    hide, since the tiles carry them; Design principles stays. */
-.cls-hz:not([hidden]) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-sm); max-width: 720px; margin: var(--space-lg) auto 0; }
-.cls-hz button { display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); min-width: 0; padding: var(--space-lg); font: inherit; color: var(--palette-ink); background: #fff; border: var(--border-width) var(--border-style) var(--palette-accent); border-radius: var(--radius-lg); cursor: pointer; }
-.cls-hz button:hover { background: color-mix(in oklch, var(--palette-accent) 8%, #fff); }
-.cls-hz button:focus-visible { outline: 2px solid var(--palette-accent); outline-offset: 2px; }
-.cls-hz button[aria-pressed="true"] { color: var(--palette-paper); background: var(--palette-accent); }
-.cls-hz-go { margin-top: auto; padding-top: var(--space-xs); font-size: var(--text-caption); font-weight: 600; color: var(--palette-accent); text-decoration: underline; text-underline-offset: 3px; }
-.cls-hz button:hover .cls-hz-go { text-decoration-thickness: 2px; }
-.cls-hz button[aria-pressed="true"] .cls-hz-go { color: inherit; }
-.cls-hz-n { font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: inherit; opacity: .75; }
-.cls-hz-icon { display: block; width: 48px; height: 48px; margin: var(--space-xs) 0; color: var(--palette-accent); }
-.cls-hz button[aria-pressed="true"] .cls-hz-icon { color: var(--palette-paper); }
-.cls-hz-icon svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.cls-hz-label { font-size: var(--text-body-sm); line-height: 1.25; overflow-wrap: anywhere; text-wrap: balance; }
 .cls-hz-more { display: inline-flex; margin: var(--space-base) 0 0; padding: var(--space-sm) var(--space-lg); color: var(--palette-paper); background: var(--palette-accent); font-weight: 600; text-decoration: none; border: var(--border-width) var(--border-style) var(--palette-accent); border-radius: var(--radius-full); }
 /* The spec hero matches Gardening Tools (Megan, 2026-10-01): a dark band edge to edge, the display title and
    the line under it in paper, and glass tiles with the drawings in the brand green. It sits in the bloom style's
@@ -92,12 +79,6 @@ html:has(.cls-mapframe .tpl--activity-map), html:has(.cls-mapframe .tpl--activit
    clip, so nothing scrolls sideways. */
 .cls-head[data-style="bloom"] { background: var(--palette-band); color: var(--palette-paper); box-shadow: 0 0 0 100vmax var(--palette-band); clip-path: inset(0 -100vmax); padding: var(--space-2xl) 0 var(--space-xl); }
 .cls-head[data-style="bloom"] h1, .cls-head[data-style="bloom"] .cls-lede { color: var(--palette-paper); }
-.cls-head[data-style="bloom"] .cls-hz button { background: color-mix(in oklch, var(--palette-paper) 7%, transparent); color: var(--palette-paper); border-color: color-mix(in oklch, var(--palette-paper) 18%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-.cls-head[data-style="bloom"] .cls-hz button:hover { background: color-mix(in oklch, var(--palette-paper) 12%, transparent); border-color: color-mix(in oklch, var(--palette-brand) 70%, transparent); }
-.cls-head[data-style="bloom"] .cls-hz button[aria-pressed="true"] { background: color-mix(in oklch, var(--palette-brand) 22%, transparent); border-color: var(--palette-brand); color: var(--palette-paper); }
-.cls-head[data-style="bloom"] .cls-hz-icon, .cls-head[data-style="bloom"] .cls-hz button[aria-pressed="true"] .cls-hz-icon { color: var(--palette-brand); }
-.cls-head[data-style="bloom"] .cls-hz-n { color: color-mix(in oklch, var(--palette-paper) 72%, transparent); opacity: 1; }
-.cls-head[data-style="bloom"] .cls-hz-go { color: var(--palette-paper); text-decoration-color: var(--palette-brand); text-decoration-thickness: 2px; }
 /* the dark primary button, as on the landing page */
 .cls-head[data-style="bloom"] .cls-hz-more { background: var(--palette-green-deep); color: var(--palette-paper); border-color: var(--palette-green-deep); }
 .cls-head[data-style="bloom"] .cls-hz-more:hover { background: var(--palette-green); border-color: var(--palette-green); }
@@ -107,8 +88,6 @@ html:has(.cls-mapframe .tpl--activity-map), html:has(.cls-mapframe .tpl--activit
   -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.7) 20%, transparent 42%, transparent 58%, rgba(0,0,0,.7) 80%, #000 100%);
   mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.7) 20%, transparent 42%, transparent 58%, rgba(0,0,0,.7) 80%, #000 100%); }
 html:has(.cls-head .field) { overflow-x: clip; }
-/* phones stack the horizon tiles, as on the landing page and Gardening Tools */
-@media (max-width: 640px) { .cls-hz:not([hidden]) { grid-template-columns: 1fr; } }
 .cls-head[data-style="bloom"] + .cls-mapsec { margin-top: var(--space-xl); }
 @media (max-width: 879px) {
   #cls-mapframe .category-list li:has(> [data-slot="row"]:is([data-cat="1"], [data-cat="2"], [data-cat="3"])) { display: none; }
@@ -276,9 +255,9 @@ ul.cls-leads p { grid-column: 1; }
   <section class="cls-head" data-style="bloom">
     <canvas class="field" data-field data-density="6" aria-hidden="true"></canvas>
     <h1>Community Legibility Spec</h1>
-    <p class="cls-lede">The minimally sufficient hardware, protocols, and data for individuals to share without a platform and communities to be found without extraction.</p>
+    <p class="cls-lede">A specification for ending data extraction and exploitation: the hardware and protocols needed to move data between individuals without a platform in between, and the minimum data communities need to broadcast for discoverability.</p>
     <!-- visual-assets: reviewed (horizon icons persisted in Cuts/_assets/svg/houston-bloom_horizon-*.svg) -->
-    <div class="cls-hz" data-hz hidden></div>
+    <div class="cls-hz hz-tiles hz-tiles--glass" data-hz hidden></div>
     <a class="cls-hz-more" href="gardening-tools.html">More about the 3 horizons</a>
   </section>
   <section class="cls-mapsec" id="map" aria-label="Map of the parts of the spec">
@@ -489,7 +468,7 @@ ul.cls-leads p { grid-column: 1; }
       var b = document.createElement('button');
       b.type = 'button'; b.dataset.hzId = c.id; b.dataset.cat = c.series; b.setAttribute('aria-pressed', 'false');
       [['cls-hz-n', 'Horizon ' + (i + 1)], ['cls-hz-icon', ''], ['cls-hz-label', c.label], ['cls-hz-go', 'See on map']].forEach(function (p) {
-        var sp = document.createElement('span'); sp.className = p[0]; sp.textContent = p[1];
+        var sp = document.createElement('span'); sp.className = p[0] + ' ' + p[0].replace('cls-hz-', 'hz-tile-'); sp.textContent = p[1];
         if (p[0] === 'cls-hz-icon') sp.setAttribute('aria-hidden', 'true');
         b.appendChild(sp);
       });

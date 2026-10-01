@@ -986,17 +986,6 @@ html[data-style="bloom"] body{font-size:var(--text-body);line-height:var(--leadi
 /* the page's own values win over the bloom style's for everything but type (Megan: "i hate it", the bright buttons, 2026-10-01) */
 html[data-style="bloom"]{--color-focus:var(--green);--field-ink:var(--on-dark);--btn-weight:800;--btn-default-fill:var(--brand-green-deep);--btn-default-text:var(--cream);--btn-default-fill-hover:var(--brand-green);--btn-default-text-hover:var(--ink);--btn-default-fill-inverse:var(--brand-green);--btn-default-text-inverse:var(--green-deep);--btn-default-fill-hover-inverse:var(--cream);--btn-default-text-hover-inverse:var(--green-deep)}
 
-/* the home horizon tiles: the light version of the spec page's tiles (Megan, 2026-10-01) */
-.hz-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);max-width:760px;margin:var(--s6) auto 0}
-.hz-tiles a{display:flex;flex-direction:column;align-items:center;gap:var(--s2);padding:var(--s5);background:var(--paper);color:var(--ink);border:1px solid var(--green);border-radius:12px;text-decoration:none;text-align:center;transition:background-color .2s ease}
-.hz-tiles a:hover{background:color-mix(in oklch,var(--green) 8%,var(--paper))}
-.hz-tiles a:focus-visible{outline:2px solid var(--green);outline-offset:3px}
-.hz-tile-n{font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
-.hz-tile-icon{display:block;width:48px;height:48px;color:var(--green)}
-.hz-tile-icon svg{display:block;width:100%;height:100%;overflow:visible}
-.hz-tile-label{line-height:1.25;text-wrap:balance}
-.hz-tile-go{margin-top:auto;font-weight:600;font-size:var(--t-sm);color:var(--green);text-decoration:underline;text-underline-offset:3px}
-@media (max-width:640px){.hz-tiles{grid-template-columns:1fr}}
 </style>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -1017,18 +1006,7 @@ html[data-style="bloom"]{--color-focus:var(--green);--field-ink:var(--on-dark);-
 .tools-hero h1{color:var(--on-dark)}
 .panel-dark.tools-hero .lede{color:var(--on-dark)}
 /* three jumps to the horizons below (Megan, 2026-10-01) */
-/* the horizon tiles from the spec page, centred under the description; each scrolls to its section (Megan, 2026-10-01) */
-.tools-hz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);max-width:760px;margin:var(--s6) auto 0}
-/* glass tiles, the map's look: a see-through ground, a faint line, white words, the brand green for the drawings and underlines (Megan, 2026-10-01) */
-.tools-hz a{display:flex;flex-direction:column;align-items:center;gap:var(--s2);padding:var(--s5);background:color-mix(in oklch,var(--on-dark) 7%,transparent);color:var(--on-dark);border:1px solid color-mix(in oklch,var(--on-dark) 18%,transparent);border-radius:12px;text-decoration:none;text-align:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background-color .2s ease,border-color .2s ease}
-.tools-hz a:hover{background:color-mix(in oklch,var(--on-dark) 12%,transparent);border-color:color-mix(in oklch,var(--brand-green) 70%,transparent)}
-.tools-hz a:focus-visible{outline:2px solid var(--brand-green);outline-offset:3px}
-.tools-hz-n{font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;color:color-mix(in oklch,var(--on-dark) 72%,transparent)}
-.tools-hz-icon{display:block;width:48px;height:48px;color:var(--brand-green)}
-.tools-hz-icon svg{display:block;width:100%;height:100%;overflow:visible}
-.tools-hz-label{line-height:1.25;color:var(--on-dark);text-wrap:balance}
-.tools-hz-go{margin-top:auto;font-weight:600;font-size:.9rem;color:var(--on-dark);text-decoration:underline;text-decoration-color:var(--brand-green);text-decoration-thickness:2px;text-underline-offset:4px}
-@media (max-width:640px){.tools-hz{grid-template-columns:1fr}}
+grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);max-width:760px;margin:var(--s6) auto 0}
 html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .cluster{scroll-margin-top:96px}
 /* the horizon sections read the bloom style for body and heading type instead of the old hand-set sizes (Megan, 2026-10-01) */
@@ -1036,7 +1014,11 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
 .cls-import .cluster h2{font-size:var(--text-heading-md);line-height:var(--leading-display)}
 /* each horizon: words on the left, its diagram on the right; a phone stacks them */
 .hz-split{display:grid;gap:var(--s6);align-items:center}
-.hz-split .svg-figure{margin:0}
+.cls-import .hz-split{align-items:start;margin-bottom:var(--s6)}
+/* the diagram is one card: the drawing and its caption share a ground and an edge (Megan: layout is bad, 2026-10-01) */
+.cls-import .hz-split .svg-figure{margin:0;background:var(--paper);border:1px solid color-mix(in oklch,var(--ink) 14%,transparent);border-radius:14px;padding:var(--s4)}
+.cls-import .hz-split .svg-figure svg{background:transparent;padding:0;border-radius:0}
+.cls-import .hz-split .svg-figure figcaption{margin:var(--s3) 0 0;padding-top:var(--s3);border-top:1px solid color-mix(in oklch,var(--ink) 10%,transparent);font-family:var(--sans);font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft)}
 /* two columns need the room: the horizon sections widen so the diagram is not shrunk to a thumbnail */
 .cls-import .wrap:has(.hz-split){max-width:1180px}
 @media (min-width:900px){.hz-split{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}}
@@ -1071,8 +1053,8 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
   <canvas class="field" data-field data-density="6" aria-hidden="true"></canvas>
   <div class="shell">
     <h1>Tend Your Legibility</h1>
-    <p class="lede measure">Gardening tools for helping you move your data off of platforms and how to leverage them to build what you need for your local context.</p>
-    <nav class="tools-hz" aria-label="The three horizons"><a href="#s-horizon-1"><span class="tools-hz-n">Horizon 1</span><span class="tools-hz-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-flower">
+    <p class="lede measure">Tools that help you move your data off of platforms and leverage it to build what you need for your local context.</p>
+    <nav class="hz-tiles hz-tiles--glass" aria-label="The three horizons"><a href="#s-horizon-1"><span class="hz-tile-n">Horizon 1</span><span class="hz-tile-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-flower">
 <style>
 .hbi-flower .f-plant{transform-box:view-box;transform-origin:12px 22px}
 .hbi-flower .f-stem{stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
@@ -1096,7 +1078,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
 <ellipse data-body class="f-petal" style="--a:0deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
 <circle data-body class="f-core" cx="12" cy="9.5" r="1.7"/>
 </g>
-</svg></span><span class="tools-hz-label">Cultivate your data</span><span class="tools-hz-go">More info</span></a><a href="#s-horizon-2"><span class="tools-hz-n">Horizon 2</span><span class="tools-hz-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-hs">
+</svg></span><span class="hz-tile-label">Cultivate your data</span><span class="hz-tile-go">More info</span></a><a href="#s-horizon-2"><span class="hz-tile-n">Horizon 2</span><span class="hz-tile-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-hs">
 <style>
 .hbi-hs path{fill:currentColor;transform-box:fill-box;transform-origin:50% 50%}
 .hbi-hs .h-shield{opacity:0;transform-box:fill-box;transform-origin:50% 50%}
@@ -1111,7 +1093,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
 <path data-body class="h-heart" d="M12 20.2S4.5 15.6 4.5 9.8A4.1 4.1 0 0 1 12 7.4a4.1 4.1 0 0 1 7.5 2.4c0 5.8-7.5 10.4-7.5 10.4z"/>
 <defs><clipPath id="hbi-hs-left"><rect x="0" y="0" width="12" height="24"/></clipPath></defs>
 <g class="h-shield"><path data-body class="h-tint" d="M12 3.2l7 2.9v5.6c0 4.5-2.9 7.6-7 9.2-4.1-1.6-7-4.7-7-9.2V6.1z"/><path data-body d="M12 3.2l7 2.9v5.6c0 4.5-2.9 7.6-7 9.2-4.1-1.6-7-4.7-7-9.2V6.1z" clip-path="url(#hbi-hs-left)"/></g>
-</svg></span><span class="tools-hz-label">Protect community intelligence</span><span class="tools-hz-go">More info</span></a><a href="#s-horizon-3"><span class="tools-hz-n">Horizon 3</span><span class="tools-hz-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-murm">
+</svg></span><span class="hz-tile-label">Protect community intelligence</span><span class="hz-tile-go">More info</span></a><a href="#s-horizon-3"><span class="hz-tile-n">Horizon 3</span><span class="hz-tile-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-murm">
 <style>
 .hbi-murm path{fill:currentColor}
 .hbi-murm .b-wing,.hbi-murm .b-wing-back{transform-box:view-box;transform-origin:11.4px 12.4px}
@@ -1155,7 +1137,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
 <path data-body class="b-wing" d="M9.4 12.6 6.2 3.4c3.6 1.4 6.4 4.6 7.6 8.4z"/>
 </g></g>
 </g>
-</svg></span><span class="tools-hz-label">Enable emergent governance</span><span class="tools-hz-go">More info</span></a></nav>
+</svg></span><span class="hz-tile-label">Enable emergent governance</span><span class="hz-tile-go">More info</span></a></nav>
   </div>
 </section>
 <div class="cls-import" data-style="bloom">

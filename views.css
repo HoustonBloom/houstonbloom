@@ -164,3 +164,26 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 :is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-slot="item"]:is([data-ring], [data-state="on"]) [data-badge] { width: 60px; height: 60px; }
 :is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-slot="item"][data-state="near"] [data-badge] { width: 40px; height: 40px; }
 :is(.cls-mapframe, #app) .orbit-map[data-keystyle="outline"] [data-slot="star"][data-state="on"] [data-badge] { width: 48px; height: 48px; }
+
+/* ── horizon tiles ─────────────────────────────────────────────────────────
+   One component for the landing page, Gardening Tools and the spec page (2026-10-01). Every value is a
+   design-system token, read in the bloom style's scope (each page puts the tiles inside it). Light on a
+   light ground; .hz-tiles--glass on a dark hero. */
+.hz-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-md);max-width:760px;margin:var(--space-xl) auto 0;padding:0}
+.hz-tiles[hidden]{display:none}
+.hz-tiles > :is(a,button){display:flex;flex-direction:column;align-items:center;gap:var(--space-sm);min-width:0;padding:var(--space-lg);font:inherit;text-align:center;text-decoration:none;cursor:pointer;border-radius:var(--radius-lg);border:var(--border-width) solid var(--palette-green-deep);background:var(--palette-paper);color:var(--palette-ink);transition:background-color .2s ease,border-color .2s ease}
+.hz-tiles > :is(a,button):hover{background:color-mix(in oklch,var(--palette-green-deep) 8%,var(--palette-paper))}
+.hz-tiles > :is(a,button):focus-visible{outline:2px solid var(--palette-green-deep);outline-offset:3px}
+.hz-tile-n{font-size:var(--text-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--color-text-muted)}
+.hz-tile-icon{display:block;width:48px;height:48px;color:var(--palette-green-deep)}
+.hz-tile-icon svg{display:block;width:100%;height:100%;overflow:visible}
+.hz-tile-label{font-size:var(--text-body);line-height:1.25;text-wrap:balance}
+.hz-tile-go{margin-top:auto;font-size:var(--text-body-sm);font-weight:600;color:var(--palette-green-deep);text-decoration:underline;text-underline-offset:3px}
+.hz-tiles--glass > :is(a,button){background:color-mix(in oklch,var(--palette-paper) 7%,transparent);color:var(--palette-paper);border-color:color-mix(in oklch,var(--palette-paper) 18%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hz-tiles--glass > :is(a,button):hover{background:color-mix(in oklch,var(--palette-paper) 12%,transparent);border-color:color-mix(in oklch,var(--palette-brand) 70%,transparent)}
+.hz-tiles--glass > :is(a,button):focus-visible{outline-color:var(--palette-brand)}
+.hz-tiles--glass > [aria-pressed="true"]{background:color-mix(in oklch,var(--palette-brand) 22%,transparent);border-color:var(--palette-brand)}
+.hz-tiles--glass .hz-tile-n{color:color-mix(in oklch,var(--palette-paper) 72%,transparent)}
+.hz-tiles--glass .hz-tile-icon{color:var(--palette-brand)}
+.hz-tiles--glass .hz-tile-go{color:var(--palette-paper);text-decoration-color:var(--palette-brand);text-decoration-thickness:2px}
+@media (max-width:640px){.hz-tiles{grid-template-columns:1fr}}
