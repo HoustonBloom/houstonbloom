@@ -1730,6 +1730,21 @@ function toggleImpl(btn){ var box = btn.closest('.impl'); if(box) box.classList.
     if (x2 - x1 < 12) { svg.style.opacity = 0; return; }
     svg.style.opacity = 1;
     var mx = (x1 + x2) / 2;
+    /* on a phone the drawing sits above the era's text and the text starts left of the drawing, so a straight
+       curve would run through the words; there the strands climb the gap between the rail and the text, then
+       turn across to the drawing above the text */
+    var txt = big.parentNode.querySelector('.eseq-text'), t = txt && txt.getBoundingClientRect();
+    var tl = t && t.width ? t.left - r.left : Infinity, tt = t ? t.top - r.top : 0, tb = t ? t.bottom - r.top : 0;
+    if (tl < x2 && Math.min(y1, y2) < tb && Math.max(y1, y2) > tt) {
+      var gap = tl - x1;
+      if (gap < 8) { svg.style.opacity = 0; return; }
+      var dir = y2 < y1 ? -1 : 1, k = Math.min(28, Math.abs(y2 - y1) / 2);
+      paths.forEach(function (p, i) {
+        var cx = x1 + gap * [0.5, 0.35, 0.65, 0.25, 0.75, 0.45][i];
+        p.setAttribute('d', 'M' + x1 + ' ' + y1 + ' Q' + cx + ' ' + y1 + ' ' + cx + ' ' + (y1 + dir * k) + ' L' + cx + ' ' + (y2 - dir * k) + ' Q' + cx + ' ' + y2 + ' ' + x2 + ' ' + y2);
+      });
+      return;
+    }
     paths.forEach(function (p, i) { var a = [0, 16, -16, 30, -30, 8][i]; p.setAttribute('d', 'M' + x1 + ' ' + y1 + ' C' + mx + ' ' + (y1 + a) + ' ' + mx + ' ' + (y2 - a) + ' ' + x2 + ' ' + y2); });
   }
   var raf = 0;
