@@ -123,7 +123,7 @@ html{-webkit-text-size-adjust:100%}
      yellow that survives on cream at 6.67:1. */
   --cream:#ece5d6; --cream-2:#e3dccb; --cream-3:#d8d1bf;
   --ink:#1a1a1a; --ink-soft:#4a4439; --ink-softer:#5c5648;
-  --green:#2d5a3f; --green-deep:#0f2a1c; --green-mid:#1e4630; --green-light:#4a8a62;
+  --green:#2d5a3f; --green-deep:#0f2a1c; --green-mid:#1e4630; --green-light:#4a8a62; --green-night:#04110b;
   --gold:#6b4613;--gold-bright:#c8951f;
   --gold-wash:rgba(107,70,19,.09);
   --paper:#faf8f3; --green-wash:rgba(45,90,63,.08); --butter:#f3d88b; --butter-wash:#f7ecc7;
@@ -562,13 +562,10 @@ html{scroll-padding-top:var(--topbar-h)}
    Only the gardens panel uses this now. The rules that centred the phase cards
    went with the cards. */
 /* ── the world view band, between the hero and the comparison ───────────────── */
-/* The field drifts in from the left and right edges and fades out before the headline, and the ground
-   lifts a shade toward the mid green at the edges, so the words sit on the quiet middle. */
+/* The field drifts in from the left and right edges and fades out before the headline. The ground is the darkest
+   green on the site, --green-night, the same one the phases gradient ends on, flat edge to edge (Megan, 2026-10-01). */
 .world-band{position:relative;isolation:isolate;overflow:hidden;color:var(--on-dark);text-align:center;padding-block:var(--s6);
-  background:linear-gradient(90deg,
-    color-mix(in oklch,var(--green-deep) 80%,#4a8a62) 0%,
-    var(--green-deep) 34%,var(--green-deep) 66%,
-    color-mix(in oklch,var(--green-deep) 80%,#4a8a62) 100%)}
+  background:var(--green-night)}
 .world-band .field{-webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%);
   mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%)}
 .world-band .shell{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:var(--s3)}
@@ -952,6 +949,16 @@ html{scroll-padding-top:var(--topbar-h)}
 <link rel="stylesheet" href="vendor/nav-bar/component.css">
 <link rel="stylesheet" href="vendor/template-menu/component.css">
 <link rel="stylesheet" href="views.css">
+<style>
+/* Gardening Tools hero: the darkest green on the site, flat, with the field drifting in from both edges and fading out
+   before the headline, as the World view band does. */
+.tools-hero{position:relative;isolation:isolate;overflow:hidden;background:var(--green-night);color:var(--on-dark)}
+.tools-hero .field{-webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%);
+  mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%)}
+.tools-hero > .shell{position:relative;z-index:1}
+.tools-hero h1{color:var(--on-dark)}
+.panel-dark.tools-hero .lede{color:var(--butter)}
+</style>
 </head>
 <body>
 <script>document.documentElement.classList.add('js');</script>
@@ -978,10 +985,11 @@ html{scroll-padding-top:var(--topbar-h)}
     </div>
   </div></header>
 <main id="main">
-<section class="panel hero tools-hero" style="padding-block:var(--s9) var(--s5)">
+<section class="panel panel-dark hero tools-hero" style="padding-block:var(--s9) var(--s8)">
+  <canvas class="field" data-field data-density="6" aria-hidden="true"></canvas>
   <div class="shell">
-    <h1>Gardening Tools</h1>
-    <p class="lede measure">Used for cultivating community legibility.</p>
+    <h1>Grow Legibility</h1>
+    <p class="lede measure">Gardening tools for helping you move your data off of platforms and how to leverage them to build what you need for your local context.</p>
   </div>
 </section>
 <div class="cls-import">
@@ -1038,7 +1046,7 @@ html{scroll-padding-top:var(--topbar-h)}
 <section class="cluster" id="s-horizon-2">
   <div class="wrap">
     <p class="hnum"><span class="hdot" style="background:var(--h2)"></span> Horizon 2 · near</p>
-    <div class="status-row"><h2 style="margin:0">Cultivate community legibility</h2><span class="badge build">Building</span></div>
+    <div class="status-row"><h2 style="margin:0">Protect community intelligence</h2><span class="badge build">Building</span></div>
     <p class="lead">A tool you build on your own can only see what you put into it. Working with other people means connecting your data to theirs, and almost every way of doing that puts a platform in the middle holding both copies. Cultivating community legibility means information passes peer to peer and into the community data commons at in-person events. Two people record the same connection from their own side, each keeping their own half, so both have the history and neither had to hand it over.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="cls.html#map=cuts-lenses"><span data-slot="label">Show on the map</span></a></p>
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
@@ -1072,7 +1080,7 @@ html{scroll-padding-top:var(--topbar-h)}
 <section class="cluster" id="s-horizon-3">
   <div class="wrap">
     <p class="hnum"><span class="hdot" style="background:var(--h3)"></span> Horizon 3 · far</p>
-    <div class="status-row"><h2 style="margin:0">Emergent Governance</h2><span class="badge design">Designed</span></div>
+    <div class="status-row"><h2 style="margin:0">Enable emergent governance</h2><span class="badge design">Designed</span></div>
     <p class="lead">Once your community keeps its own record, you still cannot see the groups outside it doing related work. A land trust needs a muralist and knows none. Every way of finding them today puts a directory in the middle. Emergent governance means two communities comparing what they stand for and what they have been doing, recognizing the match themselves, and acting on it. No directory, and nobody deciding for them.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="cls.html#map=dual-ledger,local-assembly"><span data-slot="label">Show on the map</span></a></p>
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
@@ -1120,6 +1128,109 @@ html{scroll-padding-top:var(--topbar-h)}
   </div>
 </footer>
 <script>function toggleImpl(btn){ var box = btn.closest('.impl'); if(box) box.classList.toggle('open'); }</script>
+<script>
+(function () {
+  var STOPS = ['#4a8a62', '#8ab06d', '#c8951f', '#f3d88b', '#6fbf87'];
+  var canvases = [].slice.call(document.querySelectorAll('[data-field]'));
+  if (!canvases.length) return;
+
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lastY = window.pageYOffset || 0;
+  var speed = 1;
+  var fields = [];
+
+  function build(cv) {
+    var ctx = cv.getContext && cv.getContext('2d');
+    if (!ctx) return null;
+    return { cv: cv, ctx: ctx, w: 0, h: 0, dots: [] };
+  }
+
+  function size(f) {
+    var r = f.cv.getBoundingClientRect();
+    f.w = Math.max(1, Math.round(r.width));
+    f.h = Math.max(1, Math.round(r.height));
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    f.cv.width = Math.round(f.w * dpr);
+    f.cv.height = Math.round(f.h * dpr);
+    f.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function seed(f) {
+    var n = Math.round(Math.min(110, Math.max(28, (f.w * f.h) / 14000)) * (parseFloat(f.cv.getAttribute('data-density')) || 1));
+    f.dots = [];
+    for (var i = 0; i < n; i++) {
+      f.dots.push({
+        x: Math.random() * f.w,
+        y: Math.random() * f.h,
+        r: 0.8 + Math.random() * 2.2,
+        a: 0.18 + Math.random() * 0.34,
+        c: STOPS[i % STOPS.length],
+        vx: (Math.random() - 0.5) * 0.14,
+        vy: -0.05 - Math.random() * 0.16
+      });
+    }
+  }
+
+  function paint(f) {
+    f.ctx.clearRect(0, 0, f.w, f.h);
+    for (var i = 0; i < f.dots.length; i++) {
+      var d = f.dots[i];
+      f.ctx.globalAlpha = d.a;
+      f.ctx.fillStyle = d.c;
+      f.ctx.beginPath();
+      f.ctx.arc(d.x, d.y, d.r, 0, 6.283185);
+      f.ctx.fill();
+    }
+    f.ctx.globalAlpha = 1;
+  }
+
+  function advance(f) {
+    for (var i = 0; i < f.dots.length; i++) {
+      var d = f.dots[i];
+      d.x += d.vx * speed;
+      d.y += d.vy * speed;
+      if (d.y < -4) { d.y = f.h + 4; d.x = Math.random() * f.w; }
+      if (d.y > f.h + 4) { d.y = -4; d.x = Math.random() * f.w; }
+      if (d.x < -4) d.x = f.w + 4;
+      if (d.x > f.w + 4) d.x = -4;
+    }
+  }
+
+  var raf = 0;
+  function step() {
+    var y = window.pageYOffset || 0;
+    var dv = Math.abs(y - lastY);
+    lastY = y;
+    /* a still page drifts at 1x; a fast scroll pushes toward 8x and eases back */
+    var target = 1 + Math.min(dv / 5, 7);
+    speed += (target - speed) * (target > speed ? 0.35 : 0.06);
+    for (var i = 0; i < fields.length; i++) { advance(fields[i]); paint(fields[i]); }
+    raf = requestAnimationFrame(step);
+  }
+
+  function start() {
+    if (raf) cancelAnimationFrame(raf);
+    fields = [];
+    for (var i = 0; i < canvases.length; i++) {
+      var f = build(canvases[i]);
+      if (!f) continue;
+      size(f); seed(f); paint(f);
+      fields.push(f);
+    }
+    if (!still && fields.length) raf = requestAnimationFrame(step);
+  }
+
+  window.__field = { speed: function () { return speed; }, count: function () { return fields.length; } };
+
+  start();
+  window.addEventListener('load', start);
+  var t = 0;
+  window.addEventListener('resize', function () {
+    clearTimeout(t); t = setTimeout(start, 160);
+  });
+})();
+
+</script>
 <script src="vendor/template-menu/behavior.js"></script>
 </body>
 </html>
