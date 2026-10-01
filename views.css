@@ -205,3 +205,6 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 /* and when a single part is hovered or picked */
 :is(.cls-mapframe, #app) .orbit-map[data-focus] [data-slot="centre"] { opacity: 0; visibility: hidden; pointer-events: none; }
 :is(.cls-mapframe, #app) .orbit-map[data-focus] [data-slot="energy"] { opacity: 0; }
+
+/* every page's hero description wraps at one measure, centred and balanced (Megan, 2026-10-01) */
+html :is(.hero .lede, .cls-head .cls-lede, .tpl--links .links-id p) { max-width: 34rem; margin-inline: auto; text-wrap: balance; }

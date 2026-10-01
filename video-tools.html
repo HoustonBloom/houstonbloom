@@ -1895,6 +1895,9 @@ html[data-style="bloom"] body{font-size:var(--text-body);line-height:var(--leadi
 
 /* the page's own values win over the bloom style's for everything but type (Megan: "i hate it", the bright buttons, 2026-10-01) */
 html[data-style="bloom"]{--color-focus:var(--green);--field-ink:var(--on-dark);--btn-weight:800;--btn-default-fill:var(--brand-green-deep);--btn-default-text:var(--cream);--btn-default-fill-hover:var(--brand-green);--btn-default-text-hover:var(--ink);--btn-default-fill-inverse:var(--brand-green);--btn-default-text-inverse:var(--green-deep);--btn-default-fill-hover-inverse:var(--cream);--btn-default-text-hover-inverse:var(--green-deep)}
+
+/* hero description at the site-wide measure (views.css has the same rule for the other pages) */
+html .hero .lede { max-width: 34rem; margin-inline: auto; text-wrap: balance; }
 </style>
 </head>
 <body>
