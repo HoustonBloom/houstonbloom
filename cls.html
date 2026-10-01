@@ -11,13 +11,9 @@
 <link rel="stylesheet" href="vendor/styles.css">
 <link rel="stylesheet" href="vendor/nav-bar/component.css">
 <link rel="stylesheet" href="vendor/template-menu/component.css">
-<link rel="stylesheet" href="vendor/button/component.css">
-<link rel="stylesheet" href="vendor/time-scrubber/component.css">
 <link rel="stylesheet" href="vendor/node-graph/component.css">
-<link rel="stylesheet" href="vendor/orbit-map/component.css">
 <link rel="stylesheet" href="vendor/category-list/component.css">
 <link rel="stylesheet" href="vendor/detail-panel/component.css">
-<link rel="stylesheet" href="vendor/templates/activity-map.css">
 <style>
 html { scroll-behavior: smooth; }
 .cls-shell { width: min(100%, 1240px); margin: 0 auto; padding: 0 var(--space-lg); box-sizing: border-box; }
@@ -39,8 +35,6 @@ html { scroll-behavior: smooth; }
 /* body sizes: the intro reads at the large body size and the card description at the body size, nearer the landing page */
 .cls-intro { font-size: var(--text-body-lg); }
 .cls-card header .cls-what { font-size: var(--text-body); }
-.cls-cta { margin: var(--space-base) 0 0; }
-.cls-mapview[hidden] { display: none; }
 .cls-count { margin: var(--space-md) 0 0; font-size: var(--text-body-sm); color: var(--color-text-faint); }
 .cls-stage { display: grid; gap: var(--space-base); grid-template-columns: 250px minmax(0, 1fr) 340px; align-items: start; padding-bottom: var(--space-xl); }
 .cls-rail { display: grid; gap: var(--space-base); grid-template-columns: minmax(0, 1fr); min-width: 0; }
@@ -212,9 +206,17 @@ ul.cls-leads p { grid-column: 1; }
   <section class="cls-head">
     <p class="cls-eyebrow">The spec, part by part</p>
     <h1>What the Community Legibility Spec is made of, and how the parts connect</h1>
-    <p class="cls-lede">A small set of separate pieces that let communities recognize each other without a platform in the middle. The map shows when each part was worked on.</p>
-    <p class="cls-count">5 parts. Each part says whether it is built, published, prototyped or only designed.</p>
-    <p class="cls-cta"><a class="btn" data-component="button" href="#map">See the map</a></p>
+    <p class="cls-lede">A small set of separate pieces that let communities recognize each other without a platform in the middle. A line on the map means one part reads from or builds on the other.</p>
+    <p class="cls-count">5 parts and 8 lines. Each part says whether it is built, published, prototyped or only designed.</p>
+  </section>
+  <section class="cls-stage" id="map" aria-label="Map of the parts of the spec">
+    <div class="cls-rail">
+      <h2>Groups</h2>
+      <ul class="category-list" data-component="category-list" data-audit-ignore></ul>
+      <ul class="cls-blurbs"><li><b>Publish.</b> How work leaves a private vault as something a person can read.</li><li><b>Prove and share.</b> How a member shows they took part, and how views are composed without a central owner.</li><li><b>Connect people.</b> How people and organizations are recorded and brought together.</li></ul>
+    </div>
+    <div class="cls-map"></div>
+    <aside class="cls-panel"><section class="detail-panel" data-component="detail-panel" aria-live="polite"></section></aside>
   </section>
   <section class="cls-section" id="parts">
     <h2>The five parts, in depth</h2>
@@ -230,7 +232,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     
     <p class="cls-src">Source: Working notes. A public write-up is not yet available.</p>
-    <p class="cls-back"><a href="#map?node=cuts-lenses" data-map-node="cuts-lenses">Show on the map</a></p>
+    <p class="cls-back"><a href="#map" data-focus="cuts-lenses">Show on the map</a></p>
   </footer>
 </article>
 <article class="cls-card" id="sys-packet" data-kind="infrastructure">
@@ -241,7 +243,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     <p class="cls-links"><a href="https://houstonbloom.github.io/local-legibility/">Open the Intelligence Packet</a></p>
     <p class="cls-src">Source: The Intelligence Packet, linked here.</p>
-    <p class="cls-back"><a href="#map?node=packet" data-map-node="packet">Show on the map</a></p>
+    <p class="cls-back"><a href="#map" data-focus="packet">Show on the map</a></p>
   </footer>
 </article>
 <article class="cls-card" id="sys-dual-ledger" data-kind="infrastructure">
@@ -252,7 +254,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     <p class="cls-links"><a href="https://doi.org/10.6084/m9.figshare.32576631">Read the paper (DOI)</a></p>
     <p class="cls-src">Source: The Dual-Ledger Authentication paper, CC BY 4.0.</p>
-    <p class="cls-back"><a href="#map?node=dual-ledger" data-map-node="dual-ledger">Show on the map</a></p>
+    <p class="cls-back"><a href="#map" data-focus="dual-ledger">Show on the map</a></p>
   </footer>
 </article>
 <article class="cls-card" id="sys-local-assembly" data-kind="infrastructure">
@@ -263,7 +265,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     <p class="cls-links"><a href="https://doi.org/10.6084/m9.figshare.32772147">Read the paper (DOI)</a></p>
     <p class="cls-src">Source: The Local Assembly paper.</p>
-    <p class="cls-back"><a href="#map?node=local-assembly" data-map-node="local-assembly">Show on the map</a></p>
+    <p class="cls-back"><a href="#map" data-focus="local-assembly">Show on the map</a></p>
   </footer>
 </article>
 <article class="cls-card" id="sys-compare" data-kind="program">
@@ -274,7 +276,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     
     <p class="cls-src">Source: Working notes. A public write-up is not yet available.</p>
-    
+    <p class="cls-back"><a href="#map" data-focus="compare">Show on the map</a></p>
   </footer>
 </article></div>
   </section>
@@ -289,18 +291,49 @@ ul.cls-leads p { grid-column: 1; }
   <div class="cls-lb-stage"><button type="button" class="cls-lb-nav prev" aria-label="Previous diagram">‹</button><figure class="cls-diagram cls-lb-fig"></figure><button type="button" class="cls-lb-nav next" aria-label="Next diagram">›</button></div>
   <ol class="cls-diagram cls-lb-strip" aria-label="All diagrams"></ol>
 </dialog>
-<div class="cls-mapview" id="cls-mapview" hidden></div>
 <script src="vendor/template-menu/behavior.js"></script>
-<script src="vendor/time-scrubber/behavior.js"></script>
 <script src="vendor/node-graph/behavior.js"></script>
-<script src="vendor/orbit-map/behavior.js"></script>
-<script src="vendor/templates/activity-map.js"></script>
-<script src="cls-map.data.js"></script>
-<script>window.CLS_MAP_HEAD = "\u003cheader class=\"nav-bar\" data-style=\"editorial\" data-component=\"nav-bar\">\u003cdiv class=\"inner\">\n    \u003ca class=\"brand\" href=\"index.html\" aria-label=\"Houston Bloom, home\">\u003cspan class=\"brand-logo\" aria-hidden=\"true\">\u003cimg src=\"_assets/bloom-logo.png\" width=\"49\" height=\"52\" alt=\"\">\u003c/span>\u003c/a>\n    \u003cnav aria-label=\"Main\">\n        \u003ca href=\"index.html\">Houston Bloom\u003c/a>\n        \u003ca href=\"gardening-tools.html\">Gardening Tools\u003c/a>\n        \u003ca href=\"cls.html\" class=\"active\" aria-current=\"page\">Community Legibility Spec\u003c/a>\n        \u003ca href=\"index.html#s-close\">Get Involved\u003c/a>\n    \u003c/nav>\n    \u003cdiv class=\"header-actions\">\n      \u003cdiv class=\"template-menu\" data-component=\"template-menu\">\n        \u003cbutton type=\"button\" data-slot=\"trigger\" aria-haspopup=\"true\" aria-expanded=\"false\" aria-controls=\"view-list\" aria-label=\"View: Website. Change\">\n          \u003csvg data-slot=\"icon\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"1.5\" y=\"2.5\" width=\"13\" height=\"11\" rx=\"1.5\"/>\u003cpath d=\"M1.5 5.5h13\"/>\u003cpath d=\"M4 8.5h5M4 11h7\"/>\u003c/svg>\u003cspan data-slot=\"label\">Website\u003c/span>\u003csvg data-slot=\"caret\" viewBox=\"0 0 10 10\" aria-hidden=\"true\">\u003cpath d=\"M1 3h8L5 8z\" fill=\"currentColor\"/>\u003c/svg>\n        \u003c/button>\n        \u003cul id=\"view-list\" data-slot=\"list\" hidden>\n          \u003cli>\u003ca href=\"index.html\" aria-current=\"page\">\u003csvg data-slot=\"icon\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"1.5\" y=\"2.5\" width=\"13\" height=\"11\" rx=\"1.5\"/>\u003cpath d=\"M1.5 5.5h13\"/>\u003cpath d=\"M4 8.5h5M4 11h7\"/>\u003c/svg>\u003cspan data-slot=\"label\">Website\u003c/span>\u003c/a>\u003c/li>\n          \u003cli>\u003ca href=\"links.html\">\u003csvg data-slot=\"icon\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M6.7 9.3a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8\"/>\u003cpath d=\"M9.3 6.7a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8\"/>\u003c/svg>\u003cspan data-slot=\"label\">Links\u003c/span>\u003c/a>\u003c/li>\n          \u003cli>\u003ca href=\"activity.html\">\u003csvg data-slot=\"icon\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M1.5 13.5h13\"/>\u003cpath d=\"M4 13.5V9M8 13.5V3.5M12 13.5V6.5\"/>\u003ccircle cx=\"4\" cy=\"6.5\" r=\"1\"/>\u003ccircle cx=\"12\" cy=\"3.5\" r=\"1\"/>\u003c/svg>\u003cspan data-slot=\"label\">Activity\u003c/span>\u003c/a>\u003c/li>\n        \u003c/ul>\n      \u003c/div>\n    \u003c/div>\n  \u003c/div>\u003c/header>";</script>
+<script>window.CLS_MAP = {"subject":{"id":"cls","label":"Community Legibility Spec"},"categories":[{"id":"publish","label":"Publish","series":1},{"id":"prove","label":"Prove and share","series":2},{"id":"connect","label":"Connect people","series":3}],"nodes":[{"id":"cuts-lenses","label":"Cuts and lenses","category":"publish","links":["packet"]},{"id":"packet","label":"Local Brain packet","category":"publish","links":[]},{"id":"dual-ledger","label":"Dual-Ledger","category":"prove","links":["local-assembly"]},{"id":"local-assembly","label":"Local Assembly","category":"prove","links":[]},{"id":"compare","label":"Compare Connections","category":"connect","links":["dual-ledger"]}],"panel":{"cuts-lenses":{"kicker":"Publish","title":"Cuts and lenses","meta":"built","entries":[["1","Tag: vault files get a content-tag in their visibility array"],["2","Cut config: names tag, audience, lens, output, window"],["3","Body sections: override the contact overlay, then template defaults"],["4","Contact overlay: the contact’s rendering preferences layer over style tokens"],["5","Frame: renders one self-contained HTML packet"],["6","Voice pass: runs after render, before structural checks"]],"chips":[{"id":"packet","label":"Local Brain packet"}],"links":[],"open":"#sys-cuts-lenses"},"packet":{"kicker":"Publish","title":"Local Brain packet","meta":"built, no check before send","entries":[["1","Inbox folder: drop items mid-work, a scan files them"],["2","Tools folder: specs, templates, atmospheres, design system, workflows"],["3","Cut configs and templates: configs select content; templates shape layout"],["4","Activity folder: one file per change to the system"],["5","Outbox folder: rendered frames and public deliverables"],["6","Getting Started.html: the self-contained entry point"]],"chips":[{"id":"cuts-lenses","label":"Cuts and lenses"}],"links":[{"label":"Open the Intelligence Packet","href":"https://houstonbloom.github.io/local-legibility/"}],"open":"#sys-packet"},"dual-ledger":{"kicker":"Prove and share","title":"Dual-Ledger Authentication","meta":"published","entries":[["1","Individual ledger: append-only, on the device, never syncs"],["2","Each entry: carries time, design principles, visibility"],["3","Community broadcast: anonymized shape of activity, regular cadence"],["4","Chosen slice: the participant brings part of their ledger"],["5","Overlap: in time and principle, supports the claim"],["6","Comparison: runs on the participant’s device; an optional timeline anchor"]],"chips":[{"id":"local-assembly","label":"Local Assembly"},{"id":"compare","label":"Compare Connections"}],"links":[{"label":"Read the paper (DOI)","href":"https://doi.org/10.6084/m9.figshare.32576631"}],"open":"#sys-dual-ledger"},"local-assembly":{"kicker":"Prove and share","title":"Local Assembly","meta":"designed, partly prototyped","entries":[["1","Edge: holds a vault plus an agent"],["2","Visibility first: a manifest hand-off exposes a scoped projection"],["3","Pass 1, self: the edge interprets its own contribution"],["4","Pass 2, presence: the edge notes that others contributed"],["5","Pass 3, meaning: a cross-edge query to the edge that can interpret"],["6","Scoped report: the answer returns as one; the relational space composes the views"]],"chips":[{"id":"dual-ledger","label":"Dual-Ledger"}],"links":[{"label":"Read the paper (DOI)","href":"https://doi.org/10.6084/m9.figshare.32772147"}],"open":"#sys-local-assembly"},"compare":{"kicker":"Connect people","title":"Compare Connections","meta":"explainer built","entries":[["","A program that tests the spec with real people: a course, then shareables, then a matchmaking event."]],"chips":[{"id":"dual-ledger","label":"Dual-Ledger"}],"links":[],"open":"#sys-compare"}},"counts":{"publish":2,"prove":2,"connect":1}};</script>
 <script>
 (function () {
+  var D = window.CLS_MAP;
   var el = function (s, r) { return (r || document).querySelector(s); };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var selected = null, cat = null;
+  var graph = DSNodeGraph.mount(el('.cls-map'), { subject: D.subject, categories: D.categories, nodes: D.nodes,
+    onSelect: function (id) { selected = id; paint(id); }, onHover: function (id) { if (!selected) paint(id); } });
+  var all = new Set(D.nodes.map(function (n) { return n.id; }));
+  var list = el('.category-list');
+  list.innerHTML = D.categories.map(function (c) {
+    return '<li><button type="button" data-slot="row" data-cat="' + c.series + '" data-id="' + c.id + '" aria-pressed="false">' +
+      DSNodeGraph.shapeSVG(DSNodeGraph.SHAPES[c.series]).replace('<svg ', '<svg data-slot="swatch" ') +
+      '<span data-slot="label">' + esc(c.label) + '</span><span data-slot="count">' + D.counts[c.id] + '</span></button></li>';
+  }).join('');
+  list.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    cat = cat === b.dataset.id ? null : b.dataset.id;
+    list.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.id === cat)); });
+    selected = null; graph.select(null); paint(null);
+    graph.update({ visible: all, today: new Set(), size: new Map(), cat: cat });
+  });
+  list.addEventListener('mouseover', function (e) { var b = e.target.closest('button'); graph.hoverCategory(b ? b.dataset.id : null); });
+  list.addEventListener('mouseleave', function () { graph.hoverCategory(null); });
+  var panel = el('.detail-panel');
+  function rest() {
+    panel.innerHTML = '<p data-slot="kicker">The map</p><h2 data-slot="title">' + esc(D.subject.label) + '</h2><p data-slot="meta">' + D.nodes.length + ' parts in ' + ['no', 'one', 'two', 'three', 'four'][D.categories.length] + (D.categories.length === 1 ? ' group' : ' groups') + '</p>' +
+      '<p data-slot="empty">Tap a part to see how it works, how it connects, and where to read more. Tap the centre or the background to come back out.</p>';
+  }
+  function paint(id) {
+    var d = id && D.panel[id]; if (!d) { rest(); return; }
+    var chips = d.chips.length ? '<ul data-slot="chips" class="cls-chips">' + d.chips.map(function (c) { return '<li><button type="button" data-go="' + c.id + '">' + esc(c.label) + '</button></li>'; }).join('') + '</ul>' : '';
+    var entries = '<ol data-slot="entries">' + d.entries.map(function (e) { var i = e[1].indexOf(': '), t = i < 0 ? esc(e[1]) : '<b>' + esc(e[1].slice(0, i)) + '</b> ' + esc(e[1].slice(i + 2)); return '<li><time>' + esc(e[0]) + '</time><span>' + t + '</span></li>'; }).join('') + '</ol>';
+    var open = '<p class="cls-open-row"><a href="' + d.open + '">Read the full detail</a>' + d.links.map(function (l) { return '<a href="' + esc(l.href) + '">' + esc(l.label) + '</a>'; }).join('') + '</p>';
+    panel.innerHTML = '<p data-slot="kicker">' + esc(d.kicker) + '</p><h2 data-slot="title">' + esc(d.title) + '</h2><p data-slot="meta">' + esc(d.meta) + '</p>' + chips + entries + open;
+    panel.scrollTop = 0;
+  }
+  panel.addEventListener('click', function (e) { var b = e.target.closest('[data-go]'); if (b) { selected = b.dataset.go; graph.select(selected); paint(selected); } });
+  document.addEventListener('click', function (e) { var a = e.target.closest('[data-focus]'); if (a) { selected = a.dataset.focus; graph.select(selected); paint(selected); } });
+  rest();
   // the kind filter above the cards
   var filt = el('.cls-filter'), note = el('.cls-filter-note');
   if (filt) filt.addEventListener('click', function (e) {
@@ -344,39 +377,33 @@ ul.cls-leads p { grid-column: 1; }
     if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1); }
   });
   lb.addEventListener('close', function () { if (opener) opener.focus(); });
-  /* The map view. While the hash starts with #map the page and its header are hidden and the activity map is mounted
-     over the CLS parts: the same runtime as activity.html, with this page's own data. Any other hash shows the page.
-     Gardening Tools links here as #map=a,b; the runtime selects one part from the hash query, so that becomes
-     #map?node=<first of those the map carries>. */
-  var mv = el('#cls-mapview'), mounted = null;
-  var pageEls = function () { return [el('body > .nav-bar'), el('#main')]; };
-  function carried(id) { return (window.CLS_MAP_DATA.nodes || []).some(function (n) { return n.id === id; }); }
-  function showMap() {
-    pageEls().forEach(function (e) { if (e) e.hidden = true; });
-    mv.hidden = false;
-    if (mounted) return;
-    mounted = DSActivityMap.mount(mv, window.CLS_MAP_DATA, { url: 'hash', graphs: ['orbit', 'nodes'], title: 'Community Legibility Spec',
-      head: window.CLS_MAP_HEAD, hrefFor: function (id) { return '#sys-' + id; } });
+  var m = location.hash.match(/^#sys-(.+)$/);
+  if (m && D.panel[m[1]]) { selected = m[1]; graph.select(selected); paint(selected); }
+
+  /* Gardening Tools links here as cls.html#map=a,b. The map ring is graph.update({ today }), the same call the
+     activity map uses to ring the parts worked on; here it rings the parts a tool group relates to. The
+     component's screen-reader text for a ringed part says "worked on this day", which is wrong on this page. */
+  function ring(ids) {
+    graph.update({ visible: all, today: new Set(ids), size: new Map(), cat: null });
+    el('.cls-map').querySelectorAll('button').forEach(function (b) {
+      if (b.textContent.indexOf(', worked on this day') > -1) b.textContent = b.textContent.replace(', worked on this day', ', highlighted from Gardening Tools');
+    });
   }
-  function showPage() {
-    if (mounted) { mounted.destroy(); mounted = null; }
-    mv.hidden = true;
-    pageEls().forEach(function (e) { if (e) e.hidden = false; });
-    var m = location.hash.match(/^#sys-(.+)$/), t = m && document.getElementById('sys-' + m[1]);
-    if (t) t.scrollIntoView(); else window.scrollTo(0, 0);
+  function showRing(ids) {
+    ring(ids);
+    var names = ids.map(function (i) { var n = D.nodes.filter(function (x) { return x.id === i; })[0]; return n ? n.label : i; });
+    rest();
+    panel.insertAdjacentHTML('beforeend', '<p data-slot="meta">Highlighted from Gardening Tools: ' + esc(names.join(' and ')) + '. <a href="#map" data-clear-ring>Clear</a></p>');
   }
-  function route() {
-    var h = location.hash;
-    if (!/^#map(?:[=?]|$)/.test(h)) { showPage(); return; }
-    var g = h.match(/^#map=([^?]+)/);
-    if (g) {
-      var first = g[1].split(',').filter(carried)[0];
-      history.replaceState(null, '', '#map' + (first ? '?node=' + first : ''));
-    }
-    showMap();
+  document.addEventListener('click', function (e) { if (e.target.closest('[data-clear-ring]')) { e.preventDefault(); ring([]); rest(); } });
+  function fromHash() {
+    var hm = location.hash.match(/^#map=(.+)$/);
+    if (!hm) return;
+    var ids = hm[1].split(',').filter(function (i) { return D.panel[i]; });
+    if (ids.length) showRing(ids);
   }
-  window.addEventListener('hashchange', route);
-  route();
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
 })();</script>
 </body>
 </html>
