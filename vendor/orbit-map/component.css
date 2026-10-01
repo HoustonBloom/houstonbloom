@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/orbit-map/component.css
-   version  1.4.1
+   version  1.5.0
    refresh  node sync.mjs orbit-map "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   orbit-map · v1.4.1 · component
+   orbit-map · v1.5.0 · component
 
    The Explorer view of a personal website, as an activity-map graph. See
    behavior.js for the behaviours it carries over. This file is its look, in
@@ -57,6 +57,8 @@
 .orbit-map [data-stop="a"] { stop-color: var(--orbit-beam-a); }
 .orbit-map [data-stop="b"] { stop-color: var(--orbit-beam-b); }
 .orbit-map [data-slot="beam-g"] polygon { stroke: var(--orbit-rim); stroke-width: 0.8; stroke-linejoin: round; }
+/* a connection between two nodes: one weight, dotted. The wedge is kept for the centre's beams. */
+.orbit-map [data-slot="beam-g"] [data-slot="link"] { stroke: var(--orbit-beam-a); stroke-width: 1.5; stroke-dasharray: 1.5 5; stroke-linecap: round; fill: none; }
 .orbit-map [data-slot="energy"] path { fill: none; stroke: var(--orbit-energy); stroke-linecap: round; }
 .orbit-map [data-slot="haze"] { filter: blur(10px); opacity: 0.18; }
 .orbit-map [data-slot="strand"] { animation: orbit-flow 1.5s linear infinite; }

@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/orbit-map/behavior.js
-   version  1.4.1
+   version  1.5.0
    refresh  node sync.mjs orbit-map "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   orbit-map · behaviour · v1.4.1
+   orbit-map · behaviour · v1.5.0
 
    The second map for an activity-map, ported from the Explorer view of a
    personal website (its landing: projects-slide, center-node, the rail in
@@ -59,6 +59,10 @@
      DSOrbitMap.registerIcon(key, svg) adds a glyph to the set before mount, so a site can give its
      categories its own drawings (categories[].icon names the key). Mark the filled parts data-body so
      the dim (outline) mode still reads. Nothing changes for a page that registers none.
+
+   1.5.0 (2026-10-01)
+     two kinds of line. The tapered wedge is only the beam from the centre to an active node. A connection
+     between two nodes is a dotted line of one weight (data-slot="link"), so the two never read as the same thing.
 
    1.4.1 (2026-10-01)
      a label never runs off the map. Each label's box is worked out from the node's target position (not
@@ -319,6 +323,7 @@
         var dx = bx - ax, dy = by - ay, d = Math.hypot(dx, dy) || 1, ux = dx / d, uy = dy / d;
         var sa = l[0].centre ? (W < 560 ? 48 : 64) : 22, sb = 16;
         var sx = ax + ux * sa, sy = ay + uy * sa, ex = bx - ux * sb, ey = by - uy * sb;
+        if (!l[0].centre) return '<line data-slot="link" x1="' + sx.toFixed(1) + '" y1="' + sy.toFixed(1) + '" x2="' + ex.toFixed(1) + '" y2="' + ey.toFixed(1) + '" stroke-opacity="' + l[2] + '"/>';
         var hw = l[0].centre ? 1.6 : 2;
         return '<polygon points="' + (sx - uy * hw).toFixed(1) + ',' + (sy + ux * hw).toFixed(1) + ' ' + (sx + uy * hw).toFixed(1) + ',' + (sy - ux * hw).toFixed(1) + ' ' + ex.toFixed(1) + ',' + ey.toFixed(1) + '" fill="url(#orbit-beam)" fill-opacity="' + l[2] + '"/>';
       }).join('');
