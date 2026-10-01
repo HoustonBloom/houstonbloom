@@ -358,6 +358,31 @@ ul.cls-leads p { grid-column: 1; }
   lb.addEventListener('close', function () { if (opener) opener.focus(); });
   var m = location.hash.match(/^#sys-(.+)$/);
   if (m && D.panel[m[1]]) { selected = m[1]; graph.select(selected); paint(selected); }
+
+  /* Gardening Tools links here as cls.html#map=a,b. The map ring is graph.update({ today }), the same call the
+     activity map uses to ring the parts worked on; here it rings the parts a tool group relates to. The
+     component's screen-reader text for a ringed part says "worked on this day", which is wrong on this page. */
+  function ring(ids) {
+    graph.update({ visible: all, today: new Set(ids), size: new Map(), cat: null });
+    el('.cls-map').querySelectorAll('button').forEach(function (b) {
+      if (b.textContent.indexOf(', worked on this day') > -1) b.textContent = b.textContent.replace(', worked on this day', ', highlighted from Gardening Tools');
+    });
+  }
+  function showRing(ids) {
+    ring(ids);
+    var names = ids.map(function (i) { var n = D.nodes.filter(function (x) { return x.id === i; })[0]; return n ? n.label : i; });
+    rest();
+    panel.insertAdjacentHTML('beforeend', '<p data-slot="meta">Ringed from Gardening Tools: ' + esc(names.join(' and ')) + '. <a href="#map" data-clear-ring>Clear</a></p>');
+  }
+  document.addEventListener('click', function (e) { if (e.target.closest('[data-clear-ring]')) { e.preventDefault(); ring([]); rest(); } });
+  function fromHash() {
+    var hm = location.hash.match(/^#map=(.+)$/);
+    if (!hm) return;
+    var ids = hm[1].split(',').filter(function (i) { return D.panel[i]; });
+    if (ids.length) showRing(ids);
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
 })();</script>
 </body>
 </html>

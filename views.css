@@ -74,3 +74,7 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 
 /* heroes on the new views: the face at its one weight, the landing hero's tracking, nothing synthesised */
 :is(.tpl--links .links-id h1, .am-title, .tpl h1) { font-family: var(--font-display); font-weight: 400; letter-spacing: -.01em; font-synthesis: none; }
+
+/* Gardening Tools: the button that rings the related parts on the spec map */
+.tools-map { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: var(--s4) 0 var(--s5); }
+.tools-map-note { font-size: var(--t-sm); color: var(--ink-soft); }
