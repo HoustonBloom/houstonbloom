@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/orbit-map/behavior.js
-   version  1.4.0
+   version  1.4.1
    refresh  node sync.mjs orbit-map "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   orbit-map · behaviour · v1.4.0
+   orbit-map · behaviour · v1.4.1
 
    The second map for an activity-map, ported from the Explorer view of a
    personal website (its landing: projects-slide, center-node, the rail in
@@ -59,6 +59,11 @@
      DSOrbitMap.registerIcon(key, svg) adds a glyph to the set before mount, so a site can give its
      categories its own drawings (categories[].icon names the key). Mark the filled parts data-body so
      the dim (outline) mode still reads. Nothing changes for a page that registers none.
+
+   1.4.1 (2026-10-01)
+     a label never runs off the map. Each label's box is worked out from the node's target position (not
+     measured mid-move) and nudged sideways by --lx to stay 6px inside either edge. On a 375px phone the star at
+     the upper left lost the start of its name.
 
    1.4.0 (2026-10-01)
      connections show at rest. With nothing focused, each active node (the playhead's day) beams to what it
@@ -287,6 +292,13 @@
         if (!isPrinciple(n) && !isActive && W >= 560) place = x < 15 ? 'right' : x > 85 ? 'left' : x < CX ? 'left' : 'right';
         if (inRing) { var ca = Math.cos(n.ra), sa = Math.sin(n.ra); place = ca > 0.55 ? 'right' : ca < -0.55 ? 'left' : sa < 0 ? 'above' : 'below'; }
         b.setAttribute('data-place', inRing ? place : W < 560 && !isPrinciple(n) ? (y < CY ? 'above' : 'below') : place);
+        var lab = b.querySelector('[data-slot="label"]');
+        if (lab) {
+          var lw = lab.offsetWidth, cx = x / 100 * W, half = b.offsetWidth / 2, pl = b.getAttribute('data-place'), L, R;
+          if (pl === 'right') { L = cx + half + 4; R = L + lw; } else if (pl === 'left') { R = cx - half - 4; L = R - lw; } else { L = cx - lw / 2; R = cx + lw / 2; }
+          var dx = L < 6 ? 6 - L : R > W - 6 ? W - 6 - R : 0;
+          lab.style.setProperty('--lx', Math.round(dx) + 'px');
+        }
         b.hidden = !present;
         b.tabIndex = present ? 0 : -1;
       });
