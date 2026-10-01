@@ -260,15 +260,16 @@
         var a = -Math.PI / 4 + k * 2 * Math.PI / Math.max(active.length, 1);
         n.ax = CX + Math.cos(a) * ri[0]; n.ay = CY + Math.sin(a) * ri[1];
       });
+      // 2026-10-01: a smaller ring, turned half a step for even counts, keeps labels off the map's edges.
       // A category in focus gathers into a ring round the centre. The radius is in pixels so the ring is round
       // whatever the map's shape; past eight items a second, inner ring takes every other one.
       var catFocus = catHover || state.cat, ring = [];
       if (catFocus) {
         ring = items.concat(principles).filter(function (n) { return n.category === catFocus && (n.static || state.visible.has(n.id)); });
-        var R = W < 560 ? Math.min(W * 0.34, H * 0.3) : Math.min(W * 0.27, H * 0.34), two = ring.length > 8, cnt = two ? Math.ceil(ring.length / 2) : ring.length;
+        var R = W < 560 ? Math.min(W * 0.32, H * 0.26) : Math.min(W * 0.25, H * 0.29), two = ring.length > 8, cnt = two ? Math.ceil(ring.length / 2) : ring.length;
         ring.forEach(function (n, k) {
           var inner = two && k % 2 === 1, idx = two ? Math.floor(k / 2) : k, rr = inner ? R * 0.58 : R;
-          var a = -Math.PI / 2 + idx * 2 * Math.PI / Math.max(cnt, 1) + (inner ? Math.PI / Math.max(cnt, 1) : 0);
+          var a = -Math.PI / 2 + (cnt % 2 === 0 ? Math.PI / cnt : 0) + idx * 2 * Math.PI / Math.max(cnt, 1) + (inner ? Math.PI / Math.max(cnt, 1) : 0);
           n.rx = CX + Math.cos(a) * rr / W * 100; n.ry = CY + Math.sin(a) * rr / H * 100; n.ra = a; n.rk = k;
         });
       }
