@@ -21,6 +21,9 @@
   --palette-accent-deep:  #1e4630;
   --palette-accent-soft:  #e3eadb;
   --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
+  /* DM Serif Display ships one weight, 400. The editorial style asks for 600 to 700 headings, and the browser
+     answers by smearing a fake bold over the glyphs. Pin every heading to the weight the face has. */
+  --heading-weight: 400;
   --font-body:    "Plus Jakarta Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -68,3 +71,6 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 .nav-bar .brand-logo img { display: block; height: 100%; width: auto; }
 .tpl--links .links-mark { width: auto; height: 72px; }
 .tpl--links .links-mark img { display: block; height: 100%; width: auto; margin: 0 auto; }
+
+/* heroes on the new views: the face at its one weight, the landing hero's tracking, nothing synthesised */
+:is(.tpl--links .links-id h1, .am-title, .tpl h1) { font-family: var(--font-display); font-weight: 400; letter-spacing: -.01em; font-synthesis: none; }
