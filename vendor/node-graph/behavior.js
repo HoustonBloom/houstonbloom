@@ -1,8 +1,6 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
-   source   C:/Users/Megan/Documents/design-system/components/node-graph/behavior.js
    version  2.0.2
-   refresh  node sync.mjs node-graph "C:/Users/Megan/Documents/HoustonBloom"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 

@@ -1,8 +1,6 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
-   source   C:/Users/Megan/Documents/design-system/components/template-menu/behavior.js
    version  1.1.0
-   refresh  node sync.mjs template-menu "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
