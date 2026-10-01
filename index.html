@@ -565,7 +565,7 @@ html{scroll-padding-top:var(--topbar-h)}
 /* The field drifts in from the left and right edges and fades out before the headline. The ground is the darkest
    green on the site, --green-night, the same one the phases gradient ends on, flat edge to edge (Megan, 2026-10-01). */
 .world-band{position:relative;isolation:isolate;overflow:hidden;color:var(--on-dark);text-align:center;padding-block:var(--s6);
-  background:var(--green-night)}
+  background:var(--green-mid)}
 .world-band .field{-webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%);
   mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%)}
 .world-band .shell{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:var(--s3)}
@@ -726,6 +726,16 @@ html{scroll-padding-top:var(--topbar-h)}
 /* ── the subscribe strip under the cards. A cream card on the dark panel, so
    the buttons here take their light-ground colours: the panel's inverse tone
    is restated as the default for this strip. ───────────────────────────────── */
+/* the next event: a square cover and its details, one row on top of the events block. It leaves the page by
+   itself once its data-ends time passes (site.js). */
+.ev-upcoming{display:grid;grid-template-columns:minmax(0,240px) 1fr;gap:var(--s4);align-items:center;padding:var(--card-pad);background:var(--cream);border-bottom:1px solid var(--ink)}
+.ev-upcoming img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;display:block;border-radius:12px}
+.ev-upcoming-body{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s3)}
+.ev-upcoming-body>p{margin:0}
+.ev-upcoming .ev-state{border:1px solid var(--green);background:var(--green);color:var(--on-dark);display:inline-flex;align-items:center;line-height:1.35}
+.ev-upcoming h3{font-size:var(--t-xl);margin:0}
+.ev-upcoming .ev-when{font-weight:600;color:var(--green)}
+@media (max-width:640px){.ev-upcoming{grid-template-columns:1fr}.ev-upcoming img{max-width:280px}}
 .ev-subscribe{--field-ink:var(--ink);
   --btn-default-fill-inverse:var(--btn-default-fill);--btn-default-text-inverse:var(--btn-default-text);
   --btn-default-fill-hover-inverse:var(--btn-default-fill-hover);--btn-default-text-hover-inverse:var(--btn-default-text-hover);
@@ -1033,6 +1043,16 @@ html{scroll-padding-top:var(--topbar-h)}
     </table>
 
     <div class="ev-block" id="events">
+      <article class="ev-upcoming" data-ends="2026-10-07T20:00:00-05:00" aria-labelledby="next-title">
+        <img src="https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,anim=false,background=white,quality=75,width=480,height=480/uploads/99/84125b98-084d-4e70-84b6-5a1caa6ed363.jpg" width="480" height="480" alt="A collage: two riders on horseback under a red and violet sky beside an obelisk and palm trees, with the words We are in an imagination battle. A battle for the story of the future of the world." loading="lazy">
+        <div class="ev-upcoming-body">
+          <span class="ev-state">Next event &#183; Online &#183; Free</span>
+          <h3 id="next-title">Three Horizons for AI: Where We Are and Where We&#8217;re Going</h3>
+          <p class="ev-when"><time datetime="2026-10-07T19:00-05:00">Wed 7 Oct, 7:00 to 8:00 pm CDT</time></p>
+          <p>As AI speeds up how work gets done, what happens to the people doing the work?</p>
+          <a class="btn" data-component="button" href="https://luma.com/9gh0c2o1" target="_blank" rel="noopener"><span data-slot="label">Register on Luma</span></a>
+        </div>
+      </article>
       <article class="ev-feature" data-tone="inverse" aria-labelledby="ss-title">
         <div class="ev-photos">
           <img src="_assets/hb-speaker-pair.webp" width="890" height="500" alt="A woman in an armchair, smiling, speaking into a microphone, with a man seated beside her" loading="lazy">
@@ -1045,6 +1065,7 @@ html{scroll-padding-top:var(--topbar-h)}
             <span>See what you missed</span>
             <a class="btn btn--clear" data-component="button" href="https://www.figma.com/deck/I517UzM0AK5cWEeQTyt2x8/Gardens--Not-Platforms--marketing-material-" target="_blank" rel="noopener"><span data-slot="label">Talk 1</span></a>
             <a class="btn btn--clear" data-component="button" href="https://www.youtube.com/watch?v=eIQ0qgIrdzY&amp;list=PLsdtxOUtf3YRN2eQB3cEyeYp7y1kWV0PT&amp;index=15" target="_blank" rel="noopener"><span data-slot="label">Talk 2</span></a>
+            <a class="btn btn--clear" data-component="button" href="https://www.youtube.com/live/rGSTU8zDbFM" target="_blank" rel="noopener"><span data-slot="label">Talk 3</span></a>
           </p>
         </div>
       </article>
@@ -1085,7 +1106,7 @@ html{scroll-padding-top:var(--topbar-h)}
           <p class="eseq-pct">98% of human history</p>
           <p class="eseq-mothers">~17,600 mothers ago</p>
           <p class="eseq-yrs">~300,000 yrs</p>
-          <p class="eseq-desc">Pre-history. Trust, reciprocity, shared knowledge at Dunbar scale. Tribal groups governed by proximity, kinship, and the relationships you could hold in your head. No one coordinated from above because no one needed to.</p>
+          <p class="eseq-desc">Pre-history. Trust, reciprocity, shared knowledge at Dunbar scale. Tribal groups governed by proximity, kinship, and the relationships you could hold in your head.</p>
         </div>
         <div class="eseq-slide" style="--eseq-live-c:#8ab06d">
           <p class="eseq-name">Subject</p>

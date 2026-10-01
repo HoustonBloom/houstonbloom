@@ -41,33 +41,11 @@ html { scroll-behavior: smooth; }
 .cls-card header .cls-what { font-size: var(--text-body); }
 .cls-mapsec { padding: 0 0 var(--space-xl); scroll-margin-top: 108px; } /* clears the 89px sticky header */
 .cls-mapframe { height: clamp(560px, 84vh, 780px); border: var(--border-width) var(--border-style) var(--color-border-strong); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-bg); }
-.cls-mapframe .tpl--activity-map { height: 100%; --rail: 340px; --title-size: var(--text-heading-md); }
-.cls-mapframe .tpl--activity-map .am-rail { padding: var(--space-xl) var(--space-lg) var(--space-lg) var(--space-xl); gap: var(--space-base) var(--space-base); border-right: var(--border-width) var(--border-style) var(--color-border); }
+.cls-mapframe .tpl--activity-map { height: 100%; }
 /* The map is a dark panel in the site's deep green, the way the portfolio's map is a dark panel: cream text, the butter
    highlight the site already uses on its dark bands, and a starfield. The map components read only these tokens, so
    this block is the whole look. Category colours are the site's mint, butter and teal; they mean the horizon and nothing else. */
-.cls-mapframe {
-  color-scheme: dark;
-  --color-bg: #04110b; --color-surface: #071a10; --color-surface-alt: #0c2618;
-  --color-text: #ece5d6; --color-text-muted: #c6bfae; --color-text-faint: #a9a393; --color-text-inverse: #0f2a1c;
-  --color-accent: #f3d88b; --color-accent-deep: #f3d88b; --color-accent-text: #f3d88b; --color-accent-soft: rgba(243, 216, 139, 0.14);
-  --color-brand: #f3d88b; --color-focus: #f3d88b;
-  --color-border: rgba(236, 229, 214, 0.16); --color-border-strong: rgba(236, 229, 214, 0.32);
-  --map-cat-1: #6fbf87; --map-cat-2: #f3d88b; --map-cat-3: #7fb3c0; --map-cat-4: #d9a83a;
-  --field-bg: #04110b; --field-ink: #ece5d6;
-  --shadow-raise: 0 10px 24px rgba(0, 0, 0, 0.35); --shadow-high: 0 18px 40px rgba(0, 0, 0, 0.45);
-  --palette-star: #ece5d6; --palette-star-alpha: 45%;
-  --atmosphere-layer:
-    radial-gradient(1.4px 1.4px at 22px 34px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
-    radial-gradient(1px 1px at 96px 142px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
-    radial-gradient(1.8px 1.8px at 178px 58px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
-    radial-gradient(1px 1px at 240px 210px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
-    radial-gradient(1.2px 1.2px at 58px 236px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
-    radial-gradient(1px 1px at 138px 20px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
-    radial-gradient(1.4px 1.4px at 206px 160px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%);
-  --atmosphere-size: 280px 280px; --atmosphere-position: 0 0;
-  color: var(--color-text);
-}
+/* The dark map look (tokens, starfield, rail spacing) lives in views.css, shared with the Activity page. */
 /* the page has its own header, so the map's is empty. It keeps its grid row at no height: hiding it would shift the map up a row and give the time bar the space */
 .cls-mapframe .am-head:empty { height: 0; padding: 0; margin: 0; overflow: hidden; }
 /* the template locks the page to the viewport; inline, the page keeps scrolling */

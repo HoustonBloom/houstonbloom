@@ -3,6 +3,16 @@
    (Website, Links, Activity) and any view state in the hash (a map filter, a node) travel with it. A phone
    gets its share sheet; anywhere without one the link is copied and the button says so.
    visual-assets: reviewed (the share glyph is a functional control glyph, kept inline) */
+/* Dated items: an element with data-ends="<ISO time>" is removed once that time has passed, so a finished
+   event leaves the page on its own. The build warns while its markup is still in the file. */
+(function () {
+  function sweep() {
+    var now = Date.now();
+    document.querySelectorAll('[data-ends]').forEach(function (el) { var t = Date.parse(el.getAttribute('data-ends')); if (t && now > t) el.remove(); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sweep); else sweep();
+})();
+
 (function () {
   if (document.querySelector('.hb-share')) return;
   var b = document.createElement('button');
