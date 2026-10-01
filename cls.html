@@ -21,10 +21,10 @@
 <style>
 html { scroll-behavior: smooth; }
 .cls-shell { width: min(100%, 1240px); margin: 0 auto; padding: 0 var(--space-lg); box-sizing: border-box; }
-.cls-head { padding: var(--space-2xl) 0 var(--space-lg); }
+.cls-head { padding: var(--space-2xl) 0 var(--space-lg); text-align: center; }
 .cls-eyebrow { margin: 0 0 var(--space-sm); font-family: var(--font-eyebrow, var(--font-body)); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case, uppercase); color: var(--color-text-muted); }
-.cls-head h1 { margin: 0; max-width: 22ch; font-family: var(--font-display); font-size: var(--text-heading-xl); line-height: var(--leading-display, 1.1); letter-spacing: var(--tracking-display); color: var(--color-heading, var(--color-text)); text-wrap: balance; }
-.cls-lede { max-width: 60ch; margin: var(--space-base) 0 0; font-size: var(--text-body-lg); color: var(--color-text-muted); }
+.cls-head h1 { margin: 0 auto; max-width: 22ch; font-family: var(--font-display); font-size: var(--text-heading-xl); line-height: var(--leading-display, 1.1); letter-spacing: var(--tracking-display); color: var(--color-heading, var(--color-text)); text-wrap: balance; }
+.cls-lede { max-width: 60ch; margin: var(--space-base) auto 0; text-wrap: balance; font-size: var(--text-body-lg); color: var(--color-text-muted); }
 /* DM Serif Display has one weight, 400. These four headings use it with no weight set, so the browser defaulted
    them to bold and drew a fake one over the glyphs. Same weight and tracking as the landing hero and Gardening Tools. */
 .cls-head h1, .cls-section > h2, .cls-card h3, .cls-lb-title { font-weight: var(--heading-weight, 400); font-synthesis: none; }
@@ -72,7 +72,6 @@ html { scroll-behavior: smooth; }
 /* the template locks the page to the viewport; inline, the page keeps scrolling */
 html:has(.cls-mapframe .tpl--activity-map), html:has(.cls-mapframe .tpl--activity-map) body { height: auto; overflow: visible; }
 @media (max-width: 879px) { .cls-mapframe { height: clamp(640px, 90vh, 900px); } }
-.cls-count { margin: var(--space-md) 0 0; font-size: var(--text-body-sm); color: var(--color-text-faint); }
 .cls-stage { display: grid; gap: var(--space-base); grid-template-columns: 250px minmax(0, 1fr) 340px; align-items: start; padding-bottom: var(--space-xl); }
 .cls-rail { display: grid; gap: var(--space-base); grid-template-columns: minmax(0, 1fr); min-width: 0; }
 .cls-rail h2 { margin: 0; font-family: var(--font-eyebrow, var(--font-body)); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case, uppercase); color: var(--color-text-muted); font-weight: 600; }
@@ -241,10 +240,8 @@ ul.cls-leads p { grid-column: 1; }
   </div></header>
 <main class="cls-shell" id="main">
   <section class="cls-head">
-    <p class="cls-eyebrow">The spec, part by part</p>
     <h1>What the Community Legibility Spec is made of, and how the parts connect</h1>
     <p class="cls-lede">A small set of separate pieces that let communities recognize each other without a platform in the middle. The map shows how final each part is.</p>
-    <p class="cls-count">5 parts. Each part says whether it is built, published, prototyped or only designed.</p>
   </section>
   <section class="cls-mapsec" id="map" aria-label="Map of the parts of the spec">
     <div class="cls-mapframe" id="cls-mapframe"></div>
