@@ -372,7 +372,7 @@ ul.cls-leads p { grid-column: 1; }
     ring(ids);
     var names = ids.map(function (i) { var n = D.nodes.filter(function (x) { return x.id === i; })[0]; return n ? n.label : i; });
     rest();
-    panel.insertAdjacentHTML('beforeend', '<p data-slot="meta">Ringed from Gardening Tools: ' + esc(names.join(' and ')) + '. <a href="#map" data-clear-ring>Clear</a></p>');
+    panel.insertAdjacentHTML('beforeend', '<p data-slot="meta">Highlighted from Gardening Tools: ' + esc(names.join(' and ')) + '. <a href="#map" data-clear-ring>Clear</a></p>');
   }
   document.addEventListener('click', function (e) { if (e.target.closest('[data-clear-ring]')) { e.preventDefault(); ring([]); rest(); } });
   function fromHash() {
