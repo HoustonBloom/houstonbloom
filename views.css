@@ -202,3 +202,6 @@ html[data-style="editorial"] body { margin: 0; background: var(--color-bg); colo
 /* the flowing line to the playhead goes too while a horizon is gathered (Megan, 2026-10-01) */
 :is(.cls-mapframe, #app) .orbit-map [data-slot="energy"] { transition: opacity .3s ease; }
 :is(.cls-mapframe, #app) .orbit-map:has([data-slot="item"][data-ring]) [data-slot="energy"] { opacity: 0; }
+/* and when a single part is hovered or picked */
+:is(.cls-mapframe, #app) .orbit-map[data-focus] [data-slot="centre"] { opacity: 0; visibility: hidden; pointer-events: none; }
+:is(.cls-mapframe, #app) .orbit-map[data-focus] [data-slot="energy"] { opacity: 0; }
