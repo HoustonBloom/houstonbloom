@@ -21,6 +21,10 @@ html { scroll-behavior: smooth; }
 .cls-eyebrow { margin: 0 0 var(--space-sm); font-family: var(--font-eyebrow, var(--font-body)); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case, uppercase); color: var(--color-text-muted); }
 .cls-head h1 { margin: 0; max-width: 22ch; font-family: var(--font-display); font-size: var(--text-heading-xl); line-height: var(--leading-display, 1.1); letter-spacing: var(--tracking-display); color: var(--color-heading, var(--color-text)); text-wrap: balance; }
 .cls-lede { max-width: 60ch; margin: var(--space-base) 0 0; font-size: var(--text-body-lg); color: var(--color-text-muted); }
+/* DM Serif Display has one weight, 400. These four headings use it with no weight set, so the browser defaulted
+   them to bold and drew a fake one over the glyphs. Same weight and tracking as the landing hero and Gardening Tools. */
+.cls-head h1, .cls-section > h2, .cls-card h3, .cls-lb-title { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-head h1, .cls-section > h2 { letter-spacing: -.01em; }
 .cls-count { margin: var(--space-md) 0 0; font-size: var(--text-body-sm); color: var(--color-text-faint); }
 .cls-stage { display: grid; gap: var(--space-base); grid-template-columns: 250px minmax(0, 1fr) 340px; align-items: start; padding-bottom: var(--space-xl); }
 .cls-rail { display: grid; gap: var(--space-base); grid-template-columns: minmax(0, 1fr); min-width: 0; }
