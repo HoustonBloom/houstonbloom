@@ -1,11 +1,11 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
-   version  1.0.0
+   version  1.2.2
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   activity-map.css · v1.0.0 · the one-screen map, as templates/activity-map.md
+   activity-map.css · v1.2.2 · the one-screen map, as templates/activity-map.md
    specifies it
 
    A stage, like slides: the root is 100dvh and never scrolls. Three rows:
@@ -158,6 +158,106 @@ html:has(.tpl--activity-map) body {
 .tpl--activity-map .category-list[data-key="orbit"] [data-slot="row"] { grid-template-columns: 24px minmax(0, 1fr) auto; }
 .tpl--activity-map .category-list[data-key="orbit"] [data-slot="swatch"] { width: 22px; height: 22px; display: grid; place-items: center; }
 .tpl--activity-map .category-list[data-key="orbit"] [data-slot="swatch"] svg { width: 22px; height: 22px; display: block; }
+/* the outline key: a ring in the category's colour, drawn in the category's outline style */
+.tpl--activity-map [data-slot="swatch"][data-outline] {
+  box-sizing: border-box;
+  flex: none;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  background: color-mix(in oklch, currentColor 14%, transparent);
+}
+.tpl--activity-map [data-slot="swatch"][data-outline="dashed"] { border-style: dashed; }
+.tpl--activity-map [data-slot="swatch"][data-outline="dotted"] { border-style: dotted; border-width: 3px; }
+.tpl--activity-map [data-slot="swatch"][data-outline="double"] { border-style: double; border-width: 5px; }
+.tpl--activity-map .category-list[data-key="outline"] [data-slot="row"] { grid-template-columns: 24px minmax(0, 1fr) auto; }
+.tpl--activity-map .detail-panel [data-slot="related"] [data-slot="swatch"][data-outline] { width: 14px; height: 14px; border-width: 1.5px; }
+.tpl--activity-map .detail-panel [data-slot="related"] [data-slot="swatch"][data-outline="dotted"] { border-width: 2px; }
+.tpl--activity-map .detail-panel [data-slot="related"] [data-slot="swatch"][data-outline="double"] { border-width: 3px; }
+.tpl--activity-map .detail-panel [data-slot="related"] button[data-cat="1"] [data-slot="swatch"] { color: var(--map-cat-1); }
+.tpl--activity-map .detail-panel [data-slot="related"] button[data-cat="2"] [data-slot="swatch"] { color: var(--map-cat-2); }
+.tpl--activity-map .detail-panel [data-slot="related"] button[data-cat="3"] [data-slot="swatch"] { color: var(--map-cat-3); }
+.tpl--activity-map .detail-panel [data-slot="related"] button[data-cat="4"] [data-slot="swatch"] { color: var(--map-cat-4); }
 @media (max-width: 879px) {
   .tpl--activity-map .am-graphs { right: var(--space-sm); top: calc(44px + var(--space-md)); }
+  /* 1.2.2: with circles the chips are two rows, the second 52px, so the switch drops below both. It sat on the second
+     row and covered the first circle's name at 375px. The Circles list hides in the orbit, so the rule follows it. */
+  .tpl--activity-map:has(ul[data-rings]:not([hidden])) .am-graphs { top: calc(104px + var(--space-md)); }
+}
+
+/* Circles of involvement (1.1.0, opt in with data.rings): a second list under the categories, one row per
+   ring plus Not placed yet. The swatch is a small bullseye drawn in the row's ink, never a category colour,
+   because a ring is a distance and not a kind. Below 880px it is a second chip row above the map. */
+/* Two lists make the rail taller than a laptop screen. The body row is held to the stage, the detail panel keeps
+   at least 12rem, and the rail scrolls rather than pushing the map under the time bar. */
+.tpl--activity-map > .am-body:has(ul[data-rings]) { grid-template-rows: minmax(0, 1fr); }
+.tpl--activity-map .am-rail:has(> ul[data-rings]) { grid-template-rows: repeat(5, auto) minmax(12rem, 1fr); overflow-y: auto; }
+.tpl--activity-map .am-rail:has(> ul[data-rings]):has(> .am-graphs) { grid-template-rows: repeat(6, auto) minmax(12rem, 1fr); }
+.tpl--activity-map .am-subhead {
+  margin: var(--space-sm) 0 0;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.tpl--activity-map .category-list[data-key="rings"] [data-slot="swatch"] { color: inherit; width: 16px; height: 16px; }
+.tpl--activity-map .category-list[data-key="rings"] [data-slot="swatch"] * { fill: none; stroke: currentColor; }
+.tpl--activity-map [data-rings][hidden] { display: none; }
+@media (max-width: 879px) {
+  .tpl--activity-map > .am-body:has(ul[data-rings]) { grid-template-rows: auto auto minmax(0, 1fr); }
+  .tpl--activity-map > .am-body:has(ul[data-rings]) .am-map { grid-row: 3; }
+  .tpl--activity-map .am-subhead { display: none; }
+  .tpl--activity-map .category-list[data-key="rings"] { padding-top: 0; }
+}
+
+/* The detail as a drawer on the right (1.2.0, detail: 'drawer'). It is a third column of the body while it is
+   open, so the map shrinks beside it and refits rather than hiding nodes under it. The rail then holds the lists
+   only. Below 880px it is a sheet over the foot of the map, like the panel it replaces. */
+.tpl--activity-map > .am-body[data-drawer] { grid-template-columns: var(--rail) minmax(0, 1fr) var(--drawer, 360px); }
+.tpl--activity-map .am-drawer {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
+  background: var(--color-surface);
+  border-left: var(--border-width) var(--border-style) var(--color-border);
+  padding: var(--space-xl) var(--space-base) var(--space-base);
+}
+.tpl--activity-map .am-drawer[hidden] { display: none; }
+.tpl--activity-map .am-drawer .detail-panel { border: 0; padding: 0; background: transparent; overflow: visible; }
+.tpl--activity-map .am-drawer-close {
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-xs);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-heading-md);
+  line-height: 1;
+  cursor: pointer;
+}
+.tpl--activity-map .am-drawer-close:hover { background: var(--color-surface-alt); color: var(--color-text); }
+.tpl--activity-map .am-drawer-close:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.tpl--activity-map .am-rail:not(:has(> .detail-panel)) { grid-template-rows: none; align-content: start; }
+@media (max-width: 879px) {
+  .tpl--activity-map > .am-body[data-drawer] { grid-template-columns: minmax(0, 1fr); }
+  .tpl--activity-map .am-drawer {
+    position: absolute;
+    left: var(--space-sm);
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+    max-height: 56%;
+    z-index: 3;
+    border: var(--border-width) var(--border-style) var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-high);
+  }
+  .tpl--activity-map .am-drawer .detail-panel { position: static; max-height: none; box-shadow: none; }
 }

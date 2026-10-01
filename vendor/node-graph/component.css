@@ -1,11 +1,11 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
-   version  2.0.2
+   version  2.1.0
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   node-graph · v2.0.2 · component
+   node-graph · v2.1.0 · component
 
    The map of an activity-map, drawn by a port of the Node App Template engine
    (behavior.js has the full list of what it inherits). This file styles the
@@ -19,6 +19,8 @@
                    category's own `shape`)
      size          entries up to the current position
      ring          worked on the current day, in the node's own colour
+     distance      with `rings`, the circle of involvement: how close to the work
+                   (2.1.0, opt in). Without rings the guides are decoration.
    The rail's category list is the key: it draws the same shapes in the
    same colours, beside live counts.
 

@@ -137,6 +137,8 @@
 
 .time-scrubber [data-slot="live"] {
   width: auto;
+  min-width: 7.25rem;   /* room for "Go live", so the bar does not shift when the label changes */
+  justify-content: center;
   height: 32px;
   padding: 0 var(--space-md);
   gap: var(--space-sm);

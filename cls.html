@@ -11,9 +11,13 @@
 <link rel="stylesheet" href="vendor/styles.css">
 <link rel="stylesheet" href="vendor/nav-bar/component.css">
 <link rel="stylesheet" href="vendor/template-menu/component.css">
+<link rel="stylesheet" href="vendor/button/component.css">
+<link rel="stylesheet" href="vendor/time-scrubber/component.css">
 <link rel="stylesheet" href="vendor/node-graph/component.css">
+<link rel="stylesheet" href="vendor/orbit-map/component.css">
 <link rel="stylesheet" href="vendor/category-list/component.css">
 <link rel="stylesheet" href="vendor/detail-panel/component.css">
+<link rel="stylesheet" href="vendor/templates/activity-map.css">
 <style>
 html { scroll-behavior: smooth; }
 .cls-shell { width: min(100%, 1240px); margin: 0 auto; padding: 0 var(--space-lg); box-sizing: border-box; }
@@ -35,6 +39,39 @@ html { scroll-behavior: smooth; }
 /* body sizes: the intro reads at the large body size and the card description at the body size, nearer the landing page */
 .cls-intro { font-size: var(--text-body-lg); }
 .cls-card header .cls-what { font-size: var(--text-body); }
+.cls-mapsec { padding: 0 0 var(--space-xl); scroll-margin-top: 108px; } /* clears the 89px sticky header */
+.cls-mapframe { height: clamp(560px, 84vh, 780px); border: var(--border-width) var(--border-style) var(--color-border-strong); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-bg); }
+.cls-mapframe .tpl--activity-map { height: 100%; }
+/* The map is a dark panel in the site's deep green, the way the portfolio's map is a dark panel: cream text, the butter
+   highlight the site already uses on its dark bands, and a starfield. The map components read only these tokens, so
+   this block is the whole look. Category colours are the site's mint, butter and teal; they mean the horizon and nothing else. */
+.cls-mapframe {
+  color-scheme: dark;
+  --color-bg: #0f2a1c; --color-surface: #153826; --color-surface-alt: #1b4430;
+  --color-text: #ece5d6; --color-text-muted: #c6bfae; --color-text-faint: #a9a393; --color-text-inverse: #0f2a1c;
+  --color-accent: #f3d88b; --color-accent-deep: #f3d88b; --color-accent-text: #f3d88b; --color-accent-soft: rgba(243, 216, 139, 0.14);
+  --color-brand: #f3d88b; --color-focus: #f3d88b;
+  --color-border: rgba(236, 229, 214, 0.16); --color-border-strong: rgba(236, 229, 214, 0.32);
+  --map-cat-1: #6fbf87; --map-cat-2: #f3d88b; --map-cat-3: #7fb3c0; --map-cat-4: #d9a83a;
+  --field-bg: #0f2a1c; --field-ink: #ece5d6;
+  --shadow-raise: 0 10px 24px rgba(0, 0, 0, 0.35); --shadow-high: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --palette-star: #ece5d6; --palette-star-alpha: 45%;
+  --atmosphere-layer:
+    radial-gradient(1.4px 1.4px at 22px 34px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
+    radial-gradient(1px 1px at 96px 142px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
+    radial-gradient(1.8px 1.8px at 178px 58px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
+    radial-gradient(1px 1px at 240px 210px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 58px 236px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
+    radial-gradient(1px 1px at 138px 20px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 206px 160px, color-mix(in oklch, var(--palette-star) var(--palette-star-alpha), transparent) 50%, transparent 51%);
+  --atmosphere-size: 280px 280px; --atmosphere-position: 0 0;
+  color: var(--color-text);
+}
+/* the page has its own header, so the map's is empty. It keeps its grid row at no height: hiding it would shift the map up a row and give the time bar the space */
+.cls-mapframe .am-head:empty { height: 0; padding: 0; margin: 0; overflow: hidden; }
+/* the template locks the page to the viewport; inline, the page keeps scrolling */
+html:has(.cls-mapframe .tpl--activity-map), html:has(.cls-mapframe .tpl--activity-map) body { height: auto; overflow: visible; }
+@media (max-width: 879px) { .cls-mapframe { height: clamp(640px, 90vh, 900px); } }
 .cls-count { margin: var(--space-md) 0 0; font-size: var(--text-body-sm); color: var(--color-text-faint); }
 .cls-stage { display: grid; gap: var(--space-base); grid-template-columns: 250px minmax(0, 1fr) 340px; align-items: start; padding-bottom: var(--space-xl); }
 .cls-rail { display: grid; gap: var(--space-base); grid-template-columns: minmax(0, 1fr); min-width: 0; }
@@ -54,7 +91,7 @@ html { scroll-behavior: smooth; }
 .cls-section > h2 { margin: 0 0 var(--space-sm); font-family: var(--font-display); font-size: var(--text-heading-lg); letter-spacing: var(--tracking-display); color: var(--color-heading, var(--color-text)); }
 .cls-intro { max-width: 62ch; margin: 0 0 var(--space-lg); color: var(--color-text-muted); }
 .cls-cards { display: grid; gap: var(--space-lg); grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr)); align-items: start; }
-.cls-card { display: grid; align-content: start; gap: var(--space-base); padding: var(--space-lg); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); scroll-margin-top: calc(var(--space-2xl) + var(--space-md)); }
+.cls-card { display: grid; align-content: start; gap: var(--space-base); padding: var(--space-lg); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); scroll-margin-top: 108px; }
 .cls-kind { display: inline-block; margin: 0 var(--space-xs) 0 0; vertical-align: 1px; letter-spacing: 0; text-transform: none; padding: 1px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); font-weight: 600; color: var(--color-text); }
 .cls-kind--infrastructure { background: var(--color-surface-alt); }
 .cls-kind--program { background: var(--color-accent-soft); border-color: var(--color-accent-deep); color: var(--color-accent-text, var(--color-accent-deep)); }
@@ -206,17 +243,11 @@ ul.cls-leads p { grid-column: 1; }
   <section class="cls-head">
     <p class="cls-eyebrow">The spec, part by part</p>
     <h1>What the Community Legibility Spec is made of, and how the parts connect</h1>
-    <p class="cls-lede">A small set of separate pieces that let communities recognize each other without a platform in the middle. A line on the map means one part reads from or builds on the other.</p>
-    <p class="cls-count">5 parts and 8 lines. Each part says whether it is built, published, prototyped or only designed.</p>
+    <p class="cls-lede">A small set of separate pieces that let communities recognize each other without a platform in the middle. The map shows how final each part is.</p>
+    <p class="cls-count">5 parts. Each part says whether it is built, published, prototyped or only designed.</p>
   </section>
-  <section class="cls-stage" id="map" aria-label="Map of the parts of the spec">
-    <div class="cls-rail">
-      <h2>Groups</h2>
-      <ul class="category-list" data-component="category-list" data-audit-ignore></ul>
-      <ul class="cls-blurbs"><li><b>Publish.</b> How work leaves a private vault as something a person can read.</li><li><b>Prove and share.</b> How a member shows they took part, and how views are composed without a central owner.</li><li><b>Connect people.</b> How people and organizations are recorded and brought together.</li></ul>
-    </div>
-    <div class="cls-map"></div>
-    <aside class="cls-panel"><section class="detail-panel" data-component="detail-panel" aria-live="polite"></section></aside>
+  <section class="cls-mapsec" id="map" aria-label="Map of the parts of the spec">
+    <div class="cls-mapframe" id="cls-mapframe"></div>
   </section>
   <section class="cls-section" id="parts">
     <h2>The five parts, in depth</h2>
@@ -232,7 +263,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     
     <p class="cls-src">Source: Working notes. A public write-up is not yet available.</p>
-    <p class="cls-back"><a href="#map" data-focus="cuts-lenses">Show on the map</a></p>
+    <p class="cls-back"><a href="#map?node=cuts-lenses" data-map-node="cuts-lenses">Show on the map</a></p>
   </footer>
 </article>
 <article class="cls-card" id="sys-packet" data-kind="infrastructure">
@@ -243,7 +274,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     <p class="cls-links"><a href="https://houstonbloom.github.io/local-legibility/">Open the Intelligence Packet</a></p>
     <p class="cls-src">Source: The Intelligence Packet, linked here.</p>
-    <p class="cls-back"><a href="#map" data-focus="packet">Show on the map</a></p>
+    <p class="cls-back"><a href="#map?node=packet" data-map-node="packet">Show on the map</a></p>
   </footer>
 </article>
 <article class="cls-card" id="sys-dual-ledger" data-kind="infrastructure">
@@ -254,7 +285,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     <p class="cls-links"><a href="https://doi.org/10.6084/m9.figshare.32576631">Read the paper (DOI)</a></p>
     <p class="cls-src">Source: The Dual-Ledger Authentication paper, CC BY 4.0.</p>
-    <p class="cls-back"><a href="#map" data-focus="dual-ledger">Show on the map</a></p>
+    <p class="cls-back"><a href="#map?node=dual-ledger" data-map-node="dual-ledger">Show on the map</a></p>
   </footer>
 </article>
 <article class="cls-card" id="sys-local-assembly" data-kind="infrastructure">
@@ -265,7 +296,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     <p class="cls-links"><a href="https://doi.org/10.6084/m9.figshare.32772147">Read the paper (DOI)</a></p>
     <p class="cls-src">Source: The Local Assembly paper.</p>
-    <p class="cls-back"><a href="#map" data-focus="local-assembly">Show on the map</a></p>
+    <p class="cls-back"><a href="#map?node=local-assembly" data-map-node="local-assembly">Show on the map</a></p>
   </footer>
 </article>
 <article class="cls-card" id="sys-compare" data-kind="program">
@@ -276,7 +307,7 @@ ul.cls-leads p { grid-column: 1; }
   <footer>
     
     <p class="cls-src">Source: Working notes. A public write-up is not yet available.</p>
-    <p class="cls-back"><a href="#map" data-focus="compare">Show on the map</a></p>
+    <p class="cls-back"><a href="#map?node=compare" data-map-node="compare">Show on the map</a></p>
   </footer>
 </article></div>
   </section>
@@ -292,48 +323,15 @@ ul.cls-leads p { grid-column: 1; }
   <ol class="cls-diagram cls-lb-strip" aria-label="All diagrams"></ol>
 </dialog>
 <script src="vendor/template-menu/behavior.js"></script>
+<script src="vendor/time-scrubber/behavior.js"></script>
 <script src="vendor/node-graph/behavior.js"></script>
-<script>window.CLS_MAP = {"subject":{"id":"cls","label":"Community Legibility Spec"},"categories":[{"id":"publish","label":"Publish","series":1},{"id":"prove","label":"Prove and share","series":2},{"id":"connect","label":"Connect people","series":3}],"nodes":[{"id":"cuts-lenses","label":"Cuts and lenses","category":"publish","links":["packet"]},{"id":"packet","label":"Local Brain packet","category":"publish","links":[]},{"id":"dual-ledger","label":"Dual-Ledger","category":"prove","links":["local-assembly"]},{"id":"local-assembly","label":"Local Assembly","category":"prove","links":[]},{"id":"compare","label":"Compare Connections","category":"connect","links":["dual-ledger"]}],"panel":{"cuts-lenses":{"kicker":"Publish","title":"Cuts and lenses","meta":"built","entries":[["1","Tag: vault files get a content-tag in their visibility array"],["2","Cut config: names tag, audience, lens, output, window"],["3","Body sections: override the contact overlay, then template defaults"],["4","Contact overlay: the contact’s rendering preferences layer over style tokens"],["5","Frame: renders one self-contained HTML packet"],["6","Voice pass: runs after render, before structural checks"]],"chips":[{"id":"packet","label":"Local Brain packet"}],"links":[],"open":"#sys-cuts-lenses"},"packet":{"kicker":"Publish","title":"Local Brain packet","meta":"built, no check before send","entries":[["1","Inbox folder: drop items mid-work, a scan files them"],["2","Tools folder: specs, templates, atmospheres, design system, workflows"],["3","Cut configs and templates: configs select content; templates shape layout"],["4","Activity folder: one file per change to the system"],["5","Outbox folder: rendered frames and public deliverables"],["6","Getting Started.html: the self-contained entry point"]],"chips":[{"id":"cuts-lenses","label":"Cuts and lenses"}],"links":[{"label":"Open the Intelligence Packet","href":"https://houstonbloom.github.io/local-legibility/"}],"open":"#sys-packet"},"dual-ledger":{"kicker":"Prove and share","title":"Dual-Ledger Authentication","meta":"published","entries":[["1","Individual ledger: append-only, on the device, never syncs"],["2","Each entry: carries time, design principles, visibility"],["3","Community broadcast: anonymized shape of activity, regular cadence"],["4","Chosen slice: the participant brings part of their ledger"],["5","Overlap: in time and principle, supports the claim"],["6","Comparison: runs on the participant’s device; an optional timeline anchor"]],"chips":[{"id":"local-assembly","label":"Local Assembly"},{"id":"compare","label":"Compare Connections"}],"links":[{"label":"Read the paper (DOI)","href":"https://doi.org/10.6084/m9.figshare.32576631"}],"open":"#sys-dual-ledger"},"local-assembly":{"kicker":"Prove and share","title":"Local Assembly","meta":"designed, partly prototyped","entries":[["1","Edge: holds a vault plus an agent"],["2","Visibility first: a manifest hand-off exposes a scoped projection"],["3","Pass 1, self: the edge interprets its own contribution"],["4","Pass 2, presence: the edge notes that others contributed"],["5","Pass 3, meaning: a cross-edge query to the edge that can interpret"],["6","Scoped report: the answer returns as one; the relational space composes the views"]],"chips":[{"id":"dual-ledger","label":"Dual-Ledger"}],"links":[{"label":"Read the paper (DOI)","href":"https://doi.org/10.6084/m9.figshare.32772147"}],"open":"#sys-local-assembly"},"compare":{"kicker":"Connect people","title":"Compare Connections","meta":"explainer built","entries":[["","A program that tests the spec with real people: a course, then shareables, then a matchmaking event."]],"chips":[{"id":"dual-ledger","label":"Dual-Ledger"}],"links":[],"open":"#sys-compare"}},"counts":{"publish":2,"prove":2,"connect":1}};</script>
+<script src="vendor/orbit-map/behavior.js"></script>
+<script src="vendor/templates/activity-map.js"></script>
+<script src="cls-map.data.js"></script>
 <script>
 (function () {
-  var D = window.CLS_MAP;
   var el = function (s, r) { return (r || document).querySelector(s); };
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
-  var selected = null, cat = null;
-  var graph = DSNodeGraph.mount(el('.cls-map'), { subject: D.subject, categories: D.categories, nodes: D.nodes,
-    onSelect: function (id) { selected = id; paint(id); }, onHover: function (id) { if (!selected) paint(id); } });
-  var all = new Set(D.nodes.map(function (n) { return n.id; }));
-  var list = el('.category-list');
-  list.innerHTML = D.categories.map(function (c) {
-    return '<li><button type="button" data-slot="row" data-cat="' + c.series + '" data-id="' + c.id + '" aria-pressed="false">' +
-      DSNodeGraph.shapeSVG(DSNodeGraph.SHAPES[c.series]).replace('<svg ', '<svg data-slot="swatch" ') +
-      '<span data-slot="label">' + esc(c.label) + '</span><span data-slot="count">' + D.counts[c.id] + '</span></button></li>';
-  }).join('');
-  list.addEventListener('click', function (e) {
-    var b = e.target.closest('button'); if (!b) return;
-    cat = cat === b.dataset.id ? null : b.dataset.id;
-    list.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.id === cat)); });
-    selected = null; graph.select(null); paint(null);
-    graph.update({ visible: all, today: new Set(), size: new Map(), cat: cat });
-  });
-  list.addEventListener('mouseover', function (e) { var b = e.target.closest('button'); graph.hoverCategory(b ? b.dataset.id : null); });
-  list.addEventListener('mouseleave', function () { graph.hoverCategory(null); });
-  var panel = el('.detail-panel');
-  function rest() {
-    panel.innerHTML = '<p data-slot="kicker">The map</p><h2 data-slot="title">' + esc(D.subject.label) + '</h2><p data-slot="meta">' + D.nodes.length + ' parts in ' + ['no', 'one', 'two', 'three', 'four'][D.categories.length] + (D.categories.length === 1 ? ' group' : ' groups') + '</p>' +
-      '<p data-slot="empty">Tap a part to see how it works, how it connects, and where to read more. Tap the centre or the background to come back out.</p>';
-  }
-  function paint(id) {
-    var d = id && D.panel[id]; if (!d) { rest(); return; }
-    var chips = d.chips.length ? '<ul data-slot="chips" class="cls-chips">' + d.chips.map(function (c) { return '<li><button type="button" data-go="' + c.id + '">' + esc(c.label) + '</button></li>'; }).join('') + '</ul>' : '';
-    var entries = '<ol data-slot="entries">' + d.entries.map(function (e) { var i = e[1].indexOf(': '), t = i < 0 ? esc(e[1]) : '<b>' + esc(e[1].slice(0, i)) + '</b> ' + esc(e[1].slice(i + 2)); return '<li><time>' + esc(e[0]) + '</time><span>' + t + '</span></li>'; }).join('') + '</ol>';
-    var open = '<p class="cls-open-row"><a href="' + d.open + '">Read the full detail</a>' + d.links.map(function (l) { return '<a href="' + esc(l.href) + '">' + esc(l.label) + '</a>'; }).join('') + '</p>';
-    panel.innerHTML = '<p data-slot="kicker">' + esc(d.kicker) + '</p><h2 data-slot="title">' + esc(d.title) + '</h2><p data-slot="meta">' + esc(d.meta) + '</p>' + chips + entries + open;
-    panel.scrollTop = 0;
-  }
-  panel.addEventListener('click', function (e) { var b = e.target.closest('[data-go]'); if (b) { selected = b.dataset.go; graph.select(selected); paint(selected); } });
-  document.addEventListener('click', function (e) { var a = e.target.closest('[data-focus]'); if (a) { selected = a.dataset.focus; graph.select(selected); paint(selected); } });
-  rest();
   // the kind filter above the cards
   var filt = el('.cls-filter'), note = el('.cls-filter-note');
   if (filt) filt.addEventListener('click', function (e) {
@@ -377,33 +375,48 @@ ul.cls-leads p { grid-column: 1; }
     if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1); }
   });
   lb.addEventListener('close', function () { if (opener) opener.focus(); });
-  var m = location.hash.match(/^#sys-(.+)$/);
-  if (m && D.panel[m[1]]) { selected = m[1]; graph.select(selected); paint(selected); }
-
-  /* Gardening Tools links here as cls.html#map=a,b. The map ring is graph.update({ today }), the same call the
-     activity map uses to ring the parts worked on; here it rings the parts a tool group relates to. The
-     component's screen-reader text for a ringed part says "worked on this day", which is wrong on this page. */
-  function ring(ids) {
-    graph.update({ visible: all, today: new Set(ids), size: new Map(), cat: null });
-    el('.cls-map').querySelectorAll('button').forEach(function (b) {
-      if (b.textContent.indexOf(', worked on this day') > -1) b.textContent = b.textContent.replace(', worked on this day', ', highlighted from Gardening Tools');
-    });
+  /* The inline map: the activity-map runtime (Orbit and Graph, the filters, the circles, the timeline) over this page's
+     parts. The filters are the three horizons; the circles are how final a part is. Its state rides in the hash query
+     (#map?cat=...&node=...), which is how the home page's View on map buttons filter it. Arriving anywhere else on the
+     page it keeps no URL state, so it never rewrites a part's own anchor. */
+  var frame = el('#cls-mapframe'), mounted = null, urlMode = null;
+  function mountMap(mode) {
+    if (mounted) mounted.destroy();
+    urlMode = mode;
+    mounted = DSActivityMap.mount(frame, window.CLS_MAP_DATA, { url: mode, graphs: ['orbit', 'nodes'], detail: 'drawer', title: 'Community Legibility Spec', head: '' });
   }
-  function showRing(ids) {
-    ring(ids);
-    var names = ids.map(function (i) { var n = D.nodes.filter(function (x) { return x.id === i; })[0]; return n ? n.label : i; });
-    rest();
-    panel.insertAdjacentHTML('beforeend', '<p data-slot="meta">Highlighted from Gardening Tools: ' + esc(names.join(' and ')) + '. <a href="#map" data-clear-ring>Clear</a></p>');
+  function carried(id) { return (window.CLS_MAP_DATA.nodes || []).some(function (n) { return n.id === id; }); }
+  function toMap(smooth) { var s = el('#map'); if (s) s.scrollIntoView({ behavior: smooth ? 'smooth' : 'instant', block: 'start' }); }
+  function route(first) {
+    var h = location.hash;
+    if (!/^#map(?:[=?]|$)/.test(h)) {
+      if (first) { mountMap('none'); return; }
+      var t = h.length > 1 && document.getElementById(decodeURIComponent(h.slice(1)));
+      if (t) t.scrollIntoView({ behavior: 'instant', block: 'start' });
+      return;
+    }
+    var g = h.match(/^#map=([^?]+)/);
+    if (g) {
+      var one = g[1].split(',').filter(carried)[0];
+      history.replaceState(null, '', '#map' + (one ? '?node=' + one : ''));
+    }
+    var fresh = urlMode !== 'hash';
+    if (fresh) mountMap('hash');
+    if (first || g || fresh) toMap(false);
   }
-  document.addEventListener('click', function (e) { if (e.target.closest('[data-clear-ring]')) { e.preventDefault(); ring([]); rest(); } });
-  function fromHash() {
-    var hm = location.hash.match(/^#map=(.+)$/);
-    if (!hm) return;
-    var ids = hm[1].split(',').filter(function (i) { return D.panel[i]; });
-    if (ids.length) showRing(ids);
-  }
-  fromHash();
-  window.addEventListener('hashchange', fromHash);
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-map-node]'); if (!a) return;
+    e.preventDefault();
+    location.hash = '#map?node=' + a.dataset.mapNode;
+  });
+  window.addEventListener('hashchange', function () { route(false); });
+  route(true);
+  /* the page's own smooth scrolling and a late layout both swallow the first jump, so land once more when the page has loaded */
+  window.addEventListener('load', function () {
+    if (/^#map(?:[=?]|$)/.test(location.hash)) { toMap(false); return; }
+    var t = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (t) t.scrollIntoView({ behavior: 'instant', block: 'start' });
+  });
 })();</script>
 </body>
 </html>

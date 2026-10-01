@@ -207,6 +207,7 @@
       q('ago').textContent = s.live ? 'Live' : ago(s.day, now);
       q('count').textContent = countLabel(s.index);
       q('live').setAttribute('aria-pressed', String(s.live));
+      q('live').textContent = s.live ? 'Live' : 'Go live';
       track.setAttribute('aria-valuenow', s.index);
       track.setAttribute('aria-valuetext', fmtDate(s.day) + (s.live ? ', live' : ', ' + ago(s.day, now)) + ', ' + countLabel(s.index));
       Array.prototype.forEach.call(hist.children, function (b) { b.toggleAttribute('data-past', +b.dataset.last <= s.index); });
