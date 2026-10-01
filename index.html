@@ -123,7 +123,7 @@ html{-webkit-text-size-adjust:100%}
      yellow that survives on cream at 6.67:1. */
   --cream:#ece5d6; --cream-2:#e3dccb; --cream-3:#d8d1bf;
   --ink:#1a1a1a; --ink-soft:#4a4439; --ink-softer:#5c5648;
-  --green:#2d5a3f; --green-deep:#0f2a1c; --green-mid:#1e4630; --green-light:#4a8a62;
+  --green:#2d5a3f; --green-deep:#0f2a1c; --green-mid:#1e4630; --green-light:#4a8a62; --green-night:#04110b;
   --gold:#6b4613;--gold-bright:#c8951f;
   --gold-wash:rgba(107,70,19,.09);
   --paper:#faf8f3; --green-wash:rgba(45,90,63,.08); --butter:#f3d88b; --butter-wash:#f7ecc7;
@@ -562,13 +562,10 @@ html{scroll-padding-top:var(--topbar-h)}
    Only the gardens panel uses this now. The rules that centred the phase cards
    went with the cards. */
 /* ── the world view band, between the hero and the comparison ───────────────── */
-/* The field drifts in from the left and right edges and fades out before the headline, and the ground
-   lifts a shade toward the mid green at the edges, so the words sit on the quiet middle. */
+/* The field drifts in from the left and right edges and fades out before the headline. The ground is the darkest
+   green on the site, --green-night, the same one the phases gradient ends on, flat edge to edge (Megan, 2026-10-01). */
 .world-band{position:relative;isolation:isolate;overflow:hidden;color:var(--on-dark);text-align:center;padding-block:var(--s6);
-  background:linear-gradient(90deg,
-    color-mix(in oklch,var(--green-deep) 80%,#4a8a62) 0%,
-    var(--green-deep) 34%,var(--green-deep) 66%,
-    color-mix(in oklch,var(--green-deep) 80%,#4a8a62) 100%)}
+  background:var(--green-night)}
 .world-band .field{-webkit-mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%);
   mask-image:linear-gradient(90deg,#000 0%,rgba(0,0,0,.7) 20%,transparent 42%,transparent 58%,rgba(0,0,0,.7) 80%,#000 100%)}
 .world-band .shell{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:var(--s3)}
