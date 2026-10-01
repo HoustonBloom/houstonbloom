@@ -45,7 +45,7 @@ html { scroll-behavior: smooth; }
 /* The map is a dark panel in the site's deep green, the way the portfolio's map is a dark panel: cream text, the butter
    highlight the site already uses on its dark bands, and a starfield. The map components read only these tokens, so
    this block is the whole look. Category colours are the site's mint, butter and teal; they mean the horizon and nothing else. */
-.cls-mapframe {
+.cls-mapframe, .cls-hz {
   color-scheme: dark;
   --color-bg: #0f2a1c; --color-surface: #153826; --color-surface-alt: #1b4430;
   --color-text: #ece5d6; --color-text-muted: #c6bfae; --color-text-faint: #a9a393; --color-text-inverse: #0f2a1c;
@@ -87,6 +87,35 @@ html:has(.cls-mapframe .tpl--activity-map), html:has(.cls-mapframe .tpl--activit
 .cls-open-row { display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-base); margin: 0; }
 .cls-open-row a, .cls-links a, .cls-back a { color: var(--color-accent-text, var(--color-accent-deep)); font-size: var(--text-body-sm); font-weight: 600; text-underline-offset: 3px; }
 .cls-section { padding: var(--space-2xl) 0 0; }
+/* Phones: the three horizon filters come out of the map and sit under the hero as tiles, each with its Horizon number
+   and a larger icon, then a link to the horizons section on the home page. A tile presses the map's own filter row, so
+   the map stays the one source of filter state. The in-map horizon chips hide at this width; Design principles stays. */
+.cls-hz, .cls-hz-more { display: none; }
+@media (max-width: 879px) {
+  .cls-hz:not([hidden]) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-sm); margin: var(--space-lg) 0 0; }
+  .cls-hz button { display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); min-width: 0; padding: var(--space-base) var(--space-xs); font: inherit; color: var(--color-text); background: var(--color-bg); border: var(--border-width) var(--border-style) var(--color-border-strong); border-radius: var(--radius-lg); cursor: pointer; }
+  .cls-hz button[aria-pressed="true"] { border-color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); }
+  .cls-hz-n { font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--color-text-muted); }
+  .cls-hz-icon { display: block; width: 44px; height: 44px; margin: var(--space-xs) 0; }
+  .cls-hz-icon svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .cls-hz button[data-cat="1"] .cls-hz-icon { color: var(--map-cat-1); }
+  .cls-hz button[data-cat="2"] .cls-hz-icon { color: var(--map-cat-2); }
+  .cls-hz button[data-cat="3"] .cls-hz-icon { color: var(--map-cat-3); }
+  .cls-hz-label { font-size: var(--text-body-sm); line-height: 1.25; overflow-wrap: anywhere; }
+  .cls-hz-more { display: inline-flex; margin: var(--space-base) 0 0; padding: var(--space-sm) var(--space-lg); color: var(--palette-accent); font-weight: 600; text-decoration: none; border: var(--border-width) var(--border-style) var(--palette-accent); border-radius: var(--radius-full); }
+  #cls-mapframe .category-list li:has(> [data-slot="row"]:is([data-cat="1"], [data-cat="2"], [data-cat="3"])) { display: none; }
+}
+/* The tile icons move the way they do on the map (orbit-map's keyframes), looping. */
+.cls-hz svg.og [data-part] { transform-box: fill-box; }
+.cls-hz svg.og [data-part="moon"] { translate: calc(cos(var(--og-a)) * 9.6px) calc(sin(var(--og-a)) * 4.4px); scale: calc(1 + sin(var(--og-a)) * 0.28); transform-origin: 50% 50%; }
+@media (prefers-reduced-motion: no-preference) {
+  .cls-hz svg.og :is([data-part="wave1"], [data-part="wave2"]) { transform-origin: 0% 0%; animation: orbit-wave 4.2s ease-out infinite; }
+  .cls-hz svg.og [data-part="wave2"] { animation-delay: 0.7s; }
+  .cls-hz svg.og [data-part="moon"] { animation: orbit-moon 5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+  .cls-hz svg.og [data-part="bands"] { animation: orbit-bands 5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+  .cls-hz svg.og :is([data-part="flame"], [data-part="flame-core"]) { transform-origin: 100% 0%; animation: orbit-waft 2.1s ease-in-out infinite; }
+  .cls-hz svg.og [data-part="flame-core"] { animation-delay: -0.6s; }
+}
 .cls-explain p { max-width: 62ch; font-size: var(--text-body-lg); }
 .cls-quote { margin: var(--space-lg) 0 0; max-width: 62ch; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
 .cls-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
@@ -246,6 +275,8 @@ ul.cls-leads p { grid-column: 1; }
   <section class="cls-head">
     <h1>Community Legibility Spec</h1>
     <p class="cls-lede">The minimally sufficient hardware, protocols, and data that allow individuals to pass data without a platform and communities to be discoverable while preventing data extraction.</p>
+    <div class="cls-hz" data-hz hidden></div>
+    <a class="cls-hz-more" href="index.html#s-horizons">More about the 3 horizons</a>
   </section>
   <section class="cls-mapsec" id="map" aria-label="Map of the parts of the spec">
     <div class="cls-mapframe" id="cls-mapframe"></div>
@@ -393,6 +424,37 @@ ul.cls-leads p { grid-column: 1; }
     urlMode = mode;
     mounted = DSActivityMap.mount(frame, window.CLS_MAP_DATA, { url: mode, graphs: ['orbit', 'nodes'], detail: 'drawer', title: 'Community Legibility Spec', head: '' });
   }
+  (function () {
+    /* Phone horizon tiles: built from the map data, icons copied from the map's own filter rows, a tap presses that row. */
+    var hz = el('[data-hz]');
+    if (!hz) return;
+    (window.CLS_MAP_DATA.categories || []).filter(function (c) { return !c.static; }).forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.dataset.hzId = c.id; b.dataset.cat = c.series; b.setAttribute('aria-pressed', 'false');
+      [['cls-hz-n', 'Horizon ' + (i + 1)], ['cls-hz-icon', ''], ['cls-hz-label', c.label]].forEach(function (p) {
+        var sp = document.createElement('span'); sp.className = p[0]; sp.textContent = p[1];
+        if (p[0] === 'cls-hz-icon') sp.setAttribute('aria-hidden', 'true');
+        b.appendChild(sp);
+      });
+      hz.appendChild(b);
+    });
+    hz.hidden = false;
+    function row(id) { return frame.querySelector('.category-list [data-slot="row"][data-id="' + id + '"]'); }
+    function sync() {
+      hz.querySelectorAll('button').forEach(function (b) {
+        var r = row(b.dataset.hzId);
+        if (!r) return;
+        b.setAttribute('aria-pressed', r.getAttribute('aria-pressed') || 'false');
+        var ic = b.querySelector('.cls-hz-icon'), svg = r.querySelector('[data-slot="swatch"] svg');
+        if (!ic.firstChild && svg) ic.appendChild(svg.cloneNode(true));
+      });
+    }
+    hz.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-hz-id]'), r = b && row(b.dataset.hzId);
+      if (r) { r.click(); sync(); }
+    });
+    new MutationObserver(sync).observe(frame, { subtree: true, childList: true, attributes: true, attributeFilter: ['aria-pressed'] });
+  })();
   function carried(id) { return (window.CLS_MAP_DATA.nodes || []).some(function (n) { return n.id === id; }); }
   function toMap(smooth) { var s = el('#map'); if (s) s.scrollIntoView({ behavior: smooth ? 'smooth' : 'instant', block: 'start' }); }
   function route(first) {
