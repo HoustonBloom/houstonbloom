@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/node-graph/behavior.js
-   version  2.0.0
-   refresh  node sync.mjs node-graph "C:/Users/Megan/Claude_Projects/AI Projects/Houston Bloom/Website"
+   version  2.0.2
+   refresh  node sync.mjs node-graph "C:/Users/Megan/Documents/HoustonBloom"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   node-graph · behaviour · v2.0.0
+   node-graph · behaviour · v2.0.2
 
    A port of the Node App Template engine (START-HERE.html, SECTION 2, whose
    interaction layer was refined first on a communication map, 2026-08-10),
@@ -26,6 +26,15 @@
      label placement by priority, never overlapping a label, a dot or the
      overlay controls; only the focused label may force a position
      pan, drag, wheel zoom, zoom buttons, and a reset that refits
+
+   2.0.2 (2026-10-01): the label halo and dot outline use the colour the map is painted on, found by walking up from the
+   host to the first opaque background (--map-ground overrides). They used --color-bg, which showed as a tan smudge round
+   every label when the map sat on a lighter card.
+
+   2.0.1 (2026-09-30): a category filter or rail hover now dims the rest to the level a node
+   selection does. Dots 0.35 to 0.14 (hover 0.15 to 0.1), labels floor 0.3 to 0.1, and links that
+   touch only nodes outside the category fall to 0.04 (0.1 if one end is inside). Before, the
+   dimmed groups stayed as loud as the highlighted one (reported from the CLS systems map).
 
    What the time position adds (templates/activity-map.md):
      a node is on the map from its first entry; it fades in when it arrives
@@ -135,7 +144,17 @@
     function readTokens() {
       var cs = getComputedStyle(host);
       var v = function (n, f) { return (cs.getPropertyValue(n) || '').trim() || f; };
-      T.bg = v('--color-bg', '#f4efe4');
+      // The label halo and the dot outline knock the lines out from behind a mark. They have to be the colour the
+      // canvas is actually painted on, or each label wears a visible smudge: the page ground (--color-bg) is not
+      // the map's ground when the map sits on a card (--color-surface). Take the first opaque background walking up
+      // from the host, and fall back to the token. --map-ground overrides it.
+      T.bg = v('--map-ground', '') || (function () {
+        for (var el = host; el && el.nodeType === 1; el = el.parentElement) {
+          var c = getComputedStyle(el).backgroundColor;
+          if (c && c !== 'transparent' && !/rgba\(\s*\d+,\s*\d+,\s*\d+,\s*0\s*\)/.test(c)) return c;
+        }
+        return v('--color-bg', '#f4efe4');
+      })();
       T.ink = v('--color-text', '#1c1813');
       T.muted = v('--color-text-muted', '#524b40');
       T.rule = v('--color-border', '#d6cdb8');
@@ -217,7 +236,7 @@
 
     // ---- animation: the template's tween -------------------------------------------
     function targetsFor(d, fs) {
-      return { scale: d.id === hoverId ? 1.3 : d.id === selectedId ? 1.14 : (fs && fs.has(d.id) ? 1.05 : 1), alpha: fs ? (fs.has(d.id) ? 1 : 0.13) : ((catHover || state.cat) && !d.hub && d.category !== (catHover || state.cat) ? (catHover ? 0.15 : 0.35) : 1) };
+      return { scale: d.id === hoverId ? 1.3 : d.id === selectedId ? 1.14 : (fs && fs.has(d.id) ? 1.05 : 1), alpha: fs ? (fs.has(d.id) ? 1 : 0.13) : ((catHover || state.cat) && !d.hub && d.category !== (catHover || state.cat) ? (catHover ? 0.1 : 0.14) : 1) };
     }
     var focusSetNow = function () { var f = activeFocus(); return f ? new Set([f].concat(Array.from(neighbors.get(f) || []))) : null; };
     function settleNow() { if (raf) { cancelAnimationFrame(raf); raf = null; } var fs = focusSetNow(); nodes.forEach(function (d) { var a = anim.get(d.id), t = targetsFor(d, fs); a.scale = t.scale; a.alpha = t.alpha; }); draw(); }
@@ -261,7 +280,8 @@
         var toPrinciple = !da.hub && !db.hub;
         ctx.strokeStyle = colorOf(toPrinciple && db.static ? db : other);
         ctx.setLineDash(toPrinciple && !hl ? [3, 5] : []);
-        ctx.globalAlpha = hl ? 0.9 : (focus ? 0.06 : (toPrinciple ? 0.4 : 0.3));
+        var catOn = catHover || state.cat, outA = catOn && !da.hub && da.category !== catOn, outB = catOn && !db.hub && db.category !== catOn;
+        ctx.globalAlpha = hl ? 0.9 : (focus ? 0.06 : (catOn && (outA || outB) ? (outA && outB ? 0.04 : 0.1) : (toPrinciple ? 0.4 : 0.3)));
         ctx.lineWidth = hl ? 2 : 1.1; ctx.stroke(); ctx.setLineDash([]);
       });
       ctx.globalAlpha = 1;
@@ -317,7 +337,7 @@
           for (var ci = 0; ci < cands.length; ci++) if (free(cands[ci][0], cands[ci][1])) { pos = cands[ci]; break; }
           if (!pos) { if (d.id === focus) pos = [cx, below]; else return; }
         } else { if (!free(cx, below)) return; pos = [cx, below]; }
-        ctx.globalAlpha = clamp(a.alpha, 0.3, 1); ctx.lineWidth = 3.5; ctx.strokeStyle = T.bg; ctx.lineJoin = 'round';
+        ctx.globalAlpha = clamp(a.alpha, 0.1, 1); ctx.lineWidth = 3.5; ctx.strokeStyle = T.bg; ctx.lineJoin = 'round';
         ctx.textAlign = 'center'; ctx.textBaseline = 'top';
         var drawX = pos[0] + 4 + w / 2;
         ctx.strokeText(label, drawX, pos[1]); ctx.fillStyle = T.ink; ctx.fillText(label, drawX, pos[1]);
