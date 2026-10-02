@@ -4043,9 +4043,15 @@ svg{max-width:100%}
   font-family:var(--font-mono);font-size:var(--text-caption);letter-spacing:var(--tracking-eyebrow);text-transform:var(--eyebrow-case);color:var(--color-text-muted)}
 .hero-facts li{display:flex;align-items:center;gap:var(--space-sm)}
 .hero-facts li::before{content:"";width:var(--space-sm);height:var(--space-sm);border-radius:var(--radius-full);background:var(--color-brand,var(--color-accent))}
+/* Widths, Megan 2026-10-02: "still weird width.. should all have max width". Measured at 1440: the hero ran three
+   widths (title 1192, line 595, buttons centred between) and the sections two (cards 1192, steps, callout and
+   limits 720 against the left edge). Now: one content width for every section, 1040 inside the gutter, and one
+   760 column for everything in the hero. Section ledes keep the reading measure, as prose. */
+.tpl--website{--max:calc(1040px + 2 * var(--gutter))}
+.tpl--website .hero .container>*{max-width:760px;margin-left:auto;margin-right:auto}
 /* The eyebrow names the product: a step up from a section eyebrow, in the accent text colour, which is the brand
    orange in Ember dark and its AA-safe deeper orange in Ember light (the brand itself is 2.40:1 there). */
-.tpl--website .hero .hero-eyebrow{margin:0 0 var(--space-base);text-align:center;font-size:var(--text-body);font-weight:600;
+.tpl--website .hero .hero-eyebrow{margin:0 auto var(--space-base);text-align:center;font-size:var(--text-body);font-weight:600;
   letter-spacing:var(--tracking-eyebrow);color:var(--color-accent-text,var(--color-accent))}
 .hero-more{display:flex;justify-content:center;margin:var(--space-base) 0 0}
 
@@ -4090,7 +4096,7 @@ svg{max-width:100%}
 .chips a:hover{border-color:var(--color-text);color:var(--color-text)}
 .chips a:focus-visible{outline:2px solid var(--color-focus);outline-offset:2px}
 .chips span{color:var(--color-text-muted);background:transparent;border-style:dashed}
-.front-door{max-width:var(--reading);margin:var(--space-2xl) 0 0;padding:var(--space-base) var(--space-lg);border-left:var(--space-xs) solid var(--color-accent);background:var(--color-accent-soft);color:var(--color-text);font-size:var(--text-body-sm)}
+.front-door{margin:var(--space-2xl) 0 0;padding:var(--space-base) var(--space-lg);border-left:var(--space-xs) solid var(--color-accent);background:var(--color-accent-soft);color:var(--color-text);font-size:var(--text-body-sm)}
 
 /* ---- phases: whose turn it is, on the band ---- */
 .phases{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-xl);list-style:none;margin:0;padding:0}
@@ -4122,7 +4128,7 @@ svg{max-width:100%}
 .cmd .copy-btn:focus-visible{outline:2px solid var(--color-focus);outline-offset:2px}
 
 /* ---- stepper: one column, each step says who does it ---- */
-.stepper{list-style:none;margin:0;padding:0;max-width:var(--reading)}
+.stepper{list-style:none;margin:0;padding:0}
 .step{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 var(--space-base);padding-bottom:var(--space-2xl)}
 .step::before{content:"";position:absolute;left:21px;top:48px;bottom:var(--space-sm);width:2px;background:var(--color-border)}
 .step:last-child{padding-bottom:0}.step:last-child::before{display:none}
@@ -4135,7 +4141,7 @@ svg{max-width:100%}
 .step-b p{margin:0;font-size:var(--text-body);color:var(--color-text-muted)}
 .step-b p a,.def dd a,.act-claim a{color:var(--color-text);text-decoration-color:var(--color-accent);text-decoration-thickness:2px;text-underline-offset:3px}
 .step-b code,.def code{font-family:var(--font-mono);font-size:.88em;background:var(--color-accent-soft);color:var(--color-text);padding:1px var(--space-xs);border-radius:var(--radius-sm)}
-.callout{max-width:var(--reading);margin-top:var(--space-3xl);padding:var(--space-lg) var(--space-xl);background:var(--color-accent-soft)}
+.callout{margin-top:var(--space-3xl);padding:var(--space-lg) var(--space-xl);background:var(--color-accent-soft)}
 .callout h3{margin:0 0 var(--space-sm);font-family:var(--font-display);font-weight:var(--heading-weight,500);font-size:var(--text-card);color:var(--color-heading,var(--color-text))}
 .callout p{margin:0;color:var(--color-text)}
 .btn-row{display:flex;flex-wrap:wrap;gap:var(--space-md);margin:var(--space-2xl) 0 0}
@@ -4187,7 +4193,7 @@ svg{max-width:100%}
 .rule{min-width:0;padding:var(--space-lg);border-top:var(--space-xs) solid var(--color-accent)}
 .rule h3{margin:0 0 var(--space-sm);font-family:var(--font-display);font-weight:var(--heading-weight,500);font-size:var(--text-body-lg);line-height:1.2;color:var(--color-heading,var(--color-text))}
 .rule p{margin:0;font-size:var(--text-body-sm);color:var(--color-text-muted)}
-.limits{margin:var(--space-3xl) 0 0;max-width:var(--reading)}
+.limits{margin:var(--space-3xl) 0 0}
 .limits h3{margin:0 0 var(--space-md);font-family:var(--font-eyebrow,var(--font-mono));font-weight:400;font-size:var(--text-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:var(--eyebrow-case);color:var(--color-text-muted)}
 .limits ul{list-style:none;margin:0;padding:0;border-top:var(--border-width) var(--border-style) var(--color-border)}
 .limits li{padding:var(--space-md) 0;border-bottom:var(--border-width) var(--border-style) var(--color-border);font-size:var(--text-body-sm);color:var(--color-text-muted)}
