@@ -1,13 +1,13 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   C:/Users/Megan/Documents/design-system/components/time-scrubber/component.css
-   version  2.0.1
+   version  3.0.0
    refresh  node sync.mjs time-scrubber "C:/Users/Megan/Documents/HoustonBloom"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   time-scrubber · v2.0.1 · component
+   time-scrubber · v3.0.0 · component
 
    The time axis of an activity-map: a track you drag, click or key through,
    transport controls, and a Live stop. It owns the one position every other
@@ -31,9 +31,9 @@
    Layout, after the Figma component (Design System file, page Activity
    Timeline, Time bar 54:333 and transport 54:615; FIGMA.md beside this file):
    one row, the track on the left and the transport on the right, a dark pill
-   of five slots (first, back, centre, forward, last). The centre is play at
-   Live, Go live when scrubbed back, pause while playing (behavior.js,
-   root[data-mode]). The date is not in the bar when the
+   of five slots (first, back, play, forward, Go live). 3.0.0, Megan
+   2026-10-01: Go live is white text in the far right slot, and pressing it
+   glides the thumb to Live (behavior.js, root[data-glide]). The date is not in the bar when the
    graph already shows it (the orbit's Activity ring, data-readout="external");
    otherwise it rides above the playhead as a flag. The readout stays in the
    DOM for screen readers either way. Below 720px the track takes the first
@@ -53,7 +53,7 @@
            <div data-slot="ticks"> labels </div>
          </div>
          <div data-slot="transport">
-           <div data-slot="controls"> first, prev, play | live, next, last </div>
+           <div data-slot="controls"> first, prev, play, next, live </div>
          </div>
        </div>
        <p data-slot="readout"> screen-reader readout </p>
@@ -108,7 +108,7 @@
 /* the transport is one dark pill of five slots, the centre one wider */
 .time-scrubber [data-slot="controls"] {
   display: grid;
-  grid-template-columns: 50px 50px 1fr 50px 50px;
+  grid-template-columns: 50px 50px 1fr 50px auto;
   align-items: center;
   justify-items: center;
   width: 310px;
@@ -140,16 +140,16 @@
 .time-scrubber [data-slot="controls"] [data-slot="play"] { width: 40px; height: 40px; background: var(--scrub-on); color: var(--scrub-grad-a); }
 /* a 44px hit area around the 40px disc */
 .time-scrubber [data-slot="controls"] [data-slot="play"]::after { content: ""; position: absolute; inset: -2px; }
-.time-scrubber [data-slot="controls"] [data-slot="play"] svg { width: 18px; height: 18px; }
+.time-scrubber [data-slot="controls"] [data-slot="play"] svg { width: 22px; height: 22px; }
 .time-scrubber [data-slot="controls"] [data-slot="play"]:hover { background: var(--scrub-on); }
 
 .time-scrubber [data-slot="controls"] [data-slot="live"] {
   width: auto;
-  height: 28px;
+  height: 50px;
   padding: 0 var(--space-base);
   border: 0;
-  background: var(--scrub-on);
-  color: var(--scrub-fill);
+  background: transparent;
+  color: var(--scrub-glyph);
   font-family: var(--font-eyebrow, var(--font-body));
   font-size: var(--text-caption);
   font-weight: 700;
@@ -157,9 +157,13 @@
   text-transform: var(--eyebrow-case, uppercase);
   white-space: nowrap;
 }
-/* 44px tall hit area around the 28px pill */
-.time-scrubber [data-slot="controls"] [data-slot="live"]::after { content: ""; position: absolute; inset: -8px -2px; }
-.time-scrubber [data-slot="controls"] [data-slot="live"]:hover { background: var(--scrub-on); text-decoration: underline; text-underline-offset: 3px; }
+/* at Live there is nowhere to go: dimmed, and the press does nothing */
+.time-scrubber [data-slot="controls"] [data-slot="live"][aria-disabled="true"] { opacity: 0.45; cursor: default; }
+.time-scrubber [data-slot="controls"] [data-slot="live"][aria-disabled="true"]:hover { background: transparent; }
+
+/* Go live glides the thumb and the elapsed fill to the Live stop */
+.time-scrubber[data-glide] [data-slot="thumb"] { transition: left 480ms var(--ease), transform var(--dur-fast) var(--ease); }
+.time-scrubber[data-glide] [data-slot="fill"] { transition: width 480ms var(--ease), height var(--dur-fast) var(--ease), bottom var(--dur-fast) var(--ease); }
 
 /* the readout is for screen readers; the ring or the flag shows the date */
 .time-scrubber [data-slot="readout"] {
