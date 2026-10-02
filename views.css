@@ -24,6 +24,7 @@
   --palette-accent-soft:  #e3eadb;
   --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
   --butter:       #f3d88b;   /* the landing page yellow, so the spec page hero can use it too */
+  --palette-rust: #8B2A1A;   /* the event reel rust, for the ICP workshop card that opens the reel (2026-10-01). Contract gap: no semantic name for a second accent */
   /* DM Serif Display ships one weight, 400. The editorial style asks for 600 to 700 headings, and the browser
      answers by smearing a fake bold over the glyphs. Pin every heading to the weight the face has. */
   --heading-weight: 400;

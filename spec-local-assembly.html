@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" data-style="editorial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Houston Bloom · Local Assembly</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="vendor/fonts.css">
+<link rel="stylesheet" href="vendor/styles.css">
+<link rel="stylesheet" href="vendor/nav-bar/component.css">
+<link rel="stylesheet" href="vendor/template-menu/component.css">
+<link rel="stylesheet" href="vendor/kind-label/component.css">
+<link rel="stylesheet" href="vendor/breadcrumb/component.css">
+<link rel="stylesheet" href="vendor/button/component.css">
+<link rel="stylesheet" href="vendor/templates/wiki.css">
+<style>
+.cls-art { --cls-art-ground: var(--palette-band); background: var(--cls-art-ground); display: grid; place-items: center; aspect-ratio: 16 / 9; position: relative; isolation: isolate; }
+.cls-art::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; background: radial-gradient(circle at 30% 20%, color-mix(in oklch, var(--palette-brand) 18%, transparent), transparent 60%); }
+.cls-art-tile { display: grid; place-items: center; width: 44%; aspect-ratio: 1.35; border-radius: var(--radius-lg); background: color-mix(in oklch, var(--palette-paper) 7%, transparent); border: var(--border-width) solid color-mix(in oklch, var(--palette-paper) 18%, transparent); color: var(--palette-brand); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cls-art-tile svg { display: block; width: 58%; height: auto; }
+/* project-card paints its media slot with --color-surface-media; the art keeps the dark band */
+.project-card[data-variant="media"] > .cls-art { background: var(--cls-art-ground); }
+
+.cls-part { --cls-header-h: 89px; min-height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .sidebar { top: var(--cls-header-h); height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .wiki-section { scroll-margin-top: calc(var(--cls-header-h) + var(--space-base)); }
+.cls-part .breadcrumb { margin-bottom: var(--space-lg); }
+.cls-part h1, .cls-part .wiki-section h2 { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-part-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; margin-bottom: var(--space-2xl); }
+.cls-part-kind { margin: 0 0 var(--space-sm); display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-part-head h1 { margin: 0 0 var(--space-base); }
+.cls-part-head .lede { margin: 0; font-size: var(--text-body-lg); }
+.cls-part-art { border-radius: var(--radius-lg); overflow: hidden; margin: 0; }
+.cls-part-quote { margin: var(--space-lg) 0 0; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-part-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-part-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .def dd a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-part-fig { margin: var(--space-lg) 0 0; }
+.cls-part-fig img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: var(--border-width) var(--border-style) var(--color-border); }
+.cls-part-fig figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-part-reel iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-alt); }
+.cls-part .cls-diagram svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-part-links { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.cls-part-links a, .cls-part .foot a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-flag { display: inline-block; padding: 1px var(--space-sm); border: var(--border-width) var(--border-style) var(--color-accent-deep); border-radius: var(--radius-full); font-size: var(--text-caption); font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); background: var(--color-accent-soft); }
+@media (max-width: 880px) { .cls-part .sidebar { top: auto; height: auto; } }
+@media (max-width: 720px) { .cls-part-head { grid-template-columns: minmax(0, 1fr); } .cls-part-art { order: -1; } }
+.cls-diagram { margin: 0; }
+.cls-diagram svg { overflow: visible; display: block; width: 100%; height: auto; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-diagram figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-diagram text { fill: var(--color-text); }
+.cls-diagram .cap { fill: var(--color-text-muted); font-size: 9.5px; letter-spacing: 0.03em; font-weight: 600; }
+.cls-diagram .note, .cls-diagram .rowlab { fill: var(--color-text-muted); font-size: 11px; }
+.cls-diagram .rowlab { fill: var(--color-text); font-weight: 600; font-size: 12px; }
+.cls-diagram .b { fill: var(--color-surface); stroke: var(--color-border-strong); stroke-width: 1.4; }
+.cls-diagram .b.hi { fill: var(--color-accent-soft); stroke: var(--color-accent-deep); }
+.cls-diagram .b.no { fill: var(--color-surface); stroke: var(--color-text-muted); stroke-dasharray: 2 3; }
+.cls-diagram .b.dash, .cls-diagram .a.dash { stroke-dasharray: 5 4; }
+.cls-diagram .b.empty { fill: transparent; stroke: var(--color-border); }
+.cls-diagram .z { fill: transparent; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.cls-diagram .a { fill: none; stroke: currentColor; stroke-width: 1.5; }</style>
+<link rel="stylesheet" href="views.css">
+<script defer src="vendor/nav-bar/behavior.js"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="index.html">Houston Bloom</a>
+        <a href="gardening-tools.html">Gardening Tools</a>
+        <a href="cls.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="#main" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="index.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 5.5h13"/><path d="M4 8.5h5M4 11h7"/></svg><span data-slot="label">Website</span></a></li>
+          <li><a href="links.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.7 9.3a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8"/><path d="M9.3 6.7a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8"/></svg><span data-slot="label">Links</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki cls-part" id="main">
+  <aside class="sidebar">
+    <p class="brand">Local Assembly <small>Infrastructure · Community Legibility Spec</small></p>
+    <nav class="nav" aria-label="Sections">
+      <span class="nav-section">On this page</span>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#how">How it works</a>
+      <a href="#settled">Settled</a>
+      <a href="#also">Also</a>
+      <a href="#read">Read and use</a>
+    </nav>
+    <a class="back-link" href="cls.html#parts">All parts of the spec</a>
+  </aside>
+  <main class="main">
+    <nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="cls.html">Community Legibility Spec</a></li>
+        <li><a href="cls.html#parts">Infrastructure</a></li>
+        <li><span aria-current="page">Local Assembly</span></li>
+      </ol>
+    </nav>
+    <header class="cls-part-head">
+      <div class="cls-part-copy">
+        <p class="cls-part-kind"><span class="kind-label" data-component="kind-label" data-kind="infrastructure">Infrastructure</span></p>
+        <h1>Local Assembly</h1>
+        <p class="lede">Each party interprets its own material and answers questions from other parties’ agents. No central interpreter.</p>
+        
+      </div>
+      <figure class="cls-art cls-part-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Three nodes, each holding its own page. Small dots travel between neighbours; the middle stays an empty ring." class="hbi hbi-assembly"><defs><linearGradient id="hbi-assembly-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-assembly .y,.hbi-assembly .ys{fill:url(#hbi-assembly-sun);stroke:none}.hbi-assembly .yl{fill:none;stroke:none}.hbi-assembly .f{fill:currentColor;stroke:none}.hbi-assembly .d{stroke-dasharray:1.6 2.6}
+.hbi-assembly .q{opacity:0}
+@media (prefers-reduced-motion:no-preference){.hbi-assembly .q1{animation:hbi-asm-1 6s ease-in-out infinite}.hbi-assembly .q2{animation:hbi-asm-2 6s ease-in-out infinite}.hbi-assembly .q3{animation:hbi-asm-3 6s ease-in-out infinite}}
+@keyframes hbi-asm-1{0%{opacity:0;transform:translate(0,0)}8%{opacity:1}28%{opacity:1;transform:translate(9px,15.6px)}34%,100%{opacity:0;transform:translate(9px,15.6px)}}
+@keyframes hbi-asm-2{0%,33%{opacity:0;transform:translate(0,0)}41%{opacity:1}61%{opacity:1;transform:translate(-18px,0)}67%,100%{opacity:0;transform:translate(-18px,0)}}
+@keyframes hbi-asm-3{0%,66%{opacity:0;transform:translate(0,0)}74%{opacity:1}94%{opacity:1;transform:translate(9px,-15.6px)}100%{opacity:0;transform:translate(9px,-15.6px)}}</style><path class="d" d="M20.6 15.4l-7.2 12.6M34.6 28l-7.2-12.6M16.5 35h15"/>
+<circle class="d" cx="24" cy="26.5" r="3"/>
+<circle class="yl" cx="24" cy="10" r="6.5"/><circle cx="24" cy="10" r="6.5"/><path class="y" d="M21.6 7h3.4l1.6 1.6v4.4h-5z"/><path d="M21.6 7h3.4l1.6 1.6v4.4h-5z"/>
+<circle class="yl" cx="38" cy="35" r="6.5"/><circle cx="38" cy="35" r="6.5"/><path class="y" d="M35.6 32h3.4l1.6 1.6v4.4h-5z"/><path d="M35.6 32h3.4l1.6 1.6v4.4h-5z"/>
+<circle class="yl" cx="10" cy="35" r="6.5"/><circle cx="10" cy="35" r="6.5"/><path class="y" d="M7.6 32h3.4l1.6 1.6v4.4h-5z"/><path d="M7.6 32h3.4l1.6 1.6v4.4h-5z"/>
+<circle class="ys q q1" cx="19.5" cy="17.5" r="1.3"/><circle class="ys q q2" cx="31" cy="35" r="1.3"/><circle class="ys q q3" cx="12.5" cy="28.5" r="1.3"/></svg></span></figure>
+    </header>
+    <section class="wiki-section" id="overview"><h2>Overview</h2><dl class="defs"><div class="def"><dt>Status</dt><dd>Designed, partly prototyped</dd></div></dl><figure class="cls-part-fig cls-diagram" data-audit-ignore><svg viewBox="0 0 600 340" role="img" aria-label="Local Assembly: each edge interprets itself, notes presence of others, and asks another edge when it needs meaning. The relational space composes the scoped reports." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><g><rect class="z" x="0" y="0" width="250" height="210" rx="10"/><text x="12" y="14" class="cap" dominant-baseline="middle">EDGE A · vault + agent</text></g><g><rect class="b " x="18" y="34" width="214" height="50" rx="6"/><text x="125" y="51" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="125" dy="0" font-weight="600">Pass 1 · self</tspan><tspan x="125" dy="16" >interprets its own contribution</tspan></text></g><g><rect class="b " x="18" y="98" width="214" height="50" rx="6"/><text x="125" y="115" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="125" dy="0" font-weight="600">Pass 2 · presence</tspan><tspan x="125" dy="16" >notes that others contributed</tspan></text></g><g><rect class="b hi" x="18" y="160" width="214" height="40" rx="6"/><text x="125" y="172" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="125" dy="0" font-weight="600">Pass 3 · meaning</tspan><tspan x="125" dy="16" >asks the edge that can interpret</tspan></text></g><g><rect class="z" x="350" y="0" width="250" height="210" rx="10"/><text x="362" y="14" class="cap" dominant-baseline="middle">EDGE B · vault + agent</text></g><g><rect class="b " x="368" y="34" width="214" height="50" rx="6"/><text x="475" y="51" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="475" dy="0" font-weight="600">Its own vault</tspan><tspan x="475" dy="16" >interprets its own material</tspan></text></g><g><rect class="b " x="368" y="98" width="214" height="50" rx="6"/><text x="475" y="115" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="475" dy="0" font-weight="600">Visibility applied first</tspan><tspan x="475" dy="16" >manifest hand-off, scoped</tspan></text></g><g><rect class="b " x="368" y="160" width="214" height="40" rx="6"/><text x="475" y="172" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="475" dy="0" font-weight="600">Answers the query</tspan><tspan x="475" dy="16" >returns a scoped report</tspan></text></g><path class="a dash" d="M368 123H234" marker-end="url(#ah)"/><text x="301" y="111" text-anchor="middle" class="note" dominant-baseline="middle">manifest</text><path class="a dash" d="M234 172H366" marker-end="url(#ah)"/><text x="301" y="160" text-anchor="middle" class="note" dominant-baseline="middle">cross-edge query</text><path class="a dash" d="M366 192H234" marker-end="url(#ah)"/><text x="301" y="204" text-anchor="middle" class="note" dominant-baseline="middle">scoped answer</text><path class="a" d="M125 202V262" marker-end="url(#ah)"/><path class="a" d="M475 202V262" marker-end="url(#ah)"/><g><rect class="b " x="100" y="262" width="400" height="56" rx="6"/><text x="300" y="282" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="300" dy="0" font-weight="600">Relational space</tspan><tspan x="300" dy="16" >composes the scoped views. No new store.</tspan></text></g><text x="0" y="332" text-anchor="start" class="note" dominant-baseline="middle">With no reachable agent, assembly stops at Pass 2. Self pass alone runs without federation.</text></svg><figcaption>Three passes across two edges. Dashed lines are specified, not built.</figcaption></figure></section>
+    <section class="wiki-section" id="how"><h2>How it works</h2><dl class="defs"><div class="def"><dt>Edge</dt><dd>Holds a vault plus an agent</dd></div><div class="def"><dt>Visibility first</dt><dd>A manifest hand-off exposes a scoped projection</dd></div><div class="def"><dt>Pass 1, self</dt><dd>The edge interprets its own contribution</dd></div><div class="def"><dt>Pass 2, presence</dt><dd>The edge notes that others contributed</dd></div><div class="def"><dt>Pass 3, meaning</dt><dd>A cross-edge query to the edge that can interpret</dd></div><div class="def"><dt>Scoped report</dt><dd>The answer returns as one; the relational space composes the views</dd></div></dl></section>
+    <section class="wiki-section" id="settled"><h2>Settled</h2><dl class="defs"><div class="def"><dt>Meaning resolves where it lives</dt><dd>Not in an aggregate</dd></div><div class="def"><dt>No new store</dt><dd>It reads existing spec files</dd></div><div class="def"><dt>Neither fabricates</dt><dd>The witness holds the occurrence; the contributor holds the meaning</dd></div><div class="def"><dt>Self pass alone</dt><dd>The minimum, and runs without federation</dd></div><div class="def"><dt>No reachable agent</dt><dd>Assembly stops at presence</dd></div></dl></section>
+    <section class="wiki-section" id="also"><h2>Also</h2><dl class="defs"><div class="def"><dt>Out of scope for the paper</dt><dd>The live surface, and the drawing and insight agents.</dd></div></dl></section>
+    <section class="wiki-section" id="read"><h2>Read and use</h2><ul class="cls-part-links"><li><a href="https://doi.org/10.6084/m9.figshare.32772147">Read the paper (DOI)</a></li></ul></section>
+    <footer class="foot">
+      <p>Source: The Local Assembly paper.</p>
+      <p><a href="activity.html#map?node=local-assembly">Show Local Assembly on the spec map</a></p>
+    </footer>
+  </main>
+</div>
+<script src="vendor/template-menu/behavior.js"></script>
+<script>
+/* the sidebar marks the section in view */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.cls-part .sidebar .nav a'));
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (!e.isIntersecting) return; links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); }); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.cls-part .wiki-section').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

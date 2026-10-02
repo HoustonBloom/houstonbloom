@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" data-style="editorial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Houston Bloom · Matchmaking events</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="vendor/fonts.css">
+<link rel="stylesheet" href="vendor/styles.css">
+<link rel="stylesheet" href="vendor/nav-bar/component.css">
+<link rel="stylesheet" href="vendor/template-menu/component.css">
+<link rel="stylesheet" href="vendor/kind-label/component.css">
+<link rel="stylesheet" href="vendor/breadcrumb/component.css">
+<link rel="stylesheet" href="vendor/button/component.css">
+<link rel="stylesheet" href="vendor/templates/wiki.css">
+<style>
+.cls-art { --cls-art-ground: var(--palette-band); background: var(--cls-art-ground); display: grid; place-items: center; aspect-ratio: 16 / 9; position: relative; isolation: isolate; }
+.cls-art::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; background: radial-gradient(circle at 30% 20%, color-mix(in oklch, var(--palette-brand) 18%, transparent), transparent 60%); }
+.cls-art-tile { display: grid; place-items: center; width: 44%; aspect-ratio: 1.35; border-radius: var(--radius-lg); background: color-mix(in oklch, var(--palette-paper) 7%, transparent); border: var(--border-width) solid color-mix(in oklch, var(--palette-paper) 18%, transparent); color: var(--palette-brand); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cls-art-tile svg { display: block; width: 58%; height: auto; }
+/* project-card paints its media slot with --color-surface-media; the art keeps the dark band */
+.project-card[data-variant="media"] > .cls-art { background: var(--cls-art-ground); }
+
+.cls-part { --cls-header-h: 89px; min-height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .sidebar { top: var(--cls-header-h); height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .wiki-section { scroll-margin-top: calc(var(--cls-header-h) + var(--space-base)); }
+.cls-part .breadcrumb { margin-bottom: var(--space-lg); }
+.cls-part h1, .cls-part .wiki-section h2 { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-part-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; margin-bottom: var(--space-2xl); }
+.cls-part-kind { margin: 0 0 var(--space-sm); display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-part-head h1 { margin: 0 0 var(--space-base); }
+.cls-part-head .lede { margin: 0; font-size: var(--text-body-lg); }
+.cls-part-art { border-radius: var(--radius-lg); overflow: hidden; margin: 0; }
+.cls-part-quote { margin: var(--space-lg) 0 0; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-part-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-part-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .def dd a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-part-fig { margin: var(--space-lg) 0 0; }
+.cls-part-fig img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: var(--border-width) var(--border-style) var(--color-border); }
+.cls-part-fig figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-part-reel iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-alt); }
+.cls-part .cls-diagram svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-part-links { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.cls-part-links a, .cls-part .foot a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-flag { display: inline-block; padding: 1px var(--space-sm); border: var(--border-width) var(--border-style) var(--color-accent-deep); border-radius: var(--radius-full); font-size: var(--text-caption); font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); background: var(--color-accent-soft); }
+@media (max-width: 880px) { .cls-part .sidebar { top: auto; height: auto; } }
+@media (max-width: 720px) { .cls-part-head { grid-template-columns: minmax(0, 1fr); } .cls-part-art { order: -1; } }
+.cls-diagram { margin: 0; }
+.cls-diagram svg { overflow: visible; display: block; width: 100%; height: auto; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-diagram figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-diagram text { fill: var(--color-text); }
+.cls-diagram .cap { fill: var(--color-text-muted); font-size: 9.5px; letter-spacing: 0.03em; font-weight: 600; }
+.cls-diagram .note, .cls-diagram .rowlab { fill: var(--color-text-muted); font-size: 11px; }
+.cls-diagram .rowlab { fill: var(--color-text); font-weight: 600; font-size: 12px; }
+.cls-diagram .b { fill: var(--color-surface); stroke: var(--color-border-strong); stroke-width: 1.4; }
+.cls-diagram .b.hi { fill: var(--color-accent-soft); stroke: var(--color-accent-deep); }
+.cls-diagram .b.no { fill: var(--color-surface); stroke: var(--color-text-muted); stroke-dasharray: 2 3; }
+.cls-diagram .b.dash, .cls-diagram .a.dash { stroke-dasharray: 5 4; }
+.cls-diagram .b.empty { fill: transparent; stroke: var(--color-border); }
+.cls-diagram .z { fill: transparent; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.cls-diagram .a { fill: none; stroke: currentColor; stroke-width: 1.5; }</style>
+<link rel="stylesheet" href="views.css">
+<script defer src="vendor/nav-bar/behavior.js"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="index.html">Houston Bloom</a>
+        <a href="gardening-tools.html">Gardening Tools</a>
+        <a href="cls.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="#main" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="index.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 5.5h13"/><path d="M4 8.5h5M4 11h7"/></svg><span data-slot="label">Website</span></a></li>
+          <li><a href="links.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.7 9.3a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8"/><path d="M9.3 6.7a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8"/></svg><span data-slot="label">Links</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki cls-part" id="main">
+  <aside class="sidebar">
+    <p class="brand">Matchmaking events <small>Program · Community Legibility Spec</small></p>
+    <nav class="nav" aria-label="Sections">
+      <span class="nav-section">On this page</span>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#how">How it works</a>
+      <a href="#settled">Settled</a>
+      <a href="#open">Still open</a>
+    </nav>
+    <a class="back-link" href="cls.html#parts">All parts of the spec</a>
+  </aside>
+  <main class="main">
+    <nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="cls.html">Community Legibility Spec</a></li>
+        <li><a href="cls.html#parts">Programs</a></li>
+        <li><span aria-current="page">Matchmaking events</span></li>
+      </ol>
+    </nav>
+    <header class="cls-part-head">
+      <div class="cls-part-copy">
+        <p class="cls-part-kind"><span class="kind-label" data-component="kind-label" data-kind="program">Program</span></p>
+        <h1>Matchmaking events</h1>
+        <p class="lede">An evening where people who took the course meet the people they should know. The server ranks who to talk to, and both phones stamp that the meeting happened.</p>
+        
+      </div>
+      <figure class="cls-art cls-part-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Two people, each in their own circle, drift together; the overlap fills yellow when they meet." class="hbi hbi-compare"><defs><linearGradient id="hbi-compare-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-compare .y,.hbi-compare .ys{fill:url(#hbi-compare-sun);stroke:none}.hbi-compare .yl{fill:none;stroke:none}.hbi-compare .f{fill:currentColor;stroke:none}.hbi-compare .d{stroke-dasharray:1.6 2.6}
+.hbi-compare .lf,.hbi-compare .rt{transform-box:view-box}
+@media (prefers-reduced-motion:no-preference){.hbi-compare .lf{animation:hbi-cmp-l 5s ease-in-out infinite}.hbi-compare .rt{animation:hbi-cmp-r 5s ease-in-out infinite}.hbi-compare .o{animation:hbi-cmp-o 5s ease-in-out infinite}}
+@keyframes hbi-cmp-l{0%,100%{transform:translateX(-3px)}40%,70%{transform:translateX(0)}}
+@keyframes hbi-cmp-r{0%,100%{transform:translateX(3px)}40%,70%{transform:translateX(0)}}
+@keyframes hbi-cmp-o{0%,20%,100%{opacity:0}40%,70%{opacity:1}}</style><path class="y o" d="M24 15.5A11 11 0 0 1 24 32.5A11 11 0 0 1 24 15.5z"/>
+<g class="lf"><circle cx="17" cy="24" r="11"/><circle cx="14" cy="21" r="2.4"/><path d="M10 29.5a4 4 0 0 1 8 0"/></g>
+<g class="rt"><circle cx="31" cy="24" r="11"/><circle cx="34" cy="21" r="2.4"/><path d="M30 29.5a4 4 0 0 1 8 0"/></g></svg></span></figure>
+    </header>
+    <section class="wiki-section" id="overview"><h2>Overview</h2><dl class="defs"><div class="def"><dt>Runs on</dt><dd><a href="spec-dual-ledger.html">Dual-Ledger Authentication</a></dd></div><div class="def"><dt>Status</dt><dd>Explainer built</dd></div></dl><figure class="cls-part-fig cls-diagram" data-audit-ignore><svg viewBox="0 0 600 330" role="img" aria-label="Matchmaking events: a course produces shareables, the event matches people, and chosen shapes go to the commons." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><g><rect class="b " x="0" y="10" width="150" height="86" rx="6"/><text x="75" y="29" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="75" dy="0" font-weight="600">Course</tspan><tspan x="75" dy="16" >install AI</tspan><tspan x="75" dy="16" >point it at your files</tspan><tspan x="75" dy="16" >make shareables</tspan></text></g><g><rect class="b " x="180" y="10" width="150" height="86" rx="6"/><text x="255" y="29" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="255" dy="0" font-weight="600">Shareables</tspan><tspan x="255" dy="16" >1 · one-page card</tspan><tspan x="255" dy="16" >2 · note for someone</tspan><tspan x="255" dy="16" >you met</tspan></text></g><g><rect class="b hi" x="360" y="10" width="240" height="86" rx="6"/><text x="480" y="29" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="480" dy="0" font-weight="600">Matchmaking event</tspan><tspan x="480" dy="16" >sign in activates your insights</tspan><tspan x="480" dy="16" >ranked list · review</tspan><tspan x="480" dy="16" >network 20 min · scan cards</tspan></text></g><path class="a" d="M152 53H178" marker-end="url(#ah)"/><path class="a" d="M332 53H358" marker-end="url(#ah)"/><text x="360" y="120" text-anchor="start" class="cap" dominant-baseline="middle">THEN, AT THE EVENT</text><g><rect class="b " x="360" y="134" width="240" height="44" rx="6"/><text x="480" y="148" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="480" dy="0" font-weight="600">Working session</tspan><tspan x="480" dy="16" >handoff between helpers</tspan></text></g><path class="a" d="M480 98V132" marker-end="url(#ah)"/><g><rect class="b hi" x="360" y="206" width="240" height="54" rx="6"/><text x="480" y="217" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="480" dy="0" font-weight="600">Commons</tspan><tspan x="480" dy="16" >chosen principles,</tspan><tspan x="480" dy="16" >no person mapped</tspan></text></g><path class="a dash" d="M480 180V204" marker-end="url(#ah)"/><g><rect class="z" x="0" y="120" width="330" height="136" rx="10"/><text x="12" y="134" class="cap" dominant-baseline="middle">NO EXTRACTION</text></g><g><rect class="b " x="14" y="150" width="300" height="40" rx="6"/><text x="164" y="162" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="164" dy="0" font-weight="600">Both phones stamp the meeting</tspan><tspan x="164" dy="16" >dual ledger</tspan></text></g><g><rect class="b " x="14" y="200" width="300" height="42" rx="6"/><text x="164" y="213" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="164" dy="0" font-weight="600">Community keeps a thin witness</tspan><tspan x="164" dy="16" >that two people met, nothing more</tspan></text></g><text x="0" y="290" text-anchor="start" class="note" dominant-baseline="middle">Open: sign-in mechanism, exchange transfer (USB or local network), pacing past 20 minutes.</text><text x="0" y="312" text-anchor="start" class="note" dominant-baseline="middle">A server-made ranked list replaces the design note's placement round.</text></svg><figcaption>The grant program from course to commons, and what the event refuses to keep.</figcaption></figure></section>
+    <section class="wiki-section" id="how"><h2>How it works</h2><dl class="defs"><div class="def"><dt>Before</dt><dd>Each person arrives with the card they made in the course</dd></div><div class="def"><dt>Event</dt><dd>Sign in, ranked list, review, network, scan cards</dd></div><div class="def"><dt>Working session</dt><dd>Then a handoff between helpers, and a pour into the commons</dd></div><div class="def"><dt>Dual ledger</dt><dd>Both phones stamp the meeting; the community keeps a thin witness</dd></div></dl></section>
+    <section class="wiki-section" id="settled"><h2>Settled</h2><dl class="defs"><div class="def"><dt>Ranked list</dt><dd>Server-made, replaces a separate placement round</dd></div><div class="def"><dt>Sign-in</dt><dd>Activates your contributed insights</dd></div><div class="def"><dt>No extraction</dt><dd>Insights pass live; the community records only that two people met</dd></div><div class="def"><dt>The commons</dt><dd>Holds chosen principles, unmapped to any person</dd></div><div class="def"><dt>Networking</dt><dd>Twenty minutes in the current plan</dd></div></dl></section>
+    <section class="wiki-section" id="open"><h2>Still open</h2><dl class="defs"><div class="def"><dt>Sign-in</dt><dd>A scan plus a confirm button, a typed name, or something else</dd></div><div class="def"><dt>Exchange transfer</dt><dd>USB or local network; the physical form is undecided</dd></div><div class="def"><dt>Pacing</dt><dd>Beyond the twenty-minute window is unset</dd></div></dl></section>
+    <footer class="foot">
+      <p>Source: Working notes. A public write-up is not yet available.</p>
+      <p><a href="activity.html#map?node=compare">Show Matchmaking events on the spec map</a></p>
+    </footer>
+  </main>
+</div>
+<script src="vendor/template-menu/behavior.js"></script>
+<script>
+/* the sidebar marks the section in view */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.cls-part .sidebar .nav a'));
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (!e.isIntersecting) return; links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); }); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.cls-part .wiki-section').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

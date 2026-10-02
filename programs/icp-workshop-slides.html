@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help your network connect with their ICP · slides</title>
+<meta name="description" content="Learn to define your ideal customer profile. Then find the people you already know who can open a door for someone else in the room.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<style id="reel">
+:root{--cream:#ece5d6;--cream-2:#e3dccb;--cream-3:#d8d1bf;--ink:#1a1a1a;--ink-soft:#4a4439;--ink-softer:#6a6357;--rust:#8B2A1A;--rust-line:rgba(139,42,26,.38);--rust-wash:rgba(139,42,26,.08);--green:#2d5a3f;--green-deep:#0f2a1c;--green-light:#4a8a62;--butter:#f3d88b;--peach:#e1a78f;--edge:rgba(26,26,26,.1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--cream-3);font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden}
+.stage{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100vh;height:100dvh;display:grid;grid-template-rows:minmax(0,1fr) auto;grid-template-columns:minmax(0,1fr);background:var(--cream)}
+.reel{position:relative;width:100%;height:100%;overflow:hidden;outline:none}
+.reel::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;z-index:2;opacity:.55;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.36  0 0 0 0 0.32  0 0 0 0 0.26  0 0 0 0.04 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>")}
+.slides{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3}
+.slide{position:absolute;top:0;right:0;bottom:0;left:0;padding:clamp(28px,5vmin,64px) clamp(20px,5vw,80px) clamp(32px,5vmin,64px);opacity:0;visibility:hidden;pointer-events:none;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--rust-line) transparent}
+.slide::-webkit-scrollbar{width:6px}.slide::-webkit-scrollbar-thumb{background:var(--rust-line);border-radius:6px}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto;animation:slide-in 380ms cubic-bezier(.22,.61,.36,1)}
+@keyframes slide-in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+
+.bottom-bar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:clamp(10px,2vw,24px);padding:clamp(8px,1.4vmin,14px) clamp(14px,3vw,32px);background:var(--cream-2);border-top:1px solid var(--rust-line);box-shadow:0 -8px 20px -12px rgba(0,0,0,.12);position:relative;z-index:50}
+.note{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;text-align:center}
+.note .counter{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--rust);letter-spacing:.14em;font-weight:500}
+.note .title{font-weight:700;font-size:clamp(13px,1.8vmin,15px);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arrow{width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:var(--cream);display:grid;place-items:center;cursor:pointer}
+.arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.arrow:disabled{opacity:.3;cursor:default}
+.arrow:focus-visible{outline:2px solid var(--rust);outline-offset:3px}
+
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.hand,.scrawl{font-family:'Caveat',cursive;font-weight:700}
+.eyebrow{font-size:clamp(12px,1.8vmin,15px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:clamp(10px,1.6vmin,16px)}
+h1{font-weight:800;color:var(--ink)}
+.t-xl{font-size:clamp(40px,8.4vmin,80px);line-height:1;letter-spacing:-.025em}
+.t-lg{font-size:clamp(32px,6.4vmin,60px);line-height:1.04;letter-spacing:-.02em}
+.serif-xl,.serif-lg{font-family:'DM Serif Display',Georgia,serif;font-weight:400;padding-bottom:.12em}
+.serif-xl{font-size:clamp(44px,9vmin,86px);line-height:1}
+.serif-lg{font-size:clamp(30px,6vmin,56px);line-height:1.06;max-width:22ch}
+.body{font-size:clamp(18px,2.6vmin,23px);line-height:1.45;color:var(--ink-soft);max-width:34ch;margin-top:clamp(12px,2vmin,20px)}
+.lede{font-size:clamp(19px,2.9vmin,26px);line-height:1.4;font-weight:500;max-width:30ch;margin-top:clamp(14px,2vmin,22px)}
+.scrawl{font-size:clamp(22px,3.2vmin,30px);color:var(--rust);max-width:32ch;margin-top:clamp(14px,2.4vmin,24px);line-height:1.2}
+
+svg .who circle,svg .who path{fill:var(--ink-softer)}
+svg .who.far circle,svg .who.far path{fill:var(--cream-3)}
+svg .who.you circle,svg .who.you path{fill:var(--rust)}
+svg .arc{fill:none;stroke:var(--rust);stroke-width:1.6;stroke-dasharray:3 4;opacity:.75}
+svg .dot{fill:var(--rust);opacity:.8}
+svg .doc rect{fill:var(--cream);stroke:var(--ink-softer);stroke-width:1.4}
+svg .doc.warm rect{fill:var(--butter)}
+svg .doc.out rect{fill:#fff;stroke:var(--green);stroke-width:1.8}
+svg .doc line{stroke:var(--ink-softer);stroke-width:1.4;opacity:.6}
+svg .doc.out line{stroke:var(--green)}
+svg .laptop rect,svg .laptop path{fill:var(--cream);stroke:var(--ink-soft);stroke-width:1.6}
+svg .in{font:800 16px 'Plus Jakarta Sans',sans-serif;fill:#0a66c2;text-anchor:middle}
+svg .tag{font:500 9px 'JetBrains Mono',monospace;fill:var(--ink-soft);text-anchor:middle}
+svg .ground{stroke:var(--edge);stroke-width:1.4}
+svg .card rect{fill:#fff;stroke:var(--rust);stroke-width:1.6}
+svg .card text{font:600 8px 'JetBrains Mono',monospace;fill:var(--rust)}
+svg .card line{stroke:var(--ink-softer);stroke-width:1;opacity:.5}
+svg .table{fill:var(--cream-3)}
+svg .box rect{fill:var(--green);}
+svg .box text{font:600 10px 'JetBrains Mono',monospace;fill:var(--cream);text-anchor:middle}
+svg .flow{stroke:var(--green);stroke-width:1.8}
+svg .check circle{fill:var(--green)}
+svg .check path{fill:none;stroke:var(--cream);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+svg .hand line{stroke:var(--rust);stroke-width:5;stroke-linecap:round}
+svg .hand circle{fill:var(--rust)}
+
+/* 1 cover */
+.s-cover{display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:auto 1fr auto;gap:18px}
+.s-cover .dateline{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.date-pill{background:var(--ink);color:var(--cream);padding:7px 12px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.edition{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);font-weight:700}
+.s-cover .title-col{align-self:center}
+.s-cover .art{align-self:center;justify-self:center;width:100%;max-width:420px}
+.s-cover .art svg{width:100%;height:auto;display:block}
+.s-cover .sig{grid-column:1/-1;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--rust-line);padding-top:12px;gap:8px}
+.s-cover .sig .by{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(22px,3vmin,28px)}
+.s-cover .sig .publisher{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);font-weight:700}
+
+/* 2 origin: a room, one hand up */
+.s-origin{background:var(--cream-2)}
+.s-origin .room{max-width:clamp(300px,52vh,520px);margin:clamp(4px,1vmin,12px) 0 clamp(10px,2vmin,20px)}
+.s-origin .room svg{width:100%;height:auto;display:block}
+
+/* 3 part one: copy beside an empty ICP card */
+.s-part-one{display:grid;grid-template-columns:1fr minmax(260px,.8fr);gap:clamp(24px,5vw,64px);align-items:center}
+.icp-card{background:#fff;border:2px solid var(--rust);border-radius:10px;padding:clamp(18px,3vmin,28px);box-shadow:8px 8px 0 var(--rust-wash);transform:rotate(-1.2deg)}
+.card-head{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:14px}
+.field{display:grid;gap:6px;margin-bottom:18px}
+.field .mono{font-size:13px;color:var(--ink-soft)}
+.field .blank{height:2px;background:var(--ink-softer);opacity:.35}
+
+/* 4 storyboard */
+.s-storyboard header{margin-bottom:clamp(14px,2.4vmin,24px)}
+.board{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vmin,22px)}
+.panel{background:var(--cream-2);border:1px solid var(--edge);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.panel .pic{background:var(--cream);border-bottom:1px solid var(--edge)}
+.panel .pic svg{display:block;width:100%;height:auto;max-height:clamp(96px,21vh,210px);margin:0 auto}
+.panel .cap{padding:10px 12px 12px;font-size:clamp(14px,1.9vmin,16px);line-height:1.35;color:var(--ink-soft)}
+.panel .cap strong{color:var(--ink);font-weight:700}
+.panel .n{display:block;font-size:12px;color:var(--rust);letter-spacing:.1em;margin-bottom:2px}
+
+/* 5 prompt: inputs, operation, output, then the quote */
+.s-prompt{background:var(--green-deep);color:var(--cream)}
+.s-prompt .eyebrow{color:var(--peach)}
+.s-prompt h1{color:var(--cream)}
+.flowline{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(10px,2vmin,18px);margin:clamp(18px,3vmin,30px) 0}
+.ins{display:flex;flex-direction:column;gap:8px}
+.chip{display:inline-block;border:1.5px solid var(--cream);border-radius:999px;padding:8px 14px;font-weight:600;font-size:clamp(14px,2vmin,17px)}
+.chip.outp{background:var(--butter);color:var(--ink);border-color:var(--butter)}
+.op{color:var(--peach);font-size:clamp(14px,2vmin,17px)}
+.quote{border-left:3px solid var(--peach);padding:4px 0 4px clamp(14px,2vw,22px);max-width:40ch}
+.quote p{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,3.4vmin,32px);line-height:1.25}
+.quote cite{display:block;margin-top:10px;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--peach)}
+
+/* 6 steward: drawing first, then the claim */
+.s-steward{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,4vw,56px);align-items:center}
+.s-steward .art svg{width:100%;height:auto;display:block}
+
+/* 7 before: the LinkedIn path as stepping stones */
+.path{list-style:none;display:flex;flex-wrap:wrap;gap:8px 6px;margin:clamp(18px,3vmin,28px) 0;counter-reset:p}
+.path li{counter-increment:p;background:#fff;border:1.5px solid var(--ink);border-radius:6px;padding:9px 14px;font-weight:700;font-size:clamp(14px,2vmin,17px);position:relative}
+.path li::before{content:counter(p);font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--rust);margin-right:8px}
+.path li:last-child{background:var(--butter)}
+.holds{font-size:clamp(16px,2.2vmin,19px);line-height:1.45;color:var(--ink-soft);max-width:52ch}
+.holds .mono{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:4px}
+
+/* 8 open: the list to settle */
+.s-open{background:var(--ink);color:var(--cream)}
+.s-open .eyebrow{color:var(--butter)}
+.s-open h1{color:var(--cream)}
+.todo{list-style:none;margin-top:clamp(18px,3vmin,28px);max-width:58ch;display:grid;gap:12px}
+.todo li{font-size:clamp(17px,2.4vmin,21px);line-height:1.4;color:var(--cream-3);padding-left:30px;position:relative}
+.todo li::before{content:"";position:absolute;left:0;top:.28em;width:16px;height:16px;border:2px solid var(--butter);border-radius:3px}
+.todo li strong{color:var(--cream);font-weight:700}
+.s-open .sign{font-size:clamp(24px,3.4vmin,32px);color:var(--butter);margin-top:clamp(20px,3vmin,32px)}
+
+@media (max-width:900px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){
+  .s-cover,.s-part-one,.s-steward{grid-template-columns:1fr}
+  .s-cover .art{max-width:260px;justify-self:start}
+  .s-cover .sig{flex-direction:column;align-items:flex-start}
+  .icp-card{transform:none}
+  .board{grid-template-columns:1fr}
+  .panel{flex-direction:row}
+  .panel .pic{flex:0 0 42%;border-bottom:0;border-right:1px solid var(--edge);display:flex;align-items:center}
+}
+</style>
+</head>
+<body>
+<main class="stage" role="main">
+<section class="reel" tabindex="0" id="reel" aria-label="Help your network connect with their ICP">
+<div class="slides" id="slides">
+<article class="slide s-cover active" data-slide="1" data-title="Cover" aria-hidden="false">
+<div class="dateline"><span class="date-pill">Date to be set</span><span class="edition">A workshop for founders in Houston</span></div>
+<div class="title-col">
+  <p class="eyebrow">Houston Bloom · Workshop</p>
+  <h1 class="t-xl">Help your network connect with their ICP</h1>
+  <p class="lede">Learn to define your ideal customer profile. Then find the people you already know who can open a door for someone else in the room.</p>
+</div>
+<div class="art"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="who " transform="translate(40 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(160 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who you" transform="translate(100 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><path class="arc" d="M 100 70 Q 70 30 44 76"/><circle class="dot" cx="100" cy="70" r="2.5"/><circle class="dot" cx="44" cy="76" r="2.5"/><path class="arc" d="M 100 70 Q 130 30 156 76"/><circle class="dot" cx="100" cy="70" r="2.5"/><circle class="dot" cx="156" cy="76" r="2.5"/><g class="check"><circle cx="100" cy="28" r="12"/><path d="M93 28 L98 33 L107 23"/></g></svg></div>
+<div class="sig"><span class="by">Houston Bloom</span><span class="publisher">Event outline</span></div>
+</article>
+<article class="slide s-origin" data-slide="2" data-title="Where the idea came from" aria-hidden="true">
+<p class="eyebrow">Where it started</p>
+<div class="room"><svg viewBox="0 0 320 150" aria-hidden="true"><g class="who far" transform="translate(30 140) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(70 134) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(110 140) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(150 134) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who you" transform="translate(190 140) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(230 134) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(270 140) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="hand"><line x1="196" y1="108" x2="204" y2="76"/><circle cx="205" cy="72" r="4"/></g></svg></div>
+<h1 class="serif-xl">One hand went up.</h1>
+<p class="body">At a networking event in September, a speaker asked the room whether anyone knew someone in his ICP's sphere of influence. One person raised a hand. That is how you get in, he said.</p>
+<p class="scrawl">This workshop makes that question searchable, so the right person does not have to be the one who happens to raise a hand.</p>
+</article>
+<article class="slide s-part-one" data-slide="3" data-title="Part one · Define your ICP" aria-hidden="true">
+<div class="copy"><p class="eyebrow">Part one</p><h1 class="t-xl">Define your ICP</h1><p class="body">An ideal customer profile names who you most need to reach. Everyone leaves part one with theirs written down, ready to send to the room.</p></div>
+<div class="icp-card" aria-label="An ICP has three parts">
+  <p class="card-head mono">My ICP</p>
+  <div class="field"><span class="mono">Role</span><span class="blank"></span></div><div class="field"><span class="mono">Kind of company</span><span class="blank"></span></div><div class="field"><span class="mono">Industry</span><span class="blank"></span></div>
+</div>
+</article>
+<article class="slide s-storyboard" data-slide="4" data-title="Part two · The exercise" aria-hidden="true">
+<header><p class="eyebrow">Part two</p><h1 class="t-lg">Help each other connect</h1></header>
+<ol class="board">
+  <li class="panel"><div class="pic"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="laptop"><rect x="28" y="56" width="56" height="36" rx="3"/><path d="M 20 96 H 92 L 86 100 H 26 Z"/></g><text class="in" x="56" y="80">in</text><g class="doc warm"><rect x="130" y="50" width="34" height="44" rx="3"/><line x1="136" y1="60" x2="158" y2="60"/><line x1="136" y1="67" x2="152" y2="67"/><line x1="136" y1="74" x2="158" y2="74"/><line x1="136" y1="81" x2="152" y2="81"/></g><path class="arc" d="M 86 66 Q 110 30 132 60"/><circle class="dot" cx="86" cy="66" r="2.5"/><circle class="dot" cx="132" cy="60" r="2.5"/><text class="tag" x="147" y="108">.csv</text></svg></div><p class="cap"><span class="n mono">01</span><strong>Download your connections</strong> From LinkedIn, before the day.</p></li>
+  <li class="panel"><div class="pic"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="who " transform="translate(48 112) scale(1.25)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="card"><rect x="92" y="34" width="86" height="68" rx="4"/><text x="100" y="52">Role</text><line x1="100" y1="58" x2="168" y2="58"/><text x="100" y="72">Company</text><line x1="100" y1="78" x2="168" y2="78"/><text x="100" y="92">Industry</text><line x1="100" y1="98" x2="168" y2="98"/></g></svg></div><p class="cap"><span class="n mono">02</span><strong>Define your ICP</strong> In part one.</p></li>
+  <li class="panel"><div class="pic"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="who " transform="translate(34 112) scale(1.1)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who " transform="translate(166 112) scale(1.1)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(100 70) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><rect class="table" x="70" y="96" width="60" height="10" rx="5"/><g class="doc warm"><rect x="88" y="66" width="24" height="28" rx="3"/><line x1="94" y1="76" x2="106" y2="76"/><line x1="94" y1="83" x2="100" y2="83"/><line x1="94" y1="90" x2="106" y2="90"/></g><path class="arc" d="M 46 78 Q 66 50 88 74"/><circle class="dot" cx="46" cy="78" r="2.5"/><circle class="dot" cx="88" cy="74" r="2.5"/><path class="arc" d="M 154 78 Q 134 50 112 74"/><circle class="dot" cx="154" cy="78" r="2.5"/><circle class="dot" cx="112" cy="74" r="2.5"/></svg></div><p class="cap"><span class="n mono">03</span><strong>Send it to the room</strong> Everyone's goes into one list.</p></li>
+  <li class="panel"><div class="pic"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="doc warm"><rect x="84" y="14" width="34" height="44" rx="3"/><line x1="90" y1="24" x2="112" y2="24"/><line x1="90" y1="31" x2="106" y2="31"/><line x1="90" y1="38" x2="112" y2="38"/><line x1="90" y1="45" x2="106" y2="45"/><line x1="90" y1="52" x2="112" y2="52"/></g><g class="who " transform="translate(40 112) scale(1)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who " transform="translate(100 112) scale(1)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who " transform="translate(160 112) scale(1)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><path class="arc" d="M 92 58 Q 60 66 42 82"/><circle class="dot" cx="92" cy="58" r="2.5"/><circle class="dot" cx="42" cy="82" r="2.5"/><path class="arc" d="M 101 58 Q 101 70 101 82"/><circle class="dot" cx="101" cy="58" r="2.5"/><circle class="dot" cx="101" cy="82" r="2.5"/><path class="arc" d="M 110 58 Q 142 66 158 82"/><circle class="dot" cx="110" cy="58" r="2.5"/><circle class="dot" cx="158" cy="82" r="2.5"/></svg></div><p class="cap"><span class="n mono">04</span><strong>Download the room's list</strong> Every ICP in the room.</p></li>
+  <li class="panel"><div class="pic"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="doc "><rect x="14" y="22" width="30" height="38" rx="3"/><line x1="20" y1="32" x2="38" y2="32"/><line x1="20" y1="39" x2="32" y2="39"/><line x1="20" y1="46" x2="38" y2="46"/><line x1="20" y1="53" x2="32" y2="53"/></g><g class="doc warm"><rect x="14" y="70" width="30" height="38" rx="3"/><line x1="20" y1="80" x2="38" y2="80"/><line x1="20" y1="87" x2="32" y2="87"/><line x1="20" y1="94" x2="38" y2="94"/><line x1="20" y1="101" x2="32" y2="101"/></g><g class="box"><rect x="74" y="44" width="52" height="40" rx="6"/><text x="100" y="69">prompt</text></g><g class="doc out"><rect x="150" y="30" width="36" height="64" rx="3"/><line x1="156" y1="40" x2="180" y2="40"/><line x1="156" y1="47" x2="174" y2="47"/><line x1="156" y1="54" x2="180" y2="54"/><line x1="156" y1="61" x2="174" y2="61"/><line x1="156" y1="68" x2="180" y2="68"/><line x1="156" y1="75" x2="174" y2="75"/></g><line class="flow" x1="46" y1="41" x2="72" y2="58"/><line class="flow" x1="46" y1="89" x2="72" y2="72"/><line class="flow" x1="128" y1="64" x2="148" y2="64"/></svg></div><p class="cap"><span class="n mono">05</span><strong>Run the prompt</strong> It reads the list against your connections.</p></li>
+  <li class="panel"><div class="pic"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="who " transform="translate(40 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(160 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who you" transform="translate(100 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><path class="arc" d="M 100 70 Q 70 30 44 76"/><circle class="dot" cx="100" cy="70" r="2.5"/><circle class="dot" cx="44" cy="76" r="2.5"/><path class="arc" d="M 100 70 Q 130 30 156 76"/><circle class="dot" cx="100" cy="70" r="2.5"/><circle class="dot" cx="156" cy="76" r="2.5"/><g class="check"><circle cx="100" cy="28" r="12"/><path d="M93 28 L98 33 L107 23"/></g></svg></div><p class="cap"><span class="n mono">06</span><strong>Choose who to steward</strong> You decide who to introduce.</p></li>
+</ol>
+</article>
+<article class="slide s-prompt" data-slide="5" data-title="What the prompt builds" aria-hidden="true">
+<p class="eyebrow">What the prompt builds</p>
+<h1 class="serif-lg">A page of who you could introduce, and to whom.</h1>
+<div class="flowline">
+  <div class="ins"><span class="chip">Your LinkedIn connections</span><span class="chip">The room's ICP list</span></div>
+  <span class="op mono" aria-hidden="true">+ prompt &#8594;</span>
+  <span class="chip outp">Your introductions page</span>
+</div>
+<blockquote class="quote"><p>Your contact list matches these seventeen people. Two of them are for this person who requested it. One of them is for someone else.</p><cite class="mono">How the output should read</cite></blockquote>
+</article>
+<article class="slide s-steward" data-slide="6" data-title="You choose" aria-hidden="true">
+<div class="art"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="who " transform="translate(40 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(160 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who you" transform="translate(100 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><path class="arc" d="M 100 70 Q 70 30 44 76"/><circle class="dot" cx="100" cy="70" r="2.5"/><circle class="dot" cx="44" cy="76" r="2.5"/><path class="arc" d="M 100 70 Q 130 30 156 76"/><circle class="dot" cx="100" cy="70" r="2.5"/><circle class="dot" cx="156" cy="76" r="2.5"/><g class="check"><circle cx="100" cy="28" r="12"/><path d="M93 28 L98 33 L107 23"/></g></svg></div>
+<div class="copy"><p class="eyebrow">Stewarding</p><h1 class="serif-xl">You choose who to steward.</h1><p class="lede">Stewarding a connection means vouching for someone you know. Nobody is introduced unless you choose to.</p></div>
+</article>
+<article class="slide s-before" data-slide="7" data-title="Before you come" aria-hidden="true">
+<p class="eyebrow">Before you come</p>
+<h1 class="t-lg">Download your LinkedIn connections</h1>
+<p class="body">LinkedIn sends the file by email, so request it before the day.</p>
+<ol class="path"><li>Me</li><li>Settings and Privacy</li><li>Data privacy</li><li>Get a copy of your data</li><li>Connections</li></ol>
+<p class="holds"><span class="mono">In the file</span> Names, company, position, the date you connected, and a profile link. Email addresses are mostly blank.</p>
+</article>
+</div>
+</section>
+<footer class="bottom-bar">
+<button class="arrow" id="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19"/></svg></button>
+<div class="note" aria-live="polite"><span class="counter" id="counter">01 / 07</span><span class="title" id="noteTitle">Cover</span></div>
+<button class="arrow" id="next" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19"/></svg></button>
+</footer>
+</main>
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length, index = 0;
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var counter = document.getElementById('counter'), noteTitle = document.getElementById('noteTitle');
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function update() {
+    slides.forEach(function (s, i) {
+      s.classList.toggle('active', i === index);
+      s.classList.toggle('prev', i < index);
+      s.setAttribute('aria-hidden', i !== index);
+      if (i === index) s.scrollTop = 0;
+    });
+    counter.textContent = pad(index + 1) + ' / ' + pad(total);
+    noteTitle.textContent = slides[index].getAttribute('data-title') || '';
+    prev.disabled = index === 0;
+    next.disabled = index === total - 1;
+    try { history.replaceState(null, '', '#' + (index + 1)); } catch (e) {}
+  }
+  function go(i) { index = Math.max(0, Math.min(total - 1, i)); update(); }
+  prev.addEventListener('click', function () { go(index - 1); });
+  next.addEventListener('click', function () { go(index + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') go(index + 1);
+    else if (e.key === 'ArrowLeft') go(index - 1);
+    else if (e.key === 'Home') go(0);
+    else if (e.key === 'End') go(total - 1);
+  });
+  var x0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+  var start = parseInt((location.hash || '').slice(1), 10);
+  go(start > 0 ? start - 1 : 0);
+})();
+</script>
+<script>
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && window.parent !== window) window.parent.postMessage({ hbReel: 'close' }, '*'); });
+</script>
+</body>
+</html>

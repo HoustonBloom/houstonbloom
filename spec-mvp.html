@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-style="editorial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Houston Bloom · Community Legibility MVP</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="vendor/fonts.css">
+<link rel="stylesheet" href="vendor/styles.css">
+<link rel="stylesheet" href="vendor/nav-bar/component.css">
+<link rel="stylesheet" href="vendor/template-menu/component.css">
+<link rel="stylesheet" href="vendor/kind-label/component.css">
+<link rel="stylesheet" href="vendor/breadcrumb/component.css">
+<link rel="stylesheet" href="vendor/button/component.css">
+<link rel="stylesheet" href="vendor/templates/wiki.css">
+<style>
+.cls-art { --cls-art-ground: var(--palette-band); background: var(--cls-art-ground); display: grid; place-items: center; aspect-ratio: 16 / 9; position: relative; isolation: isolate; }
+.cls-art::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; background: radial-gradient(circle at 30% 20%, color-mix(in oklch, var(--palette-brand) 18%, transparent), transparent 60%); }
+.cls-art-tile { display: grid; place-items: center; width: 44%; aspect-ratio: 1.35; border-radius: var(--radius-lg); background: color-mix(in oklch, var(--palette-paper) 7%, transparent); border: var(--border-width) solid color-mix(in oklch, var(--palette-paper) 18%, transparent); color: var(--palette-brand); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cls-art-tile svg { display: block; width: 58%; height: auto; }
+/* project-card paints its media slot with --color-surface-media; the art keeps the dark band */
+.project-card[data-variant="media"] > .cls-art { background: var(--cls-art-ground); }
+
+.cls-part { --cls-header-h: 89px; min-height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .sidebar { top: var(--cls-header-h); height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .wiki-section { scroll-margin-top: calc(var(--cls-header-h) + var(--space-base)); }
+.cls-part .breadcrumb { margin-bottom: var(--space-lg); }
+.cls-part h1, .cls-part .wiki-section h2 { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-part-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; margin-bottom: var(--space-2xl); }
+.cls-part-kind { margin: 0 0 var(--space-sm); display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-part-head h1 { margin: 0 0 var(--space-base); }
+.cls-part-head .lede { margin: 0; font-size: var(--text-body-lg); }
+.cls-part-art { border-radius: var(--radius-lg); overflow: hidden; margin: 0; }
+.cls-part-quote { margin: var(--space-lg) 0 0; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-part-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-part-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .def dd a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-part-fig { margin: var(--space-lg) 0 0; }
+.cls-part-fig img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: var(--border-width) var(--border-style) var(--color-border); }
+.cls-part-fig figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-part-reel iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-alt); }
+.cls-part .cls-diagram svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-part-links { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.cls-part-links a, .cls-part .foot a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-flag { display: inline-block; padding: 1px var(--space-sm); border: var(--border-width) var(--border-style) var(--color-accent-deep); border-radius: var(--radius-full); font-size: var(--text-caption); font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); background: var(--color-accent-soft); }
+@media (max-width: 880px) { .cls-part .sidebar { top: auto; height: auto; } }
+@media (max-width: 720px) { .cls-part-head { grid-template-columns: minmax(0, 1fr); } .cls-part-art { order: -1; } }
+.cls-diagram { margin: 0; }
+.cls-diagram svg { overflow: visible; display: block; width: 100%; height: auto; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-diagram figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-diagram text { fill: var(--color-text); }
+.cls-diagram .cap { fill: var(--color-text-muted); font-size: 9.5px; letter-spacing: 0.03em; font-weight: 600; }
+.cls-diagram .note, .cls-diagram .rowlab { fill: var(--color-text-muted); font-size: 11px; }
+.cls-diagram .rowlab { fill: var(--color-text); font-weight: 600; font-size: 12px; }
+.cls-diagram .b { fill: var(--color-surface); stroke: var(--color-border-strong); stroke-width: 1.4; }
+.cls-diagram .b.hi { fill: var(--color-accent-soft); stroke: var(--color-accent-deep); }
+.cls-diagram .b.no { fill: var(--color-surface); stroke: var(--color-text-muted); stroke-dasharray: 2 3; }
+.cls-diagram .b.dash, .cls-diagram .a.dash { stroke-dasharray: 5 4; }
+.cls-diagram .b.empty { fill: transparent; stroke: var(--color-border); }
+.cls-diagram .z { fill: transparent; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.cls-diagram .a { fill: none; stroke: currentColor; stroke-width: 1.5; }</style>
+<link rel="stylesheet" href="views.css">
+<script defer src="vendor/nav-bar/behavior.js"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="index.html">Houston Bloom</a>
+        <a href="gardening-tools.html">Gardening Tools</a>
+        <a href="cls.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="#main" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="index.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 5.5h13"/><path d="M4 8.5h5M4 11h7"/></svg><span data-slot="label">Website</span></a></li>
+          <li><a href="links.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.7 9.3a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8"/><path d="M9.3 6.7a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8"/></svg><span data-slot="label">Links</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki cls-part" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility MVP <small>Infrastructure · Community Legibility Spec</small></p>
+    <nav class="nav" aria-label="Sections">
+      <span class="nav-section">On this page</span>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#how">How it works</a>
+      <a href="#settled">Settled</a>
+      <a href="#open">Still open</a>
+    </nav>
+    <a class="back-link" href="cls.html#parts">All parts of the spec</a>
+  </aside>
+  <main class="main">
+    <nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="cls.html">Community Legibility Spec</a></li>
+        <li><a href="cls.html#parts">Infrastructure</a></li>
+        <li><span aria-current="page">Community Legibility MVP</span></li>
+      </ol>
+    </nav>
+    <header class="cls-part-head">
+      <div class="cls-part-copy">
+        <p class="cls-part-kind"><span class="kind-label" data-component="kind-label" data-kind="infrastructure">Infrastructure</span></p>
+        <h1>Community Legibility MVP</h1>
+        <p class="lede">The MVP data flow, drawn as layers. Each person keeps their own network on top. One MCP layer on a shared server does the comparing and filtering. The commons sits underneath and holds shapes only.</p>
+        
+      </div>
+      <figure class="cls-art cls-part-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Two server racks with vents and yellow lights blinking in turn, a signal running between them." class="hbi hbi-mvp"><defs><linearGradient id="hbi-mvp-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-mvp .y,.hbi-mvp .ys{fill:url(#hbi-mvp-sun);stroke:none}.hbi-mvp .yl{fill:none;stroke:none}.hbi-mvp .f{fill:currentColor;stroke:none}.hbi-mvp .d{stroke-dasharray:1.6 2.6}
+.hbi-mvp .k{stroke-dasharray:1.6 2}
+@media (prefers-reduced-motion:no-preference){.hbi-mvp .l1{animation:hbi-mvp-l 2.4s steps(1) infinite}.hbi-mvp .l2{animation:hbi-mvp-l 2.4s steps(1) .6s infinite}.hbi-mvp .l3{animation:hbi-mvp-l 2.4s steps(1) 1.2s infinite}.hbi-mvp .l4{animation:hbi-mvp-l 2.4s steps(1) 1.8s infinite}.hbi-mvp .k{animation:hbi-mvp-k 2.4s linear infinite}}
+@keyframes hbi-mvp-l{0%{opacity:1}50%{opacity:.25}}
+@keyframes hbi-mvp-k{to{stroke-dashoffset:-14.4}}</style><rect class="yl" x="7" y="7" width="34" height="13" rx="2.5"/><rect class="yl" x="7" y="28" width="34" height="13" rx="2.5"/>
+<rect x="7" y="7" width="34" height="13" rx="2.5"/><rect x="7" y="28" width="34" height="13" rx="2.5"/>
+<circle class="ys l1" cx="12.5" cy="13.5" r="1.5"/><circle class="ys l2" cx="17" cy="13.5" r="1.5"/><circle class="ys l3" cx="12.5" cy="34.5" r="1.5"/><circle class="ys l4" cx="17" cy="34.5" r="1.5"/>
+<path d="M24 11v5M27.5 11v5M31 11v5M34.5 11v5M24 32v5M27.5 32v5M31 32v5M34.5 32v5"/>
+<path class="k" d="M24 20v8"/><path d="M4 44h40"/></svg></span></figure>
+    </header>
+    <section class="wiki-section" id="overview"><h2>Overview</h2><dl class="defs"><div class="def"><dt>Status</dt><dd>Designed, not built</dd></div></dl><figure class="cls-part-fig cls-diagram" data-audit-ignore><svg viewBox="0 0 600 500" role="img" aria-label="Community Legibility MVP: two home networks on top, a shared MCP zone in the middle that compares and filters, a commons of shapes underneath." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><g><rect class="z" x="0" y="0" width="290" height="110" rx="10"/><text x="12" y="14" class="cap" dominant-baseline="middle">MEGAN · home network</text></g><g><rect class="b " x="10" y="30" width="84" height="64" rx="6"/><text x="52" y="54" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="52" dy="0" font-weight="600">Vault</tspan><tspan x="52" dy="16" >stays home</tspan></text></g><g><rect class="b " x="103" y="30" width="84" height="64" rx="6"/><text x="145" y="54" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="145" dy="0" font-weight="600">Scanner</tspan><tspan x="145" dy="16" >tagged files</tspan></text></g><g><rect class="b " x="196" y="30" width="84" height="64" rx="6"/><text x="238" y="54" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="238" dy="0" font-weight="600">AI chat</tspan><tspan x="238" dy="16" >asks over MCP</tspan></text></g><g><rect class="z" x="310" y="0" width="290" height="110" rx="10"/><text x="322" y="14" class="cap" dominant-baseline="middle">KYLE · his own network</text></g><g><rect class="b " x="320" y="30" width="84" height="64" rx="6"/><text x="362" y="54" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="362" dy="0" font-weight="600">AI chat</tspan><tspan x="362" dy="16" >via Tailscale</tspan></text></g><g><rect class="b " x="413" y="30" width="84" height="64" rx="6"/><text x="455" y="54" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="455" dy="0" font-weight="600">Scanner</tspan><tspan x="455" dy="16" >same job</tspan></text></g><g><rect class="b  dash" x="506" y="30" width="84" height="64" rx="6"/><text x="548" y="54" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="548" dy="0" font-weight="600">Vault</tspan><tspan x="548" dy="16" >undecided</tspan></text></g><g><rect class="z" x="0" y="140" width="600" height="200" rx="10"/><text x="12" y="154" class="cap" dominant-baseline="middle"></text></g><text x="588" y="331" text-anchor="end" class="cap" dominant-baseline="middle">MCP ZONE · community server · every arrow in carries a token</text><g><rect class="b  dash" x="10" y="166" width="136" height="70" rx="6"/><text x="78" y="185" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="78" dy="0" font-weight="600">Full manifest</tspan><tspan x="78" dy="16" >private, outside</tspan><tspan x="78" dy="16" >the MCP zone</tspan></text></g><g><rect class="b " x="158" y="166" width="136" height="70" rx="6"/><text x="226" y="185" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="226" dy="0" font-weight="600">Megan’s manifest</tspan><tspan x="226" dy="16" >redacted · opaque id</tspan><tspan x="226" dy="16" >last active</tspan></text></g><g><rect class="b hi" x="306" y="166" width="136" height="70" rx="6"/><text x="374" y="185" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="374" dy="0" font-weight="600">MCP server</tspan><tspan x="374" dy="16" >compare · filter</tspan><tspan x="374" dy="16" >answer</tspan></text></g><g><rect class="b " x="454" y="166" width="136" height="70" rx="6"/><text x="522" y="185" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="522" dy="0" font-weight="600">Kyle’s manifest</tspan><tspan x="522" dy="16" >redacted · opaque id</tspan><tspan x="522" dy="16" >last active</tspan></text></g><g><rect class="b " x="158" y="252" width="136" height="70" rx="6"/><text x="226" y="279" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="226" dy="0" font-weight="600">Megan’s cuts</tspan><tspan x="226" dy="16" >for Kyle</tspan></text></g><g><rect class="b " x="306" y="252" width="136" height="70" rx="6"/><text x="374" y="271" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="374" dy="0" font-weight="600">Shared viewer</tspan><tspan x="374" dy="16" >rendered for</tspan><tspan x="374" dy="16" >both people</tspan></text></g><g><rect class="b " x="454" y="252" width="136" height="70" rx="6"/><text x="522" y="279" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="522" dy="0" font-weight="600">Kyle’s cuts</tspan><tspan x="522" dy="16" >for Megan</tspan></text></g><g><rect class="z" x="0" y="370" width="600" height="96" rx="10"/><text x="12" y="384" class="cap" dominant-baseline="middle"></text></g><text x="12" y="455" text-anchor="start" class="cap" dominant-baseline="middle">COMMUNITY DATA COMMONS · shapes only</text><g><rect class="b hi" x="190" y="384" width="220" height="56" rx="6"/><text x="300" y="404" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="300" dy="0" font-weight="600">Pool of shapes</tspan><tspan x="300" dy="16" >opaque id · time · principle</tspan></text></g><path class="a" d="M52 96V164" marker-end="url(#ah)"/><text x="58" y="130" text-anchor="start" class="note" dominant-baseline="middle">2 sync</text><path class="a" d="M145 96V128H226V164" marker-end="url(#ah)"/><text x="150" y="120" text-anchor="start" class="note" dominant-baseline="middle">1 records</text><path class="a" d="M238 96V114H340V164" marker-end="url(#ah)" marker-start="url(#ah)"/><path class="a" d="M362 96V114H408V164" marker-end="url(#ah)" marker-start="url(#ah)"/><text x="414" y="142" text-anchor="start" class="note" dominant-baseline="middle">3 ask · 5 answer</text><path class="a" d="M455 96V128H522V164" marker-end="url(#ah)"/><text x="500" y="120" text-anchor="start" class="note" dominant-baseline="middle">8 mirror</text><path class="a" d="M157 220H152V412H188" marker-end="url(#ah)"/><path class="a" d="M591 220H596V412H412" marker-end="url(#ah)"/><text x="300" y="360" text-anchor="middle" class="note" dominant-baseline="middle">9 · the contributor chooses a shape</text><text x="0" y="488" text-anchor="start" class="note" dominant-baseline="middle">Nothing here is built yet. Names, paths and content never reach the commons.</text></svg><figcaption>Two home networks, the shared MCP zone that compares and filters, and the commons of shapes underneath.</figcaption></figure></section>
+    <section class="wiki-section" id="how"><h2>How it works</h2><dl class="defs"><div class="def"><dt>Scan</dt><dd>Megan’s scanner sends records for tagged files to the server</dd></div><div class="def"><dt>Sync</dt><dd>Her live vault syncs to a private copy on the server, outside the MCP zone</dd></div><div class="def"><dt>Ask</dt><dd>Kyle’s AI asks what changed, sending a token and “I’m Kyle”</dd></div><div class="def"><dt>Compare and filter</dt><dd>The server compares the two manifests, then narrows the result to Kyle</dd></div><div class="def"><dt>Answer</dt><dd>The scoped answer returns to Kyle’s AI over MCP</dd></div><div class="def"><dt>Baseline</dt><dd>The redacted manifest becomes the new baseline</dd></div><div class="def"><dt>Cut</dt><dd>Megan drops a cut in her folder for Kyle</dd></div><div class="def"><dt>Mirror</dt><dd>The reverse runs through Kyle’s scanner and his cuts folder</dd></div><div class="def"><dt>Commons</dt><dd>Either person can add a shape to the commons; nothing else leaves</dd></div></dl></section>
+    <section class="wiki-section" id="settled"><h2>Settled</h2><dl class="defs"><div class="def"><dt>The contributor decides</dt><dd>Contributing a shape and granting access to the work are separate acts</dd></div><div class="def"><dt>Shapes, not content</dt><dd>The work stays on its owner’s machine or in published cuts on the server</dd></div><div class="def"><dt>Reading takes a second step</dt><dd>MCP, per relationship, through the dual-ledger gate</dd></div><div class="def"><dt>A token on every arrow</dt><dd>Every arrow into the server carries a community token</dd></div><div class="def"><dt>Events</dt><dd>Insights drop in with the name stripped; the contributor’s vault keeps the named receipt</dd></div></dl></section>
+    <section class="wiki-section" id="open"><h2>Still open</h2><dl class="defs"><div class="def"><dt>Full manifest</dt><dd>Content or metadata only</dd></div><div class="def"><dt>The server</dt><dd>Whose hardware, whose network, who administers</dd></div><div class="def"><dt>Kyle’s view</dt><dd>What he sees beyond the redacted table</dd></div><div class="def"><dt>Kyle’s half</dt><dd>His setup is undecided</dd></div><div class="def"><dt>Commons contribution</dt><dd>How a pair’s manifest becomes one is not specified</dd></div><div class="def"><dt>Status</dt><dd>The technical spec says in progress, the validation map says designed</dd></div></dl></section>
+    <footer class="foot">
+      <p>Source: Working notes, topology of 2026-05-28. Nothing here is built yet.</p>
+      <p><a href="activity.html#map?node=mvp">Show Community Legibility MVP on the spec map</a></p>
+    </footer>
+  </main>
+</div>
+<script src="vendor/template-menu/behavior.js"></script>
+<script>
+/* the sidebar marks the section in view */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.cls-part .sidebar .nav a'));
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (!e.isIntersecting) return; links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); }); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.cls-part .wiki-section').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

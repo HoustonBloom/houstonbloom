@@ -1,0 +1,106 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   design-system/components/breadcrumb/component.css
+   version  1.0.0
+   refresh  node sync.mjs breadcrumb "<this folder>"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   breadcrumb · v1.0.0 · atom
+
+   Where this page sits: the trail of parents above it, each one a link, and
+   the page itself last, not a link. Built 2026-10-02 for the Houston Bloom
+   spec's part pages (Community Legibility Spec > Programs > Relational
+   Spaces), the second surface DESIGN.md asks for before a breadcrumb exists.
+
+   Markup
+     <nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb">
+       <ol>
+         <li><a href="../cls.html">Community Legibility Spec</a></li>
+         <li><a href="../cls.html#parts">Programs</a></li>
+         <li><span aria-current="page">Relational Spaces</span></li>
+       </ol>
+     </nav>
+
+   The separator is drawn by CSS, so a screen reader hears the list and not
+   the slashes. The current page is a span with aria-current, never a link
+   to itself.
+
+   Token surface, falling back to layer 2:
+     --crumb-ink      links                 --color-text-muted
+     --crumb-ink-hi   link hover            --color-accent-text, --color-accent
+     --crumb-current  the page itself       --color-text
+     --crumb-sep      the separator         --color-text-faint
+     --crumb-gap      space around it       --space-sm
+
+   data-tone="inverse" is the same trail on a dark ground.
+
+   At 375px: the trail wraps at a separator and never scrolls sideways. A
+   long current title wraps inside its own item.
+   ============================================================================ */
+
+.breadcrumb {
+  --crumb-ink: var(--color-text-muted);
+  --crumb-ink-hi: var(--color-accent-text, var(--color-accent));
+  --crumb-current: var(--color-text);
+  --crumb-sep: var(--color-text-faint);
+  --crumb-gap: var(--space-sm);
+
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  line-height: 1.4;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs) 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li {
+  display: inline-flex;
+  align-items: baseline;
+  min-width: 0;
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  margin: 0 var(--crumb-gap);
+  color: var(--crumb-sep);
+}
+
+.breadcrumb a {
+  color: var(--crumb-ink);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.breadcrumb a:hover {
+  color: var(--crumb-ink-hi);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breadcrumb a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--crumb-current);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.breadcrumb[data-tone="inverse"] {
+  --crumb-ink: color-mix(in oklch, var(--color-text-inverse) 78%, transparent);
+  --crumb-ink-hi: var(--color-text-inverse);
+  --crumb-current: var(--color-text-inverse);
+  --crumb-sep: color-mix(in oklch, var(--color-text-inverse) 45%, transparent);
+}

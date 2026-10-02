@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-style="editorial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Houston Bloom · Super Connector bounty</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="vendor/fonts.css">
+<link rel="stylesheet" href="vendor/styles.css">
+<link rel="stylesheet" href="vendor/nav-bar/component.css">
+<link rel="stylesheet" href="vendor/template-menu/component.css">
+<link rel="stylesheet" href="vendor/kind-label/component.css">
+<link rel="stylesheet" href="vendor/breadcrumb/component.css">
+<link rel="stylesheet" href="vendor/button/component.css">
+<link rel="stylesheet" href="vendor/templates/wiki.css">
+<style>
+.cls-art { --cls-art-ground: var(--palette-band); background: var(--cls-art-ground); display: grid; place-items: center; aspect-ratio: 16 / 9; position: relative; isolation: isolate; }
+.cls-art::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; background: radial-gradient(circle at 30% 20%, color-mix(in oklch, var(--palette-brand) 18%, transparent), transparent 60%); }
+.cls-art-tile { display: grid; place-items: center; width: 44%; aspect-ratio: 1.35; border-radius: var(--radius-lg); background: color-mix(in oklch, var(--palette-paper) 7%, transparent); border: var(--border-width) solid color-mix(in oklch, var(--palette-paper) 18%, transparent); color: var(--palette-brand); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cls-art-tile svg { display: block; width: 58%; height: auto; }
+/* project-card paints its media slot with --color-surface-media; the art keeps the dark band */
+.project-card[data-variant="media"] > .cls-art { background: var(--cls-art-ground); }
+
+.cls-part { --cls-header-h: 89px; min-height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .sidebar { top: var(--cls-header-h); height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .wiki-section { scroll-margin-top: calc(var(--cls-header-h) + var(--space-base)); }
+.cls-part .breadcrumb { margin-bottom: var(--space-lg); }
+.cls-part h1, .cls-part .wiki-section h2 { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-part-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; margin-bottom: var(--space-2xl); }
+.cls-part-kind { margin: 0 0 var(--space-sm); display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-part-head h1 { margin: 0 0 var(--space-base); }
+.cls-part-head .lede { margin: 0; font-size: var(--text-body-lg); }
+.cls-part-art { border-radius: var(--radius-lg); overflow: hidden; margin: 0; }
+.cls-part-quote { margin: var(--space-lg) 0 0; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-part-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-part-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .def dd a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-part-fig { margin: var(--space-lg) 0 0; }
+.cls-part-fig img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: var(--border-width) var(--border-style) var(--color-border); }
+.cls-part-fig figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-part-reel iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-alt); }
+.cls-part .cls-diagram svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-part-links { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.cls-part-links a, .cls-part .foot a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-flag { display: inline-block; padding: 1px var(--space-sm); border: var(--border-width) var(--border-style) var(--color-accent-deep); border-radius: var(--radius-full); font-size: var(--text-caption); font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); background: var(--color-accent-soft); }
+@media (max-width: 880px) { .cls-part .sidebar { top: auto; height: auto; } }
+@media (max-width: 720px) { .cls-part-head { grid-template-columns: minmax(0, 1fr); } .cls-part-art { order: -1; } }
+.cls-diagram { margin: 0; }
+.cls-diagram svg { overflow: visible; display: block; width: 100%; height: auto; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-diagram figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-diagram text { fill: var(--color-text); }
+.cls-diagram .cap { fill: var(--color-text-muted); font-size: 9.5px; letter-spacing: 0.03em; font-weight: 600; }
+.cls-diagram .note, .cls-diagram .rowlab { fill: var(--color-text-muted); font-size: 11px; }
+.cls-diagram .rowlab { fill: var(--color-text); font-weight: 600; font-size: 12px; }
+.cls-diagram .b { fill: var(--color-surface); stroke: var(--color-border-strong); stroke-width: 1.4; }
+.cls-diagram .b.hi { fill: var(--color-accent-soft); stroke: var(--color-accent-deep); }
+.cls-diagram .b.no { fill: var(--color-surface); stroke: var(--color-text-muted); stroke-dasharray: 2 3; }
+.cls-diagram .b.dash, .cls-diagram .a.dash { stroke-dasharray: 5 4; }
+.cls-diagram .b.empty { fill: transparent; stroke: var(--color-border); }
+.cls-diagram .z { fill: transparent; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.cls-diagram .a { fill: none; stroke: currentColor; stroke-width: 1.5; }</style>
+<link rel="stylesheet" href="views.css">
+<script defer src="vendor/nav-bar/behavior.js"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="index.html">Houston Bloom</a>
+        <a href="gardening-tools.html">Gardening Tools</a>
+        <a href="cls.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="#main" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="index.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 5.5h13"/><path d="M4 8.5h5M4 11h7"/></svg><span data-slot="label">Website</span></a></li>
+          <li><a href="links.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.7 9.3a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8"/><path d="M9.3 6.7a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8"/></svg><span data-slot="label">Links</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki cls-part" id="main">
+  <aside class="sidebar">
+    <p class="brand">Super Connector bounty <small>Program · Community Legibility Spec</small></p>
+    <nav class="nav" aria-label="Sections">
+      <span class="nav-section">On this page</span>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#how">How it works</a>
+      <a href="#settled">Settled</a>
+      <a href="#open">Still open</a>
+    </nav>
+    <a class="back-link" href="cls.html#parts">All parts of the spec</a>
+  </aside>
+  <main class="main">
+    <nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="cls.html">Community Legibility Spec</a></li>
+        <li><a href="cls.html#parts">Programs</a></li>
+        <li><span aria-current="page">Super Connector bounty</span></li>
+      </ol>
+    </nav>
+    <header class="cls-part-head">
+      <div class="cls-part-copy">
+        <p class="cls-part-kind"><span class="kind-label" data-component="kind-label" data-kind="program">Program</span></p>
+        <h1>Super Connector bounty</h1>
+        <p class="lede">A public prize for whoever trains and brings in the most people who show up. Claiming it is how the activity ledger gets tested.</p>
+        
+      </div>
+      <figure class="cls-art cls-part-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="A yellow trophy with a star on the cup and sparks flaring at its rim." class="hbi hbi-trophy"><defs><linearGradient id="hbi-trophy-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-trophy .y,.hbi-trophy .ys{fill:url(#hbi-trophy-sun);stroke:none}.hbi-trophy .yl{fill:none;stroke:none}.hbi-trophy .f{fill:currentColor;stroke:none}.hbi-trophy .d{stroke-dasharray:1.6 2.6}
+.hbi-trophy .sp{opacity:0;transform-box:fill-box;transform-origin:50% 50%}
+@media (prefers-reduced-motion:no-preference){.hbi-trophy .sp1{animation:hbi-sp 3.2s ease-in-out infinite}.hbi-trophy .sp2{animation:hbi-sp 3.2s ease-in-out 1.1s infinite}}
+@media (prefers-reduced-motion:reduce){.hbi-trophy .sp{opacity:1}}
+@keyframes hbi-sp{0%,40%,100%{opacity:0;transform:scale(.3) rotate(0)}55%{opacity:1;transform:scale(1) rotate(45deg)}70%{opacity:0;transform:scale(.4) rotate(90deg)}}</style><path class="y" d="M15 7h18v10a9 9 0 0 1-18 0z"/><path d="M15 7h18v10a9 9 0 0 1-18 0z"/>
+<path d="M15 10h-4.5a5 5 0 0 0 5 7.5M33 10h4.5a5 5 0 0 1-5 7.5"/>
+<path d="M24 11.2l1.3 2.6 2.9.4-2.1 2 .5 2.9-2.6-1.4-2.6 1.4.5-2.9-2.1-2 2.9-.4z"/>
+<path d="M24 26v5M19 31h10l1.5 6h-13zM14.5 41h19"/>
+<path class="ys sp sp1" d="M39 2.5l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/><path class="ys sp sp2" d="M8.5 3.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg></span></figure>
+    </header>
+    <section class="wiki-section" id="overview"><h2>Overview</h2><dl class="defs"><div class="def"><dt>Runs on</dt><dd><a href="spec-dual-ledger.html">Dual-Ledger Authentication</a></dd></div><div class="def"><dt>Status</dt><dd>Pending, not funded</dd></div></dl></section>
+    <section class="wiki-section" id="how"><h2>How it works</h2><dl class="defs"><div class="def"><dt>Shares are logged</dt><dd>When someone shares over the network at an event, the community keeps that log</dd></div><div class="def"><dt>Entrants submit their own ledger</dt><dd>For the events they attended</dd></div><div class="def"><dt>The two records must match</dt><dd>The same share at the same time in both logs; that match is the dual ledger</dd></div><div class="def"><dt>Commons contributions count</dt><dd>Data earns points when someone else pulls it from the commons</dd></div></dl></section>
+    <section class="wiki-section" id="settled"><h2>Settled</h2><dl class="defs"><div class="def"><dt>Turnout is the risk</dt><dd>No people, no events, no signal</dd></div><div class="def"><dt>Depth over reach</dt><dd>Repeat attendance is the stronger signal</dd></div><div class="def"><dt>The leaderboard is the marketing</dt><dd>The finalists are the content</dd></div></dl></section>
+    <section class="wiki-section" id="open"><h2>Still open</h2><dl class="defs"><div class="def"><dt>Funding</dt><dd>There is no money for the prize yet</dd></div><div class="def"><dt>The reward</dt><dd>Not set</dd></div></dl></section>
+    <footer class="foot">
+      <p>Source: The grant program walkthrough, 5 July 2026.</p>
+      <p><a href="activity.html#map?node=bounty">Show Super Connector bounty on the spec map</a></p>
+    </footer>
+  </main>
+</div>
+<script src="vendor/template-menu/behavior.js"></script>
+<script>
+/* the sidebar marks the section in view */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.cls-part .sidebar .nav a'));
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (!e.isIntersecting) return; links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); }); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.cls-part .wiki-section').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

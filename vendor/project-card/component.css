@@ -1,0 +1,517 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   design-system/components/project-card/component.css
+   version  1.4.0
+   refresh  node sync.mjs project-card "<this folder>"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   project-card · v1.4.0 · component
+
+   One piece of work, as a card. Two variants, and they earn separate
+   arrangements under the bar in components/README.md rather than differing by
+   fill:
+
+     entry  text-led. Kind, title, summary, meta, action, stacked on a paper
+            surface with a hairline. For a talk, a program, a practice: work
+            you read about before you follow it.
+
+     show   image-led on a dark ground. The photograph runs edge to edge
+            across the top, the title is set a step larger, and on a wide
+            card the text splits into what-it-is and where-to-watch columns.
+            For a show or a recording: work you watch, so the image leads.
+
+     media  image-first case study card (added v1.1.0, 2026-09-26). The image
+            takes the top of the card; under it only role, title and one
+            line. Employer and years sit in a strip that fades in over the
+            bottom of the image on hover or keyboard focus, and stays shown
+            where nothing hovers. The whole card is the link. For work a
+            reader judges by looking: case studies with a hero image.
+            data-fit="inset" floats a UI screenshot on the media ground
+            instead of cropping it to cover.
+
+     tile   bento tile (added v1.2.0, 2026-09-26, from a review's pick of the
+            proposal frame). The photo is the whole card and the text sits
+            on a dark fade at the bottom; with no photo the tile is a block
+            of --color-accent-deep carrying a mark. The whole tile is one
+            link. The host grid decides the size; data-size="lg" only sets
+            the title a step larger. The 2026-09-24 note on show below
+            records why an overlay was dropped for a two-shot; a review chose
+            the overlay on a show photo anyway, and the fade
+            is kept low so it sits on the floor and chairs, not faces.
+
+   It replaces a generic card, which gave all eight
+   projects one neo-brutalist box (2px ink border, hard offset shadow) that
+   belonged to no registered style, so a podcast and a GitHub repo looked the
+   same by construction.
+
+   Slots (markup names them with data-slot)
+     media    <img>, required for show, absent for entry
+     kind     a kind-label atom
+     title    the name of the work
+     summary  one sentence, plain text
+     meta     role and dates
+     action   one or two action-link atoms
+     role     media only: the role held, a caption above the title
+     reveal   media only: employer, years and the verb, inside the media slot
+     mark     tile only, no photo: initials in a soft square
+     go       tile only: the verb, as text inside the tile's own link
+
+   Token surface, falling back to layer 2:
+     --pcard-bg        surface                    --color-surface
+     --pcard-rule      border                     --color-border
+     --pcard-rule-hi   border on hover            --color-border-strong
+     --pcard-radius                               --radius-md
+     --pcard-pad                                  --space-lg
+     --pcard-depth     hover shadow               --shadow-raise
+     --pcard-scrim     text ground on photos      --field-bg, then --color-text
+     --pcard-on-scrim  text on that ground        --field-ink, then --color-text-inverse
+
+   At 375px: entry stacks as it does at every width. show stacks a 4:3 photo
+   above the text. From a card width of 560px (a container query, so it
+   follows the card and not the viewport) the photo goes to 16:9 and the text
+   splits into two columns. Text never sits on the photo at any width.
+   ============================================================================ */
+
+.project-card {
+  --pcard-bg: var(--color-surface);
+  --pcard-rule: var(--color-border);
+  --pcard-rule-hi: var(--color-border-strong);
+  --pcard-radius: var(--radius-md);
+  --pcard-pad: var(--space-lg);
+  --pcard-depth: var(--shadow-raise);
+  /* The scrim and the text on it read the field tokens, which stay dark and
+     light in every mode. --color-text would flip to a light scrim in dark mode. */
+  --pcard-scrim: var(--field-bg, var(--color-text));
+  --pcard-on-scrim: var(--field-ink, var(--color-text-inverse));
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  min-width: 0;
+  padding: var(--pcard-pad);
+  background: var(--pcard-bg);
+  border: var(--border-width) var(--border-style) var(--pcard-rule);
+  border-radius: var(--pcard-radius);
+  color: var(--color-text);
+  transition: transform var(--dur-base) var(--ease),
+              box-shadow var(--dur-base) var(--ease),
+              border-color var(--dur-base) var(--ease);
+}
+
+.project-card:hover {
+  transform: translateY(var(--lift));
+  box-shadow: var(--pcard-depth);
+  border-color: var(--pcard-rule-hi);
+}
+
+.project-card > [data-slot="kind"] { align-self: flex-start; margin-bottom: var(--space-xs); }
+
+.project-card > [data-slot="title"] {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: var(--display-axes);
+  font-size: var(--text-card);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-display);
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+.project-card > [data-slot="summary"] {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.project-card > [data-slot="meta"] {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  color: var(--color-text-faint);
+}
+
+.project-card > [data-slot="action"] {
+  margin: auto 0 0;
+  padding-top: var(--space-sm);
+  border-top: var(--border-width) var(--border-style) var(--pcard-rule);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-lg);
+}
+
+/* ---- show ----------------------------------------------------------------
+   The image is the card's ground. Text sits on a scrim that reaches full
+   opacity under the text block, so contrast holds whatever the photo is. */
+.project-card[data-variant="show"] {
+  container-type: inline-size;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+  border-color: transparent;
+  background: var(--pcard-scrim);
+  color: var(--pcard-on-scrim);
+}
+
+/* Narrow card: the photo stacks above the text so the scrim never covers the
+   people in it. Wide card (560px and up): the photo becomes the ground. */
+.project-card[data-variant="show"] > [data-slot="media"] {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.project-card[data-variant="show"] > [data-slot="media"] img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease);
+}
+.project-card[data-variant="show"]:hover > [data-slot="media"] img { transform: scale(1.03); }
+
+.project-card[data-variant="show"] > [data-slot="body"] {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--pcard-pad);
+  background: var(--pcard-scrim);
+}
+
+/* Wide card: the photo goes to 16:9, which is the shape a recorded two-shot
+   comes in, and the text splits into two columns under it: what the show is
+   on the left, who made it and where to watch on the right. An overlay was
+   tried first and dropped on 2026-09-24: on a two-shot the scrim covered one
+   of the two people at every crop. */
+@container (min-width: 560px) {
+  .project-card[data-variant="show"] > [data-slot="media"] { aspect-ratio: 16 / 9; }
+  .project-card[data-variant="show"] > [data-slot="body"] {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    grid-template-areas: "kind kind" "title title" "summary action" "meta action";
+    column-gap: var(--space-xl);
+    align-items: start;
+  }
+  .project-card[data-variant="show"] [data-slot="kind"] { grid-area: kind; justify-self: start; }
+  .project-card[data-variant="show"] [data-slot="title"] { grid-area: title; }
+  .project-card[data-variant="show"] [data-slot="summary"] { grid-area: summary; }
+  .project-card[data-variant="show"] [data-slot="meta"] { grid-area: meta; }
+  .project-card[data-variant="show"] [data-slot="action"] {
+    grid-area: action;
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: var(--space-lg);
+    border-top: 0;
+    border-left: var(--border-width) var(--border-style)
+      color-mix(in oklch, var(--pcard-on-scrim) 25%, transparent);
+    align-self: stretch;
+    flex-direction: column;
+  }
+}
+
+.project-card[data-variant="show"] [data-slot="kind"] { align-self: flex-start; margin-bottom: var(--space-xs); }
+
+.project-card[data-variant="show"] [data-slot="title"] {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: var(--display-axes);
+  font-size: var(--text-heading-md);
+  font-weight: 500;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--pcard-on-scrim);
+  text-wrap: balance;
+}
+
+.project-card[data-variant="show"] [data-slot="summary"] {
+  margin: 0;
+  max-width: 46ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.55;
+  color: var(--pcard-on-scrim);
+}
+
+.project-card[data-variant="show"] [data-slot="meta"] {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  color: color-mix(in oklch, var(--pcard-on-scrim) 78%, transparent);
+}
+
+.project-card[data-variant="show"] [data-slot="action"] {
+  margin-top: var(--space-xs);
+  padding-top: var(--space-sm);
+  border-top: var(--border-width) var(--border-style)
+    color-mix(in oklch, var(--pcard-on-scrim) 25%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-lg);
+}
+
+
+/* ---- media ---------------------------------------------------------------
+   Markup:
+     <a class="project-card" data-component="project-card" data-variant="media" href="...">
+       <figure data-slot="media" [data-fit="inset"]>
+         <img src alt>
+         <figcaption data-slot="reveal"><span><b>Employer</b> · years</span><span>Read the case →</span></figcaption>
+       </figure>
+       <div data-slot="body">
+         <p data-slot="role">Role</p>
+         <h3 data-slot="title">Name</h3>
+         <p data-slot="summary">One line</p>
+       </div>
+     </a>
+   The reveal overlays the image, never the text, so nothing under the title
+   moves when it appears. It fades rather than slides, so it is never clipped
+   by the media box. */
+.project-card[data-variant="media"] {
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+}
+.project-card[data-variant="media"]:hover,
+.project-card[data-variant="media"]:focus-visible {
+  transform: translateY(var(--lift));
+  box-shadow: var(--shadow-high);
+  border-color: var(--pcard-rule-hi);
+}
+.project-card[data-variant="media"] > [data-slot="media"] {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-surface-media);
+}
+.project-card[data-variant="media"] > [data-slot="media"] img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease);
+}
+.project-card[data-variant="media"] > [data-slot="media"][data-fit="inset"] {
+  /* flex, not grid: a grid track gives the image no definite height, so
+     max-height: 100% never resolves and the screenshot overflows the box. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-base);
+}
+.project-card[data-variant="media"] > [data-slot="media"][data-fit="inset"] img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-raise);
+}
+.project-card[data-variant="media"]:hover > [data-slot="media"] img,
+.project-card[data-variant="media"]:focus-visible > [data-slot="media"] img { transform: scale(1.04); }
+
+.project-card[data-variant="media"] [data-slot="reveal"] {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-xs) var(--space-sm);
+  padding: var(--space-md) var(--pcard-pad);
+  background: var(--pcard-scrim);
+  color: var(--pcard-on-scrim);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  line-height: 1.3;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.project-card[data-variant="media"] [data-slot="reveal"] b { font-weight: 600; }
+.project-card[data-variant="media"]:hover [data-slot="reveal"],
+.project-card[data-variant="media"]:focus-visible [data-slot="reveal"],
+.project-card[data-variant="media"]:focus-within [data-slot="reveal"] { opacity: 1; }
+@media (hover: none) {
+  .project-card[data-variant="media"] [data-slot="reveal"] { opacity: 1; }
+}
+
+.project-card[data-variant="media"] > [data-slot="body"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--pcard-pad);
+}
+.project-card[data-variant="media"] [data-slot="role"] {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--color-accent-text, var(--color-accent-deep));
+}
+.project-card[data-variant="media"] [data-slot="title"] {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: var(--display-axes);
+  font-size: var(--text-heading-md);
+  font-weight: 500;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-text);
+  text-wrap: balance;
+}
+.project-card[data-variant="media"] [data-slot="summary"] {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+
+/* ---- tile ----------------------------------------------------------------
+   Markup:
+     <a class="project-card" data-component="project-card" data-variant="tile" [data-size="lg"] href="...">
+       <img data-slot="media" src alt>            (omit for a colour block)
+       <div data-slot="body">
+         <span data-slot="mark">AB</span>          (colour block only)
+         <span class="kind-label" data-tone="inverse" ...>Show</span>
+         <h3 data-slot="title">Name</h3>
+         <p data-slot="summary">One line</p>      (optional)
+         <p data-slot="meta">Role · year</p>      (optional)
+         <span data-slot="go">Watch on Instagram ↗</span>
+       </div>
+     </a> */
+.project-card[data-variant="tile"] {
+  /* A tile with no photo is a card, not a block of colour. A saturated
+     accent ground with text on it passed on paper (5.89:1 dark, 5.48:1 light)
+     and failed in use: an 85% meta line fell to 4.31:1 and the mark to 4.45:1,
+     and near-black on the vivid accent vibrates. Measured 2026-09-26 after
+     a review flagged it. The accent now carries a rule and the mark, never text. */
+  --pcard-ground: var(--color-surface);
+  --tile-ink: var(--color-text);
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+  min-height: 15rem;
+  justify-content: flex-end;
+  text-decoration: none;
+  border-color: transparent;
+  border-radius: var(--radius-lg);
+  background: var(--pcard-ground);
+  color: var(--tile-ink);
+}
+.project-card[data-variant="tile"]:has(> [data-slot="media"]) { background: var(--pcard-scrim); --tile-ink: var(--pcard-on-scrim); }
+.project-card[data-variant="tile"]:not(:has(> [data-slot="media"])) {
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-top: var(--space-sm) solid var(--color-accent);
+}
+.project-card[data-variant="tile"]:not(:has(> [data-slot="media"])) [data-slot="mark"] {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-text, var(--color-accent-deep));
+}
+.project-card[data-variant="tile"]:not(:has(> [data-slot="media"])) [data-slot="meta"],
+.project-card[data-variant="tile"]:not(:has(> [data-slot="media"])) [data-slot="go"] { color: var(--color-accent-text, var(--color-accent-deep)); }
+.project-card[data-variant="tile"]:hover,
+.project-card[data-variant="tile"]:focus-visible {
+  transform: translateY(var(--lift));
+  box-shadow: var(--shadow-high);
+  border-color: transparent;
+}
+.project-card[data-variant="tile"] > [data-slot="media"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease);
+}
+.project-card[data-variant="tile"]:hover > [data-slot="media"],
+.project-card[data-variant="tile"]:focus-visible > [data-slot="media"] { transform: scale(1.03); }
+.project-card[data-variant="tile"]:has(> [data-slot="media"])::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    color-mix(in oklch, var(--pcard-scrim) 88%, transparent) 0%,
+    color-mix(in oklch, var(--pcard-scrim) 55%, transparent) 45%,
+    transparent 75%);
+  pointer-events: none;
+}
+.project-card[data-variant="tile"] > [data-slot="body"] {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  padding: var(--pcard-pad);
+}
+.project-card[data-variant="tile"]:not(:has(> [data-slot="media"])) > [data-slot="body"] { flex: 1; }
+.project-card[data-variant="tile"] [data-slot="mark"] {
+  display: grid;
+  place-items: center;
+  width: var(--space-2xl);
+  height: var(--space-2xl);
+  margin-bottom: auto;
+  border-radius: var(--radius-md);
+  background: color-mix(in oklch, var(--tile-ink) 16%, transparent);
+  font-family: var(--font-display);
+  font-size: var(--text-card);
+  line-height: 1;
+}
+.project-card[data-variant="tile"]:not(:has(> [data-slot="media"])) [data-slot="mark"] + * { margin-top: var(--space-xl); }
+.project-card[data-variant="tile"] [data-slot="title"] {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: var(--display-axes);
+  font-size: var(--text-heading-md);
+  font-weight: 500;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--tile-ink);
+  text-wrap: balance;
+}
+.project-card[data-variant="tile"][data-size="lg"] [data-slot="title"] { font-size: var(--text-heading-xl); }
+.project-card[data-variant="tile"] [data-slot="summary"] {
+  margin: 0;
+  max-width: 60ch;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  line-height: 1.5;
+  color: var(--tile-ink);
+}
+.project-card[data-variant="tile"] [data-slot="meta"] {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  color: color-mix(in oklch, var(--tile-ink) 85%, transparent);
+}
+.project-card[data-variant="tile"] [data-slot="go"] {
+  margin-top: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: 600;
+  color: var(--tile-ink);
+}
+.project-card[data-variant="tile"]:hover [data-slot="go"],
+.project-card[data-variant="tile"]:focus-visible [data-slot="go"] { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card, .project-card[data-variant="show"] > [data-slot="media"] img { transition: none; }
+  .project-card:hover { transform: none; }
+  .project-card[data-variant="show"]:hover > [data-slot="media"] img { transform: none; }
+  .project-card[data-variant="media"] > [data-slot="media"] img,
+  .project-card[data-variant="media"] [data-slot="reveal"] { transition: none; }
+  .project-card[data-variant="media"]:hover > [data-slot="media"] img { transform: none; }
+  .project-card[data-variant="tile"] > [data-slot="media"] { transition: none; }
+  .project-card[data-variant="tile"]:hover > [data-slot="media"] { transform: none; }
+}

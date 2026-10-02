@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" data-style="editorial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Houston Bloom · Shareable pages</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="vendor/fonts.css">
+<link rel="stylesheet" href="vendor/styles.css">
+<link rel="stylesheet" href="vendor/nav-bar/component.css">
+<link rel="stylesheet" href="vendor/template-menu/component.css">
+<link rel="stylesheet" href="vendor/kind-label/component.css">
+<link rel="stylesheet" href="vendor/breadcrumb/component.css">
+<link rel="stylesheet" href="vendor/button/component.css">
+<link rel="stylesheet" href="vendor/templates/wiki.css">
+<style>
+.cls-art { --cls-art-ground: var(--palette-band); background: var(--cls-art-ground); display: grid; place-items: center; aspect-ratio: 16 / 9; position: relative; isolation: isolate; }
+.cls-art::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; background: radial-gradient(circle at 30% 20%, color-mix(in oklch, var(--palette-brand) 18%, transparent), transparent 60%); }
+.cls-art-tile { display: grid; place-items: center; width: 44%; aspect-ratio: 1.35; border-radius: var(--radius-lg); background: color-mix(in oklch, var(--palette-paper) 7%, transparent); border: var(--border-width) solid color-mix(in oklch, var(--palette-paper) 18%, transparent); color: var(--palette-brand); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cls-art-tile svg { display: block; width: 58%; height: auto; }
+/* project-card paints its media slot with --color-surface-media; the art keeps the dark band */
+.project-card[data-variant="media"] > .cls-art { background: var(--cls-art-ground); }
+
+.cls-part { --cls-header-h: 89px; min-height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .sidebar { top: var(--cls-header-h); height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .wiki-section { scroll-margin-top: calc(var(--cls-header-h) + var(--space-base)); }
+.cls-part .breadcrumb { margin-bottom: var(--space-lg); }
+.cls-part h1, .cls-part .wiki-section h2 { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-part-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; margin-bottom: var(--space-2xl); }
+.cls-part-kind { margin: 0 0 var(--space-sm); display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-part-head h1 { margin: 0 0 var(--space-base); }
+.cls-part-head .lede { margin: 0; font-size: var(--text-body-lg); }
+.cls-part-art { border-radius: var(--radius-lg); overflow: hidden; margin: 0; }
+.cls-part-quote { margin: var(--space-lg) 0 0; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-part-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-part-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .def dd a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-part-fig { margin: var(--space-lg) 0 0; }
+.cls-part-fig img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: var(--border-width) var(--border-style) var(--color-border); }
+.cls-part-fig figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-part-reel iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-alt); }
+.cls-part .cls-diagram svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-part-links { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.cls-part-links a, .cls-part .foot a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-flag { display: inline-block; padding: 1px var(--space-sm); border: var(--border-width) var(--border-style) var(--color-accent-deep); border-radius: var(--radius-full); font-size: var(--text-caption); font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); background: var(--color-accent-soft); }
+@media (max-width: 880px) { .cls-part .sidebar { top: auto; height: auto; } }
+@media (max-width: 720px) { .cls-part-head { grid-template-columns: minmax(0, 1fr); } .cls-part-art { order: -1; } }
+.cls-diagram { margin: 0; }
+.cls-diagram svg { overflow: visible; display: block; width: 100%; height: auto; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-diagram figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-diagram text { fill: var(--color-text); }
+.cls-diagram .cap { fill: var(--color-text-muted); font-size: 9.5px; letter-spacing: 0.03em; font-weight: 600; }
+.cls-diagram .note, .cls-diagram .rowlab { fill: var(--color-text-muted); font-size: 11px; }
+.cls-diagram .rowlab { fill: var(--color-text); font-weight: 600; font-size: 12px; }
+.cls-diagram .b { fill: var(--color-surface); stroke: var(--color-border-strong); stroke-width: 1.4; }
+.cls-diagram .b.hi { fill: var(--color-accent-soft); stroke: var(--color-accent-deep); }
+.cls-diagram .b.no { fill: var(--color-surface); stroke: var(--color-text-muted); stroke-dasharray: 2 3; }
+.cls-diagram .b.dash, .cls-diagram .a.dash { stroke-dasharray: 5 4; }
+.cls-diagram .b.empty { fill: transparent; stroke: var(--color-border); }
+.cls-diagram .z { fill: transparent; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.cls-diagram .a { fill: none; stroke: currentColor; stroke-width: 1.5; }</style>
+<link rel="stylesheet" href="views.css">
+<script defer src="vendor/nav-bar/behavior.js"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="index.html">Houston Bloom</a>
+        <a href="gardening-tools.html">Gardening Tools</a>
+        <a href="cls.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="#main" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="index.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="11" rx="1.5"/><path d="M1.5 5.5h13"/><path d="M4 8.5h5M4 11h7"/></svg><span data-slot="label">Website</span></a></li>
+          <li><a href="links.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.7 9.3a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8"/><path d="M9.3 6.7a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8"/></svg><span data-slot="label">Links</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki cls-part" id="main">
+  <aside class="sidebar">
+    <p class="brand">Shareable pages <small>Infrastructure · Community Legibility Spec</small></p>
+    <nav class="nav" aria-label="Sections">
+      <span class="nav-section">On this page</span>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#how">How it works</a>
+      <a href="#settled">Settled</a>
+      <a href="#open">Still open</a>
+    </nav>
+    <a class="back-link" href="cls.html#parts">All parts of the spec</a>
+  </aside>
+  <main class="main">
+    <nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="cls.html">Community Legibility Spec</a></li>
+        <li><a href="cls.html#parts">Infrastructure</a></li>
+        <li><span aria-current="page">Shareable pages</span></li>
+      </ol>
+    </nav>
+    <header class="cls-part-head">
+      <div class="cls-part-copy">
+        <p class="cls-part-kind"><span class="kind-label" data-component="kind-label" data-kind="infrastructure">Infrastructure</span></p>
+        <h1>Shareable pages</h1>
+        <p class="lede">Tag the notes you want to share and say who the page is for. You get back one web page that opens anywhere, and your notes stay where they are.</p>
+        
+      </div>
+      <figure class="cls-art cls-part-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Scissors with yellow handles cut along a dashed line, the blades opening and closing on a pivot." class="hbi hbi-cut"><defs><linearGradient id="hbi-cut-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-cut .y,.hbi-cut .ys{fill:url(#hbi-cut-sun);stroke:none}.hbi-cut .yl{fill:none;stroke:none}.hbi-cut .f{fill:currentColor;stroke:none}.hbi-cut .d{stroke-dasharray:1.6 2.6}
+.hbi-cut .a,.hbi-cut .b{transform-box:view-box;transform-origin:27.4px 24px}
+.hbi-cut .cut{stroke-dasharray:2 2.4}
+@media (prefers-reduced-motion:no-preference){.hbi-cut .a{animation:hbi-cut-a 3.6s ease-in-out infinite}.hbi-cut .b{animation:hbi-cut-b 3.6s ease-in-out infinite}.hbi-cut .cut{animation:hbi-cut-l 3.6s linear infinite}}
+@keyframes hbi-cut-a{0%,40%,100%{transform:rotate(0)}20%{transform:rotate(8deg)}}
+@keyframes hbi-cut-b{0%,40%,100%{transform:rotate(0)}20%{transform:rotate(-8deg)}}
+@keyframes hbi-cut-l{to{stroke-dashoffset:-8.8}}</style><path class="cut" d="M41 24h5"/>
+<g class="a"><circle class="y" cx="11" cy="11.5" r="5.2"/><circle cx="11" cy="11.5" r="5.2"/><circle cx="11" cy="11.5" r="2.3"/><path d="M15.2 14.7L41 34.2l-3.4.4-22.9-17.3"/></g>
+<g class="b"><circle class="y" cx="11" cy="36.5" r="5.2"/><circle cx="11" cy="36.5" r="5.2"/><circle cx="11" cy="36.5" r="2.3"/><path d="M15.2 33.3L41 13.8l-3.4-.4-22.9 17.3"/></g>
+<circle class="f" cx="27.4" cy="24" r="1.3"/></svg></span></figure>
+    </header>
+    <section class="wiki-section" id="overview"><h2>Overview</h2><dl class="defs"><div class="def"><dt>Used by</dt><dd><a href="spec-peer-education.html">Peer-to-peer education</a> · <a href="spec-relational-spaces.html">Relational Spaces</a></dd></div><div class="def"><dt>Status</dt><dd>Built</dd></div></dl><figure class="cls-part-fig cls-diagram" data-audit-ignore><svg viewBox="0 0 600 320" role="img" aria-label="Shareable pages: vault files tagged, a cut config, a frame, then a voice pass. A lens queries a tagged pool into the same frame." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><text x="0" y="12" text-anchor="start" class="cap" dominant-baseline="middle">AUTHOR ROUTE · the author names the cut</text><g><rect class="b " x="0" y="26" width="128" height="66" rx="6"/><text x="64" y="43" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="64" dy="0" font-weight="600">Vault files</tspan><tspan x="64" dy="16" >content-tag in the</tspan><tspan x="64" dy="16" >visibility array</tspan></text></g><g><rect class="b " x="156" y="26" width="128" height="66" rx="6"/><text x="220" y="43" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="220" dy="0" font-weight="600">Cut config</tspan><tspan x="220" dy="16" >tag · audience · lens</tspan><tspan x="220" dy="16" >output · window</tspan></text></g><g><rect class="b hi" x="312" y="26" width="128" height="66" rx="6"/><text x="376" y="43" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="376" dy="0" font-weight="600">Frame</tspan><tspan x="376" dy="16" >one self-contained</tspan><tspan x="376" dy="16" >HTML packet</tspan></text></g><g><rect class="b " x="468" y="26" width="128" height="66" rx="6"/><text x="532" y="43" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="532" dy="0" font-weight="600">Voice pass</tspan><tspan x="532" dy="16" >after render, before</tspan><tspan x="532" dy="16" >structural checks</tspan></text></g><path class="a" d="M130 59H154" marker-end="url(#ah)"/><path class="a" d="M286 59H310" marker-end="url(#ah)"/><path class="a" d="M442 59H466" marker-end="url(#ah)"/><text x="0" y="128" text-anchor="start" class="cap" dominant-baseline="middle">LENS ROUTE · queried from a tagged pool</text><g><rect class="b " x="0" y="142" width="128" height="50" rx="6"/><text x="64" y="159" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="64" dy="0" font-weight="600">Tagged pool</tspan><tspan x="64" dy="16" >files carry the tag</tspan></text></g><g><rect class="b " x="156" y="142" width="128" height="50" rx="6"/><text x="220" y="159" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="220" dy="0" font-weight="600">Lens query</tspan><tspan x="220" dy="16" >pool resolution</tspan></text></g><path class="a" d="M130 167H154" marker-end="url(#ah)"/><path class="a dash" d="M286 167H376V94" marker-end="url(#ah)"/><text x="300" y="205" text-anchor="start" class="note" dominant-baseline="middle">same frame, different route</text><text x="0" y="226" text-anchor="start" class="cap" dominant-baseline="middle">WHEN SETTINGS DISAGREE · left wins over right</text><g><rect class="b " x="0" y="240" width="136" height="52" rx="6"/><text x="68" y="258" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="68" dy="0" font-weight="600">Cut body sections</tspan><tspan x="68" dy="16" >Voice, Emphasis</tspan></text></g><g><rect class="b " x="154" y="240" width="136" height="52" rx="6"/><text x="222" y="258" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="222" dy="0" font-weight="600">Contact Rendering</tspan><tspan x="222" dy="16" >Preferences</tspan></text></g><g><rect class="b " x="308" y="240" width="136" height="52" rx="6"/><text x="376" y="258" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="376" dy="0" font-weight="600">Template</tspan><tspan x="376" dy="16" >defaults</tspan></text></g><g><rect class="b " x="462" y="240" width="134" height="52" rx="6"/><text x="529" y="258" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="529" dy="0" font-weight="600">Style tokens</tspan><tspan x="529" dy="16" >design system</tspan></text></g><path class="a" d="M138 266H152" marker-end="url(#ah)"/><path class="a" d="M292 266H306" marker-end="url(#ah)"/><path class="a" d="M446 266H460" marker-end="url(#ah)"/><text x="0" y="312" text-anchor="start" class="note" dominant-baseline="middle">The tag is a pointer. Files are never copied, and tags are never stripped.</text></svg><figcaption>How content becomes a packet, and what wins when settings disagree.</figcaption></figure></section>
+    <section class="wiki-section" id="how"><h2>How it works</h2><dl class="defs"><div class="def"><dt>Tag</dt><dd>Vault files get a content-tag in their visibility array</dd></div><div class="def"><dt>Cut config</dt><dd>Names tag, audience, lens, output, window</dd></div><div class="def"><dt>Body sections</dt><dd>Override the contact overlay, then template defaults</dd></div><div class="def"><dt>Contact overlay</dt><dd>The contact’s rendering preferences layer over style tokens</dd></div><div class="def"><dt>Frame</dt><dd>Renders one self-contained HTML packet</dd></div><div class="def"><dt>Voice pass</dt><dd>Runs after render, before structural checks</dd></div></dl></section>
+    <section class="wiki-section" id="settled"><h2>Settled</h2><dl class="defs"><div class="def"><dt>Tag is a pointer</dt><dd>Files are never copied, tags never stripped</dd></div><div class="def"><dt>Cut and lens</dt><dd>A cut is author-routed; a lens is queried from a tagged pool</dd></div><div class="def"><dt>Output is canonical</dt><dd>A mirror is byte-identical and written by the build</dd></div><div class="def"><dt>Audio player</dt><dd>On unless the cut turns it off</dd></div><div class="def"><dt>Feedback log</dt><dd>Append-only; re-cuts respect applied entries</dd></div></dl></section>
+    <section class="wiki-section" id="open"><h2>Still open</h2><dl class="defs"><div class="def"><dt>Template chrome limits</dt><dd>Still in trial</dd></div><div class="def"><dt>Cross-vault pool resolution</dt><dd>Specified; the build is not stated</dd></div><div class="def"><dt>Lens candidates</dt><dd>Wait for promotion at three or more instances</dd></div></dl></section>
+    <footer class="foot">
+      <p>Source: Working notes. A public write-up is not yet available.</p>
+      <p><a href="activity.html#map?node=cuts-lenses">Show Shareable pages on the spec map</a></p>
+    </footer>
+  </main>
+</div>
+<script src="vendor/template-menu/behavior.js"></script>
+<script>
+/* the sidebar marks the section in view */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.cls-part .sidebar .nav a'));
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (!e.isIntersecting) return; links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); }); });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.cls-part .wiki-section').forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   design-system/templates/wiki.css
+   version  1.0.0
+   refresh  node sync.mjs --template wiki "<this folder>"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   wiki.css · v1.0.0 · explaining how a thing works, for a committed reader
+
+   Promoted 2026-09-27 from the design system's own reference page, whose
+   sidebar layout had already been reused once for a second project. The job,
+   from templates/CONTRACT.md: answer the question of someone who already
+   knows they want this. Length is fine; shape is not optional.
+
+   Regions
+     sidebar   required   .sidebar: brand, a sectioned nav of anchors, a back link
+     main      required   .main: anchored sections, each an h2, a lede, and
+                          definition rows, tables, callouts or prose
+     foot      optional   .foot: provenance, method, last checked
+
+   Template CSS sets composition. Colour, type, radius and motion read tokens.
+
+   Markup
+     <div class="tpl tpl--wiki">
+       <aside class="sidebar">
+         <p class="brand">Title <small>What this is</small></p>
+         <nav class="nav" aria-label="Sections">
+           <span class="nav-section">Start</span>
+           <a class="active" href="#one">One</a> <a href="#two">Two</a>
+         </nav>
+         <a class="back-link" href="../">Back</a>
+       </aside>
+       <main class="main">
+         <section class="wiki-section" id="one">
+           <h2>Heading</h2><p class="lede">One line.</p>
+           <dl class="defs">
+             <div class="def"><dt>Term</dt><dd>Definition.</dd></div>
+             <div class="def hasex"><dt>Term</dt><dd>Definition.
+               <span class="ex"><span class="exk">example</span><code>value</code></span></dd>
+               <a class="jump" href="#two">Two <span aria-hidden="true">&#8595;</span></a></div>
+           </dl>
+         </section>
+         <footer class="foot">Provenance.</footer>
+       </main>
+     </div>
+
+   Below 880px the sidebar moves above the main column and the nav becomes a
+   wrapping row of pills; section labels hide. The page scrolls; nothing
+   inside it does.
+   ============================================================================ */
+
+/* Every selector here opens with :where(.tpl--wiki), so the template adds
+   no specificity of its own. A rule the consuming site writes for the same
+   element wins, and a site that writes none gets these defaults. */
+
+:where(.tpl--wiki), :where(.tpl--wiki) *, :where(.tpl--wiki) *::before, :where(.tpl--wiki) *::after { box-sizing: border-box; }
+:where(.tpl--wiki) {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  min-height: 100dvh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+}
+
+/* ---- sidebar ------------------------------------------------------------ */
+:where(.tpl--wiki) .sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100dvh;
+  overflow-y: auto;
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--color-surface-alt);
+  border-right: var(--border-width) var(--border-style) var(--color-border);
+}
+:where(.tpl--wiki) .sidebar .brand {
+  margin: 0;
+  font-family: var(--font-display);
+  font-variation-settings: var(--display-axes, normal);
+  font-size: var(--text-body-lg);
+  font-weight: var(--heading-weight, 600);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-display);
+  color: var(--color-heading, var(--color-text));
+}
+:where(.tpl--wiki) .sidebar .brand small {
+  display: block;
+  margin-top: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  font-weight: 400;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case);
+  color: var(--color-text-faint);
+}
+:where(.tpl--wiki) .sidebar .nav { display: flex; flex-direction: column; gap: 2px; margin-top: var(--space-xl); }
+:where(.tpl--wiki) .sidebar .nav-section {
+  padding: var(--space-base) var(--space-sm) var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case);
+  color: var(--color-text-faint);
+}
+:where(.tpl--wiki) .sidebar .nav a {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-body-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border-left: 2px solid transparent;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+:where(.tpl--wiki) .sidebar .nav a:hover { background: var(--color-accent-soft); color: var(--color-text); }
+:where(.tpl--wiki) .sidebar .nav a.active,
+:where(.tpl--wiki) .sidebar .nav a[aria-current="true"] {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-left-color: var(--color-accent);
+  font-weight: 600;
+}
+:where(.tpl--wiki) .sidebar .nav a:focus-visible,
+:where(.tpl--wiki) .sidebar .back-link:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+:where(.tpl--wiki) .sidebar .back-link {
+  display: inline-block;
+  margin-top: var(--space-lg);
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-md);
+}
+:where(.tpl--wiki) .sidebar .back-link:hover { background: var(--color-surface); color: var(--color-text); }
+
+/* ---- main --------------------------------------------------------------- */
+:where(.tpl--wiki) .main {
+  width: 100%;
+  max-width: 58rem;
+  padding: var(--space-2xl) var(--space-2xl) var(--space-3xl);
+}
+:where(.tpl--wiki) .wiki-section { margin-bottom: var(--space-2xl); scroll-margin-top: var(--space-lg); }
+:where(.tpl--wiki) h1,
+:where(.tpl--wiki) .wiki-section h2 {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-display);
+  font-variation-settings: var(--display-axes, normal);
+  font-weight: var(--heading-weight, 600);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-heading, var(--color-text));
+  text-wrap: balance;
+}
+:where(.tpl--wiki) h1 { font-size: var(--text-heading-xl); }
+:where(.tpl--wiki) .wiki-section h2 { font-size: var(--text-heading-md); }
+:where(.tpl--wiki) .wiki-section h3 { margin: var(--space-lg) 0 var(--space-xs); font-size: var(--text-body-lg); }
+:where(.tpl--wiki) .lede { max-width: var(--reading); margin: 0 0 var(--space-lg); color: var(--color-text-muted); }
+:where(.tpl--wiki) code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--color-accent-text, var(--color-accent-deep));
+}
+
+/* Definition rows: term, description, optional example and jump. */
+:where(.tpl--wiki) .defs { margin: 0 0 var(--space-lg); }
+:where(.tpl--wiki) .def {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px var(--space-base);
+  padding: var(--space-md) 0;
+  border-bottom: var(--border-width) var(--border-style) var(--color-border);
+}
+:where(.tpl--wiki) .def:last-child { border-bottom: 0; }
+:where(.tpl--wiki) .def dt { margin: 0; font-weight: 600; font-size: var(--text-body-sm); }
+:where(.tpl--wiki) .def dd { margin: 0; font-size: var(--text-body-sm); color: var(--color-text-muted); }
+@media (min-width: 680px) { :where(.tpl--wiki) .def { grid-template-columns: 12rem minmax(0, 1fr); } }
+@media (min-width: 760px) { :where(.tpl--wiki) .def.hasex { grid-template-columns: 12rem minmax(0, 1fr) auto; align-items: start; } }
+:where(.tpl--wiki) .ex {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-alt);
+  border: var(--border-width) var(--border-style) var(--color-border);
+}
+:where(.tpl--wiki) .ex .exk {
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case);
+  color: var(--color-text-faint);
+}
+:where(.tpl--wiki) .jump {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  margin-top: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  background: var(--color-surface);
+  border: var(--border-width) var(--border-style) var(--color-border-strong);
+  border-radius: var(--btn-radius, var(--radius-md));
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+:where(.tpl--wiki) .jump:hover { background: var(--color-accent-soft); color: var(--color-text); }
+@media (min-width: 760px) { :where(.tpl--wiki) .jump { margin-top: 0; } }
+
+:where(.tpl--wiki) .foot {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg) 0 var(--space-2xl);
+  border-top: var(--border-width) var(--border-style) var(--color-border);
+  font-size: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+/* ---- narrow ------------------------------------------------------------- */
+@media (max-width: 880px) {
+  :where(.tpl--wiki) { grid-template-columns: minmax(0, 1fr); }
+  :where(.tpl--wiki) .sidebar {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: var(--space-lg) var(--gutter);
+    border-right: 0;
+    border-bottom: var(--border-width) var(--border-style) var(--color-border);
+  }
+  :where(.tpl--wiki) .sidebar .nav { flex-direction: row; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-base); }
+  :where(.tpl--wiki) .sidebar .nav-section { display: none; }
+  :where(.tpl--wiki) .sidebar .nav a {
+    border-left: 0;
+    border: var(--border-width) var(--border-style) var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-caption);
+  }
+  :where(.tpl--wiki) .sidebar .nav a.active { border-color: var(--color-accent); }
+  :where(.tpl--wiki) .main { padding: var(--space-xl) var(--gutter) var(--space-3xl); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(.tpl--wiki) * { transition-duration: 0ms !important; }
+}
