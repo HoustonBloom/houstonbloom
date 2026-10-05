@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gardening Tools · Houston Bloom</title>
+<title>Vision · Houston Bloom</title>
 <meta name="description" content="Citizen infrastructure for Houston. Peer to peer education and matchmaking events, so we can co-create without a platform in the middle.">
 <link rel="stylesheet" href="vendor/button/component.css">
 <link rel="stylesheet" href="vendor/tool-list/component.css">
@@ -986,6 +986,57 @@ html[data-style="bloom"] body{font-size:var(--text-body);line-height:var(--leadi
 /* the page's own values win over the bloom style's for everything but type (Megan: "i hate it", the bright buttons, 2026-10-01) */
 html[data-style="bloom"]{--color-focus:var(--green);--field-ink:var(--on-dark);--btn-weight:800;--btn-default-fill:var(--brand-green-deep);--btn-default-text:var(--cream);--btn-default-fill-hover:var(--brand-green);--btn-default-text-hover:var(--ink);--btn-default-fill-inverse:var(--brand-green);--btn-default-text-inverse:var(--green-deep);--btn-default-fill-hover-inverse:var(--cream);--btn-default-text-hover-inverse:var(--green-deep)}
 
+
+/* the spec map on the landing page (2026-10-01): the window's height under the header, as on the portfolio */
+.home-map-sec{background:var(--green-night);scroll-margin-top:var(--topbar-h,89px)}
+.home-map{height:calc(100dvh - var(--topbar-h,89px));min-height:560px}
+.home-map .tpl--activity-map{height:100%}
+.home-map .am-head:empty{height:0;padding:0;margin:0;overflow:hidden}
+html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) body{height:auto;overflow:visible}
+/* phones keep Orbit and Graph and drop the filters, as on the spec page */
+@media (max-width:879px){.home-map .am-rail :is(.category-list,.am-subhead){display:none}.home-map{height:calc(100dvh - var(--topbar-h,89px));min-height:640px}}
+
+/* Some perspective, 2026-10-01: a large era drawing beside the era (above it on a phone), "mothers ago" and the
+   era's technology in the era colour, the share of history in the quiet ink. */
+#s-phases .eseq-slide.eseq-has-big{display:flex !important;align-items:center;gap:var(--s7,48px)}
+#s-phases .eseq-text{display:grid;grid-template-columns:auto 1fr;justify-items:start;align-content:center;min-width:0}
+#s-phases .eseq-big{flex:0 0 auto;display:grid;place-items:center;width:clamp(96px,11vw,148px);height:clamp(96px,11vw,148px);border-radius:50%;color:var(--eseq-live-c);background:color-mix(in oklch,var(--eseq-live-c) 12%,transparent);border:2px solid color-mix(in oklch,var(--eseq-live-c) 55%,transparent)}
+#s-phases .eseq-big svg{width:58%;height:58%;display:block}
+#s-phases .eseq-mothers{color:var(--eseq-text-c,var(--butter))}
+#s-phases .eseq-tech{color:var(--eseq-text-c,var(--butter))}
+#s-phases .eseq-pct{color:var(--on-dark-soft)}
+@media (max-width:640px){#s-phases .eseq-slide.eseq-has-big{flex-direction:column;align-items:flex-start;gap:var(--s4,16px)}#s-phases .eseq-big{width:80px;height:80px}}
+
+/* the rail marker as a solid disc in the era colour, joined to the large drawing by animated dotted strands */
+#s-phases .eseq-mark{width:44px;height:44px;border:0;background:var(--eseq-live,var(--green));transition:background-color .3s ease}
+#s-phases .eseq-mark svg{display:none}
+#s-phases .eseq-link{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1;transition:opacity .3s ease}
+#s-phases .eseq-strand{fill:none;stroke:var(--on-dark);stroke-linecap:round;stroke-width:2.2;stroke-dasharray:1.5 7;animation:eseq-flow 1.6s linear infinite}
+#s-phases .eseq-strand.s1{stroke-width:1.6;opacity:.6;animation-duration:2.2s}
+#s-phases .eseq-strand.s2{stroke-width:1.3;opacity:.45;animation-duration:2.9s}
+#s-phases .eseq-strand.s3{stroke-width:1.2;opacity:.35;animation-duration:3.4s}
+#s-phases .eseq-strand.s4{stroke-width:1.1;opacity:.3;animation-duration:2.5s}
+#s-phases .eseq-strand.s5{stroke-width:1.4;opacity:.5;animation-duration:1.9s}
+@keyframes eseq-flow{to{stroke-dashoffset:-34}}
+@media (prefers-reduced-motion:reduce){#s-phases .eseq-strand{animation:none}}
+#s-phases .eseq-has-big .eseq-big{margin-left:clamp(48px,7vw,104px)}
+/* the closing question stands alone (Megan, 2026-10-02: "no icon or line for this view"): no drawing, no strands, and the rail and its marker fade out while it is on screen */
+#s-phases .eseq::before,#s-phases .eseq::after,#s-phases .eseq-mark{transition:opacity .3s ease}
+#s-phases .eseq:has(.eseq-ask-slide.current)::before,#s-phases .eseq:has(.eseq-ask-slide.current)::after,#s-phases .eseq:has(.eseq-ask-slide.current) .eseq-mark{opacity:0}
+@media (max-width:640px){#s-phases .eseq-mark{width:28px;height:28px}#s-phases .eseq-has-big .eseq-big{margin-left:var(--s5,24px)}}
+
+/* events, 2026-10-01: two cards side by side with a gap, the subscribe strip a third card under both */
+.ev-block{border:0;border-radius:0;overflow:visible;background:transparent;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
+.ev-block > :is(.ev-upcoming,.ev-feature,.ev-subscribe){border:1px solid var(--ink);border-radius:18px;overflow:hidden}
+.ev-block > .ev-subscribe{grid-column:1 / -1}
+.ev-block > .ev-feature{border-top:var(--card-rule) solid var(--butter)}
+/* the next event in the Speaking Series shape: the picture across the top, no fade over it, the details below */
+.ev-upcoming{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0;background:var(--paper);border-bottom:1px solid var(--ink)}
+.ev-upcoming img{width:100%;height:240px;aspect-ratio:auto;min-height:0;max-width:none;object-fit:cover;object-position:50% 40%;border-radius:0}
+.ev-upcoming-body{padding:var(--card-pad);justify-content:flex-start;flex:1}
+/* a lighter fade on the Speaking Series that starts lower, so more of the room shows */
+.ev-feature::before{background:linear-gradient(to top,color-mix(in oklch,var(--green-night) 82%,transparent) 0%,color-mix(in oklch,var(--green-night) 55%,transparent) 30%,transparent 58%)}
+@media (max-width:819px){.ev-block{grid-template-columns:1fr}}
 </style>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -993,6 +1044,12 @@ html[data-style="bloom"]{--color-focus:var(--green);--field-ink:var(--on-dark);-
 <link rel="stylesheet" href="vendor/styles.css">
 <link rel="stylesheet" href="vendor/nav-bar/component.css">
 <link rel="stylesheet" href="vendor/template-menu/component.css">
+<link rel="stylesheet" href="vendor/time-scrubber/component.css">
+<link rel="stylesheet" href="vendor/node-graph/component.css">
+<link rel="stylesheet" href="vendor/orbit-map/component.css">
+<link rel="stylesheet" href="vendor/category-list/component.css">
+<link rel="stylesheet" href="vendor/detail-panel/component.css">
+<link rel="stylesheet" href="vendor/templates/activity-map.css">
 <link rel="stylesheet" href="views.css">
 <script defer src="vendor/nav-bar/behavior.js"></script>
 <script defer src="site.js"></script>
@@ -1031,7 +1088,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
     <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
     <nav aria-label="Main">
         <a href="index.html">Houston Bloom</a>
-        <a href="gardening-tools.html" class="active" aria-current="page">Gardening Tools</a>
+        <a href="gardening-tools.html" class="active" aria-current="page">Vision</a>
         <a href="cls.html">Community Legibility Spec</a>
         <a href="index.html#s-close">Get Involved</a>
     </nav>

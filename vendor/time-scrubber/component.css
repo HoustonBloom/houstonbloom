@@ -1,13 +1,11 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
-   source   C:/Users/Megan/Documents/design-system/components/time-scrubber/component.css
-   version  3.0.0
-   refresh  node sync.mjs time-scrubber "C:/Users/Megan/Documents/HoustonBloom"
+   version  1.0.0
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   time-scrubber · v3.0.0 · component
+   time-scrubber · v1.0.0 · component
 
    The time axis of an activity-map: a track you drag, click or key through,
    transport controls, and a Live stop. It owns the one position every other
@@ -28,12 +26,9 @@
                   colour, never one glyph per event: bars merge when closer than 6px (10px
                   narrow), which is what keeps a busy month legible
 
-   Layout, after the Figma component (Design System file, page Activity
-   Timeline, Time bar 54:333 and transport 54:615; FIGMA.md beside this file):
-   one row, the track on the left and the transport on the right, a dark pill
-   of five slots (first, back, play, forward, Go live). 3.0.0, Megan
-   2026-10-01: Go live is white text in the far right slot, and pressing it
-   glides the thumb to Live (behavior.js, root[data-glide]). The date is not in the bar when the
+   Layout, after the source site's timeline slider and its Key Screens board:
+   one row, the track on the left and the transport on the right (first,
+   back, play, forward, last, then Live). The date is not in the bar when the
    graph already shows it (the orbit's Activity ring, data-readout="external");
    otherwise it rides above the playhead as a flag. The readout stays in the
    DOM for screen readers either way. Below 720px the track takes the first
@@ -53,7 +48,8 @@
            <div data-slot="ticks"> labels </div>
          </div>
          <div data-slot="transport">
-           <div data-slot="controls"> first, prev, play, next, live </div>
+           <div data-slot="controls"> first, prev, play, next, last </div>
+           <button data-slot="live" aria-pressed="true">Live</button>
          </div>
        </div>
        <p data-slot="readout"> screen-reader readout </p>
@@ -61,31 +57,33 @@
 
    Token surface, falling back to layer 2:
      --scrub-rail      track                     --color-border-strong
-     --scrub-fill      Go live label             --color-accent-text
-     --scrub-elapsed   elapsed track, pin point  --color-text
-     --scrub-grad-a/b  bars, thumb, play glyph   --color-accent, then 12% toward white
-     --scrub-pill      transport ground          --color-text
-     --scrub-pill-edge transport edge            --color-border-strong
-     --scrub-glyph     transport icons           --color-bg
-     --scrub-on        play disc, Go live pill   --color-text-inverse
+     --scrub-fill      Live stop                 --color-accent-text
+     --scrub-elapsed   elapsed track, pin thumb  --color-text
+     --scrub-bar       histogram bars            --color-brand, falling back to --color-accent
+     --scrub-grad-a/b  transport gradient        --color-accent, then 12% toward white
+     --scrub-on        icons on the gradient     --color-text-inverse
      --scrub-ink       readout, labels           --color-text
      --scrub-muted     ticks, relative time      --color-text-muted
      --scrub-bg        bar ground                --color-surface
+     --scrub-hist      histogram bars            the category colour, via --scrub-cat-1..4
+     --scrub-cat-1..4  category colours          --map-cat-1..4, the node-graph's ramp
    ============================================================================ */
 
 .time-scrubber {
   --scrub-rail: var(--color-border-strong);
   --scrub-fill: var(--color-accent-text, var(--color-accent-deep));
   --scrub-elapsed: var(--color-text);
+  --scrub-bar: var(--color-brand, var(--color-accent));
   --scrub-grad-a: var(--color-accent);
   --scrub-grad-b: color-mix(in oklch, var(--color-accent) 88%, white);
-  --scrub-pill: var(--color-text);
-  --scrub-pill-edge: var(--color-border-strong);
-  --scrub-glyph: var(--color-bg);
   --scrub-on: var(--color-text-inverse);
   --scrub-ink: var(--color-text);
   --scrub-muted: var(--color-text-muted);
   --scrub-bg: var(--color-surface);
+  --scrub-cat-1: var(--map-cat-1, var(--color-accent));
+  --scrub-cat-2: var(--map-cat-2, var(--color-accent-deep));
+  --scrub-cat-3: var(--map-cat-3, var(--color-text-muted));
+  --scrub-cat-4: var(--map-cat-4, var(--color-border-strong));
 
   padding: var(--space-sm) var(--space-xl) calc(var(--space-sm) + env(safe-area-inset-bottom, 0px));
   background: var(--scrub-bg);
@@ -98,32 +96,28 @@
 }
 
 /* ---- the bar: stage (track and ticks) beside the transport ---------------- */
-.time-scrubber [data-slot="bar"] { display: flex; align-items: center; gap: var(--space-xl); min-width: 0; }
+.time-scrubber [data-slot="bar"] { display: flex; align-items: flex-start; gap: var(--space-xl); min-width: 0; }
 .time-scrubber [data-slot="stage"] { flex: 1 1 auto; min-width: 0; display: grid; }
 /* the flag needs a row of its own above the track, only when the bar carries the date */
 .time-scrubber[data-readout="flag"] [data-slot="stage"] { padding-top: 26px; }
-.time-scrubber [data-slot="transport"] { flex: none; display: flex; align-items: center; }
-.time-scrubber[data-readout="flag"] [data-slot="transport"] { margin-top: 26px; }
+.time-scrubber [data-slot="transport"] { flex: none; display: flex; align-items: center; gap: var(--space-md); margin-top: 14px; }
+.time-scrubber[data-readout="flag"] [data-slot="transport"] { margin-top: 40px; }
 
-/* the transport is one dark pill of five slots, the centre one wider */
+/* the transport is one segmented control */
 .time-scrubber [data-slot="controls"] {
-  display: grid;
-  grid-template-columns: 50px 50px 1fr 50px auto;
+  display: flex;
   align-items: center;
-  justify-items: center;
-  width: 310px;
-  height: 60px;
-  padding: 2px var(--space-sm);
-  border: var(--border-width) var(--border-style) var(--scrub-pill-edge);
+  gap: 2px;
+  padding: 2px;
   border-radius: var(--radius-full);
-  background: var(--scrub-pill);
+  background: linear-gradient(90deg, var(--scrub-grad-a), var(--scrub-grad-b));
 }
 .time-scrubber button {
   position: relative;
   display: grid;
   place-items: center;
-  width: 50px;
-  height: 50px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: var(--border-width) var(--border-style) transparent;
   border-radius: var(--radius-full);
@@ -132,38 +126,42 @@
   cursor: pointer;
   transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
 }
-.time-scrubber [data-slot="controls"] button { color: var(--scrub-glyph); }
-.time-scrubber [data-slot="controls"] button:hover { background: color-mix(in oklch, var(--scrub-glyph) 18%, transparent); }
-.time-scrubber [data-slot="controls"] [hidden] { display: none; }
+/* 44px hit area around a 32px control */
+.time-scrubber button::after { content: ""; position: absolute; inset: -6px; }
+.time-scrubber [data-slot="controls"] button { color: var(--scrub-on); }
+.time-scrubber [data-slot="controls"] button:hover { background: color-mix(in oklch, var(--scrub-on) 18%, transparent); }
 .time-scrubber button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 .time-scrubber button svg { width: 14px; height: 14px; }
-.time-scrubber [data-slot="controls"] [data-slot="play"] { width: 40px; height: 40px; background: var(--scrub-on); color: var(--scrub-grad-a); }
-/* a 44px hit area around the 40px disc */
-.time-scrubber [data-slot="controls"] [data-slot="play"]::after { content: ""; position: absolute; inset: -2px; }
-.time-scrubber [data-slot="controls"] [data-slot="play"] svg { width: 22px; height: 22px; }
+.time-scrubber [data-slot="controls"] [data-slot="play"] { width: 36px; height: 36px; background: var(--scrub-on); color: var(--scrub-grad-a); }
 .time-scrubber [data-slot="controls"] [data-slot="play"]:hover { background: var(--scrub-on); }
 
-.time-scrubber [data-slot="controls"] [data-slot="live"] {
+.time-scrubber [data-slot="live"] {
   width: auto;
-  height: 50px;
-  padding: 0 var(--space-base);
-  border: 0;
-  background: transparent;
-  color: var(--scrub-glyph);
+  min-width: 7.25rem;   /* room for "Go live", so the bar does not shift when the label changes */
+  justify-content: center;
+  height: 32px;
+  padding: 0 var(--space-md);
+  gap: var(--space-sm);
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  border-color: var(--color-border);
   font-family: var(--font-eyebrow, var(--font-body));
   font-size: var(--text-caption);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-eyebrow);
   text-transform: var(--eyebrow-case, uppercase);
-  white-space: nowrap;
 }
-/* at Live there is nowhere to go: dimmed, and the press does nothing */
-.time-scrubber [data-slot="controls"] [data-slot="live"][aria-disabled="true"] { opacity: 0.45; cursor: default; }
-.time-scrubber [data-slot="controls"] [data-slot="live"][aria-disabled="true"]:hover { background: transparent; }
-
-/* Go live glides the thumb and the elapsed fill to the Live stop */
-.time-scrubber[data-glide] [data-slot="thumb"] { transition: left 480ms var(--ease), transform var(--dur-fast) var(--ease); }
-.time-scrubber[data-glide] [data-slot="fill"] { transition: width 480ms var(--ease), height var(--dur-fast) var(--ease), bottom var(--dur-fast) var(--ease); }
+.time-scrubber [data-slot="live"]:hover { border-color: var(--scrub-fill); }
+.time-scrubber [data-slot="live"]::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--scrub-muted);
+}
+.time-scrubber [data-slot="live"][aria-pressed="true"] { border-color: var(--scrub-fill); color: var(--scrub-fill); }
+.time-scrubber [data-slot="live"][aria-pressed="true"]::before { background: var(--scrub-fill); box-shadow: 0 0 0 3px color-mix(in oklch, var(--scrub-fill) 25%, transparent); }
 
 /* the readout is for screen readers; the ring or the flag shows the date */
 .time-scrubber [data-slot="readout"] {
@@ -197,7 +195,7 @@
   width: 4px;
   margin-left: -2px;
   border-radius: 2px 2px 0 0;
-  background: linear-gradient(0deg, var(--scrub-grad-a), var(--scrub-grad-b));
+  background: var(--scrub-bar);
   opacity: 0.4;
 }
 .time-scrubber [data-slot="hist"] i[data-past] { opacity: 1; }
@@ -238,7 +236,7 @@
   height: 20px;
   margin: 0 0 -10px -10px;
   border-radius: 50%;
-  background: linear-gradient(180deg, var(--scrub-grad-b), var(--scrub-grad-a));
+  background: var(--scrub-elapsed);
   box-shadow: 0 0 0 3px var(--scrub-bg), var(--shadow-raise);
   pointer-events: none;
   transition: transform var(--dur-fast) var(--ease);
@@ -315,8 +313,7 @@
   .time-scrubber { padding-left: var(--space-base); padding-right: var(--space-base); }
   .time-scrubber [data-slot="bar"] { flex-direction: column; align-items: stretch; gap: var(--space-xs); }
   .time-scrubber [data-slot="transport"],
-  .time-scrubber[data-readout="flag"] [data-slot="transport"] { margin-top: 0; }
-  .time-scrubber [data-slot="controls"] { width: 100%; }
+  .time-scrubber[data-readout="flag"] [data-slot="transport"] { margin-top: 0; justify-content: space-between; }
   .time-scrubber [data-slot="track"] { height: 52px; }
   .time-scrubber [data-slot="hist"] { inset: 0 0 24px; }
   .time-scrubber [data-slot="rail"], .time-scrubber [data-slot="fill"] { bottom: 12px; }

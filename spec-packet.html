@@ -16,6 +16,42 @@
 <link rel="stylesheet" href="vendor/button/component.css">
 <link rel="stylesheet" href="vendor/templates/wiki.css">
 <style>
+.cls-part pre.cls-code { margin: var(--space-sm) 0 0; padding: var(--space-sm) var(--space-md); overflow-x: auto; max-width: 100%; background: var(--color-surface-alt); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: var(--text-caption); line-height: 1.5; white-space: pre; }
+.cls-part .def dt code { overflow-wrap: anywhere; }
+.cls-part .cls-prompt pre.cls-code { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--text-body-sm); }
+.cls-part .cls-copy { margin-top: var(--space-sm); }
+/* flow: numbered project-cards read top to bottom, a rule with an arrowhead between each step */
+.cls-flow { --flow-n: calc(var(--space-lg) + var(--space-xs)); --flow-gap: var(--space-sm); --flow-rule: var(--color-border-strong); --flow-mark: var(--color-accent-deep);
+  list-style: none; margin: var(--space-base) 0 0; padding: 0; display: grid; gap: var(--flow-gap); }
+.cls-flow-step { position: relative; display: grid; grid-template-columns: var(--flow-n) minmax(0, 1fr); gap: var(--space-sm); align-items: center; }
+.cls-flow-step:not(:last-child)::before { content: ""; position: absolute; left: calc(var(--flow-n) / 2); top: calc(50% + var(--flow-n) / 2); bottom: calc(-50% - var(--flow-gap)); border-left: var(--border-width) var(--border-style) var(--flow-rule); }
+.cls-flow-n { position: relative; z-index: 1; display: grid; place-items: center; width: var(--flow-n); aspect-ratio: 1; border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--flow-mark); background: var(--color-surface); color: var(--color-accent-text, var(--flow-mark)); font-family: var(--font-mono); font-size: var(--text-caption); font-weight: 600; }
+.cls-flow-step[data-here] .cls-flow-n { background: var(--flow-mark); color: var(--color-text-inverse); }
+.cls-flow-card { display: flex; align-items: center; justify-content: space-between; gap: var(--space-base); padding: var(--space-sm) var(--space-base); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); }
+.cls-flow-step[data-here] .cls-flow-card { border-color: var(--flow-mark); }
+.cls-part .cls-flow-text { min-width: 0; }
+.cls-part .cls-flow-text h3 { margin: 0; font-family: var(--font-body); font-size: var(--text-body); font-weight: 600; }
+.cls-part .cls-flow-text p { margin: 2px 0 0; font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .cls-flow-btn { flex: none; --btn-pad-y: var(--space-xs); --btn-pad-x: var(--space-sm); --btn-min-h: 0; font-size: var(--text-caption); }
+.cls-part .cls-flow-none { flex: none; font-size: var(--text-caption); color: var(--color-text-faint); }
+@media (max-width: 560px) { .cls-flow-card { flex-direction: column; align-items: flex-start; } }
+.cls-part .cls-prompt-fold { margin-top: var(--space-md); padding: var(--space-sm) var(--space-md); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-part .cls-prompt-fold summary { cursor: pointer; font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); }
+.cls-part .cls-prompt-fold[open] summary { margin-bottom: var(--space-sm); }
+.cls-part-fig[data-zoom] { cursor: zoom-in; }
+.cls-part-fig[data-zoom]:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; border-radius: var(--radius-md); }
+.cls-zoom-hint { color: var(--color-text-muted); }
+.cls-lb { width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--color-bg); color: var(--color-text); }
+.cls-lb[open] { display: flex; flex-direction: column; }
+.cls-lb-bar { display: flex; gap: var(--space-sm); justify-content: flex-end; padding: var(--space-sm) var(--space-md); border-bottom: var(--border-width) var(--border-style) var(--color-border); }
+.cls-lb-stage { flex: 1; min-height: 0; overflow: auto; padding: var(--space-md); }
+.cls-lb-inner { margin: 0 auto; }
+.cls-lb-inner svg, .cls-lb-inner img { display: block; width: 100%; height: auto; }
+.cls-part .def dd { min-width: 0; }
+/* the horizon chip: same shape as kind-label, the horizon's number carried in text, not colour alone */
+.cls-role { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
+.cls-hzchip { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-accent-deep); background: var(--color-accent-soft); color: var(--color-accent-text, var(--color-accent-deep)); font-family: var(--font-mono, var(--font-body)); font-size: var(--text-caption); letter-spacing: 0.04em; line-height: 1.4; white-space: nowrap; }
+.cls-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .cls-art { --cls-art-ground: var(--palette-band); background: var(--cls-art-ground); display: grid; place-items: center; aspect-ratio: 16 / 9; position: relative; isolation: isolate; }
 .cls-art::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; background: radial-gradient(circle at 30% 20%, color-mix(in oklch, var(--palette-brand) 18%, transparent), transparent 60%); }
 .cls-art-tile { display: grid; place-items: center; width: 44%; aspect-ratio: 1.35; border-radius: var(--radius-lg); background: color-mix(in oklch, var(--palette-paper) 7%, transparent); border: var(--border-width) solid color-mix(in oklch, var(--palette-paper) 18%, transparent); color: var(--palette-brand); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
@@ -60,7 +96,18 @@
 .cls-diagram .b.dash, .cls-diagram .a.dash { stroke-dasharray: 5 4; }
 .cls-diagram .b.empty { fill: transparent; stroke: var(--color-border); }
 .cls-diagram .z { fill: transparent; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 3 4; }
-.cls-diagram .a { fill: none; stroke: currentColor; stroke-width: 1.5; }</style>
+.cls-diagram .a { fill: none; stroke: currentColor; stroke-width: 1.5; }
+.cls-diagram .b.m1 { fill: var(--color-accent-soft); stroke: var(--color-accent-deep); }
+.cls-diagram .b.m2 { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-diagram .b.ink { fill: var(--color-text); stroke: var(--color-text); }
+.cls-diagram .b.common { fill: var(--color-surface); stroke: var(--color-accent-deep); stroke-dasharray: 3 3; }
+.cls-diagram .z.m1 { fill: var(--color-accent-soft); fill-opacity: 0.45; stroke: var(--color-accent-deep); stroke-dasharray: none; }
+.cls-diagram .z.m2 { fill: var(--color-surface-alt); stroke: var(--color-border-strong); stroke-dasharray: none; }
+.cls-diagram .z.ink { fill: var(--color-text); stroke: none; }
+.cls-diagram .z.edge { fill: var(--color-surface-alt); stroke: none; }
+.cls-diagram .z.common { fill: var(--color-surface); stroke: var(--color-accent-deep); }
+.cls-diagram text.inv { fill: var(--color-text-inverse); }
+.cls-diagram .b.srv { fill: var(--color-surface); stroke: var(--color-accent-deep); stroke-width: 3; }</style>
 <link rel="stylesheet" href="views.css">
 <script defer src="vendor/nav-bar/behavior.js"></script>
 <script defer src="site.js"></script>
@@ -70,7 +117,7 @@
     <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
     <nav aria-label="Main">
         <a href="index.html">Houston Bloom</a>
-        <a href="gardening-tools.html">Gardening Tools</a>
+        <a href="gardening-tools.html">Vision</a>
         <a href="cls.html" class="active" aria-current="page">Community Legibility Spec</a>
         <a href="index.html#s-close">Get Involved</a>
     </nav>
@@ -110,7 +157,7 @@
     </nav>
     <header class="cls-part-head">
       <div class="cls-part-copy">
-        <p class="cls-part-kind"><span class="kind-label" data-component="kind-label" data-kind="infrastructure">Infrastructure</span></p>
+        <p class="cls-part-kind"><span class="kind-label" data-component="kind-label" data-kind="infrastructure">Infrastructure</span><span class="cls-hzchip" data-hz="1" title="Cultivate your data">Horizon 1<span class="cls-sr"> · Cultivate your data</span></span></p>
         <h1>Local Legibility Packet</h1>
         <p class="lede">A vault-agnostic, installable system that turns markdown folders into shareable HTML artifacts.</p>
         
@@ -126,7 +173,7 @@
 <path d="M11.5 22.5l9 4.5M11.5 26.5l6 3M27.5 31l6-3M27.5 35l9-4.5"/>
 <g class="lid"><path class="y" d="M8 15.5l16-8 16 8-16 8z"/><path d="M8 15.5l16-8 16 8-16 8z"/><path d="M16 11.5l16 8"/></g></svg></span></figure>
     </header>
-    <section class="wiki-section" id="overview"><h2>Overview</h2><dl class="defs"><div class="def"><dt>Used by</dt><dd><a href="spec-peer-education.html">Peer-to-peer education</a> · <a href="spec-relational-spaces.html">Relational Spaces</a></dd></div><div class="def"><dt>Status</dt><dd>Built, no check before send</dd></div></dl><figure class="cls-part-fig cls-diagram" data-audit-ignore><svg viewBox="0 0 600 342" role="img" aria-label="Local Legibility Packet: inbox, tools, outbox, with an activity log and a Getting Started entry point." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><g><rect class="b hi" x="180" y="10" width="240" height="46" rx="6"/><text x="300" y="25" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="300" dy="0" font-weight="600">Getting Started.html</tspan><tspan x="300" dy="16" >the self-contained entry point</tspan></text></g><path class="a" d="M300 58V88" marker-end="url(#ah)"/><g><rect class="z" x="0" y="88" width="600" height="150" rx="10"/><text x="12" y="102" class="cap" dominant-baseline="middle">LOCAL LEGIBILITY PACKET · shippable, nothing vault-specific inside</text></g><g><rect class="b " x="14" y="116" width="150" height="104" rx="6"/><text x="89" y="152" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="89" dy="0" font-weight="600">00_inbox</tspan><tspan x="89" dy="16" >drop items mid-work</tspan><tspan x="89" dy="16" >a scan files them</tspan></text></g><g><rect class="b " x="225" y="116" width="150" height="104" rx="6"/><text x="300" y="144" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="300" dy="0" font-weight="600">01_tools</tspan><tspan x="300" dy="16" >specs · templates</tspan><tspan x="300" dy="16" >atmospheres · design</tspan><tspan x="300" dy="16" >system · workflows</tspan></text></g><g><rect class="b " x="436" y="116" width="150" height="104" rx="6"/><text x="511" y="152" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="511" dy="0" font-weight="600">03_outbox</tspan><tspan x="511" dy="16" >rendered frames</tspan><tspan x="511" dy="16" >public deliverables</tspan></text></g><path class="a" d="M166 168H223" marker-end="url(#ah)"/><path class="a" d="M377 168H434" marker-end="url(#ah)"/><text x="194" y="156" text-anchor="middle" class="note" dominant-baseline="middle">filed</text><text x="405" y="156" text-anchor="middle" class="note" dominant-baseline="middle">cut</text><g><rect class="b " x="225" y="262" width="150" height="50" rx="6"/><text x="300" y="279" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="300" dy="0" font-weight="600">02_activity</tspan><tspan x="300" dy="16" >one file per change</tspan></text></g><path class="a dash" d="M300 222V260" marker-end="url(#ah)"/><text x="316" y="242" text-anchor="start" class="note" dominant-baseline="middle">logged</text><g><rect class="b  dash" x="14" y="262" width="194" height="50" rx="6"/><text x="111" y="279" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="111" dy="0" font-weight="600">Cut configs + templates</tspan><tspan x="111" dy="16" >select content, shape layout</tspan></text></g><path class="a dash" d="M210 288H223" marker-end="url(#ah)"/><text x="0" y="328" text-anchor="start" class="note" dominant-baseline="middle">What you cut with the packet is stored beside it, never inside it.</text></svg><figcaption>The packet's folders and how an item moves through them.</figcaption></figure></section>
+    <section class="wiki-section" id="overview"><h2>Overview</h2><dl class="defs"><div class="def"><dt>Used by</dt><dd><a href="spec-peer-education.html">Peer-to-peer education</a> · <a href="spec-relational-spaces.html">Relational Spaces</a></dd></div><div class="def"><dt>Status</dt><dd>Built, no check before send</dd></div></dl><figure class="cls-part-fig cls-diagram" data-audit-ignore data-zoom tabindex="0" role="button" aria-label="Open the diagram full screen"><svg viewBox="0 0 600 342" role="img" aria-label="Local Legibility Packet: inbox, tools, outbox, with an activity log and a Getting Started entry point." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><g><rect class="b hi" x="180" y="10" width="240" height="46" rx="6"/><text x="300" y="25" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="300" dy="0" font-weight="600">Getting Started.html</tspan><tspan x="300" dy="16" >the self-contained entry point</tspan></text></g><path class="a" d="M300 58V88" marker-end="url(#ah)"/><g><rect class="z" x="0" y="88" width="600" height="150" rx="10"/><text x="12" y="102" class="cap" dominant-baseline="middle">LOCAL LEGIBILITY PACKET · shippable, nothing vault-specific inside</text></g><g><rect class="b " x="14" y="116" width="150" height="104" rx="6"/><text x="89" y="152" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="89" dy="0" font-weight="600">00_inbox</tspan><tspan x="89" dy="16" >drop items mid-work</tspan><tspan x="89" dy="16" >a scan files them</tspan></text></g><g><rect class="b " x="225" y="116" width="150" height="104" rx="6"/><text x="300" y="144" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="300" dy="0" font-weight="600">01_tools</tspan><tspan x="300" dy="16" >specs · templates</tspan><tspan x="300" dy="16" >atmospheres · design</tspan><tspan x="300" dy="16" >system · workflows</tspan></text></g><g><rect class="b " x="436" y="116" width="150" height="104" rx="6"/><text x="511" y="152" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="511" dy="0" font-weight="600">03_outbox</tspan><tspan x="511" dy="16" >rendered frames</tspan><tspan x="511" dy="16" >public deliverables</tspan></text></g><path class="a" d="M166 168H223" marker-end="url(#ah)"/><path class="a" d="M377 168H434" marker-end="url(#ah)"/><text x="194" y="156" text-anchor="middle" class="note" dominant-baseline="middle">filed</text><text x="405" y="156" text-anchor="middle" class="note" dominant-baseline="middle">cut</text><g><rect class="b " x="225" y="262" width="150" height="50" rx="6"/><text x="300" y="279" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="300" dy="0" font-weight="600">02_activity</tspan><tspan x="300" dy="16" >one file per change</tspan></text></g><path class="a dash" d="M300 222V260" marker-end="url(#ah)"/><text x="316" y="242" text-anchor="start" class="note" dominant-baseline="middle">logged</text><g><rect class="b  dash" x="14" y="262" width="194" height="50" rx="6"/><text x="111" y="279" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="111" dy="0" font-weight="600">Cut configs + templates</tspan><tspan x="111" dy="16" >select content, shape layout</tspan></text></g><path class="a dash" d="M210 288H223" marker-end="url(#ah)"/><text x="0" y="328" text-anchor="start" class="note" dominant-baseline="middle">What you cut with the packet is stored beside it, never inside it.</text></svg><figcaption>The packet's folders and how an item moves through them.<span class="cls-zoom-hint"> Click to open full screen and zoom.</span></figcaption></figure></section>
     <section class="wiki-section" id="how"><h2>How it works</h2><dl class="defs"><div class="def"><dt>Inbox folder</dt><dd>Drop items mid-work, a scan files them</dd></div><div class="def"><dt>Tools folder</dt><dd>Specs, templates, atmospheres, design system, workflows</dd></div><div class="def"><dt>Cut configs and templates</dt><dd>Configs select content; templates shape layout</dd></div><div class="def"><dt>Activity folder</dt><dd>One file per change to the system</dd></div><div class="def"><dt>Outbox folder</dt><dd>Rendered frames and public deliverables</dd></div><div class="def"><dt>Getting Started.html</dt><dd>The self-contained entry point</dd></div></dl></section>
     <section class="wiki-section" id="settled"><h2>Settled</h2><dl class="defs"><div class="def"><dt>Packet stays pristine</dt><dd>Shippable, and cuts never go inside it</dd></div><div class="def"><dt>Install</dt><dd>Open Getting Started.html and copy the adapter prompt</dd></div><div class="def"><dt>Nothing is deleted</dt><dd>Superseded files move to a deprecated folder</dd></div><div class="def"><dt>Build manifest</dt><dd>Detects drift when bundled HTML is edited in place</dd></div><div class="def"><dt>Activity entries</dt><dd>Carry the four design principles</dd></div></dl></section>
     <section class="wiki-section" id="read"><h2>Read and use</h2><ul class="cls-part-links"><li><a href="https://houstonbloom.github.io/local-legibility/">Open the Intelligence Packet</a></li></ul></section>
@@ -136,6 +183,15 @@
     </footer>
   </main>
 </div>
+<dialog class="cls-lb" aria-label="Full-screen view">
+  <div class="cls-lb-bar">
+    <button type="button" class="btn btn--outline" data-component="button" data-z="out" aria-label="Zoom out"><span data-slot="label">−</span></button>
+    <button type="button" class="btn btn--outline" data-component="button" data-z="fit"><span data-slot="label">Fit</span></button>
+    <button type="button" class="btn btn--outline" data-component="button" data-z="in" aria-label="Zoom in"><span data-slot="label">+</span></button>
+    <button type="button" class="btn" data-component="button" data-z="close"><span data-slot="label">Close</span></button>
+  </div>
+  <div class="cls-lb-stage"></div>
+</dialog>
 <script src="vendor/template-menu/behavior.js"></script>
 <script>
 /* the sidebar marks the section in view */
@@ -145,6 +201,46 @@
     es.forEach(function (e) { if (!e.isIntersecting) return; links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); }); });
   }, { rootMargin: '-30% 0px -60% 0px' });
   document.querySelectorAll('.cls-part .wiki-section').forEach(function (s) { io.observe(s); });
+})();
+/* prompt blocks: copy the text, say so on the button for two seconds */
+document.querySelectorAll('.cls-part .cls-copy').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var label = b.querySelector('[data-slot="label"]');
+    var code = b.parentNode.querySelector('code');
+    var done = function (msg) { label.textContent = msg; setTimeout(function () { label.textContent = 'Copy prompt'; }, 2500); };
+    /* where the browser refuses the clipboard, select the prompt so the keyboard can copy it */
+    var select = function () { var r = document.createRange(); r.selectNodeContents(code); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected, copy with your keyboard'); };
+    if (navigator.clipboard) navigator.clipboard.writeText(code.textContent).then(function () { done('Copied'); }, select);
+    else select();
+  });
+});
+/* lightbox: a figure opens full screen at fit size; + and - (buttons, keys, ctrl + wheel) zoom, scroll pans, 0 or Fit resets */
+(function () {
+  var d = document.querySelector('.cls-lb'); if (!d) return;
+  var st = d.querySelector('.cls-lb-stage'), inner = null, pic = null, z = 1;
+  function ratio() { var v = pic.viewBox && pic.viewBox.baseVal; return v && v.width ? v.width / v.height : (pic.naturalWidth / pic.naturalHeight) || 1; }
+  function fitW() { return Math.max(200, Math.min(st.clientWidth - 32, (st.clientHeight - 32) * ratio())); }
+  function set(v) { z = Math.max(1, Math.min(6, v)); inner.style.width = Math.round(fitW() * z) + 'px'; }
+  function open(fig) {
+    var src = fig.querySelector('svg, img'); if (!src) return;
+    st.innerHTML = ''; inner = document.createElement('div');
+    inner.className = 'cls-lb-inner' + (src.tagName.toLowerCase() === 'svg' ? ' cls-diagram' : '');
+    pic = src.cloneNode(true); pic.removeAttribute('width'); pic.removeAttribute('height'); pic.removeAttribute('loading');
+    inner.appendChild(pic); st.appendChild(inner); d.showModal(); set(1);
+  }
+  document.querySelectorAll('[data-zoom]').forEach(function (f) {
+    f.addEventListener('click', function (e) { e.preventDefault(); open(f); });
+    f.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(f); } });
+  });
+  d.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-z]');
+    if (b) { var k = b.dataset.z; if (k === 'in') set(z * 1.5); else if (k === 'out') set(z / 1.5); else if (k === 'fit') set(1); else d.close(); return; }
+    if (e.target === d) d.close();
+  });
+  d.addEventListener('keydown', function (e) { if (e.key === '+' || e.key === '=') set(z * 1.5); else if (e.key === '-') set(z / 1.5); else if (e.key === '0') set(1); });
+  st.addEventListener('wheel', function (e) { if (!e.ctrlKey) return; e.preventDefault(); set(z * (e.deltaY < 0 ? 1.15 : 1 / 1.15)); }, { passive: false });
+  window.addEventListener('resize', function () { if (d.open) set(z); });
+  d.addEventListener('close', function () { st.innerHTML = ''; inner = pic = null; });
 })();
 </script>
 </body>

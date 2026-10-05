@@ -1,13 +1,11 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
-   source   C:/Users/Megan/Documents/design-system/components/time-scrubber/behavior.js
-   version  3.0.0
-   refresh  node sync.mjs time-scrubber "C:/Users/Megan/Documents/HoustonBloom"
+   version  1.0.0
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
 
 /* ============================================================================
-   time-scrubber · behaviour · v3.0.0
+   time-scrubber · behaviour · v1.0.0
 
    Two objects, one file, because they are one coupling:
 
@@ -21,9 +19,8 @@
    DSTimeScrubber  the control that moves it.
                   DSTimeScrubber.mount(el, {
                     time,                 a DSTimeState
-                    days,                 [{ day, count, cat, nodes }] one per active day, oldest first;
-                                          cat is the 1-4 series of that day's largest category;
-                                          nodes, optional, the ids that day touches
+                    days,                 [{ day, count, cat }] one per active day, oldest first;
+                                          cat is the 1-4 series of that day's largest category
                     breakAfter: 45,       a gap longer than this many days draws a break
                     label: 'Timeline',    the slider's accessible name
                   })
@@ -39,20 +36,6 @@
    ten, Home the first day, End the Live stop, [ and ] the same as Left and
    Right, Space play or pause. A click on the track jumps there (WCAG 2.5.7).
    Playback never starts on its own and is off under reduced motion.
-
-   The transport, 3.0.0 (Megan, 2026-10-01): first, back, play, forward, Go live.
-     play     the centre, always. At Live it starts again from the first day;
-              on a past day it plays forward from there. Pause while playing.
-     Go live  the far right slot, in place of a Last button. It stops playback
-              and the thumb glides to the Live stop. At Live it is dimmed and
-              does nothing (aria-disabled), since the reader is already there.
-   root[data-mode] is live, past or playing, for hosts and checks.
-   Any move by hand (drag, keys, the other buttons) pauses. Under reduced
-   motion the glide is a jump and play is off.
-
-   Playback rate: one active day per step at the 1.0 rate, except that a day
-   touching a node the day before did not stays twice as long. Megan,
-   2026-10-01. Without days[].nodes every step is the base rate.
 
    Plain script, not a module, so a page that opens from disk can inline it.
    ============================================================================ */
@@ -111,6 +94,7 @@
     prev: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 3L5 8l8 5z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
     next: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l8 5-8 5z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
     first: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3v10M13 3L6 8l7 5z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
+    last: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 3v10M3 3l7 5-7 5z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
     play: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg>',
     pause: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 3h3v10H4zM9 3h3v10H9z" fill="currentColor"/></svg>'
   };
@@ -151,11 +135,12 @@
             '<button type="button" data-slot="prev" aria-label="Previous active day">' + I.prev + '</button>' +
             '<button type="button" data-slot="play" aria-label="Play">' + I.play + '</button>' +
             '<button type="button" data-slot="next" aria-label="Next active day">' + I.next + '</button>' +
-            '<button type="button" data-slot="live">Go live</button>' +
+            '<button type="button" data-slot="last" aria-label="Latest active day">' + I.last + '</button>' +
           '</div>' +
+          '<button type="button" data-slot="live" aria-pressed="true">Live</button>' +
         '</div>' +
       '</div>' +
-      '<p data-slot="readout" aria-live="polite" data-audit-ignore><span data-slot="date"></span><span data-slot="ago"></span><span data-slot="count"></span></p>';
+      '<p data-slot="readout" aria-live="polite"><span data-slot="date"></span><span data-slot="ago"></span><span data-slot="count"></span></p>';
 
     var q = function (s) { return root.querySelector('[data-slot="' + s + '"]'); };
     var track = q('track'), hist = q('hist'), ticks = q('ticks'), tip = q('tip');
@@ -221,7 +206,8 @@
       fl.setAttribute('data-edge', f > 0.94 ? 'end' : f < 0.06 ? 'start' : '');
       q('ago').textContent = s.live ? 'Live' : ago(s.day, now);
       q('count').textContent = countLabel(s.index);
-      mode();
+      q('live').setAttribute('aria-pressed', String(s.live));
+      q('live').textContent = s.live ? 'Live' : 'Go live';
       track.setAttribute('aria-valuenow', s.index);
       track.setAttribute('aria-valuetext', fmtDate(s.day) + (s.live ? ', live' : ', ' + ago(s.day, now)) + ', ' + countLabel(s.index));
       Array.prototype.forEach.call(hist.children, function (b) { b.toggleAttribute('data-past', +b.dataset.last <= s.index); });
@@ -262,66 +248,37 @@
 
     track.addEventListener('keydown', function (e) {
       var k = e.key;
-      if (k !== ' ' && /^(Arrow|Page|Home$|End$|\[$|\]$)/.test(k)) stop(); // a move by hand pauses
       if (k === 'ArrowLeft' || k === 'ArrowDown' || k === '[') time.step(-1, 'key');
       else if (k === 'ArrowRight' || k === 'ArrowUp' || k === ']') time.step(1, 'key');
       else if (k === 'PageDown') time.step(-10, 'key');
       else if (k === 'PageUp') time.step(10, 'key');
       else if (k === 'Home') time.set(days[0].day, 'key');
-      else if (k === 'End') glideLive('key');
+      else if (k === 'End') time.set('live', 'key');
       else if (k === ' ') toggle();
       else return;
       e.preventDefault();
     });
 
-    // Playback: one active day per step, stopping at Live. A day that brings
-    // in a node the day before did not stays twice as long.
-    var timer = 0, base = Math.max(60, Math.min(400, 24000 / days.length));
-    var seen = days.map(function (d) { return d.nodes ? d.nodes.reduce(function (m, n) { m[n] = 1; return m; }, {}) : null; });
-    function isNew(i) {
-      if (i < 1 || !seen[i] || !seen[i - 1]) return false;
-      for (var n in seen[i]) if (!seen[i - 1][n]) return true;
-      return false;
-    }
-    function mode() {
-      var m = timer ? 'playing' : time.get().live ? 'live' : 'past';
-      root.setAttribute('data-mode', m);
-      q('play').innerHTML = m === 'playing' ? I.pause : I.play;
-      q('play').setAttribute('aria-label', m === 'playing' ? 'Pause' : m === 'live' ? 'Play from the first day' : 'Play from this day');
-      q('live').setAttribute('aria-disabled', String(m === 'live'));
-      q('live').setAttribute('aria-label', m === 'live' ? 'Live, the latest day' : 'Go live');
-    }
-    function tick() {
-      if (time.get().live) return stop();
-      time.step(1, 'play');
-      timer = setTimeout(tick, time.get().live ? 0 : base * (isNew(time.get().index) ? 2 : 1));
-    }
-    function stop() { if (!timer) return; clearTimeout(timer); timer = 0; mode(); }
-    function start() {
+    // Playback: one active day per tick at a steady rate, stopping at Live.
+    var timer = 0;
+    function stop() { if (!timer) return; clearInterval(timer); timer = 0; q('play').innerHTML = I.play; q('play').setAttribute('aria-label', 'Play'); }
+    function toggle() {
+      if (timer) return stop();
       if (reduce) return;
       if (time.get().live) time.set(days[0].day, 'play');
-      timer = setTimeout(tick, base * (isNew(time.get().index) ? 2 : 1));
-      mode();
-    }
-    function toggle() { if (timer) stop(); else start(); }
-    // Go live: the thumb and the elapsed fill glide to the Live stop instead of jumping there.
-    var glideT = 0;
-    function glideLive(source) {
-      stop();
-      if (time.get().live) return;
-      if (!reduce) { root.setAttribute('data-glide', ''); clearTimeout(glideT); glideT = setTimeout(function () { root.removeAttribute('data-glide'); }, 520); }
-      time.set('live', source);
+      q('play').innerHTML = I.pause; q('play').setAttribute('aria-label', 'Pause');
+      timer = setInterval(function () { if (time.get().live) return stop(); time.step(1, 'play'); }, Math.max(60, Math.min(400, 24000 / days.length)));
     }
     if (reduce) { q('play').disabled = true; q('play').title = 'Playback is off while reduced motion is on'; }
     q('play').addEventListener('click', toggle);
     q('prev').addEventListener('click', function () { stop(); time.step(-1, 'button'); });
     q('next').addEventListener('click', function () { stop(); time.step(1, 'button'); });
     q('first').addEventListener('click', function () { stop(); time.set(days[0].day, 'button'); });
-    q('live').addEventListener('click', function () { glideLive('button'); });
+    q('last').addEventListener('click', function () { stop(); time.set('live', 'button'); });
+    q('live').addEventListener('click', function () { stop(); time.set('live', 'button'); });
 
     if (window.ResizeObserver) new ResizeObserver(layout).observe(track); else window.addEventListener('resize', layout);
     layout();
-    mode();
     return { layout: layout, stop: stop };
   }
 

@@ -342,8 +342,6 @@
         host.querySelector('[data-slot="c-date"]').textContent = r.date;
       }
       host.toggleAttribute('data-focus', !!(focus || catHover || state.cat));
-      host.toggleAttribute('data-part-focus', !!(focus && byId[focus]));
-      host.toggleAttribute('data-ring-two', ring.length > 8);
       paintEnergy(W, H);
     }
 
