@@ -642,6 +642,18 @@ html{scroll-padding-top:var(--topbar-h)}
    swaps with them: each side still hugs its own outer edge. */
 .cmp-p{font-size:var(--t-sm);color:var(--ink);text-align:right}
 .cmp-g{font-family:var(--sans);font-weight:800;font-size:var(--t-sm);color:var(--green);text-align:left}
+/* On the green World view band (Megan, 2026-10-05): the table moved off the cream panel, so its
+   type takes the band's colours. Gardens stays butter like the headline's Gardens, Platforms and
+   the topics take the on-dark ink, and the rules turn light. */
+.world-band .cmp{margin-top:var(--s5)}
+.world-band .cmp th,.world-band .cmp td,.world-band .cmp thead th{border-bottom-color:var(--on-dark)}
+.world-band .cmp-g,.world-band .cmp thead .cmp-g{color:var(--butter)}
+.world-band .cmp-p,.world-band .cmp thead .cmp-p,.world-band .cmp-q{color:var(--on-dark)}
+@media (max-width:600px){
+  .world-band .cmp tr{border-bottom-color:var(--on-dark)}
+  .world-band .cmp-g::before{color:var(--butter)}
+  .world-band .cmp-p::before{color:var(--on-dark)}
+}
 @media (max-width:600px){
   .cmp,.cmp tbody{display:block}
   .cmp thead{display:none}
@@ -702,15 +714,13 @@ html{scroll-padding-top:var(--topbar-h)}
   border-top:var(--card-rule) solid var(--butter)}
 /* two photos side by side under the fade: the speaker left, the room right.
    On a phone the room photo drops and the speaker fills the card. */
-.ev-photos{position:absolute;inset:0;display:grid;grid-template-columns:36.5% 1fr;z-index:-2}
+.ev-photos{position:absolute;inset:0;display:grid;grid-template-columns:1fr;z-index:-2}
 .ev-photos{overflow:hidden}
 .ev-photos img{width:100%;height:100%;object-fit:cover;display:block}
 /* both photos are wider than their half, so the crop is sideways only and nobody is cut at the head.
    left: the speaker with the microphone, the man beside her at the edge. right: pinned to the right
    edge so the woman in red and the woman in navy both stay in frame. */
 .ev-photos img:first-child{object-position:30% 50%}
-.ev-photos img:last-child{object-position:100% 50%;border-left:1px solid var(--ink)}
-@media (max-width:819px){.ev-photos{grid-template-columns:1fr}.ev-photos img:last-child{display:none}}
 .ev-feature::before{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(to top,color-mix(in oklch,var(--green-deep) 92%,transparent) 0%,color-mix(in oklch,var(--green-deep) 84%,transparent) 42%,transparent 85%)}
 .ev-feature-body{width:100%;max-width:64ch;padding:var(--card-pad);text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s3)}
@@ -1030,6 +1040,8 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 .ev-block > :is(.ev-upcoming,.ev-feature,.ev-subscribe){border:1px solid var(--ink);border-radius:18px;overflow:hidden}
 .ev-block > .ev-subscribe{grid-column:1 / -1}
 .ev-block > .ev-feature{border-top:var(--card-rule) solid var(--butter)}
+/* the Speaking Series card sits on the World view band under the table (Megan, 2026-10-05), as wide as the table */
+.world-band .ev-feature{width:100%;max-width:820px;margin-top:var(--s5);border:1px solid var(--ink);border-top:var(--card-rule) solid var(--butter);border-radius:18px;text-align:left}
 /* the next event in the Speaking Series shape: the picture across the top, no fade over it, the details below */
 .ev-upcoming{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0;background:var(--paper);border-bottom:1px solid var(--ink)}
 .ev-upcoming img{width:100%;height:240px;aspect-ratio:auto;min-height:0;max-width:none;object-fit:cover;object-position:50% 40%;border-radius:0}
@@ -1064,7 +1076,7 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
     <a class="brand" href="index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
     <nav aria-label="Main">
         <a href="index.html" class="active" aria-current="page">Houston Bloom</a>
-        <a href="gardening-tools.html">Vision</a>
+        <a href="gardening-tools.html">Gardens not Platforms</a>
         <a href="cls.html">Community Legibility Spec</a>
         <a href="index.html#s-close">Get Involved</a>
     </nav>
@@ -1108,10 +1120,6 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
     <span class="eyebrow">A World view</span>
     <h2 class="world-title" id="world-title"><span class="wb-g">Gardens</span> <span class="wb-n">not</span> <span class="wb-p">Platforms</span></h2>
     <p class="world-tag">Stop being the product of a system and start being the builder of a new one.</p>
-  </div>
-</section>
-<section class="panel panel-garden centered" id="s-gardens" data-dot="Gardens, not platforms">
-  <div class="shell">
 
     <!-- Gardens left, platforms right. The markup runs in the same order as the eye,
          so a screen reader and the tab order read it the way it is drawn. No lede:
@@ -1134,6 +1142,27 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
       </tbody>
     </table>
 
+    <article class="ev-feature" data-tone="inverse" aria-labelledby="ss-title">
+      <div class="ev-photos">
+        <img src="_assets/hb-speaker-pair.webp" width="890" height="500" alt="A woman in an armchair, smiling, speaking into a microphone, with a man seated beside her" loading="lazy">
+      </div>
+      <div class="ev-feature-body">
+        <span class="ev-state">Gardens not Platforms</span>
+        <h3 id="ss-title">Speaking Series</h3>
+        <p class="ev-eps">
+          <span>See what you missed</span>
+          <a class="btn btn--clear" data-component="button" href="https://www.figma.com/deck/I517UzM0AK5cWEeQTyt2x8/Gardens--Not-Platforms--marketing-material-" target="_blank" rel="noopener"><span data-slot="label">Talk 1</span></a>
+          <a class="btn btn--clear" data-component="button" href="https://www.youtube.com/watch?v=eIQ0qgIrdzY&amp;list=PLsdtxOUtf3YRN2eQB3cEyeYp7y1kWV0PT&amp;index=15" target="_blank" rel="noopener"><span data-slot="label">Talk 2</span></a>
+          <a class="btn btn--clear" data-component="button" href="https://www.youtube.com/live/rGSTU8zDbFM" target="_blank" rel="noopener"><span data-slot="label">Talk 3</span></a>
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
+<section class="panel panel-garden centered" id="s-gardens" data-dot="Gardens, not platforms">
+  <div class="shell">
+
+
     <div class="ev-block" id="events">
       <article class="ev-upcoming" data-ends="2026-10-07T20:00:00-05:00" aria-labelledby="next-title">
         <img src="https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,anim=false,background=white,quality=75,width=480,height=480/uploads/99/84125b98-084d-4e70-84b6-5a1caa6ed363.jpg" width="480" height="480" alt="A collage: two riders on horseback under a red and violet sky beside an obelisk and palm trees, with the words We are in an imagination battle. A battle for the story of the future of the world." loading="lazy">
@@ -1142,22 +1171,6 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
           <p class="ev-when"><time datetime="2026-10-07T19:00-05:00">Wed 7 Oct, 7:00 to 8:00 pm CDT</time></p>
           <p>As AI speeds up how work gets done, what happens to the people doing the work?</p>
           <a class="btn" data-component="button" href="https://luma.com/9gh0c2o1" target="_blank" rel="noopener"><span data-slot="label">Register on Luma</span></a>
-        </div>
-      </article>
-      <article class="ev-feature" data-tone="inverse" aria-labelledby="ss-title">
-        <div class="ev-photos">
-          <img src="_assets/hb-speaker-pair.webp" width="890" height="500" alt="A woman in an armchair, smiling, speaking into a microphone, with a man seated beside her" loading="lazy">
-          <img src="_assets/hb-group-wide.webp" width="1076" height="492" alt="A group seated in armchairs and couches around a low table, a woman in red and a woman in navy on the right" loading="lazy">
-        </div>
-        <div class="ev-feature-body">
-          <span class="ev-state">Gardens not Platforms</span>
-          <h3 id="ss-title">Speaking Series</h3>
-          <p class="ev-eps">
-            <span>See what you missed</span>
-            <a class="btn btn--clear" data-component="button" href="https://www.figma.com/deck/I517UzM0AK5cWEeQTyt2x8/Gardens--Not-Platforms--marketing-material-" target="_blank" rel="noopener"><span data-slot="label">Talk 1</span></a>
-            <a class="btn btn--clear" data-component="button" href="https://www.youtube.com/watch?v=eIQ0qgIrdzY&amp;list=PLsdtxOUtf3YRN2eQB3cEyeYp7y1kWV0PT&amp;index=15" target="_blank" rel="noopener"><span data-slot="label">Talk 2</span></a>
-            <a class="btn btn--clear" data-component="button" href="https://www.youtube.com/live/rGSTU8zDbFM" target="_blank" rel="noopener"><span data-slot="label">Talk 3</span></a>
-          </p>
         </div>
       </article>
       <div class="ev-subscribe">
