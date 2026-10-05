@@ -1,0 +1,131 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   design-system/components/linked-picker/component.css
+   version  1.1.0
+   refresh  node sync.mjs linked-picker "<this folder>"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   linked-picker · v1.1.0 · component
+
+   Two lists and the lines between them. Pick an item on one side and the
+   items it links to light up on the other, joined by a curved wire. Pick on
+   the right and the wires fan back to the left. Built 2026-09-30 from a
+   reference page that linked workshops to the reference cards they share;
+   the structure there is two numbered columns, a status line naming the
+   selection, and a footer that tells the reader what else to open.
+
+   Markup (rendered by behavior.js from a JSON file)
+     <section class="linked-picker" data-component="linked-picker">
+       <p data-slot="status">..</p>
+       <div data-slot="body">
+         <div data-slot="left"> <p data-slot="label"/> <ul> <li><button data-slot="row"> mark, title, count </button></li> </ul> </div>
+         <div data-slot="gutter">Linked to</div>
+         <div data-slot="right"> <p data-slot="label"/> <ul> <li><button data-slot="card"> mark, title, sub, arrow </button></li> </ul> </div>
+         <svg data-slot="wires"/>
+       </div>
+       <div data-slot="detail"> kicker, title, body, entries, links </div>
+       <p data-slot="foot">..</p>
+     </section>
+
+   Token surface, each falling back to layer 2:
+     --lp-wire        selected wire        --color-accent-deep
+     --lp-wire-idle   resting wires        --color-border-strong
+     --lp-row-on      selected row ground  --color-accent-soft
+
+   At 375px the columns stack, the wires are hidden, and the linked items on
+   the other side take the selected style so the link is still visible.
+   ============================================================================ */
+
+.linked-picker, .linked-picker *, .linked-picker *::before, .linked-picker *::after { box-sizing: border-box; }
+.linked-picker {
+  --lp-wire: var(--color-accent-deep);
+  --lp-wire-idle: var(--color-border-strong);
+  --lp-row-on: var(--color-accent-soft);
+  display: grid;
+  gap: var(--space-base);
+  padding: var(--space-lg);
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+.linked-picker [data-slot="status"] {
+  display: flex; align-items: center; gap: var(--space-sm); margin: 0;
+  font-size: var(--text-body-sm); font-weight: 600; color: var(--color-text);
+}
+.linked-picker [data-slot="status"]::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--color-accent-deep);
+}
+.linked-picker [data-slot="body"] {
+  position: relative; display: grid; align-items: start; gap: var(--space-lg);
+  grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+}
+.linked-picker [data-slot="left"], .linked-picker [data-slot="right"] { display: grid; gap: var(--space-sm); align-content: start; min-width: 0; }
+.linked-picker [data-slot="label"], .linked-picker [data-slot="gutter"] {
+  margin: 0; font-family: var(--font-eyebrow, var(--font-body)); font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case, uppercase); color: var(--color-text-muted);
+}
+.linked-picker [data-slot="gutter"] { align-self: start; text-align: center; padding-top: 2px; }
+.linked-picker ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.linked-picker [data-slot="wires"] { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.linked-picker .lp-wire { fill: none; stroke: var(--lp-wire-idle); stroke-width: 1; opacity: .35; transition: stroke var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease); }
+.linked-picker .lp-wire.on { stroke: var(--lp-wire); stroke-width: 2; opacity: 1; }
+.linked-picker .lp-end { fill: var(--lp-wire); }
+
+.linked-picker [data-slot="row"], .linked-picker [data-slot="card"] {
+  width: 100%; display: grid; align-items: center; gap: var(--space-md); text-align: left; cursor: pointer;
+  padding: var(--space-sm) var(--space-md); min-height: 48px;
+  border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md);
+  background: var(--color-surface-alt); color: var(--color-text);
+  font-family: var(--font-body); font-size: var(--text-body-sm); font-weight: 600; text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.linked-picker [data-slot="row"] { grid-template-columns: 84px minmax(0, 1fr) auto; }
+.linked-picker [data-slot="card"] { grid-template-columns: 44px minmax(0, 1fr) auto; min-height: 60px; }
+.linked-picker [data-slot="row"]:hover, .linked-picker [data-slot="card"]:hover { border-color: var(--color-border-strong); }
+.linked-picker [data-slot="row"]:focus-visible, .linked-picker [data-slot="card"]:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.linked-picker [aria-pressed="true"], .linked-picker .is-on, .linked-picker .is-linked {
+  background: var(--lp-row-on); border-color: var(--color-accent-deep);
+}
+.linked-picker [data-slot="row"].is-dim, .linked-picker [data-slot="card"].is-dim {
+  background: transparent; color: var(--color-text-muted); font-weight: 500;
+}
+.linked-picker .lp-mark { display: grid; justify-items: start; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.linked-picker .lp-mark b { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; }
+.linked-picker .lp-mark small { font-family: var(--font-eyebrow, var(--font-body)); font-size: 10px; letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case, uppercase); color: var(--color-text-muted); font-weight: 600; }
+.linked-picker [data-slot="card"] .lp-mark b { font-style: italic; font-size: var(--text-card); font-weight: 500; }
+.linked-picker .lp-title { display: grid; min-width: 0; gap: 2px; overflow-wrap: anywhere; }
+.linked-picker .lp-title small { font-size: var(--text-caption); font-weight: 500; color: var(--color-text-muted); }
+.linked-picker .lp-count {
+  min-width: 26px; height: 26px; display: inline-grid; place-items: center; padding: 0 6px;
+  border: var(--border-width) var(--border-style) var(--color-border-strong); border-radius: var(--radius-full);
+  font-size: var(--text-caption); font-variant-numeric: tabular-nums; color: var(--color-text);
+}
+.linked-picker .lp-arrow { font-size: var(--text-body); color: var(--color-text-muted); }
+
+.linked-picker [data-slot="detail"] {
+  display: grid; gap: var(--space-sm); padding: var(--space-base);
+  border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); background: var(--color-bg);
+}
+.linked-picker [data-slot="detail"][hidden] { display: none; }
+.linked-picker [data-slot="detail"] [data-slot="kicker"] { margin: 0; font-family: var(--font-eyebrow, var(--font-body)); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case, uppercase); color: var(--color-text-muted); }
+.linked-picker [data-slot="detail"] h3 { margin: 0; font-family: var(--font-display); font-size: var(--text-card); line-height: 1.15; color: var(--color-heading, var(--color-text)); }
+.linked-picker [data-slot="detail"] p { margin: 0; font-size: var(--text-body-sm); max-width: 62ch; }
+.linked-picker [data-slot="entries"] { display: grid; gap: var(--space-xs); }
+.linked-picker [data-slot="entries"] li { display: grid; grid-template-columns: minmax(0, 190px) minmax(0, 1fr); gap: var(--space-md); padding-top: var(--space-xs); border-top: var(--border-width) var(--border-style) var(--color-border); font-size: var(--text-body-sm); }
+.linked-picker [data-slot="entries"] button { all: unset; cursor: pointer; font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); text-underline-offset: 3px; text-decoration: underline; }
+.linked-picker [data-slot="entries"] button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.linked-picker [data-slot="entries"] span { color: var(--color-text-muted); }
+.linked-picker [data-slot="detail"] [data-slot="open"] { display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-base); }
+.linked-picker [data-slot="detail"] [data-slot="open"] a { color: var(--color-accent-text, var(--color-accent-deep)); font-size: var(--text-body-sm); font-weight: 600; text-underline-offset: 3px; }
+.linked-picker [data-slot="foot"] { display: flex; justify-content: space-between; gap: var(--space-base); flex-wrap: wrap; margin: 0; font-size: var(--text-caption); color: var(--color-text-muted); }
+
+@media (max-width: 720px) {
+  .linked-picker { padding: var(--space-base); }
+  .linked-picker [data-slot="body"] { grid-template-columns: minmax(0, 1fr); }
+  .linked-picker [data-slot="gutter"], .linked-picker [data-slot="wires"] { display: none; }
+  .linked-picker [data-slot="entries"] li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
