@@ -41,12 +41,36 @@
 .cls-part-fig[data-zoom] { cursor: zoom-in; }
 .cls-part-fig[data-zoom]:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; border-radius: var(--radius-md); }
 .cls-zoom-hint { color: var(--color-text-muted); }
-.cls-lb { width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--color-bg); color: var(--color-text); }
+.cls-lb { --btn-icon-size: 36px; width: min(96vw, 1600px); height: 94vh; max-width: none; max-height: none; padding: 0; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg); color: var(--color-text); overflow: hidden; }
 .cls-lb[open] { display: flex; flex-direction: column; }
-.cls-lb-bar { display: flex; gap: var(--space-sm); justify-content: flex-end; padding: var(--space-sm) var(--space-md); border-bottom: var(--border-width) var(--border-style) var(--color-border); }
-.cls-lb-stage { flex: 1; min-height: 0; overflow: auto; padding: var(--space-md); }
-.cls-lb-inner { margin: 0 auto; }
+.cls-lb::backdrop { background: rgb(12 14 12 / 0.82); backdrop-filter: blur(6px); }
+.cls-lb-bar { display: flex; align-items: center; gap: var(--space-xs); padding: var(--space-sm) var(--space-md); border-bottom: var(--border-width) var(--border-style) var(--color-border); }
+.cls-lb-count { font-size: var(--text-caption); color: var(--color-text-muted); min-width: 3.2em; font-variant-numeric: tabular-nums; }
+.cls-lb-cap { flex: 1; min-width: 0; font-size: var(--text-caption); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cls-lb-main { position: relative; flex: 1; min-height: 0; display: flex; }
+.cls-lb-stage { flex: 1; min-width: 0; overflow: auto; display: flex; padding: var(--space-md) 64px; }
+.cls-lb .cls-lb-inner { margin: auto; flex: none; }
 .cls-lb-inner svg, .cls-lb-inner img { display: block; width: 100%; height: auto; }
+.cls-lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-surface); }
+.cls-lb-prev { left: var(--space-sm); }
+.cls-lb-next { right: var(--space-sm); }
+.cls-lb-strip { display: flex; gap: var(--space-sm); justify-content: center; overflow-x: auto; padding: var(--space-sm) var(--space-md); border-top: var(--border-width) var(--border-style) var(--color-border); background: var(--color-surface-alt); }
+.cls-lb-thumb { flex: none; width: 120px; height: 76px; padding: 4px; border: 2px solid transparent; border-radius: var(--radius-sm); background: var(--color-surface); cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+.cls-lb-thumb { overflow: hidden; }
+.cls-lb-thumb > span { display: block; width: 100%; height: 100%; overflow: hidden; }
+.cls-lb-thumb svg { overflow: hidden; }
+.cls-part-thumbs .cls-part-fig--thumb { overflow: hidden; }
+.cls-lb .cls-lb-thumb svg, .cls-lb .cls-lb-thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cls-lb-thumb[aria-current="true"] { border-color: var(--color-accent-deep); opacity: 1; }
+.cls-lb-thumb:hover { opacity: 1; }
+.cls-lb-thumb:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.cls-lb--one .cls-lb-arrow, .cls-lb--one .cls-lb-strip { display: none; }
+.cls-lb--one .cls-lb-stage { padding-inline: var(--space-md); }
+.cls-part-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.cls-part-thumbs .cls-part-fig--thumb { margin: 0; padding: var(--space-sm); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-part-thumbs .cls-part-fig--thumb svg { max-height: 140px; }
+.cls-part-thumbs .cls-part-fig--thumb figcaption { margin-top: var(--space-xs); font-size: var(--text-caption); }
+.cls-part-thumbs .cls-zoom-hint { display: none; }
 .cls-part .def dd { min-width: 0; }
 /* the horizon chip: same shape as kind-label, the horizon's number carried in text, not colour alone */
 .cls-role { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
@@ -107,6 +131,7 @@
 .cls-diagram .z.edge { fill: var(--color-surface-alt); stroke: none; }
 .cls-diagram .z.common { fill: var(--color-surface); stroke: var(--color-accent-deep); }
 .cls-diagram text.inv { fill: var(--color-text-inverse); }
+.cls-diagram .ll { fill: none; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 2 4; }
 .cls-diagram .b.srv { fill: var(--color-surface); stroke: var(--color-accent-deep); stroke-width: 3; }</style>
 <link rel="stylesheet" href="views.css">
 <script defer src="vendor/nav-bar/behavior.js"></script>
@@ -180,8 +205,8 @@
 <circle class="y" cx="32.5" cy="37.5" r="3.6"/><circle cx="32.5" cy="37.5" r="3.6"/><path d="M32.5 35.6v1.9l1.3.9"/></svg></span></figure>
     </header>
     <section class="wiki-section" id="overview"><h2>Overview</h2><dl class="defs"><div class="def"><dt>Status</dt><dd>Scanner and diff built, server designed</dd></div></dl><figure class="cls-part-fig cls-diagram" data-audit-ignore data-zoom tabindex="0" role="button" aria-label="Open the diagram full screen"><svg viewBox="0 0 600 228" role="img" aria-label="Manifest mapping: three files go through a read-only scanner. All three land in the full manifest, which stays home. Only the two tagged files reach the redacted manifest, as an id and a date." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><text x="0" y="12" text-anchor="start" class="cap" dominant-baseline="middle">YOUR FOLDER</text><g><rect class="b " x="0" y="26" width="150" height="44" rx="6"/><text x="75" y="40" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="75" dy="0" font-weight="600">plan.md</tspan><tspan x="75" dy="16" >tag: member-b</tspan></text></g><g><rect class="b " x="0" y="78" width="150" height="44" rx="6"/><text x="75" y="92" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="75" dy="0" font-weight="600">notes.md</tspan><tspan x="75" dy="16" >tag: member-b</tspan></text></g><g><rect class="b  dash" x="0" y="130" width="150" height="44" rx="6"/><text x="75" y="144" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="75" dy="0" font-weight="600">draft.md</tspan><tspan x="75" dy="16" >no tag</tspan></text></g><path class="a" d="M152 48H176V90H198" marker-end="url(#ah)"/><path class="a" d="M152 100H198" marker-end="url(#ah)"/><path class="a dash" d="M152 152H176V110H198" marker-end="url(#ah)"/><g><rect class="b " x="200" y="68" width="120" height="64" rx="6"/><text x="260" y="92" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="260" dy="0" font-weight="600">Scanner</tspan><tspan x="260" dy="16" >reads, never writes</tspan></text></g><path class="a" d="M322 92H346V58H368" marker-end="url(#ah)"/><path class="a" d="M322 108H346V156H368" marker-end="url(#ah)"/><g><rect class="b " x="370" y="26" width="230" height="64" rx="6"/><text x="485" y="50" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="485" dy="0" font-weight="600">Full manifest</tspan><tspan x="485" dy="16" >id · path · hash · date</tspan></text></g><text x="485" y="107" text-anchor="middle" class="note" dominant-baseline="middle">all 3 files · stays with you</text><g><rect class="b hi" x="370" y="124" width="230" height="64" rx="6"/><text x="485" y="148" text-anchor="middle" dominant-baseline="middle" class=""><tspan x="485" dy="0" font-weight="600">Redacted manifest</tspan><tspan x="485" dy="16" >id · date</tspan></text></g><text x="485" y="204" text-anchor="middle" class="note" dominant-baseline="middle">the 2 tagged files · the only part shared</text></svg><figcaption>What the scanner keeps and what it shares. Dashed: a file with no tag never leaves home.<span class="cls-zoom-hint"> Click to open full screen and zoom.</span></figcaption></figure></section>
-    <section class="wiki-section" id="build-what-done-looks-like"><h2>What done looks like</h2><p class="lede">One tagged file, through all five parts.</p><ol class="cls-flow"><li class="cls-flow-step" data-here><span class="cls-flow-n" aria-hidden="true">1</span><div class="cls-flow-card" aria-current="page"><div class="cls-flow-text"><h3>Manifest mapping</h3><p>Your scanner writes each tagged file down as a number and a date. The file stays home.</p></div><a class="btn btn--outline cls-flow-btn" data-component="button" href="#build-the-two-records"><span data-slot="label">Scroll to section</span></a></div></li><li class="cls-flow-step"><span class="cls-flow-n" aria-hidden="true">2</span><div class="cls-flow-card"><div class="cls-flow-text"><h3>Cuts and publishing</h3><p>To share the work itself, cut a page for someone. A separate act from the manifest.</p></div><a class="btn btn--outline cls-flow-btn" data-component="button" href="spec-cuts-lenses.html"><span data-slot="label">See spec</span></a></div></li><li class="cls-flow-step"><span class="cls-flow-n" aria-hidden="true">3</span><div class="cls-flow-card"><div class="cls-flow-text"><h3>Visibility system</h3><p>One <code>visibility</code> list per file decides which manifest and which cut it lands in.</p></div><span class="cls-flow-none">No spec yet</span></div></li><li class="cls-flow-step"><span class="cls-flow-n" aria-hidden="true">4</span><div class="cls-flow-card"><div class="cls-flow-text"><h3>Community Data Commons MCP</h3><p>An always-on server answers a member’s AI with only the ids and dates they may see.</p></div><a class="btn btn--outline cls-flow-btn" data-component="button" href="spec-mvp.html"><span data-slot="label">See spec</span></a></div></li><li class="cls-flow-step"><span class="cls-flow-n" aria-hidden="true">5</span><div class="cls-flow-card"><div class="cls-flow-text"><h3>Activity log data</h3><p>Your record and the community’s overlap. The overlap proves you took part.</p></div><a class="btn btn--outline cls-flow-btn" data-component="button" href="spec-dual-ledger.html"><span data-slot="label">See spec</span></a></div></li></ol></section>
-    <section class="wiki-section" id="build-the-two-records"><h2>The two records</h2><p class="lede">Both come out of the same scan. Only the second one crosses the boundary.</p><dl class="defs"><div class="def"><dt>Full manifest</dt><dd>One row per file in the folder: <code>id</code>, <code>path</code>, <code>hash</code>, <code>lastActive</code>, <code>bytes</code> and <code>visibility</code>. It also records how each number is made and any ids two paths share. It stays on the owner’s machine, or in the private zone of the <a href="spec-mvp.html">community server</a>.<pre class="cls-code"><code>{
+    <section class="wiki-section" id="build-what-done-looks-like"><h2>What done looks like</h2><p class="lede">One tagged file, through all five parts.</p><ol class="cls-flow"><li class="cls-flow-step" data-here><span class="cls-flow-n" aria-hidden="true">1</span><div class="cls-flow-card" aria-current="page"><div class="cls-flow-text"><h3>Manifest mapping</h3><p>Your scanner writes each tagged file down as a number and a date. The file stays home.</p></div><a class="btn btn--outline cls-flow-btn" data-component="button" href="#build-the-two-records"><span data-slot="label">Scroll to section</span></a></div></li><li class="cls-flow-step"><span class="cls-flow-n" aria-hidden="true">2</span><div class="cls-flow-card"><div class="cls-flow-text"><h3>Cuts and publishing</h3><p>To share the work itself, cut a page for someone. A separate act from the manifest.</p></div><a class="btn btn--outline cls-flow-btn" data-component="button" href="spec-cuts-lenses.html"><span data-slot="label">See spec</span></a></div></li><li class="cls-flow-step"><span class="cls-flow-n" aria-hidden="true">3</span><div class="cls-flow-card"><div class="cls-flow-text"><h3>Visibility system</h3><p>One <code>visibility</code> list per file decides which manifest and which cut it lands in.</p></div><span class="cls-flow-none">No spec yet</span></div></li><li class="cls-flow-step"><span class="cls-flow-n" aria-hidden="true">4</span><div class="cls-flow-card"><div class="cls-flow-text"><h3>Community Data Commons MCP</h3><p>An always-on server answers a member’s AI with only the ids and dates they may see.</p></div><a class="btn btn--outline cls-flow-btn" data-component="button" href="spec-local-assembly.html"><span data-slot="label">See spec</span></a></div></li><li class="cls-flow-step"><span class="cls-flow-n" aria-hidden="true">5</span><div class="cls-flow-card"><div class="cls-flow-text"><h3>Activity log data</h3><p>Your record and the community’s overlap. The overlap proves you took part.</p></div><a class="btn btn--outline cls-flow-btn" data-component="button" href="spec-dual-ledger.html"><span data-slot="label">See spec</span></a></div></li></ol></section>
+    <section class="wiki-section" id="build-the-two-records"><h2>The two records</h2><p class="lede">Both come out of the same scan. Only the second one crosses the boundary.</p><dl class="defs"><div class="def"><dt>Full manifest</dt><dd>One row per file in the folder: <code>id</code>, <code>path</code>, <code>hash</code>, <code>lastActive</code>, <code>bytes</code> and <code>visibility</code>. It also records how each number is made and any ids two paths share. It stays on the owner’s machine, or in the private zone of the community server.<pre class="cls-code"><code>{
   &quot;scannedAt&quot;: &quot;&lt;YYYY-MM-DD&gt;&quot;,
   &quot;manifest&quot;: {
     &quot;idScheme&quot;: &quot;sha256(target-relative path), first 6 hex, prefixed 0x&quot;,
@@ -247,21 +272,21 @@ Print counts for each class and the rows in each. Write JSON only when --out is 
 6. Leak check: search the rows of runs/after/manifest.member-b.redacted.json for every file name with and without .md, the test folder’s name, the string .md and every value of the hash field in runs/after/scan.json. Pass when none is found.
 7. Quiet check: scan the folder twice more, to runs/q1 and runs/q2, and diff those two scans. Pass when every row is unchanged.
 
-Report each check as pass or fail with the counts you measured. If a check fails, fix the code and run all the checks again.</code></pre><button type="button" class="btn btn--outline cls-copy" data-component="button"><span data-slot="label">Copy prompt</span></button></div></dd></div><div class="def"><dt>4 · Connect it to a server</dt><dd>Optional. Takes the manifest to the <a href="spec-mvp.html">Community Legibility Spec MVP</a>. Read that page first.<div class="cls-prompt"><pre class="cls-code"><code>Read these two pages in full before writing any code:
+Report each check as pass or fail with the counts you measured. If a check fails, fix the code and run all the checks again.</code></pre><button type="button" class="btn btn--outline cls-copy" data-component="button"><span data-slot="label">Copy prompt</span></button></div></dd></div><div class="def"><dt>4 · Connect it to a server</dt><dd>Optional. Takes the manifest to the <a href="spec-local-assembly.html">Local Assembly</a>. Read that page first.<div class="cls-prompt"><pre class="cls-code"><code>Read these two pages in full before writing any code:
 - https://houstonbloom.github.io/houstonbloom/spec-manifest.html
-- https://houstonbloom.github.io/houstonbloom/spec-mvp.html
+- https://houstonbloom.github.io/houstonbloom/spec-local-assembly.html
 
-Then extend the MCP server from the MVP page so it answers from the scanner’s output:
+Then extend the MCP server from the Local Assembly page so it answers from the scanner’s output:
 1. The owner’s machine sends only scan.json, to a private folder on the server that the MCP tools never return directly.
 2. When a member asks what changed, the server derives that member’s redacted rows from the full manifest, using the member’s tag, and diffs them against the last redacted manifest it sent that member.
 3. Use the content hashes on the server side to drop rows that were only touched, but return only id and lastActive to the member. Never return a path, a hash or a file name.
 4. After answering, save the rows just sent as that member’s new baseline.
-5. Check the community token and the member identity on every call, as the MVP page describes.
+5. Check the community token and the member identity on every call, as the Local Assembly page describes.
 
 Both pages list decisions that are still open, such as how often the owner syncs and whether answers carry an “as of” date. Do not decide them. Stop and ask me, and say which one you hit.</code></pre><button type="button" class="btn btn--outline cls-copy" data-component="button"><span data-slot="label">Copy prompt</span></button></div></dd></div></dl></section>
     <section class="wiki-section" id="how"><h2>How it works</h2><dl class="defs"><div class="def"><dt>Scanner</dt><dd>Reads only the files you tagged for the community</dd></div><div class="def"><dt>Full manifest</dt><dd>Stays private, outside the part of the server anyone can ask</dd></div><div class="def"><dt>Redacted manifest</dt><dd>An opaque number and a last-active date</dd></div><div class="def"><dt>Compare</dt><dd>The server checks it against the last broadcast and answers only the person who asked</dd></div><div class="def"><dt>Baseline</dt><dd>After an answer, the redacted manifest becomes the new baseline</dd></div></dl></section>
     <section class="wiki-section" id="settled"><h2>Settled</h2><dl class="defs"><div class="def"><dt>Shapes, not content</dt><dd>The work stays on its owner’s machine</dd></div><div class="def"><dt>Two separate acts</dt><dd>Contributing a shape and granting access to the work</dd></div></dl></section>
-    <section class="wiki-section" id="open"><h2>Still open</h2><dl class="defs"><div class="def"><dt>Full manifest</dt><dd>Content or metadata only</dd></div><div class="def"><dt>Commons contribution</dt><dd>How a pair’s manifest becomes one is not specified</dd></div><div class="def"><dt>Field names</dt><dd>This page uses id and lastActive; the MVP page calls the same two fields file_number and last_updated</dd></div><div class="def"><dt>Last active</dt><dd>The scanner uses the file’s modified time; the design leans toward the frontmatter last-updated field, which survives a move</dd></div><div class="def"><dt>Rename</dt><dd>The path id changes when a file moves. A fingerprint written once into frontmatter would survive it. The switch waits for the first rename the diff cannot pair on real files</dd></div><div class="def"><dt>Design principles</dt><dd>Whether they travel in the redacted manifest or open at the next depth of trust</dd></div><div class="def"><dt>Transport</dt><dd>Getting the redacted manifest to another person is not built</dd></div></dl></section>
+    <section class="wiki-section" id="open"><h2>Still open</h2><dl class="defs"><div class="def"><dt>Full manifest</dt><dd>Content or metadata only</dd></div><div class="def"><dt>Commons contribution</dt><dd>How a pair’s manifest becomes one is not specified</dd></div><div class="def"><dt>Field names</dt><dd>This page uses id and lastActive; the Local Assembly page calls the same two fields file_number and last_updated</dd></div><div class="def"><dt>Last active</dt><dd>The scanner uses the file’s modified time; the design leans toward the frontmatter last-updated field, which survives a move</dd></div><div class="def"><dt>Rename</dt><dd>The path id changes when a file moves. A fingerprint written once into frontmatter would survive it. The switch waits for the first rename the diff cannot pair on real files</dd></div><div class="def"><dt>Design principles</dt><dd>Whether they travel in the redacted manifest or open at the next depth of trust</dd></div><div class="def"><dt>Transport</dt><dd>Getting the redacted manifest to another person is not built</dd></div></dl></section>
     <section class="wiki-section" id="read"><h2>Read and use</h2><ul class="cls-part-links"><li><a href="https://nodejs.org/api/crypto.html#cryptocreatehashalgorithm-options">SHA-256 in Node.js: crypto.createHash (nodejs.org)</a></li></ul></section>
     <footer class="foot">
       <p>Source: Working notes, and a scanner and diff built and tested on one machine on 2026-08-31. That code is not yet published; the prompts above rebuild it. The server half is designed, not built.</p>
@@ -269,14 +294,21 @@ Both pages list decisions that are still open, such as how often the owner syncs
     </footer>
   </main>
 </div>
-<dialog class="cls-lb" aria-label="Full-screen view">
+<dialog class="cls-lb" aria-label="Diagram viewer">
   <div class="cls-lb-bar">
-    <button type="button" class="btn btn--outline" data-component="button" data-z="out" aria-label="Zoom out"><span data-slot="label">−</span></button>
-    <button type="button" class="btn btn--outline" data-component="button" data-z="fit"><span data-slot="label">Fit</span></button>
-    <button type="button" class="btn btn--outline" data-component="button" data-z="in" aria-label="Zoom in"><span data-slot="label">+</span></button>
-    <button type="button" class="btn" data-component="button" data-z="close"><span data-slot="label">Close</span></button>
+    <span class="cls-lb-count" aria-live="polite"></span>
+    <span class="cls-lb-cap"></span>
+    <button type="button" class="btn btn--outline btn--icon" data-component="button" data-z="out" aria-label="Zoom out"><span data-slot="glyph" aria-hidden="true">−</span></button>
+    <button type="button" class="btn btn--outline btn--icon" data-component="button" data-z="fit" aria-label="Fit to screen"><span data-slot="glyph" aria-hidden="true">⤢</span></button>
+    <button type="button" class="btn btn--outline btn--icon" data-component="button" data-z="in" aria-label="Zoom in"><span data-slot="glyph" aria-hidden="true">+</span></button>
+    <button type="button" class="btn btn--outline btn--icon" data-component="button" data-z="close" aria-label="Close"><span data-slot="glyph" aria-hidden="true">×</span></button>
   </div>
-  <div class="cls-lb-stage"></div>
+  <div class="cls-lb-main">
+    <div class="cls-lb-stage"></div>
+    <button type="button" class="cls-lb-arrow cls-lb-prev btn btn--outline btn--icon" data-component="button" data-z="prev" aria-label="Previous diagram"><span data-slot="glyph" aria-hidden="true">‹</span></button>
+    <button type="button" class="cls-lb-arrow cls-lb-next btn btn--outline btn--icon" data-component="button" data-z="next" aria-label="Next diagram"><span data-slot="glyph" aria-hidden="true">›</span></button>
+  </div>
+  <div class="cls-lb-strip" role="list" aria-label="All diagrams"></div>
 </dialog>
 <script src="vendor/template-menu/behavior.js"></script>
 <script>
@@ -300,33 +332,55 @@ document.querySelectorAll('.cls-part .cls-copy').forEach(function (b) {
     else select();
   });
 });
-/* lightbox: a figure opens full screen at fit size; + and - (buttons, keys, ctrl + wheel) zoom, scroll pans, 0 or Fit resets */
+/* lightbox, lightroom style: the picked figure fills the panel at fit size and stays centred; a filmstrip of every
+   figure on the page runs underneath. Arrows (on screen or keyboard) step through; +, - and ctrl + wheel zoom; scroll pans
+   when zoomed; 0 or the fit button resets. Pattern sourced from the Dual Ledger MVP plan frame's lightbox (2026-05-21). */
 (function () {
   var d = document.querySelector('.cls-lb'); if (!d) return;
-  var st = d.querySelector('.cls-lb-stage'), inner = null, pic = null, z = 1;
+  var st = d.querySelector('.cls-lb-stage'), strip = d.querySelector('.cls-lb-strip');
+  var count = d.querySelector('.cls-lb-count'), capEl = d.querySelector('.cls-lb-cap');
+  var list = Array.prototype.slice.call(document.querySelectorAll('[data-zoom]'));
+  var inner = null, pic = null, z = 1, at = 0, opener = null;
+  d.classList.toggle('cls-lb--one', list.length < 2);
+  function srcOf(fig) { return fig.querySelector('svg, img'); }
+  function capOf(fig) { var fc = fig.querySelector('figcaption'); return fc ? fc.textContent.replace(' Click to open full screen and zoom.', '').trim() : ''; }
+  function clean(node) { var c = node.cloneNode(true); c.removeAttribute('width'); c.removeAttribute('height'); c.removeAttribute('loading'); return c; }
+  list.forEach(function (fig, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cls-lb-thumb'; b.setAttribute('role', 'listitem');
+    b.setAttribute('aria-label', 'Diagram ' + (i + 1) + ': ' + capOf(fig));
+    var s = srcOf(fig); if (s) { var w = document.createElement('span'); w.className = s.tagName.toLowerCase() === 'svg' ? 'cls-diagram' : ''; w.appendChild(clean(s)); b.appendChild(w); }
+    b.addEventListener('click', function () { show(i); });
+    strip.appendChild(b);
+  });
   function ratio() { var v = pic.viewBox && pic.viewBox.baseVal; return v && v.width ? v.width / v.height : (pic.naturalWidth / pic.naturalHeight) || 1; }
-  function fitW() { return Math.max(200, Math.min(st.clientWidth - 32, (st.clientHeight - 32) * ratio())); }
-  function set(v) { z = Math.max(1, Math.min(6, v)); inner.style.width = Math.round(fitW() * z) + 'px'; }
-  function open(fig) {
-    var src = fig.querySelector('svg, img'); if (!src) return;
+  function fitW() { var cs = getComputedStyle(st); var w = st.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); var h = st.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom); return Math.max(120, Math.min(w, h * ratio())); }
+  function set(v) { z = Math.max(1, Math.min(6, v)); inner.style.width = Math.floor(fitW() * z) + 'px'; d.classList.toggle('cls-lb--zoomed', z > 1); }
+  function show(i) {
+    at = (i + list.length) % list.length; var fig = list[at], s = srcOf(fig); if (!s) return;
     st.innerHTML = ''; inner = document.createElement('div');
-    inner.className = 'cls-lb-inner' + (src.tagName.toLowerCase() === 'svg' ? ' cls-diagram' : '');
-    pic = src.cloneNode(true); pic.removeAttribute('width'); pic.removeAttribute('height'); pic.removeAttribute('loading');
-    inner.appendChild(pic); st.appendChild(inner); d.showModal(); set(1);
+    inner.className = 'cls-lb-inner' + (s.tagName.toLowerCase() === 'svg' ? ' cls-diagram' : '');
+    pic = clean(s); inner.appendChild(pic); st.appendChild(inner);
+    capEl.textContent = capOf(fig); count.textContent = (at + 1) + ' / ' + list.length;
+    Array.prototype.forEach.call(strip.children, function (t, k) { if (k === at) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current'); });
+    st.scrollTop = 0; st.scrollLeft = 0; set(1);
   }
-  document.querySelectorAll('[data-zoom]').forEach(function (f) {
+  function open(fig) { opener = fig; if (!d.open) d.showModal(); show(list.indexOf(fig)); }
+  list.forEach(function (f) {
     f.addEventListener('click', function (e) { e.preventDefault(); open(f); });
     f.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(f); } });
   });
   d.addEventListener('click', function (e) {
     var b = e.target.closest('[data-z]');
-    if (b) { var k = b.dataset.z; if (k === 'in') set(z * 1.5); else if (k === 'out') set(z / 1.5); else if (k === 'fit') set(1); else d.close(); return; }
+    if (b) { var k = b.dataset.z; if (k === 'in') set(z * 1.5); else if (k === 'out') set(z / 1.5); else if (k === 'fit') set(1); else if (k === 'prev') show(at - 1); else if (k === 'next') show(at + 1); else d.close(); return; }
     if (e.target === d) d.close();
   });
-  d.addEventListener('keydown', function (e) { if (e.key === '+' || e.key === '=') set(z * 1.5); else if (e.key === '-') set(z / 1.5); else if (e.key === '0') set(1); });
+  d.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); } else if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+    else if (e.key === '+' || e.key === '=') set(z * 1.5); else if (e.key === '-') set(z / 1.5); else if (e.key === '0') set(1);
+  });
   st.addEventListener('wheel', function (e) { if (!e.ctrlKey) return; e.preventDefault(); set(z * (e.deltaY < 0 ? 1.15 : 1 / 1.15)); }, { passive: false });
   window.addEventListener('resize', function () { if (d.open) set(z); });
-  d.addEventListener('close', function () { st.innerHTML = ''; inner = pic = null; });
+  d.addEventListener('close', function () { st.innerHTML = ''; inner = pic = null; if (opener && opener.focus) opener.focus(); });
 })();
 </script>
 </body>

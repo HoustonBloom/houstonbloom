@@ -233,6 +233,7 @@ ul.cls-leads p { grid-column: 1; }
 .cls-diagram .z.edge { fill: var(--color-surface-alt); stroke: none; }
 .cls-diagram .z.common { fill: var(--color-surface); stroke: var(--color-accent-deep); }
 .cls-diagram text.inv { fill: var(--color-text-inverse); }
+.cls-diagram .ll { fill: none; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 2 4; }
 .cls-diagram .b.srv { fill: var(--color-surface); stroke: var(--color-accent-deep); stroke-width: 3; }
 .cls-linklist { display: grid; gap: var(--space-md); margin: 0; padding: 0; list-style: none; }
 .cls-linklist li { display: grid; gap: 2px; }
@@ -312,12 +313,36 @@ ul.cls-leads p { grid-column: 1; }
 .cls-part-fig[data-zoom] { cursor: zoom-in; }
 .cls-part-fig[data-zoom]:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; border-radius: var(--radius-md); }
 .cls-zoom-hint { color: var(--color-text-muted); }
-.cls-lb { width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--color-bg); color: var(--color-text); }
+.cls-lb { --btn-icon-size: 36px; width: min(96vw, 1600px); height: 94vh; max-width: none; max-height: none; padding: 0; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg); color: var(--color-text); overflow: hidden; }
 .cls-lb[open] { display: flex; flex-direction: column; }
-.cls-lb-bar { display: flex; gap: var(--space-sm); justify-content: flex-end; padding: var(--space-sm) var(--space-md); border-bottom: var(--border-width) var(--border-style) var(--color-border); }
-.cls-lb-stage { flex: 1; min-height: 0; overflow: auto; padding: var(--space-md); }
-.cls-lb-inner { margin: 0 auto; }
+.cls-lb::backdrop { background: rgb(12 14 12 / 0.82); backdrop-filter: blur(6px); }
+.cls-lb-bar { display: flex; align-items: center; gap: var(--space-xs); padding: var(--space-sm) var(--space-md); border-bottom: var(--border-width) var(--border-style) var(--color-border); }
+.cls-lb-count { font-size: var(--text-caption); color: var(--color-text-muted); min-width: 3.2em; font-variant-numeric: tabular-nums; }
+.cls-lb-cap { flex: 1; min-width: 0; font-size: var(--text-caption); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cls-lb-main { position: relative; flex: 1; min-height: 0; display: flex; }
+.cls-lb-stage { flex: 1; min-width: 0; overflow: auto; display: flex; padding: var(--space-md) 64px; }
+.cls-lb .cls-lb-inner { margin: auto; flex: none; }
 .cls-lb-inner svg, .cls-lb-inner img { display: block; width: 100%; height: auto; }
+.cls-lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-surface); }
+.cls-lb-prev { left: var(--space-sm); }
+.cls-lb-next { right: var(--space-sm); }
+.cls-lb-strip { display: flex; gap: var(--space-sm); justify-content: center; overflow-x: auto; padding: var(--space-sm) var(--space-md); border-top: var(--border-width) var(--border-style) var(--color-border); background: var(--color-surface-alt); }
+.cls-lb-thumb { flex: none; width: 120px; height: 76px; padding: 4px; border: 2px solid transparent; border-radius: var(--radius-sm); background: var(--color-surface); cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+.cls-lb-thumb { overflow: hidden; }
+.cls-lb-thumb > span { display: block; width: 100%; height: 100%; overflow: hidden; }
+.cls-lb-thumb svg { overflow: hidden; }
+.cls-part-thumbs .cls-part-fig--thumb { overflow: hidden; }
+.cls-lb .cls-lb-thumb svg, .cls-lb .cls-lb-thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cls-lb-thumb[aria-current="true"] { border-color: var(--color-accent-deep); opacity: 1; }
+.cls-lb-thumb:hover { opacity: 1; }
+.cls-lb-thumb:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.cls-lb--one .cls-lb-arrow, .cls-lb--one .cls-lb-strip { display: none; }
+.cls-lb--one .cls-lb-stage { padding-inline: var(--space-md); }
+.cls-part-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.cls-part-thumbs .cls-part-fig--thumb { margin: 0; padding: var(--space-sm); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-part-thumbs .cls-part-fig--thumb svg { max-height: 140px; }
+.cls-part-thumbs .cls-part-fig--thumb figcaption { margin-top: var(--space-xs); font-size: var(--text-caption); }
+.cls-part-thumbs .cls-zoom-hint { display: none; }
 .cls-part .def dd { min-width: 0; }
 /* the horizon chip: same shape as kind-label, the horizon's number carried in text, not colour alone */
 .cls-role { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
@@ -368,8 +393,8 @@ ul.cls-leads p { grid-column: 1; }
   <section class="cls-section" id="parts">
     <h2>Data Sovereignty Infrastructure</h2>
     <p class="cls-intro">Your work stays on your machine. What travels is its shape: when it happened, and the principle it stands on. That is enough for a community to match people without anyone holding everyone&#8217;s data.</p>
-    <div class="cls-filter cls-filter--hz" role="group" aria-label="Show parts by horizon"><button type="button" data-hz="all" aria-pressed="true">All horizons <small>12</small></button><button type="button" data-hz="local" aria-pressed="false">Horizon 1 · Cultivate your data <small>2</small></button><button type="button" data-hz="community" aria-pressed="false">Horizon 2 · Protect community intelligence <small>7</small></button><button type="button" data-hz="governance" aria-pressed="false">Horizon 3 · Enable emergent governance <small>3</small></button></div>
-    <div class="cls-filter cls-filter--kind" role="group" aria-label="Show parts by kind"><button type="button" data-kind="all" aria-pressed="true">All <small>12</small></button><button type="button" data-kind="infrastructure" aria-pressed="false">Infrastructure <small>6</small></button><button type="button" data-kind="program" aria-pressed="false">Programs <small>4</small></button><button type="button" data-kind="outcome" aria-pressed="false">Outcomes <small>2</small></button></div>
+    <div class="cls-filter cls-filter--hz" role="group" aria-label="Show parts by horizon"><button type="button" data-hz="all" aria-pressed="true">All horizons <small>11</small></button><button type="button" data-hz="local" aria-pressed="false">Horizon 1 · Cultivate your data <small>2</small></button><button type="button" data-hz="community" aria-pressed="false">Horizon 2 · Protect community intelligence <small>6</small></button><button type="button" data-hz="governance" aria-pressed="false">Horizon 3 · Enable emergent governance <small>3</small></button></div>
+    <div class="cls-filter cls-filter--kind" role="group" aria-label="Show parts by kind"><button type="button" data-kind="all" aria-pressed="true">All <small>11</small></button><button type="button" data-kind="infrastructure" aria-pressed="false">Infrastructure <small>5</small></button><button type="button" data-kind="program" aria-pressed="false">Programs <small>4</small></button><button type="button" data-kind="outcome" aria-pressed="false">Outcomes <small>2</small></button></div>
     <p class="cls-filter-note" aria-live="polite"></p>
     <div class="cls-cards">
 <a class="project-card cls-pcard" data-component="project-card" data-variant="media" href="spec-packet.html" id="sys-packet" data-kind="infrastructure" data-hz="local">
@@ -460,23 +485,6 @@ ul.cls-leads p { grid-column: 1; }
     <p data-slot="role" class="cls-role"><span class="kind-label" data-component="kind-label" data-kind="infrastructure">Infrastructure</span><span class="cls-hzchip" data-hz="2" title="Protect community intelligence">Horizon 2<span class="cls-sr"> · Protect community intelligence</span></span></p>
     <h3 data-slot="title">Redacted manifest</h3>
     <p data-slot="summary">What moves when you share: an opaque identifier, a timestamp, and the design principle the work stands on.</p>
-    <span class="cls-pcard-go">Read more</span>
-  </div>
-</a>
-<a class="project-card cls-pcard" data-component="project-card" data-variant="media" href="spec-mvp.html" id="sys-mvp" data-kind="infrastructure" data-hz="community">
-  <figure data-slot="media" class="cls-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Two server racks with vents and yellow lights blinking in turn, a signal running between them." class="hbi hbi-mvp"><defs><linearGradient id="hbi-mvp-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-mvp .y,.hbi-mvp .ys{fill:url(#hbi-mvp-sun);stroke:none}.hbi-mvp .yl{fill:none;stroke:none}.hbi-mvp .f{fill:currentColor;stroke:none}.hbi-mvp .d{stroke-dasharray:1.6 2.6}
-.hbi-mvp .k{stroke-dasharray:1.6 2}
-@media (prefers-reduced-motion:no-preference){.hbi-mvp .l1{animation:hbi-mvp-l 2.4s steps(1) infinite}.hbi-mvp .l2{animation:hbi-mvp-l 2.4s steps(1) .6s infinite}.hbi-mvp .l3{animation:hbi-mvp-l 2.4s steps(1) 1.2s infinite}.hbi-mvp .l4{animation:hbi-mvp-l 2.4s steps(1) 1.8s infinite}.hbi-mvp .k{animation:hbi-mvp-k 2.4s linear infinite}}
-@keyframes hbi-mvp-l{0%{opacity:1}50%{opacity:.25}}
-@keyframes hbi-mvp-k{to{stroke-dashoffset:-14.4}}</style><rect class="yl" x="7" y="7" width="34" height="13" rx="2.5"/><rect class="yl" x="7" y="28" width="34" height="13" rx="2.5"/>
-<rect x="7" y="7" width="34" height="13" rx="2.5"/><rect x="7" y="28" width="34" height="13" rx="2.5"/>
-<circle class="ys l1" cx="12.5" cy="13.5" r="1.5"/><circle class="ys l2" cx="17" cy="13.5" r="1.5"/><circle class="ys l3" cx="12.5" cy="34.5" r="1.5"/><circle class="ys l4" cx="17" cy="34.5" r="1.5"/>
-<path d="M24 11v5M27.5 11v5M31 11v5M34.5 11v5M24 32v5M27.5 32v5M31 32v5M34.5 32v5"/>
-<path class="k" d="M24 20v8"/><path d="M4 44h40"/></svg></span></figure>
-  <div data-slot="body">
-    <p data-slot="role" class="cls-role"><span class="kind-label" data-component="kind-label" data-kind="infrastructure">Infrastructure</span><span class="cls-hzchip" data-hz="2" title="Protect community intelligence">Horizon 2<span class="cls-sr"> · Protect community intelligence</span></span></p>
-    <h3 data-slot="title">Community Legibility Spec MVP</h3>
-    <p data-slot="summary">The first piece of the Community Legibility Spec to build.</p>
     <span class="cls-pcard-go">Read more</span>
   </div>
 </a>

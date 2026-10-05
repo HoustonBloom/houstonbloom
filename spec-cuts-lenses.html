@@ -41,12 +41,36 @@
 .cls-part-fig[data-zoom] { cursor: zoom-in; }
 .cls-part-fig[data-zoom]:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; border-radius: var(--radius-md); }
 .cls-zoom-hint { color: var(--color-text-muted); }
-.cls-lb { width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--color-bg); color: var(--color-text); }
+.cls-lb { --btn-icon-size: 36px; width: min(96vw, 1600px); height: 94vh; max-width: none; max-height: none; padding: 0; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg); color: var(--color-text); overflow: hidden; }
 .cls-lb[open] { display: flex; flex-direction: column; }
-.cls-lb-bar { display: flex; gap: var(--space-sm); justify-content: flex-end; padding: var(--space-sm) var(--space-md); border-bottom: var(--border-width) var(--border-style) var(--color-border); }
-.cls-lb-stage { flex: 1; min-height: 0; overflow: auto; padding: var(--space-md); }
-.cls-lb-inner { margin: 0 auto; }
+.cls-lb::backdrop { background: rgb(12 14 12 / 0.82); backdrop-filter: blur(6px); }
+.cls-lb-bar { display: flex; align-items: center; gap: var(--space-xs); padding: var(--space-sm) var(--space-md); border-bottom: var(--border-width) var(--border-style) var(--color-border); }
+.cls-lb-count { font-size: var(--text-caption); color: var(--color-text-muted); min-width: 3.2em; font-variant-numeric: tabular-nums; }
+.cls-lb-cap { flex: 1; min-width: 0; font-size: var(--text-caption); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cls-lb-main { position: relative; flex: 1; min-height: 0; display: flex; }
+.cls-lb-stage { flex: 1; min-width: 0; overflow: auto; display: flex; padding: var(--space-md) 64px; }
+.cls-lb .cls-lb-inner { margin: auto; flex: none; }
 .cls-lb-inner svg, .cls-lb-inner img { display: block; width: 100%; height: auto; }
+.cls-lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-surface); }
+.cls-lb-prev { left: var(--space-sm); }
+.cls-lb-next { right: var(--space-sm); }
+.cls-lb-strip { display: flex; gap: var(--space-sm); justify-content: center; overflow-x: auto; padding: var(--space-sm) var(--space-md); border-top: var(--border-width) var(--border-style) var(--color-border); background: var(--color-surface-alt); }
+.cls-lb-thumb { flex: none; width: 120px; height: 76px; padding: 4px; border: 2px solid transparent; border-radius: var(--radius-sm); background: var(--color-surface); cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+.cls-lb-thumb { overflow: hidden; }
+.cls-lb-thumb > span { display: block; width: 100%; height: 100%; overflow: hidden; }
+.cls-lb-thumb svg { overflow: hidden; }
+.cls-part-thumbs .cls-part-fig--thumb { overflow: hidden; }
+.cls-lb .cls-lb-thumb svg, .cls-lb .cls-lb-thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cls-lb-thumb[aria-current="true"] { border-color: var(--color-accent-deep); opacity: 1; }
+.cls-lb-thumb:hover { opacity: 1; }
+.cls-lb-thumb:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.cls-lb--one .cls-lb-arrow, .cls-lb--one .cls-lb-strip { display: none; }
+.cls-lb--one .cls-lb-stage { padding-inline: var(--space-md); }
+.cls-part-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.cls-part-thumbs .cls-part-fig--thumb { margin: 0; padding: var(--space-sm); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-part-thumbs .cls-part-fig--thumb svg { max-height: 140px; }
+.cls-part-thumbs .cls-part-fig--thumb figcaption { margin-top: var(--space-xs); font-size: var(--text-caption); }
+.cls-part-thumbs .cls-zoom-hint { display: none; }
 .cls-part .def dd { min-width: 0; }
 /* the horizon chip: same shape as kind-label, the horizon's number carried in text, not colour alone */
 .cls-role { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
@@ -107,6 +131,7 @@
 .cls-diagram .z.edge { fill: var(--color-surface-alt); stroke: none; }
 .cls-diagram .z.common { fill: var(--color-surface); stroke: var(--color-accent-deep); }
 .cls-diagram text.inv { fill: var(--color-text-inverse); }
+.cls-diagram .ll { fill: none; stroke: var(--color-border-strong); stroke-width: 1.2; stroke-dasharray: 2 4; }
 .cls-diagram .b.srv { fill: var(--color-surface); stroke: var(--color-accent-deep); stroke-width: 3; }</style>
 <link rel="stylesheet" href="views.css">
 <script defer src="vendor/nav-bar/behavior.js"></script>
@@ -183,14 +208,21 @@
     </footer>
   </main>
 </div>
-<dialog class="cls-lb" aria-label="Full-screen view">
+<dialog class="cls-lb" aria-label="Diagram viewer">
   <div class="cls-lb-bar">
-    <button type="button" class="btn btn--outline" data-component="button" data-z="out" aria-label="Zoom out"><span data-slot="label">−</span></button>
-    <button type="button" class="btn btn--outline" data-component="button" data-z="fit"><span data-slot="label">Fit</span></button>
-    <button type="button" class="btn btn--outline" data-component="button" data-z="in" aria-label="Zoom in"><span data-slot="label">+</span></button>
-    <button type="button" class="btn" data-component="button" data-z="close"><span data-slot="label">Close</span></button>
+    <span class="cls-lb-count" aria-live="polite"></span>
+    <span class="cls-lb-cap"></span>
+    <button type="button" class="btn btn--outline btn--icon" data-component="button" data-z="out" aria-label="Zoom out"><span data-slot="glyph" aria-hidden="true">−</span></button>
+    <button type="button" class="btn btn--outline btn--icon" data-component="button" data-z="fit" aria-label="Fit to screen"><span data-slot="glyph" aria-hidden="true">⤢</span></button>
+    <button type="button" class="btn btn--outline btn--icon" data-component="button" data-z="in" aria-label="Zoom in"><span data-slot="glyph" aria-hidden="true">+</span></button>
+    <button type="button" class="btn btn--outline btn--icon" data-component="button" data-z="close" aria-label="Close"><span data-slot="glyph" aria-hidden="true">×</span></button>
   </div>
-  <div class="cls-lb-stage"></div>
+  <div class="cls-lb-main">
+    <div class="cls-lb-stage"></div>
+    <button type="button" class="cls-lb-arrow cls-lb-prev btn btn--outline btn--icon" data-component="button" data-z="prev" aria-label="Previous diagram"><span data-slot="glyph" aria-hidden="true">‹</span></button>
+    <button type="button" class="cls-lb-arrow cls-lb-next btn btn--outline btn--icon" data-component="button" data-z="next" aria-label="Next diagram"><span data-slot="glyph" aria-hidden="true">›</span></button>
+  </div>
+  <div class="cls-lb-strip" role="list" aria-label="All diagrams"></div>
 </dialog>
 <script src="vendor/template-menu/behavior.js"></script>
 <script>
@@ -214,33 +246,55 @@ document.querySelectorAll('.cls-part .cls-copy').forEach(function (b) {
     else select();
   });
 });
-/* lightbox: a figure opens full screen at fit size; + and - (buttons, keys, ctrl + wheel) zoom, scroll pans, 0 or Fit resets */
+/* lightbox, lightroom style: the picked figure fills the panel at fit size and stays centred; a filmstrip of every
+   figure on the page runs underneath. Arrows (on screen or keyboard) step through; +, - and ctrl + wheel zoom; scroll pans
+   when zoomed; 0 or the fit button resets. Pattern sourced from the Dual Ledger MVP plan frame's lightbox (2026-05-21). */
 (function () {
   var d = document.querySelector('.cls-lb'); if (!d) return;
-  var st = d.querySelector('.cls-lb-stage'), inner = null, pic = null, z = 1;
+  var st = d.querySelector('.cls-lb-stage'), strip = d.querySelector('.cls-lb-strip');
+  var count = d.querySelector('.cls-lb-count'), capEl = d.querySelector('.cls-lb-cap');
+  var list = Array.prototype.slice.call(document.querySelectorAll('[data-zoom]'));
+  var inner = null, pic = null, z = 1, at = 0, opener = null;
+  d.classList.toggle('cls-lb--one', list.length < 2);
+  function srcOf(fig) { return fig.querySelector('svg, img'); }
+  function capOf(fig) { var fc = fig.querySelector('figcaption'); return fc ? fc.textContent.replace(' Click to open full screen and zoom.', '').trim() : ''; }
+  function clean(node) { var c = node.cloneNode(true); c.removeAttribute('width'); c.removeAttribute('height'); c.removeAttribute('loading'); return c; }
+  list.forEach(function (fig, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'cls-lb-thumb'; b.setAttribute('role', 'listitem');
+    b.setAttribute('aria-label', 'Diagram ' + (i + 1) + ': ' + capOf(fig));
+    var s = srcOf(fig); if (s) { var w = document.createElement('span'); w.className = s.tagName.toLowerCase() === 'svg' ? 'cls-diagram' : ''; w.appendChild(clean(s)); b.appendChild(w); }
+    b.addEventListener('click', function () { show(i); });
+    strip.appendChild(b);
+  });
   function ratio() { var v = pic.viewBox && pic.viewBox.baseVal; return v && v.width ? v.width / v.height : (pic.naturalWidth / pic.naturalHeight) || 1; }
-  function fitW() { return Math.max(200, Math.min(st.clientWidth - 32, (st.clientHeight - 32) * ratio())); }
-  function set(v) { z = Math.max(1, Math.min(6, v)); inner.style.width = Math.round(fitW() * z) + 'px'; }
-  function open(fig) {
-    var src = fig.querySelector('svg, img'); if (!src) return;
+  function fitW() { var cs = getComputedStyle(st); var w = st.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); var h = st.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom); return Math.max(120, Math.min(w, h * ratio())); }
+  function set(v) { z = Math.max(1, Math.min(6, v)); inner.style.width = Math.floor(fitW() * z) + 'px'; d.classList.toggle('cls-lb--zoomed', z > 1); }
+  function show(i) {
+    at = (i + list.length) % list.length; var fig = list[at], s = srcOf(fig); if (!s) return;
     st.innerHTML = ''; inner = document.createElement('div');
-    inner.className = 'cls-lb-inner' + (src.tagName.toLowerCase() === 'svg' ? ' cls-diagram' : '');
-    pic = src.cloneNode(true); pic.removeAttribute('width'); pic.removeAttribute('height'); pic.removeAttribute('loading');
-    inner.appendChild(pic); st.appendChild(inner); d.showModal(); set(1);
+    inner.className = 'cls-lb-inner' + (s.tagName.toLowerCase() === 'svg' ? ' cls-diagram' : '');
+    pic = clean(s); inner.appendChild(pic); st.appendChild(inner);
+    capEl.textContent = capOf(fig); count.textContent = (at + 1) + ' / ' + list.length;
+    Array.prototype.forEach.call(strip.children, function (t, k) { if (k === at) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current'); });
+    st.scrollTop = 0; st.scrollLeft = 0; set(1);
   }
-  document.querySelectorAll('[data-zoom]').forEach(function (f) {
+  function open(fig) { opener = fig; if (!d.open) d.showModal(); show(list.indexOf(fig)); }
+  list.forEach(function (f) {
     f.addEventListener('click', function (e) { e.preventDefault(); open(f); });
     f.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(f); } });
   });
   d.addEventListener('click', function (e) {
     var b = e.target.closest('[data-z]');
-    if (b) { var k = b.dataset.z; if (k === 'in') set(z * 1.5); else if (k === 'out') set(z / 1.5); else if (k === 'fit') set(1); else d.close(); return; }
+    if (b) { var k = b.dataset.z; if (k === 'in') set(z * 1.5); else if (k === 'out') set(z / 1.5); else if (k === 'fit') set(1); else if (k === 'prev') show(at - 1); else if (k === 'next') show(at + 1); else d.close(); return; }
     if (e.target === d) d.close();
   });
-  d.addEventListener('keydown', function (e) { if (e.key === '+' || e.key === '=') set(z * 1.5); else if (e.key === '-') set(z / 1.5); else if (e.key === '0') set(1); });
+  d.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); } else if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+    else if (e.key === '+' || e.key === '=') set(z * 1.5); else if (e.key === '-') set(z / 1.5); else if (e.key === '0') set(1);
+  });
   st.addEventListener('wheel', function (e) { if (!e.ctrlKey) return; e.preventDefault(); set(z * (e.deltaY < 0 ? 1.15 : 1 / 1.15)); }, { passive: false });
   window.addEventListener('resize', function () { if (d.open) set(z); });
-  d.addEventListener('close', function () { st.innerHTML = ''; inner = pic = null; });
+  d.addEventListener('close', function () { st.innerHTML = ''; inner = pic = null; if (opener && opener.focus) opener.focus(); });
 })();
 </script>
 </body>
