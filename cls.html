@@ -101,7 +101,9 @@ html:has(.cls-head .field) { overflow-x: clip; }
 .cls-pcard[hidden] { display: none; }
 /* text first, art pinned to the foot so the art bands line up across a row */
 .cls-pcard { display: flex; flex-direction: column; }
-.cls-pcard > [data-slot="media"] { aspect-ratio: 16 / 9; flex: none; }
+.cls-pcard > [data-slot="media"] { flex: none; }
+/* the art band at the foot is shorter than the old 16:9 top band, matched to Megan's reference card (2026-10-05) */
+.project-card.cls-pcard > .cls-art { aspect-ratio: 43 / 20; }
 .project-card.cls-pcard > [data-slot="media"] { margin-top: auto; }
 .cls-pcard [data-slot="role"] { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
 .cls-pcard [data-slot="title"] { font-weight: var(--heading-weight, 400); font-synthesis: none; font-size: var(--text-card); }
