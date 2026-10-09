@@ -1065,6 +1065,96 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 <link rel="stylesheet" href="views.css">
 <script defer src="vendor/nav-bar/behavior.js"></script>
 <script defer src="site.js"></script>
+<link rel="stylesheet" href="vendor/project-card/component.css">
+<style>
+.cls-part pre.cls-code { margin: var(--space-sm) 0 0; padding: var(--space-sm) var(--space-md); overflow-x: auto; max-width: 100%; background: var(--color-surface-alt); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: var(--text-caption); line-height: 1.5; white-space: pre; }
+.cls-part .def dt code { overflow-wrap: anywhere; }
+.cls-part .cls-prompt pre.cls-code { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--text-body-sm); }
+.cls-part .cls-copy { margin-top: var(--space-sm); }
+/* flow: numbered project-cards read top to bottom, a rule with an arrowhead between each step */
+.cls-flow { --flow-n: calc(var(--space-lg) + var(--space-xs)); --flow-gap: var(--space-sm); --flow-rule: var(--color-border-strong); --flow-mark: var(--color-accent-deep);
+  list-style: none; margin: var(--space-base) 0 0; padding: 0; display: grid; gap: var(--flow-gap); }
+.cls-flow-step { position: relative; display: grid; grid-template-columns: var(--flow-n) minmax(0, 1fr); gap: var(--space-sm); align-items: center; }
+.cls-flow-step:not(:last-child)::before { content: ""; position: absolute; left: calc(var(--flow-n) / 2); top: calc(50% + var(--flow-n) / 2); bottom: calc(-50% - var(--flow-gap)); border-left: var(--border-width) var(--border-style) var(--flow-rule); }
+.cls-flow-n { position: relative; z-index: 1; display: grid; place-items: center; width: var(--flow-n); aspect-ratio: 1; border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--flow-mark); background: var(--color-surface); color: var(--color-accent-text, var(--flow-mark)); font-family: var(--font-mono); font-size: var(--text-caption); font-weight: 600; }
+.cls-flow-step[data-here] .cls-flow-n { background: var(--flow-mark); color: var(--color-text-inverse); }
+.cls-flow-card { display: flex; align-items: center; justify-content: space-between; gap: var(--space-base); padding: var(--space-sm) var(--space-base); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); }
+.cls-flow-step[data-here] .cls-flow-card { border-color: var(--flow-mark); }
+.cls-part .cls-flow-text { min-width: 0; }
+.cls-part .cls-flow-text h3 { margin: 0; font-family: var(--font-body); font-size: var(--text-body); font-weight: 600; }
+.cls-part .cls-flow-text p { margin: 2px 0 0; font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .cls-flow-btn { flex: none; --btn-pad-y: var(--space-xs); --btn-pad-x: var(--space-sm); --btn-min-h: 0; font-size: var(--text-caption); }
+.cls-part .cls-flow-none { flex: none; font-size: var(--text-caption); color: var(--color-text-faint); }
+@media (max-width: 560px) { .cls-flow-card { flex-direction: column; align-items: flex-start; } }
+.cls-part .cls-prompt-fold { margin-top: var(--space-md); padding: var(--space-sm) var(--space-md); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-part .cls-prompt-fold summary { cursor: pointer; font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); }
+.cls-part .cls-prompt-fold[open] summary { margin-bottom: var(--space-sm); }
+.cls-part-fig[data-zoom] { cursor: zoom-in; }
+.cls-part-fig[data-zoom]:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; border-radius: var(--radius-md); }
+.cls-zoom-hint { color: var(--color-text-muted); }
+.cls-lb { --btn-icon-size: 36px; width: min(96vw, 1600px); height: 94vh; max-width: none; max-height: none; padding: 0; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-bg); color: var(--color-text); overflow: hidden; }
+.cls-lb[open] { display: flex; flex-direction: column; }
+.cls-lb::backdrop { background: rgb(12 14 12 / 0.82); backdrop-filter: blur(6px); }
+.cls-lb-bar { display: flex; align-items: center; gap: var(--space-xs); padding: var(--space-sm) var(--space-md); border-bottom: var(--border-width) var(--border-style) var(--color-border); }
+.cls-lb-count { font-size: var(--text-caption); color: var(--color-text-muted); min-width: 3.2em; font-variant-numeric: tabular-nums; }
+.cls-lb-cap { flex: 1; min-width: 0; font-size: var(--text-caption); color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cls-lb-main { position: relative; flex: 1; min-height: 0; display: flex; }
+.cls-lb-stage { flex: 1; min-width: 0; overflow: auto; display: flex; padding: var(--space-md) 64px; }
+.cls-lb .cls-lb-inner { margin: auto; flex: none; }
+.cls-lb-inner svg, .cls-lb-inner img { display: block; width: 100%; height: auto; }
+.cls-lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: var(--color-surface); }
+.cls-lb-prev { left: var(--space-sm); }
+.cls-lb-next { right: var(--space-sm); }
+.cls-lb-strip { display: flex; gap: var(--space-sm); justify-content: center; overflow-x: auto; padding: var(--space-sm) var(--space-md); border-top: var(--border-width) var(--border-style) var(--color-border); background: var(--color-surface-alt); }
+.cls-lb-thumb { flex: none; width: 120px; height: 76px; padding: 4px; border: 2px solid transparent; border-radius: var(--radius-sm); background: var(--color-surface); cursor: pointer; opacity: 0.7; display: flex; align-items: center; justify-content: center; }
+.cls-lb-thumb { overflow: hidden; }
+.cls-lb-thumb > span { display: block; width: 100%; height: 100%; overflow: hidden; }
+.cls-lb-thumb svg { overflow: hidden; }
+.cls-part-thumbs .cls-part-fig--thumb { overflow: hidden; }
+.cls-lb .cls-lb-thumb svg, .cls-lb .cls-lb-thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cls-lb-thumb[aria-current="true"] { border-color: var(--color-accent-deep); opacity: 1; }
+.cls-lb-thumb:hover { opacity: 1; }
+.cls-lb-thumb:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.cls-lb--one .cls-lb-arrow, .cls-lb--one .cls-lb-strip { display: none; }
+.cls-lb--one .cls-lb-stage { padding-inline: var(--space-md); }
+.cls-part-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.cls-part-thumbs .cls-part-fig--thumb { margin: 0; padding: var(--space-sm); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-part-thumbs .cls-part-fig--thumb svg { max-height: 140px; }
+.cls-part-thumbs .cls-part-fig--thumb figcaption { margin-top: var(--space-xs); font-size: var(--text-caption); }
+.cls-part-thumbs .cls-zoom-hint { display: none; }
+.cls-part .def dd { min-width: 0; }
+/* the horizon chip: same shape as kind-label, the horizon's number carried in text, not colour alone */
+.cls-role { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; }
+.cls-hzchip { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-accent-deep); background: var(--color-accent-soft); color: var(--color-accent-text, var(--color-accent-deep)); font-family: var(--font-mono, var(--font-body)); font-size: var(--text-caption); letter-spacing: 0.04em; line-height: 1.4; white-space: nowrap; }
+.cls-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.cls-art { --cls-art-ground: var(--palette-band); background: var(--cls-art-ground); display: grid; place-items: center; aspect-ratio: 16 / 9; position: relative; isolation: isolate; }
+.cls-art::before { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; background: radial-gradient(circle at 30% 20%, color-mix(in oklch, var(--palette-brand) 18%, transparent), transparent 60%); }
+.cls-art-tile { display: grid; place-items: center; width: 44%; aspect-ratio: 1.35; border-radius: var(--radius-lg); background: color-mix(in oklch, var(--palette-paper) 7%, transparent); border: var(--border-width) solid color-mix(in oklch, var(--palette-paper) 18%, transparent); color: var(--palette-brand); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cls-art-tile svg { display: block; width: 58%; height: auto; }
+/* project-card paints its media slot with --color-surface-media; the art keeps the dark band */
+.project-card[data-variant="media"] > .cls-art { background: var(--cls-art-ground); }
+.cls-cards { display: grid; gap: var(--space-lg); grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); align-items: stretch; }
+.cls-pcard[hidden] { display: none; }
+/* text first, art pinned to the foot so the art bands line up across a row */
+.cls-pcard { display: flex; flex-direction: column; }
+.cls-pcard > [data-slot="media"] { flex: none; }
+/* the art band at the foot is shorter than the old 16:9 top band, matched to Megan's reference card (2026-10-05) */
+.project-card.cls-pcard > .cls-art { aspect-ratio: 43 / 20; }
+.project-card.cls-pcard > [data-slot="media"] { margin-top: auto; }
+.cls-pcard [data-slot="role"] { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-pcard [data-slot="title"] { font-weight: var(--heading-weight, 400); font-synthesis: none; font-size: var(--text-card); }
+.cls-pcard-go { margin-top: var(--space-sm); font-size: var(--text-body-sm); font-weight: 600; color: var(--color-accent-text, var(--color-accent)); }
+.cls-pcard-go::after { content: " \2192"; }
+.cls-pcard:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.hz-events{margin:var(--s6) 0}.hz-events h3{margin:0 0 var(--s4)}.hz-events .cls-pcard{--pcard-bg:var(--paper)}.hz-events .cls-pcard [data-slot=title]{font-family:var(--display)}.hz-picture svg{display:block;width:100%;height:auto}
+.slides-lb{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--ink);overflow:hidden}
+.slides-lb::backdrop{background:var(--ink)}
+.slides-lb[open]{display:block}
+.slides-lb iframe{display:block;width:100%;height:100%;border:0}
+.slides-lb-close{position:absolute;top:var(--s3);right:var(--s3);z-index:2;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:999px;background:var(--ink);color:var(--paper);font:inherit;font-size:1.5rem;line-height:1;cursor:pointer;opacity:.85}
+.slides-lb-close:hover{opacity:1}
+.slides-lb-close:focus-visible{outline:2px solid var(--green);outline-offset:3px}</style>
 <style>
 /* Gardening Tools hero: the darkest green on the site, flat, with the field drifting in from both edges and fading out
    before the headline, as the World view band does. */
@@ -1219,53 +1309,85 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
     <p class="lead">In the age of AI, anyone can build any tool. But to do this, we need to be able to leverage AI and harness it on our own data. Cultivating your data means moving your data off of platforms and building your own tools, ideally with your own local AI.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="activity.html#map?cat=local"><span data-slot="label">View on map</span></a></p>
       </div>
-      <figure class="svg-figure" data-lightbox>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="One person, one vault, an AI bridge, and a published surface with local files held back">
-  <style>
-    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
-    .h1{fill:#6b8e23}
-    .row{fill:#e7dfcd} .rowlocal{fill:#f3ead2;stroke:#b9791f;stroke-width:1.5;stroke-dasharray:3 3}
-    .t{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;font-size:14px;fill:#1a1f1a}
-    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
-    .ar{fill:none;stroke:#1a1f1a;stroke-width:2}
-  </style>
-  <!-- vault -->
-  <rect class="box" x="24" y="46" width="180" height="168" rx="10"/>
-  <rect class="h1" x="24" y="46" width="180" height="26" rx="10"/>
-  <rect class="h1" x="24" y="60" width="180" height="12"/>
-  <text class="t" x="40" y="64" style="fill:#fffdf8">the vault</text>
-  <rect class="row" x="44" y="88" width="140" height="16" rx="3"/>
-  <rect class="row" x="44" y="112" width="140" height="16" rx="3"/>
-  <rect class="rowlocal" x="44" y="136" width="140" height="16" rx="3"/>
-  <rect class="row" x="44" y="160" width="140" height="16" rx="3"/>
-  <rect class="row" x="44" y="184" width="88" height="16" rx="3"/>
-  <text class="m" x="172" y="144.5" text-anchor="end" dominant-baseline="central" style="fill:#8a5a14">local</text>
+      <figure class="svg-figure hz-picture"><style>.hz-picture body{ margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); line-height: 1.55; }.hz-picture main{ max-width: 1080px; margin: 0 auto; padding: 48px 16px 80px; }.hz-picture h1,.hz-picture h2{ font-family: var(--font-display); font-weight: 600; margin: 0; }.hz-picture h1{ font-size: clamp(2rem, 5vw, 3rem); }.hz-picture h2{ font-size: 1.6rem; margin-top: 56px; }.hz-picture .lede{ color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }.hz-picture .note{ color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }.hz-picture .card{ background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }.hz-picture svg{ width: 100%; height: auto; display: block; }.hz-picture svg text{ font-family: var(--font-body); fill: var(--color-text); }.hz-picture svg .muted{ fill: var(--color-text-muted); }.hz-picture svg .box{ fill: var(--color-surface-alt); stroke: var(--color-border-strong); }.hz-picture svg .file{ fill: var(--color-accent-soft); stroke: var(--color-accent); }.hz-picture svg .yes{ fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }.hz-picture svg .line{ stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }.hz-picture svg .dash{ stroke-dasharray: 5 5; }.hz-picture svg .arrow{ fill: var(--color-text-muted); }.hz-picture .scroll{ overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }.hz-picture table{ border-collapse: collapse; width: 100%; font-size: .92rem; }.hz-picture th,.hz-picture td{ text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }.hz-picture th{ font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }.hz-picture td.wrap{ white-space: normal; min-width: 200px; }.hz-picture td code,.hz-picture .mono{ font-family: var(--font-mono); font-size: .85rem; }.hz-picture tr.waiting td{ background: var(--color-accent-soft); }.hz-picture .tag{ display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }.hz-picture .key{ display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }.hz-picture .swatch{ display: inline-block; width: 14px; height: 14px; border-radius: var(--radius-sm); vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }.hz-picture dl.fields{ display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }.hz-picture dl.fields dt{ font-family: var(--font-mono); font-size: .9rem; }.hz-picture dl.fields dd{ margin: 0; color: var(--color-text-muted); }.hz-picture pre{ font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }.hz-picture a.go{ display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+  
+</style><svg viewBox="0 0 980 340" role="img" aria-label="Two files stay on your computer: manifest.json, with every row and field, and Sam Lee's exchanges.jsonl in contacts. The redact command for Sam Lee takes only the timestamp of each exchange, and only the rows whose visibility names Sam Lee, each with id and lastActive. It writes manifest.sam-lee.redacted.json beside the manifest. You send that file to Sam Lee. Paths, file names, hashes, projects and other people's rows stay behind.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">Stays on your computer</text>
+      <rect class="box" x="20" y="44" width="230" height="96" rx="6"/>
+      <text x="36" y="70" font-weight="600">manifest.json</text>
+      <text x="36" y="92" class="muted" font-size="13">every row, every field:</text>
+      <text x="36" y="110" class="muted" font-size="13">paths, visibility, sent,</text>
+      <text x="36" y="128" class="muted" font-size="13">hash, project</text>
+      <rect class="box" x="20" y="156" width="230" height="96" rx="6"/>
+      <text x="36" y="182" font-weight="600">exchanges.jsonl</text>
+      <text x="36" y="204" class="muted" font-size="13">contacts/records/per_sam-lee/</text>
+      <text x="36" y="222" class="muted" font-size="13">each exchange with Sam Lee:</text>
+      <text x="36" y="240" class="muted" font-size="13">route, subject, what it carried</text>
 
-  <!-- bridge -->
-  <path class="ar" d="M204,130 h72" marker-end="url(#a)"/>
-  <rect class="box" x="276" y="104" width="96" height="52" rx="10"/>
-  <text class="t" x="324" y="128" text-anchor="middle">AI</text>
-  <text class="m" x="324" y="145" text-anchor="middle">bridge</text>
-  <path class="ar" d="M372,130 h72" marker-end="url(#a)"/>
+      <path class="line" d="M254 92 L330 140" marker-end="url(#a)"/>
+      <path class="line" d="M254 204 L330 160" marker-end="url(#a)"/>
+      <polygon class="yes" points="410,90 490,150 410,210 330,150"/>
+      <text x="383" y="146" font-weight="600" font-size="14">redact</text>
+      <text x="370" y="164" font-size="12">--to "Sam Lee"</text>
+      <text x="300" y="240" class="muted" font-size="13">rows whose visibility</text>
+      <text x="300" y="257" class="muted" font-size="13">names Sam Lee; the</text>
+      <text x="300" y="274" class="muted" font-size="13">time of each exchange</text>
 
-  <!-- published surface -->
-  <rect class="box" x="444" y="46" width="172" height="168" rx="10"/>
-  <text class="t" x="530" y="72" text-anchor="middle">published surface</text>
-  <rect class="row" x="464" y="88" width="132" height="16" rx="3"/>
-  <rect class="row" x="464" y="112" width="132" height="16" rx="3"/>
-  <rect class="row" x="464" y="160" width="132" height="16" rx="3"/>
-  <rect class="row" x="464" y="184" width="84" height="16" rx="3"/>
-  <text class="m" x="530" y="146" text-anchor="middle">(local file absent)</text>
+      <path class="line" d="M494 150 L544 150" marker-end="url(#a)"/>
+      <rect class="file" x="550" y="70" width="250" height="160" rx="6"/>
+      <text x="566" y="96" font-weight="600" font-size="13">manifest.sam-lee.redacted.json</text>
+      <text x="566" y="122" font-size="13">audience, madeAt</text>
+      <text x="566" y="144" font-size="13">activity: at, and nothing else</text>
+      <text x="566" y="166" font-size="13">rows: id and lastActive</text>
+      <text x="566" y="192" class="muted" font-size="13">no paths, no file names,</text>
+      <text x="566" y="210" class="muted" font-size="13">no hash, no other people</text>
 
-  <defs>
-    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
-      <path d="M0,0 L9,4.5 L0,9 z" fill="#1a1f1a"/>
-    </marker>
-  </defs>
-</svg>
-      <figcaption class="diagram-note">The vault is the ground. The bridge renders. Local-marked files never reach the surface.</figcaption>
-    </figure>
+      <path class="line dash" d="M804 150 L854 150" marker-end="url(#a)"/>
+      <rect class="box" x="860" y="122" width="110" height="56" rx="28"/><text x="880" y="155" font-weight="600">Sam Lee</text>
+      <text x="820" y="206" class="muted" font-size="13">You send it.</text>
+      <text x="820" y="223" class="muted" font-size="13">Transport:</text>
+      <text x="820" y="240" class="muted" font-size="13">not built yet</text>
+
+      <text x="550" y="290" class="muted" font-size="13">Sam Lee holds the times against their own record,</text>
+      <text x="550" y="307" class="muted" font-size="13">on their own device.</text>
+    </svg><figcaption>A redacted copy of your manifest for one person: when you were active together, and the rows that name them. It is the only file that leaves.</figcaption></figure>
     </div>
+    <div class="hz-events"><h3>Events</h3><div class="cls-cards">
+<a class="project-card cls-pcard" data-slides="programs/icp-workshop-slides.html" data-slides-title="Help your network connect with their ICP" data-component="project-card" data-variant="media" href="spec-icp-workshop.html" id="sys-icp-workshop" data-kind="program" data-hz="community">
+  <div data-slot="body">
+    <p data-slot="role" class="cls-role"><span class="cls-hzchip" data-hz="2" title="Protect community intelligence">Horizon 2<span class="cls-sr"> · Protect community intelligence</span></span></p>
+    <h3 data-slot="title">Help your network connect with their ICP</h3>
+    <p data-slot="summary">Learn to define your ideal customer profile.</p>
+    <span class="cls-pcard-go">Read more</span>
+  </div>
+  <figure data-slot="media" class="cls-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="An ideal customer card above three people. Dashed lines run from the room to the card and one person waves a raised hand." class="hbi hbi-icp"><defs><linearGradient id="hbi-icp-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-icp .y,.hbi-icp .ys{fill:url(#hbi-icp-sun);stroke:none}.hbi-icp .yl{fill:none;stroke:none}.hbi-icp .f{fill:currentColor;stroke:none}.hbi-icp .d{stroke-dasharray:1.6 2.6}
+.hbi-icp .k{stroke-dasharray:1.6 2.2}
+.hbi-icp .arm{transform-box:view-box;transform-origin:42px 38.5px}
+@media (prefers-reduced-motion:no-preference){.hbi-icp .k{animation:hbi-icp-k 3s linear infinite}.hbi-icp .arm{animation:hbi-icp-a 5s ease-in-out infinite}}
+@keyframes hbi-icp-k{to{stroke-dashoffset:7.6}}
+@keyframes hbi-icp-a{0%,40%,100%{transform:rotate(0)}10%,30%{transform:rotate(-18deg)}20%{transform:rotate(8deg)}}</style><rect x="13" y="3.5" width="22" height="16" rx="2"/><circle class="y" cx="19" cy="9.5" r="2.3"/><circle cx="19" cy="9.5" r="2.3"/><path d="M15.4 16a3.6 3.6 0 0 1 7.2 0M25.5 8.5h6M25.5 12h4.5M25.5 15.5h6"/>
+<path class="k" d="M10 30c0-6 2-9 5.5-10.5M24 30v-10.5M38 30c0-6-2-9-5.5-10.5"/>
+<circle cx="10" cy="34" r="2.8"/><path d="M4.8 43.5a5.2 5.2 0 0 1 10.4 0"/>
+<circle cx="24" cy="34" r="2.8"/><path d="M18.8 43.5a5.2 5.2 0 0 1 10.4 0"/>
+<circle class="y" cx="38" cy="34" r="2.8"/><circle cx="38" cy="34" r="2.8"/><path d="M32.8 43.5a5.2 5.2 0 0 1 10.4 0"/>
+<g class="arm"><path d="M42 38.5l3.2-11"/><circle class="ys" cx="45.6" cy="25.6" r="1.8"/></g></svg></span></figure>
+</a><a class="project-card cls-pcard pitch-card" data-component="project-card" data-variant="media" href="programs/matchmaking-pitch.html" data-slides="programs/matchmaking-pitch-slides.html" data-slides-title="The matchmaking pitch">
+        <div data-slot="body">
+          <p data-slot="role" class="cls-role">Program · Slides</p>
+          <h3 data-slot="title">The matchmaking pitch</h3>
+          <p data-slot="summary">Everyone shares one thing. Everyone leaves with their own card.</p>
+          <span class="cls-pcard-go">See the slides</span>
+        </div>
+        <figure data-slot="media" class="cls-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Two people, each in their own circle, drift together; the overlap fills yellow when they meet." class="hbi hbi-compare"><defs><linearGradient id="hbi-compare-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-compare .y,.hbi-compare .ys{fill:url(#hbi-compare-sun);stroke:none}.hbi-compare .yl{fill:none;stroke:none}.hbi-compare .f{fill:currentColor;stroke:none}.hbi-compare .d{stroke-dasharray:1.6 2.6}
+.hbi-compare .lf,.hbi-compare .rt{transform-box:view-box}
+@media (prefers-reduced-motion:no-preference){.hbi-compare .lf{animation:hbi-cmp-l 5s ease-in-out infinite}.hbi-compare .rt{animation:hbi-cmp-r 5s ease-in-out infinite}.hbi-compare .o{animation:hbi-cmp-o 5s ease-in-out infinite}}
+@keyframes hbi-cmp-l{0%,100%{transform:translateX(-3px)}40%,70%{transform:translateX(0)}}
+@keyframes hbi-cmp-r{0%,100%{transform:translateX(3px)}40%,70%{transform:translateX(0)}}
+@keyframes hbi-cmp-o{0%,20%,100%{opacity:0}40%,70%{opacity:1}}</style><path class="y o" d="M24 15.5A11 11 0 0 1 24 32.5A11 11 0 0 1 24 15.5z"/>
+<g class="lf"><circle cx="17" cy="24" r="11"/><circle cx="14" cy="21" r="2.4"/><path d="M10 29.5a4 4 0 0 1 8 0"/></g>
+<g class="rt"><circle cx="31" cy="24" r="11"/><circle cx="34" cy="21" r="2.4"/><path d="M30 29.5a4 4 0 0 1 8 0"/></g></svg></span></figure>
+      </a></div></div>
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8L12 4l8.5 4v8.5L12 20.5l-8.5-4z"/><path d="M3.5 8L12 12l8.5-4M12 12v8.5"/><path d="M7.8 6l8.4 4"/></svg></span>
@@ -1371,6 +1493,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
       <figcaption class="diagram-note">A membership is one connection recorded on both sides. Either side ends it by deleting its own half. The commons pools principles without names while each vault keeps the receipt. No platform saw the exchange.</figcaption>
     </figure>
     </div>
+    
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row" data-static>
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><rect x="8.5" y="8.5" width="3" height="3"/><rect x="13" y="8.5" width="2.5" height="2.5"/><rect x="8.5" y="13" width="2.5" height="2.5"/><path d="M13 14h2.5M14.25 12.75v2.5"/></svg></span>
@@ -1455,6 +1578,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
       <figcaption class="diagram-note">Two records compared on principles and dated activity. No document shared, no index between. What forms after that can only be conditioned and watched for.</figcaption>
     </figure>
     </div>
+    
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span>
@@ -1604,5 +1728,32 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
 
 </script>
 <script src="vendor/template-menu/behavior.js"></script>
+<dialog class="slides-lb" aria-label="Slides">
+  <button type="button" class="slides-lb-close" aria-label="Close the slides">&times;</button>
+  <iframe title="Slides"></iframe>
+</dialog>
+<script>
+(function () {
+  var dlg = document.querySelector('.slides-lb'); if (!dlg) return;
+  var frame = dlg.querySelector('iframe'), opener = null;
+  var focusFrame = function () {
+    try {
+      frame.contentWindow.focus();
+      frame.contentWindow.addEventListener('keydown', function (e) { if (e.key === 'Escape' && dlg.open) dlg.close(); });
+    } catch (x) { frame.focus(); }
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-slides]'); if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault(); opener = a;
+    dlg.setAttribute('aria-label', a.dataset.slidesTitle || 'Slides'); frame.title = a.dataset.slidesTitle || 'Slides';
+    var fresh = frame.getAttribute('src') !== a.dataset.slides;
+    if (fresh) { frame.addEventListener('load', focusFrame, { once: true }); frame.setAttribute('src', a.dataset.slides); }
+    dlg.showModal();
+    if (!fresh) focusFrame();
+  });
+  dlg.querySelector('.slides-lb-close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('close', function () { if (opener) opener.focus(); });
+})();
+</script>
 </body>
 </html>

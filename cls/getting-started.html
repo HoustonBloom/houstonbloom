@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-style="bloom">
+<html lang="en" data-style="editorial">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../vendor/templates/wiki.css">
 <link rel="stylesheet" href="../vendor/button/component.css">
 <link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../vendor/breadcrumb/component.css">
 <link rel="stylesheet" href="../views.css">
 <script defer src="../vendor/nav-bar/behavior.js"></script>
 <script defer src="../site.js"></script>
@@ -40,7 +41,7 @@
       </div>
     </div>
   </div></header>
-<div class="tpl tpl--wiki" data-style="bloom" id="main">
+<div class="tpl tpl--wiki cls-part" id="main">
   <aside class="sidebar">
     <p class="brand">Community Legibility Spec <small>How it works</small></p>
     <nav class="nav" aria-label="Community Legibility Spec">
@@ -63,7 +64,31 @@
   </aside>
   <main class="main">
 <style>
-.tpl--wiki .sidebar { top: 0; }
+.cls-part { --cls-header-h: 89px; min-height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .sidebar { top: var(--cls-header-h); height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .wiki-section { scroll-margin-top: calc(var(--cls-header-h) + var(--space-base)); }
+.cls-part .breadcrumb { margin-bottom: var(--space-lg); }
+.cls-part h1, .cls-part .wiki-section h2 { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-part-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; margin-bottom: var(--space-2xl); }
+.cls-part-kind { margin: 0 0 var(--space-sm); display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-part-head h1 { margin: 0 0 var(--space-base); }
+.cls-part-head .lede { margin: 0; font-size: var(--text-body-lg); }
+.cls-part-art { border-radius: var(--radius-lg); overflow: hidden; margin: 0; }
+.cls-part-quote { margin: var(--space-lg) 0 0; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-part-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-part-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .def dd a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-part-fig { margin: var(--space-lg) 0 0; }
+.cls-part-fig img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: var(--border-width) var(--border-style) var(--color-border); }
+.cls-part-fig figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-part-reel iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-alt); }
+.cls-part .cls-diagram svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-part-links { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.cls-part-links a, .cls-part .foot a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-flag { display: inline-block; padding: 1px var(--space-sm); border: var(--border-width) var(--border-style) var(--color-accent-deep); border-radius: var(--radius-full); font-size: var(--text-caption); font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); background: var(--color-accent-soft); }
+@media (max-width: 880px) { .cls-part .sidebar { top: auto; height: auto; } }
+@media (max-width: 720px) { .cls-part-head { grid-template-columns: minmax(0, 1fr); } .cls-part-art { order: -1; } }
+
 .tpl--wiki .main { min-width: 0; }
 .cls-feature { max-width: 100%; }
 .cls-feature > h1:first-child { margin-top: 0; }
@@ -103,6 +128,7 @@
 .cls-feature summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
 .cls-feature code { overflow-wrap: anywhere; }
 </style>
+<nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="index.html">Community Legibility Spec</a></li><li><a href="index.html#start">Start</a></li><li><span aria-current="page">Getting started</span></li></ol></nav>
 <article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro"><h1>Getting started</h1>
 <div class="copy-block" data-component="copy-block"><h3>Get the packet</h3><p>Paste this into your AI agent, or follow the steps below. The packet is not published yet; this address works once it is.</p><pre data-slot="text" id="cb-get">Download the Community Legibility Spec packet from https://github.com/HoustonBloom/cls-packet as a zip, unzip it into a folder on this computer, and tell me the folder's path. Then open SETUP.md in it.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-get"><span data-slot="label">Copy</span></button></div>
 </section>
@@ -130,37 +156,42 @@ Do not send anything anywhere. When you are done, show me my dashboard and tell 
 <div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-2">Check that Node.js 18 or later is installed.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-2"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see: <code>v18</code> or higher, such as <code>v24.13.0</code>. If not, install the LTS version from nodejs.org and open a new terminal.</p>
+<p><strong>Only if you will send ZIM files.</strong> A ZIM is one file that opens offline in Kiwix. Making one needs Python 3 and the <code>libzim</code> package; Pillow is optional and adds the small icon Kiwix shows. Skip this if you will only send HTML.</p>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-4">Check that Python 3 is installed, install libzim (and Pillow), then check that libzim imports.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-4"><span data-slot="label">Copy</span></button></div>
+
+<p>You should see: <code>Python 3.</code> and a version, then <code>libzim ok</code>.</p>
 </section>
 <section class="wiki-section" id="2-make-your-folder" data-review-part data-review-label="2. Make your folder"><h2>2. Make your folder</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-4">Make 00_inbox, 00_contacts and notes in this folder.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-4"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-6">Make 00_inbox, 00_contacts and notes in this folder.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-6"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see: three empty folders. <code>00_inbox</code> is where you drop anything you want captured: a contact card, a note about someone, an export. <code>00_contacts</code> is where your people are kept. <code>notes</code> is for things you make. They are yours: an update to the packet never touches them.</p>
 </section>
-<section class="wiki-section" id="3-bring-in-the-packet" data-review-part data-review-label="3. Bring in the packet"><h2>3. Bring in the packet</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-6">Copy &lt;packet&gt;/PACKET.md here.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-6"><span data-slot="label">Copy</span></button></div>
+<section class="wiki-section" id="3-keep-a-note-of-where-this-came-from" data-review-part data-review-label="3. Keep a note of where this came from"><h2>3. Keep a note of where this came from</h2>
+<p><code>PACKET.md</code> is a one-page note: this packet, from Houston Bloom. A copy goes in your folder so step 7 can log it as the first thing you received. The tools themselves stay in the packet.</p>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-8">Copy &lt;packet&gt;/PACKET.md here.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-8"><span data-slot="label">Copy</span></button></div>
 
-<p>You should see: <code>PACKET.md</code> in your folder. The tools stay in the packet, in <code>&lt;packet&gt;/contacts-tools</code>, and are updated there.</p>
+<p>You should see: <code>PACKET.md</code> in your folder.</p>
 </section>
 <section class="wiki-section" id="4-copy-the-skills-and-tell-them-your-folders" data-review-part data-review-label="4. Copy the skills and tell them your folders"><h2>4. Copy the skills and tell them your folders</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-8">Copy &lt;packet&gt;/skills into .claude/skills here, then write .claude/cls.json naming my folders:
-contacts, tools, manifest, spec, skills and inbox, as SETUP.md step 4 shows.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-8"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-10">Copy &lt;packet&gt;/skills into .claude/skills here, then write .claude/cls.json naming my folders:
+contacts, tools, manifest, spec, skills and inbox, as SETUP.md step 4 shows.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-10"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see: <code>.claude/skills</code> holding <code>capture-connection</code>, <code>contacts</code>, <code>map</code>, <code>share</code>, and <code>.claude/cls.json</code> with six paths. Every skill reads its folders from that file; to move a folder, change one line there.</p>
 </section>
 <section class="wiki-section" id="5-add-yourself" data-review-part data-review-label="5. Add yourself"><h2>5. Add yourself</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-10">Add me as the owner of my contacts folder: &lt;Your Name&gt;, &lt;you@example.org&gt;.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-10"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-12">Add me as the owner of my contacts folder: &lt;Your Name&gt;, &lt;you@example.org&gt;.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-12"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see:</p>
 <pre class="out">per_your-name is the owner of this folder (&quot;me&quot; in intake notes).
 filed    me.json: 1 people, 0 organizations, 0 exchanges</pre>
 </section>
 <section class="wiki-section" id="6-make-your-card" data-review-part data-review-label="6. Make your card"><h2>6. Make your card</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-14">Make my contact card from my record and put it in this folder.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-14"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-16">Make my contact card from my record and put it in this folder.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-16"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see: <code>1 cards written to ...</code>, and <code>per_your-name.vcf</code> in your folder. It is your own contact card: open it on your phone, or send it to anyone.</p>
 </section>
 <section class="wiki-section" id="7-start-your-manifest" data-review-part data-review-label="7. Start your manifest"><h2>7. Start your manifest</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-16">/map Start my manifest: log PACKET.md as received from Houston Bloom, then map 00_contacts and notes.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-16"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-18">/map Start my manifest: log PACKET.md as received from Houston Bloom, then map 00_contacts and notes.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-18"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see:</p>
 <pre class="out">received from Houston Bloom: id 3f9a1c22
@@ -170,20 +201,20 @@ mapped notes: private, id 7050a4ec</pre>
 <p>The ids are random, so yours differ. The first row of your manifest is this packet, received today. It stays on your machine.</p>
 </section>
 <section class="wiki-section" id="8-add-your-first-person" data-review-part data-review-label="8. Add your first person"><h2>8. Add your first person</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-18">/capture-connection Sam Lee, sam.lee@example.org. Runs workshops for founders. We are working on First project together.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-18"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-20">/capture-connection Sam Lee, sam.lee@example.org. Runs workshops for founders. We are working on First project together.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-20"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see:</p>
 <pre class="out">filed    sam-lee.json: 1 people, 0 organizations, 0 exchanges
 note     new project &quot;First project&quot; (prj_...); rename it in projects.json</pre>
 </section>
 <section class="wiki-section" id="9-open-your-dashboard" data-review-part data-review-label="9. Open your dashboard"><h2>9. Open your dashboard</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-21">Check my contacts folder, build my dashboard and my activity view, then open them.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-21"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-23">Check my contacts folder, build my dashboard and my activity view, then open them.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-23"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see: <code>PASS · 7 schemas describe every field and pass their own examples · 2 people ...</code>, then <code>2 people · 0 organizations · 0 exchanges ...</code>, then <code>wrote activity.html · ...</code>, and the dashboard with you and Sam on it. <code>00_contacts/activity.html</code> is your activity: everything that passed between you and people, and everything you mapped, made, shared and got back, newest first. Rebuild it any time with the same command.</p>
 </section>
 <section class="wiki-section" id="10-share-something" data-review-part data-review-label="10. Share something"><h2>10. Share something</h2>
 <p>Log a file you made and sent. This logs the send; it sends nothing.</p>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-23">/share I made notes/for-sam.md for First project and sent it to Sam Lee. Log the make and the send, and record it against Sam.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-23"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-25">/share I made notes/for-sam.md for First project and sent it to Sam Lee. Log the make and the send, and record it against Sam.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-25"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see:</p>
 <pre class="out">made: for-sam.md, private, id 9ebdc246
@@ -192,9 +223,13 @@ sent for-sam.md: now Sam Lee, id 9ebdc246
 full id: 9ebdc246...
 filed    sent-to-sam.json: 0 people, 0 organizations, 1 exchanges</pre>
 <p>and the dashboard shows the exchange with Sam.</p>
+<p><strong>Sending it as a ZIM instead?</strong> Only if you did the ZIM check in step 1. Pack a page, then log and send the <code>.zim</code>:</p>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-29">/share Pack notes/for-sam.html as a ZIM for Sam Lee, then log and send the .zim.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-29"><span data-slot="label">Copy</span></button></div>
+
+<p>You should see: <code>OK</code>, the <code>.zim</code> path, its <code>bytes</code> and <code>sha256</code>. A <code>FAIL</code> line names what to fix in the page; nothing is written.</p>
 </section>
 <section class="wiki-section" id="11-end-a-session" data-review-part data-review-label="11. End a session"><h2>11. End a session</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-27">/map End of session: check my manifest.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-27"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-31">/map End of session: check my manifest.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-31"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see:</p>
 <pre class="out">checked 4 · changed 0 · missing 0
@@ -203,7 +238,7 @@ offer a transformation note: for-sam.md, id 9ebdc246, sent to Sam Lee</pre>
 </section>
 <section class="wiki-section" id="updating" data-review-part data-review-label="Updating"><h2>Updating</h2>
 <p>Your folders (<code>00_contacts</code>, <code>00_inbox</code>, <code>manifest</code>, <code>notes</code>) are yours; the packet holds only tools. To update:</p>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-29">Update the CLS packet at &lt;packet&gt; with git pull, then copy &lt;packet&gt;/skills into .claude/skills again.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-29"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-33">Update the CLS packet at &lt;packet&gt; with git pull, then copy &lt;packet&gt;/skills into .claude/skills again.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-33"><span data-slot="label">Copy</span></button></div>
 
 <p>You should see: git list the files it changed, or <code>Already up to date.</code> Nothing in your own folders changes.</p>
 </section>

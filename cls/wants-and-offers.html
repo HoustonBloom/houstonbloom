@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-style="bloom">
+<html lang="en" data-style="editorial">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../vendor/templates/wiki.css">
 <link rel="stylesheet" href="../vendor/button/component.css">
 <link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../vendor/breadcrumb/component.css">
 <link rel="stylesheet" href="../views.css">
 <script defer src="../vendor/nav-bar/behavior.js"></script>
 <script defer src="../site.js"></script>
@@ -40,7 +41,7 @@
       </div>
     </div>
   </div></header>
-<div class="tpl tpl--wiki" data-style="bloom" id="main">
+<div class="tpl tpl--wiki cls-part" id="main">
   <aside class="sidebar">
     <p class="brand">Community Legibility Spec <small>How it works</small></p>
     <nav class="nav" aria-label="Community Legibility Spec">
@@ -63,7 +64,31 @@
   </aside>
   <main class="main">
 <style>
-.tpl--wiki .sidebar { top: 0; }
+.cls-part { --cls-header-h: 89px; min-height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .sidebar { top: var(--cls-header-h); height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .wiki-section { scroll-margin-top: calc(var(--cls-header-h) + var(--space-base)); }
+.cls-part .breadcrumb { margin-bottom: var(--space-lg); }
+.cls-part h1, .cls-part .wiki-section h2 { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-part-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; margin-bottom: var(--space-2xl); }
+.cls-part-kind { margin: 0 0 var(--space-sm); display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-part-head h1 { margin: 0 0 var(--space-base); }
+.cls-part-head .lede { margin: 0; font-size: var(--text-body-lg); }
+.cls-part-art { border-radius: var(--radius-lg); overflow: hidden; margin: 0; }
+.cls-part-quote { margin: var(--space-lg) 0 0; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-part-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-part-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .def dd a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-part-fig { margin: var(--space-lg) 0 0; }
+.cls-part-fig img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: var(--border-width) var(--border-style) var(--color-border); }
+.cls-part-fig figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-part-reel iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-alt); }
+.cls-part .cls-diagram svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-part-links { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.cls-part-links a, .cls-part .foot a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-flag { display: inline-block; padding: 1px var(--space-sm); border: var(--border-width) var(--border-style) var(--color-accent-deep); border-radius: var(--radius-full); font-size: var(--text-caption); font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); background: var(--color-accent-soft); }
+@media (max-width: 880px) { .cls-part .sidebar { top: auto; height: auto; } }
+@media (max-width: 720px) { .cls-part-head { grid-template-columns: minmax(0, 1fr); } .cls-part-art { order: -1; } }
+
 .tpl--wiki .main { min-width: 0; }
 .cls-feature { max-width: 100%; }
 .cls-feature > h1:first-child { margin-top: 0; }
@@ -110,7 +135,7 @@
 .cls-feature tr.waiting td { background: var(--color-accent-soft); }
 .cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
 .cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
-.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: var(--radius-sm); vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
 .cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
 .cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
 .cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
@@ -121,21 +146,22 @@
 .cls-feature dl.fields dd { margin-bottom: 10px; }
 }
 </style>
+<nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="index.html">Community Legibility Spec</a></li><li><a href="index.html#your-contacts">Your contacts</a></li><li><span aria-current="page">Wants and offers</span></li></ol></nav>
 <article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
   <h1>Wants and offers</h1>
   <p class="lede">A want is something still open between you and someone: they need something from you. An offer is something they put out. Both use the Murmurations offers and wants shape.</p>
-  <p class="note">Built 2026-10-09. The field names below come from the published Murmurations offers and wants schema. Five more are ours. The people and items are made up to show the shape.</p>
+  <p class="note">Built 2026-10-09, contract 0.2.0, still a draft until the first real want is met. The field names below come from the published Murmurations offers and wants schema. Six more are ours. The people and items are made up to show the shape.</p>
 
   </section>
 <section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
   <div class="card">
-    <svg viewBox="0 0 980 340" role="img" aria-label="An exchange is what passed between you, dated and done, for example Kai Tran sent a link. Your note decides whether it asks something of you. If yes, it opens a want, linked to their record, that stays open until it is done. A link shared with no ask stays an exchange only. An offer is something they put out, listed in your note. Open wants show at the top of the dashboard, with each person's open count, and each record lists its open wants and offers.">
+    <svg viewBox="0 0 980 340" role="img" aria-label="An exchange is what passed between you, dated and finished, for example Kai Tran sent a link. Your note decides whether it asks something of you. If yes, it opens a want, linked to their record, that stays open until an exchange meets it. A link shared with no ask stays an exchange only. An offer is something they put out, listed in your note. Open wants show at the top of the dashboard, with each person's open count, and each record lists its open wants and offers.">
       <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
       <text x="20" y="28" font-weight="600">Something passed between you</text>
       <rect class="file" x="20" y="110" width="200" height="80" rx="6"/>
       <text x="36" y="134" font-weight="600">exchange</text>
       <text x="36" y="154" font-size="13">Kai Tran sent a link</text>
-      <text x="36" y="174" class="muted" font-size="12">2026-10-08, dated and done</text>
+      <text x="36" y="174" class="muted" font-size="12">2026-10-08, dated and finished</text>
 
       <path class="line" d="M224 150 L276 150" marker-end="url(#a)"/>
       <polygon class="yes" points="360,96 446,150 360,204 274,150"/>
@@ -149,7 +175,7 @@
       <rect class="box" x="506" y="44" width="200" height="80" rx="6"/>
       <text x="522" y="68" font-weight="600">want</text>
       <text x="522" y="88" font-size="13">exchange_type: want</text>
-      <text x="522" y="108" class="muted" font-size="12">open; done when met</text>
+      <text x="522" y="108" class="muted" font-size="12">open; met by a later exchange</text>
 
       <text x="272" y="266" class="muted" font-size="13">no ask: an exchange only</text>
       <rect class="box" x="506" y="178" width="200" height="80" rx="6"/>
@@ -177,14 +203,14 @@
 
   </section>
 <section class="wiki-section" id="wants-and-offers-as-a-table" data-review-part data-review-label="Wants and offers, as a table"><h2>Wants and offers, as a table</h2>
-  <p class="note">One row is one want or offer. The first columns are Murmurations fields. The last three are fields this system adds: <code>whose</code>, <code>opened_by</code> and <code>status</code>.</p>
+  <p class="note">One row is one want or offer. The first columns are Murmurations fields. The last five are fields this system adds: <code>who</code>, <code>associations</code>, <code>origin</code>, <code>status</code> and <code>met_by</code>.</p>
   <div class="scroll">
     <table>
-      <thead><tr><th>exchange_type</th><th>title</th><th>tags</th><th>transaction_type</th><th>geographic_scope</th><th>whose</th><th>opened_by</th><th>status</th></tr></thead>
+      <thead><tr><th>exchange_type</th><th>title</th><th>tags</th><th>transaction_type</th><th>geographic_scope</th><th>who</th><th>associations</th><th>origin</th><th>status</th><th>met_by</th></tr></thead>
       <tbody>
-        <tr class="waiting"><td>want</td><td class="wrap">Look at the tool list for the library</td><td>tools, library</td><td>receive-donate</td><td>local</td><td><code>per_kai-tran</code></td><td><code>exc_3f9a1c0b2d</code></td><td>open</td></tr>
-        <tr><td>offer</td><td class="wrap">Bike repair guide</td><td>repair, bikes</td><td>receive-donate</td><td>local</td><td><code>per_robin-park</code></td><td></td><td>open</td></tr>
-        <tr><td>want</td><td class="wrap">Notes on the workshop plan</td><td>workshop</td><td>receive-donate</td><td>local</td><td><code>per_priya-shah</code></td><td><code>exc_7b20e4d91a</code></td><td>done</td></tr>
+        <tr class="waiting"><td>want</td><td class="wrap">Look at the tool list for the library</td><td>tools, library</td><td>receive-donate</td><td>local</td><td><code>per_kai-tran</code></td><td></td><td><code>exc_3f9a1c0b2d</code></td><td>open</td><td></td></tr>
+        <tr><td>offer</td><td class="wrap">Bike repair guide</td><td>repair, bikes</td><td>receive-donate</td><td>local</td><td><code>per_robin-park</code></td><td></td><td></td><td>open</td><td></td></tr>
+        <tr><td>want</td><td class="wrap">Notes on the workshop plan</td><td>workshop</td><td>receive-donate</td><td>local</td><td><code>per_priya-shah</code></td><td><code>prj_8c2f0a6e1d4b</code></td><td><code>exc_7b20e4d91a</code></td><td>met</td><td><code>exc_c41d7e09a3</code></td></tr>
       </tbody>
     </table>
   </div>
@@ -208,23 +234,26 @@
     <dt>contact_details</dt><dd>How to reach whoever offers or wants it: an <code>email</code>, a <code>contact_form</code> address, or both.</dd>
     <dt>expires_at</dt><dd>When it expires, as a Unix timestamp: seconds since 1970, a number.</dd>
   </dl>
-  <p class="note">Five fields are ours, because the Murmurations schema has none for them. Required: <code>id</code>, <code>whose</code>, <code>status</code>.</p>
+  <p class="note">Six fields are ours, because the Murmurations schema has none for them. Required: <code>id</code>, <code>who</code>, <code>status</code>.</p>
   <dl class="fields">
-    <dt>id</dt><dd><code>ow_</code> and 10 hex characters. The same want filed twice gets the same id.</dd>
-    <dt>whose</dt><dd>Whose want or offer it is: a person (<code>per_</code>), an organization (<code>org_</code>), or a project (<code>prj_</code>) for your own want.</dd>
-    <dt>opened_by</dt><dd>The exchange that opened it, by its <code>exc_</code> id, when one did.</dd>
-    <dt>status</dt><dd><code>open</code> until it is met, then <code>done</code>. A done want stays on file.</dd>
-    <dt>closed_at</dt><dd>When it was marked done.</dd>
+    <dt>id</dt><dd><code>ow_</code> and 10 hex characters, random, given once and never changed.</dd>
+    <dt>who</dt><dd>One person (<code>per_</code>) or organization (<code>org_</code>), by code: who wants it, or who offers it. Your own want: you.</dd>
+    <dt>associations</dt><dd>A list of the projects (<code>prj_</code>) and organizations (<code>org_</code>) the want is for. Can be empty. Where someone works is not here; it stays on their own record.</dd>
+    <dt>origin</dt><dd>The exchange that started it, by its <code>exc_</code> id. Empty when you wrote the want down yourself.</dd>
+    <dt>status</dt><dd><code>open</code> until an exchange meets it, then <code>met</code>. A met want stays on file.</dd>
+    <dt>met_by</dt><dd>The exchange that met it, by its <code>exc_</code> id. Empty while open, never empty once met.</dd>
   </dl>
+  <p class="note">No times are stored except <code>filed_at</code>. When a want started is its <code>origin</code> exchange's <code>at</code>. When it was met is its <code>met_by</code> exchange's <code>at</code>.</p>
 
   </section>
 <section class="wiki-section" id="what-the-file-looks-like-inside" data-review-part data-review-label="What the file looks like inside"><h2>What the file looks like inside</h2>
-  <p class="note">JSON, a plain text format. This is Kai's want: the Murmurations fields, plus ours. It is stored as one file, <code>offers-wants/&lt;id&gt;.json</code>. It points at Kai by <code>whose</code> and at the exchange by <code>opened_by</code>.</p>
+  <p class="note">JSON, a plain text format. This is Kai's want: the Murmurations fields, plus ours. It is stored as one file, <code>offers-wants/&lt;id&gt;.json</code>. It points at Kai by <code>who</code> and at the exchange that started it by <code>origin</code>. It is still open, so it has no <code>met_by</code>.</p>
 <pre>{
   "id": "ow_9d4e2b71c0",
-  "linked_schemas": ["offers_wants_schema-v0.1.0", "contacts_offer_want_addon-v0.1.0"],
-  "whose": "per_kai-tran",
-  "opened_by": "exc_3f9a1c0b2d",
+  "linked_schemas": ["offers_wants_schema-v0.1.0", "contacts_offer_want_addon-v0.2.0"],
+  "who": "per_kai-tran",
+  "associations": [],
+  "origin": "exc_3f9a1c0b2d",
   "status": "open",
   "exchange_type": "want",
   "item_type": "service",
@@ -245,26 +274,30 @@
   </section>
 <section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
   <div class="card">
-    <svg viewBox="0 0 980 170" role="img" aria-label="A want or offer points at a person by id, at the exchange that opened it, and can sit on a project. Whose it is goes in whose, the exchange in opened_by.">
+    <svg viewBox="0 0 980 170" role="img" aria-label="A want or offer points at a person or organization by id in who, at the exchange that started it in origin, at the exchange that met it in met_by, and at projects or organizations in associations.">
       <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
       <rect class="box" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">want or offer</text><text x="400" y="100" class="muted" font-size="13">offers-wants/&lt;id&gt;.json</text>
-      <path class="line" d="M376 85 L276 85" marker-end="url(#b)"/>
-      <rect class="box" x="60" y="59" width="210" height="52" rx="6"/><text x="80" y="83" font-weight="600">person, by id</text><text x="80" y="101" class="muted" font-size="13">whose it is</text>
+      <path class="line" d="M376 70 L276 40" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="14" width="210" height="52" rx="6"/><text x="80" y="38" font-weight="600">person or org, by id</text><text x="80" y="56" class="muted" font-size="13">who: who wants it</text>
+      <path class="line" d="M376 100 L276 130" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="104" width="210" height="52" rx="6"/><text x="80" y="128" font-weight="600">project or org, by id</text><text x="80" y="146" class="muted" font-size="13">associations: what it is for</text>
       <path class="line" d="M604 70 L704 40" marker-end="url(#b)"/>
-      <rect class="file" x="710" y="14" width="230" height="52" rx="6"/><text x="730" y="38" font-weight="600">exchange, by id</text><text x="730" y="56" class="muted" font-size="13">opened_by: what opened it</text>
+      <rect class="file" x="710" y="14" width="230" height="52" rx="6"/><text x="730" y="38" font-weight="600">exchange, by id</text><text x="730" y="56" class="muted" font-size="13">origin: what started it</text>
       <path class="line" d="M604 100 L704 130" marker-end="url(#b)"/>
-      <rect class="box" x="710" y="104" width="230" height="52" rx="6"/><text x="730" y="128" font-weight="600">project, by id</text><text x="730" y="146" class="muted" font-size="13">your own want, on a project</text>
+      <rect class="file" x="710" y="104" width="230" height="52" rx="6"/><text x="730" y="128" font-weight="600">exchange, by id</text><text x="730" y="146" class="muted" font-size="13">met_by: what met it</text>
     </svg>
   </div>
-  <p class="note">Your own want works the same way: one record on a project, with the people who might meet it pointing at it, each saying how they relate. A note's <code>with</code> list does this: each person or organization named gets a connection, <code>can-meet</code> for a want or <code>offered-to</code> for an offer, pointing at the <code>ow_</code> id.</p>
+  <p class="note">Your own want works the same way: <code>who</code> is you, <code>associations</code> names the project it is for, and the people who might meet it point at it, each saying how they relate. A note's <code>with</code> list does this: each person or organization named gets a connection, <code>can-meet</code> for a want or <code>offered-to</code> for an offer, pointing at the <code>ow_</code> id.</p>
 
   </section>
 <section class="wiki-section" id="how-a-note-opens-and-closes-one" data-review-part data-review-label="How a note opens and closes one"><h2>How a note opens and closes one</h2>
   <dl class="fields">
-    <dt>opens</dt><dd>On an exchange in the note. Opens a want. Whose it is: the other party. The exchange is what opened it.</dd>
-    <dt>wants, offers</dt><dd>Lists in the note, for ones no exchange opened. Each says <code>whose</code>, and can say <code>with</code>.</dd>
-    <dt>done</dt><dd>A list of ids, for example <code>["ow_9d4e2b71c0"]</code>. Each is marked done with the time. Nothing is removed.</dd>
+    <dt>opens</dt><dd>On an exchange in the note. Opens a want: <code>who</code> is the other party, <code>origin</code> is that exchange.</dd>
+    <dt>answers</dt><dd>On an exchange in the note: a list of open want ids, for example <code>["ow_9d4e2b71c0"]</code>. Your reply or a file you shared meets each one. It turns <code>met</code>, and <code>met_by</code> is that exchange.</dd>
+    <dt>wants, offers</dt><dd>Lists in the note, for ones no exchange started. Each says <code>who</code> (a name, an email, an id, or <code>me</code>), can say <code>associations</code> (project or organization names or codes; <code>project</code> adds one), and can say <code>with</code>: who can meet it, or who it is offered to.</dd>
+    <dt>met</dt><dd>A list of ids, for ones met with nothing sent. Each gets a short note from you, filed as the exchange that met it. Nothing is removed.</dd>
   </dl>
+  <p class="note">Kai's want closes when you send your notes on the tool list. The note for that email carries <code>"answers": ["ow_9d4e2b71c0"]</code> on its exchange.</p>
   <a class="go" href="contact.html">What a contact is →</a><br>
   <a class="go" href="projects.html">Projects →</a><br>
   <a class="go" href="impact-report.html">Impact report →</a>

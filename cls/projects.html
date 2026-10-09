@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-style="bloom">
+<html lang="en" data-style="editorial">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../vendor/templates/wiki.css">
 <link rel="stylesheet" href="../vendor/button/component.css">
 <link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../vendor/breadcrumb/component.css">
 <link rel="stylesheet" href="../views.css">
 <script defer src="../vendor/nav-bar/behavior.js"></script>
 <script defer src="../site.js"></script>
@@ -40,7 +41,7 @@
       </div>
     </div>
   </div></header>
-<div class="tpl tpl--wiki" data-style="bloom" id="main">
+<div class="tpl tpl--wiki cls-part" id="main">
   <aside class="sidebar">
     <p class="brand">Community Legibility Spec <small>How it works</small></p>
     <nav class="nav" aria-label="Community Legibility Spec">
@@ -63,7 +64,31 @@
   </aside>
   <main class="main">
 <style>
-.tpl--wiki .sidebar { top: 0; }
+.cls-part { --cls-header-h: 89px; min-height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .sidebar { top: var(--cls-header-h); height: calc(100dvh - var(--cls-header-h)); }
+.cls-part .wiki-section { scroll-margin-top: calc(var(--cls-header-h) + var(--space-base)); }
+.cls-part .breadcrumb { margin-bottom: var(--space-lg); }
+.cls-part h1, .cls-part .wiki-section h2 { font-weight: var(--heading-weight, 400); font-synthesis: none; }
+.cls-part-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; margin-bottom: var(--space-2xl); }
+.cls-part-kind { margin: 0 0 var(--space-sm); display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+.cls-part-head h1 { margin: 0 0 var(--space-base); }
+.cls-part-head .lede { margin: 0; font-size: var(--text-body-lg); }
+.cls-part-art { border-radius: var(--radius-lg); overflow: hidden; margin: 0; }
+.cls-part-quote { margin: var(--space-lg) 0 0; padding-left: var(--space-base); border-left: var(--border-width) var(--border-style) var(--color-border-strong); }
+.cls-part-quote blockquote { margin: 0; font-family: var(--font-display); font-size: var(--text-body-lg); }
+.cls-part-quote figcaption { margin-top: var(--space-sm); font-size: var(--text-body-sm); color: var(--color-text-muted); }
+.cls-part .def dd a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-part-fig { margin: var(--space-lg) 0 0; }
+.cls-part-fig img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); border: var(--border-width) var(--border-style) var(--color-border); }
+.cls-part-fig figcaption { margin-top: var(--space-sm); font-size: var(--text-caption); color: var(--color-text-muted); }
+.cls-part-reel iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-alt); }
+.cls-part .cls-diagram svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--color-text-muted); font-family: var(--font-body); font-size: 11.5px; }
+.cls-part-links { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
+.cls-part-links a, .cls-part .foot a { color: var(--color-accent-text, var(--color-accent)); font-weight: 600; text-underline-offset: 3px; }
+.cls-flag { display: inline-block; padding: 1px var(--space-sm); border: var(--border-width) var(--border-style) var(--color-accent-deep); border-radius: var(--radius-full); font-size: var(--text-caption); font-weight: 600; color: var(--color-accent-text, var(--color-accent-deep)); background: var(--color-accent-soft); }
+@media (max-width: 880px) { .cls-part .sidebar { top: auto; height: auto; } }
+@media (max-width: 720px) { .cls-part-head { grid-template-columns: minmax(0, 1fr); } .cls-part-art { order: -1; } }
+
 .tpl--wiki .main { min-width: 0; }
 .cls-feature { max-width: 100%; }
 .cls-feature > h1:first-child { margin-top: 0; }
@@ -110,7 +135,7 @@
 .cls-feature tr.waiting td { background: var(--color-accent-soft); }
 .cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
 .cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
-.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: var(--radius-sm); vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
 .cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
 .cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
 .cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
@@ -121,6 +146,7 @@
 .cls-feature dl.fields dd { margin-bottom: 10px; }
 }
 </style>
+<nav class="breadcrumb" data-component="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="index.html">Community Legibility Spec</a></li><li><a href="index.html#your-contacts">Your contacts</a></li><li><span aria-current="page">Projects</span></li></ol></nav>
 <article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
   <h1>Projects</h1>
   <p class="lede">One list of every project, each with an id that never changes. People and organizations point at the id, so a project's name lives in one place.</p>
@@ -237,18 +263,18 @@
   </section>
 <section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
   <div class="card">
-    <svg viewBox="0 0 980 170" role="img" aria-label="A project id is pointed at by a person or an organization, and by a want on that project, whose is the prj_ id. People and organizations who can meet the want point at its ow_ id with can-meet. The impact report lists the projects a person points at.">
+    <svg viewBox="0 0 980 170" role="img" aria-label="A project id is pointed at by a person or an organization, and by a want for that project, whose associations hold the prj_ id. People and organizations who can meet the want point at its ow_ id with can-meet. The impact report lists the projects a person points at.">
       <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
       <rect class="file" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">project, by id</text><text x="400" y="100" class="muted" font-size="13">projects.json</text>
       <path class="line" d="M276 40 L376 74" marker-end="url(#b)"/>
       <rect class="box" x="60" y="14" width="210" height="52" rx="6"/><text x="80" y="38" font-weight="600">person, organization</text><text x="80" y="56" class="muted" font-size="13">relationships</text>
       <path class="line" d="M276 130 L376 98" marker-end="url(#b)"/>
-      <rect class="box" x="60" y="104" width="210" height="52" rx="6"/><text x="80" y="128" font-weight="600">a want on a project</text><text x="80" y="146" class="muted" font-size="13">whose: the prj_ id</text>
+      <rect class="box" x="60" y="104" width="210" height="52" rx="6"/><text x="80" y="128" font-weight="600">a want for a project</text><text x="80" y="146" class="muted" font-size="13">associations: the prj_ id</text>
       <path class="line" d="M604 85 L704 85" marker-end="url(#b)"/>
       <rect class="box" x="710" y="59" width="230" height="52" rx="6"/><text x="730" y="83" font-weight="600">impact report</text><text x="730" y="101" class="muted" font-size="13">lists the projects it relates to</text>
     </svg>
   </div>
-  <p class="note">Your own want on a project is one file in <code>offers-wants/</code>, and its <code>whose</code> is the project's <code>prj_</code> id. People and organizations who can meet it are named in the note's <code>with</code> list. Each gets a <code>can-meet</code> connection on their own record, pointing at the want's <code>ow_</code> id.</p>
+  <p class="note">Your own want for a project is one file in <code>offers-wants/</code>. Its <code>who</code> is you, and its <code>associations</code> list holds the project's <code>prj_</code> id. People and organizations who can meet it are named in the note's <code>with</code> list. Each gets a <code>can-meet</code> connection on their own record, pointing at the want's <code>ow_</code> id.</p>
   <a class="go" href="contact.html">What a contact is →</a><br>
   <a class="go" href="wants-and-offers.html">Wants and offers →</a><br>
   <a class="go" href="impact-report.html">Impact report →</a>
