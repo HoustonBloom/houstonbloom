@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a person gets · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/templates/wiki.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki" data-style="bloom" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility Spec <small>How it works</small></p>
+    <nav class="nav" aria-label="Community Legibility Spec">
+      <a href="index.html">Overview</a>
+      <span class="nav-section">Start</span>
+      <a href="getting-started.html">Getting started</a>
+      <span class="nav-section">Your contacts</span>
+      <a href="contact.html">What a contact is</a>
+      <a href="confidence.html">How sure we are</a>
+      <a href="contact-preferences.html">How someone likes to be reached</a>
+      <a href="projects.html">Projects</a>
+      <a href="wants-and-offers.html">Wants and offers</a>
+      <span class="nav-section">Your manifest</span>
+      <a href="manifest.html">What the manifest is</a>
+      <a href="sharing.html">Sharing something</a>
+      <a href="redacted-copy.html" class="active" aria-current="true">What a person gets</a>
+      <a href="impact-report.html">Impact report</a>
+    </nav>
+    <a class="back-link" href="../index.html">Houston Bloom</a>
+  </aside>
+  <main class="main">
+<style>
+.tpl--wiki .sidebar { top: 0; }
+.tpl--wiki .main { min-width: 0; }
+.cls-feature { max-width: 100%; }
+.cls-feature > h1:first-child { margin-top: 0; }
+.cls-overview .why { list-style: none; padding: 0; margin: 0 0 var(--space-xl); display: grid; gap: var(--space-sm); }
+.cls-overview .why li { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; color: var(--color-heading, var(--color-text)); }
+.cls-overview .state { display: inline-block; padding: 2px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); white-space: nowrap; }
+.cls-overview .state[data-state="not met"] { color: var(--color-text-muted); border-color: var(--color-border); }
+.cls-overview .state[data-state="close"], .cls-overview .state[data-state="can be met now"] { background: var(--color-accent-soft); }
+.cls-overview .packet { margin: 0 0 var(--space-xl); padding: var(--space-base) var(--space-lg); border-radius: var(--radius-lg); border: var(--border-width) dashed var(--color-border-strong); color: var(--color-text-muted); }
+.cls-overview .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+.cls-overview .feats a { display: block; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.cls-overview .feats a:hover { border-color: var(--color-accent); }
+.cls-overview .feats strong { display: block; font-family: var(--font-display); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-base); margin-top: var(--space-2xl); }
+.pager a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.pager a:hover { border-color: var(--color-accent); }
+.pager a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.pager-next { text-align: right; grid-column: 2; }
+.pager-k { font-family: var(--font-mono); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case); color: var(--color-text-faint); }
+.pager-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-body-lg); color: var(--color-heading, var(--color-text)); }
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+.cls-overview .feats span { color: var(--color-text-muted); font-size: var(--text-body-sm); }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+</style>
+<article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
+  <h1>What a person gets</h1>
+  <p class="lede">A redacted copy of your manifest for one person: when you were active together, and the rows that name them. It is the only file that leaves.</p>
+  <p class="note">Sam Lee and the rows are made up. The copy shown is what the tool wrote on a test folder. The tool writes the copy; it sends nothing. You send it.</p>
+
+  </section>
+<section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 340" role="img" aria-label="Two files stay on your computer: manifest.json, with every row and field, and Sam Lee's exchanges.jsonl in contacts. The redact command for Sam Lee takes only the timestamp of each exchange, and only the rows whose visibility names Sam Lee, each with id and lastActive. It writes manifest.sam-lee.redacted.json beside the manifest. You send that file to Sam Lee. Paths, file names, hashes, projects and other people's rows stay behind.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">Stays on your computer</text>
+      <rect class="box" x="20" y="44" width="230" height="96" rx="6"/>
+      <text x="36" y="70" font-weight="600">manifest.json</text>
+      <text x="36" y="92" class="muted" font-size="13">every row, every field:</text>
+      <text x="36" y="110" class="muted" font-size="13">paths, visibility, sent,</text>
+      <text x="36" y="128" class="muted" font-size="13">hash, project</text>
+      <rect class="box" x="20" y="156" width="230" height="96" rx="6"/>
+      <text x="36" y="182" font-weight="600">exchanges.jsonl</text>
+      <text x="36" y="204" class="muted" font-size="13">contacts/records/per_sam-lee/</text>
+      <text x="36" y="222" class="muted" font-size="13">each exchange with Sam Lee:</text>
+      <text x="36" y="240" class="muted" font-size="13">route, subject, what it carried</text>
+
+      <path class="line" d="M254 92 L330 140" marker-end="url(#a)"/>
+      <path class="line" d="M254 204 L330 160" marker-end="url(#a)"/>
+      <polygon class="yes" points="410,90 490,150 410,210 330,150"/>
+      <text x="383" y="146" font-weight="600" font-size="14">redact</text>
+      <text x="370" y="164" font-size="12">--to "Sam Lee"</text>
+      <text x="300" y="240" class="muted" font-size="13">rows whose visibility</text>
+      <text x="300" y="257" class="muted" font-size="13">names Sam Lee; the</text>
+      <text x="300" y="274" class="muted" font-size="13">time of each exchange</text>
+
+      <path class="line" d="M494 150 L544 150" marker-end="url(#a)"/>
+      <rect class="file" x="550" y="70" width="250" height="160" rx="6"/>
+      <text x="566" y="96" font-weight="600" font-size="13">manifest.sam-lee.redacted.json</text>
+      <text x="566" y="122" font-size="13">audience, madeAt</text>
+      <text x="566" y="144" font-size="13">activity: at, and nothing else</text>
+      <text x="566" y="166" font-size="13">rows: id and lastActive</text>
+      <text x="566" y="192" class="muted" font-size="13">no paths, no file names,</text>
+      <text x="566" y="210" class="muted" font-size="13">no hash, no other people</text>
+
+      <path class="line dash" d="M804 150 L854 150" marker-end="url(#a)"/>
+      <rect class="box" x="860" y="122" width="110" height="56" rx="28"/><text x="880" y="155" font-weight="600">Sam Lee</text>
+      <text x="820" y="206" class="muted" font-size="13">You send it.</text>
+      <text x="820" y="223" class="muted" font-size="13">Transport:</text>
+      <text x="820" y="240" class="muted" font-size="13">not built yet</text>
+
+      <text x="550" y="290" class="muted" font-size="13">Sam Lee holds the times against their own record,</text>
+      <text x="550" y="307" class="muted" font-size="13">on their own device.</text>
+    </svg>
+  </div>
+
+  </section>
+<section class="wiki-section" id="which-rows-go-in-as-a-table" data-review-part data-review-label="Which rows go in, as a table"><h2>Which rows go in, as a table</h2>
+  <p class="note">Your manifest, row by row. A row goes into Sam Lee's copy only when its visibility names Sam Lee. Then only its id and lastActive go.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>id</th><th>visibility</th><th>kind</th><th>path</th><th>lastActive</th><th>in Sam Lee's copy</th></tr></thead>
+      <tbody>
+        <tr><td><code>3b0e0bea…</code></td><td>Houston Bloom</td><td>shareable</td><td><code>PACKET.md</code></td><td>2026-10-08</td><td>no</td></tr>
+        <tr><td><code>71fca610…</code></td><td>private</td><td>folder</td><td><code>Documents/contacts</code></td><td>2026-10-08</td><td>no</td></tr>
+        <tr><td><code>0e5ee6fb…</code></td><td>private</td><td>folder</td><td><code>Documents/notes</code></td><td>2026-10-08</td><td>no</td></tr>
+        <tr><td><code>f4a67013…</code></td><td>Robin Park</td><td>folder</td><td><code>Documents/projects-2026</code></td><td>2026-10-08</td><td>no, it goes in Robin Park's copy</td></tr>
+        <tr class="waiting"><td><code>25097f4c…</code></td><td>Sam Lee + public</td><td>shareable</td><td><code>Local Brain/03_outbox/frames/local-assembly.html</code></td><td>2026-10-08</td><td>id and lastActive</td></tr>
+        <tr class="waiting"><td><code>f130a5e4…</code></td><td>Sam Lee</td><td>shareable</td><td><code>Downloads/sam-notes.md</code></td><td>2026-10-09</td><td>id and lastActive</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span><span class="swatch"></span>Goes in Sam Lee's copy</span><span>The name must match the one used on the send: a row sent to "Sam" is not in a copy for "Sam Lee". A row marked missing is left out.</span></div>
+
+  </section>
+<section class="wiki-section" id="what-each-field-holds" data-review-part data-review-label="What each field holds"><h2>What each field holds</h2>
+  <dl class="fields">
+    <dt>audience</dt><dd>Who the copy is for, the name given with <code>--to</code>.</dd>
+    <dt>madeAt</dt><dd>The day the copy was written.</dd>
+    <dt>activity</dt><dd>One entry per exchange on file with that person, newest first. Each holds only <code>at</code>, the timestamp. Read from <code>records/&lt;per_id&gt;/exchanges.jsonl</code> in your contacts folder when you give <code>--person</code>. Left out when you do not.</dd>
+    <dt>rows</dt><dd>Each manifest row whose visibility names that person, newest first: <code>id</code> and <code>lastActive</code>, nothing else.</dd>
+    <dt>id</dt><dd>The row's 64 random hex characters. It gives nothing away about the folder, the file or your system.</dd>
+    <dt>lastActive</dt><dd>The day that row last changed.</dd>
+  </dl>
+  <p class="note">Never in a copy: <code>path</code>, <code>hash</code>, <code>project</code>, <code>sent</code>, <code>visibility</code>, private rows, and rows that name only other people. What each exchange carried stays in your contacts folder.</p>
+
+  </section>
+<section class="wiki-section" id="what-the-file-looks-like-inside" data-review-part data-review-label="What the file looks like inside"><h2>What the file looks like inside</h2>
+  <p class="note">JSON, a plain text format. The command, what it printed, then <code>manifest/manifest.sam-lee.redacted.json</code> as the tool wrote it.</p>
+<pre>node map.mjs redact --to "Sam Lee" --contacts Documents/contacts --person per_sam-lee
+copy for Sam Lee: 2 times you were active together, 2 rows you keep them updated on: manifest/manifest.sam-lee.redacted.json</pre>
+<pre>{
+  "audience": "Sam Lee",
+  "madeAt": "2026-10-09",
+  "activity": [
+    {
+      "at": "2026-10-09T09:15:00-05:00"
+    },
+    {
+      "at": "2026-10-08T14:02:00-05:00"
+    }
+  ],
+  "rows": [
+    {
+      "id": "f130a5e423761c2d6465139f885e5db3bdf1c2dc3c3c549fa63625df35b42f8e",
+      "lastActive": "2026-10-09"
+    },
+    {
+      "id": "25097f4ce5d30f94c088f824e14bd1c9792b2e07256b26d9e7d19bfbaf797b9c",
+      "lastActive": "2026-10-08"
+    }
+  ]
+}</pre>
+  <p class="note">A server that carries the copy to the person: <span class="tag">not built yet</span> Whether a design principle travels in the copy is an open question.</p>
+
+  </section>
+<section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 170" role="img" aria-label="The redacted copy is made from the manifest rows that name the person, and from the timestamps of that person's exchanges in contacts. Sharing is what adds a person's name to a row.">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="file" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">redacted copy</text><text x="400" y="100" class="muted" font-size="13">for one person</text>
+      <path class="line" d="M276 85 L376 85" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="54" width="210" height="62" rx="6"/><text x="80" y="80" font-weight="600">manifest rows</text><text x="80" y="100" class="muted" font-size="13">that name the person</text>
+      <path class="line" d="M704 40 L604 70" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="14" width="230" height="52" rx="6"/><text x="730" y="38" font-weight="600">contact, by id</text><text x="730" y="56" class="muted" font-size="13">timestamps of exchanges</text>
+      <path class="line dash" d="M704 130 L604 100" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="104" width="230" height="52" rx="6"/><text x="730" y="128" font-weight="600">sharing</text><text x="730" y="146" class="muted" font-size="13">adds the name to a row</text>
+    </svg>
+  </div>
+  <a class="go" href="manifest.html">What the manifest is →</a><br>
+  <a class="go" href="sharing.html">Sharing something →</a><br>
+  <a class="go" href="contact.html">What a contact is →</a>
+</section></article>
+    <nav class="pager" aria-label="Previous and next page">
+      <a class="pager-prev" href="sharing.html" rel="prev"><span class="pager-k">Previous</span><span class="pager-t"><span aria-hidden="true">&#8592;</span> Sharing something</span></a>
+      <a class="pager-next" href="impact-report.html" rel="next"><span class="pager-k">Next</span><span class="pager-t">Impact report <span aria-hidden="true">&#8594;</span></span></a>
+    </nav>
+    <footer class="foot">Everyone on these pages is made up to show the shape. The Community Legibility Spec is written in the open by Houston Bloom, CC BY 4.0.</footer>
+  </main>
+</div>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

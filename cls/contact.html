@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a contact is · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/templates/wiki.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki" data-style="bloom" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility Spec <small>How it works</small></p>
+    <nav class="nav" aria-label="Community Legibility Spec">
+      <a href="index.html">Overview</a>
+      <span class="nav-section">Start</span>
+      <a href="getting-started.html">Getting started</a>
+      <span class="nav-section">Your contacts</span>
+      <a href="contact.html" class="active" aria-current="true">What a contact is</a>
+      <a href="confidence.html">How sure we are</a>
+      <a href="contact-preferences.html">How someone likes to be reached</a>
+      <a href="projects.html">Projects</a>
+      <a href="wants-and-offers.html">Wants and offers</a>
+      <span class="nav-section">Your manifest</span>
+      <a href="manifest.html">What the manifest is</a>
+      <a href="sharing.html">Sharing something</a>
+      <a href="redacted-copy.html">What a person gets</a>
+      <a href="impact-report.html">Impact report</a>
+    </nav>
+    <a class="back-link" href="../index.html">Houston Bloom</a>
+  </aside>
+  <main class="main">
+<style>
+.tpl--wiki .sidebar { top: 0; }
+.tpl--wiki .main { min-width: 0; }
+.cls-feature { max-width: 100%; }
+.cls-feature > h1:first-child { margin-top: 0; }
+.cls-overview .why { list-style: none; padding: 0; margin: 0 0 var(--space-xl); display: grid; gap: var(--space-sm); }
+.cls-overview .why li { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; color: var(--color-heading, var(--color-text)); }
+.cls-overview .state { display: inline-block; padding: 2px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); white-space: nowrap; }
+.cls-overview .state[data-state="not met"] { color: var(--color-text-muted); border-color: var(--color-border); }
+.cls-overview .state[data-state="close"], .cls-overview .state[data-state="can be met now"] { background: var(--color-accent-soft); }
+.cls-overview .packet { margin: 0 0 var(--space-xl); padding: var(--space-base) var(--space-lg); border-radius: var(--radius-lg); border: var(--border-width) dashed var(--color-border-strong); color: var(--color-text-muted); }
+.cls-overview .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+.cls-overview .feats a { display: block; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.cls-overview .feats a:hover { border-color: var(--color-accent); }
+.cls-overview .feats strong { display: block; font-family: var(--font-display); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-base); margin-top: var(--space-2xl); }
+.pager a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.pager a:hover { border-color: var(--color-accent); }
+.pager a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.pager-next { text-align: right; grid-column: 2; }
+.pager-k { font-family: var(--font-mono); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case); color: var(--color-text-faint); }
+.pager-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-body-lg); color: var(--color-heading, var(--color-text)); }
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+.cls-overview .feats span { color: var(--color-text-muted); font-size: var(--text-body-sm); }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+</style>
+<article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
+  <h1>What a contact is</h1>
+  <p class="lede">One folder per person or organization. Inside, one text file that says who they are, and one line for each exchange you had with them.</p>
+  <p class="note">The people below are made up to show the shape. Priya Shah owns the folder; everyone else is a contact. Contract 0.2.0 for a person, 0.1.0 for an organization and an exchange.</p>
+
+  </section>
+<section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 360" role="img" aria-label="An email, a note you give your agent, their card or profile, or your contacts export becomes a file in inbox. The processor turns it into Murmurations. Capture connection: only what you named is captured. Then a person file or an organization file is written, and each exchange becomes a line in that person's exchanges file.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">Something arrives</text>
+      <rect class="box" x="20" y="44" width="200" height="38" rx="6"/><text x="36" y="68">An email</text>
+      <rect class="box" x="20" y="90" width="200" height="38" rx="6"/><text x="36" y="114">A note to your agent</text>
+      <rect class="box" x="20" y="136" width="200" height="38" rx="6"/><text x="36" y="160">Their card or profile</text>
+      <rect class="box" x="20" y="182" width="200" height="38" rx="6"/><text x="36" y="206">Your contacts export</text>
+      <text x="20" y="246" class="muted" font-size="13">Your email and your other</text>
+      <text x="20" y="263" class="muted" font-size="13">contact lists do not change.</text>
+
+      <path class="line" d="M226 132 L284 132" marker-end="url(#a)"/>
+      <rect class="box" x="290" y="110" width="110" height="44" rx="6"/><text x="312" y="138" font-weight="600">inbox/</text>
+      <text x="290" y="176" class="muted" font-size="13">one door in</text>
+
+      <path class="line" d="M404 132 L454 132" marker-end="url(#a)"/>
+      <rect class="box" x="460" y="104" width="150" height="56" rx="28"/><text x="484" y="128" font-weight="600">processor</text>
+      <text x="484" y="146" class="muted" font-size="12">into Murmurations</text>
+      <text x="460" y="182" class="muted" font-size="12">filed: inbox/_done/</text>
+      <text x="460" y="198" class="muted" font-size="12">not: inbox/_problems/</text>
+
+      <path class="line" d="M614 132 L644 132" marker-end="url(#a)"/>
+      <polygon class="yes" points="720,92 790,132 720,172 650,132"/>
+      <text x="697" y="128" font-weight="600" font-size="14">Capture</text>
+      <text x="684" y="146" font-weight="600" font-size="14">connection</text>
+      <text x="650" y="236" class="muted" font-size="13">only what you named</text>
+      <text x="650" y="253" class="muted" font-size="13">to capture</text>
+
+      <path class="line" d="M794 132 L816 132 L816 52 L834 52" marker-end="url(#a)"/>
+      <path class="line" d="M816 132 L834 132" marker-end="url(#a)"/>
+      <path class="line" d="M816 132 L816 222 L834 222" marker-end="url(#a)"/>
+      <rect class="file" x="840" y="20" width="130" height="64" rx="6"/>
+      <text x="852" y="44" font-weight="600" font-size="14">person.json</text>
+      <text x="852" y="64" class="muted" font-size="12">who they are</text>
+      <rect class="file" x="840" y="100" width="130" height="64" rx="6"/>
+      <text x="852" y="124" font-weight="600" font-size="13">organization.json</text>
+      <text x="852" y="144" class="muted" font-size="12">or what it is</text>
+      <rect class="file" x="840" y="180" width="130" height="84" rx="6"/>
+      <text x="852" y="204" font-weight="600" font-size="14">exchanges.jsonl</text>
+      <text x="852" y="224" class="muted" font-size="12">one line each,</text>
+      <text x="852" y="240" class="muted" font-size="12">in their folder</text>
+      <text x="852" y="256" font-size="12">You keep them</text>
+
+      <text x="290" y="306" class="muted" font-size="13">Someone already on file goes straight in: new emails, phones and tags are added.</text>
+      <text x="290" y="324" class="muted" font-size="13">Any other field that differs is reported, never overwritten.</text>
+    </svg>
+  </div>
+
+  </section>
+<section class="wiki-section" id="the-person-file-as-a-table" data-review-part data-review-label="The person file, as a table"><h2>The person file, as a table</h2>
+  <p class="note">One row is one person. A field is one column.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>id</th><th>name</th><th>organization</th><th>title</th><th>email</th><th>telephone</th><th>tags</th><th>confidence</th><th>filed_by</th></tr></thead>
+      <tbody>
+        <tr><td><code>per_sam-lee</code></td><td>Sam Lee</td><td><code>org_eastside-tool-library</code></td><td>Founder</td><td>sam@example.org</td><td>+1 713 555 0100</td><td>builder, houston</td><td>confident</td><td>intake:vcf</td></tr>
+        <tr><td><code>per_ana-ruiz</code></td><td>Ana Ruiz</td><td>Studio Ruiz</td><td>Designer</td><td>ana@example.org<br>ana@studio.example</td><td>+1 713 555 0142</td><td>design</td><td>verified</td><td>intake:json</td></tr>
+        <tr><td><code>per_kai-tran</code></td><td>Kai Tran</td><td></td><td></td><td>kai@example.org</td><td></td><td></td><td>verified</td><td>agent</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span>Sam's organization is on record, so their file points at its id. Ana's is not, so it is the name as their card gives it.</span><span>Ana came in twice, as a card and as their own profile. Their emails were merged; nothing on file was overwritten.</span></div>
+
+  </section>
+<section class="wiki-section" id="the-organization-file-as-a-table" data-review-part data-review-label="The organization file, as a table"><h2>The organization file, as a table</h2>
+  <p class="note">The same local fields a person carries, on a Murmurations organizations profile.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>id</th><th>visibility</th><th>name</th><th>primary_url</th><th>email</th><th>tags</th><th>filed_by</th></tr></thead>
+      <tbody>
+        <tr><td><code>org_eastside-tool-library</code></td><td>local</td><td>Eastside Tool Library</td><td>eastside.example</td><td>hello@eastside.example</td><td>community</td><td>intake:vcf</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  </section>
+<section class="wiki-section" id="what-each-field-holds" data-review-part data-review-label="What each field holds"><h2>What each field holds</h2>
+  <dl class="fields">
+    <dt>id</dt><dd><code>per_</code> plus the name they use, or <code>org_</code> plus the organization's name. Given once and never changed; everything else joins on it.</dd>
+    <dt>linked_schemas</dt><dd>The formats this file follows: the Murmurations profile first, then this folder's add-on.</dd>
+    <dt>name</dt><dd>The name they use, from their own signature or profile. Never guessed from a calendar title or an email address.</dd>
+    <dt>primary_url</dt><dd>Their own site. Left out when they have none.</dd>
+    <dt>urls</dt><dd>Any further links, as the card gives them, so a card with two links comes back out with two.</dd>
+    <dt>email</dt><dd>Every address they have written from.</dd>
+    <dt>telephone</dt><dd>Phone numbers, as the card gives them.</dd>
+    <dt>title</dt><dd>A person's job title, as their card or signature gives it.</dd>
+    <dt>organization</dt><dd>Where a person works. An <code>org_</code> id when the organization is on record, otherwise its name as the card gives it.</dd>
+    <dt>description</dt><dd>One or two sentences on who they are, in your words.</dd>
+    <dt>tags</dt><dd>Words you use to find them.</dd>
+    <dt>relationships</dt><dd>Who or what they are connected to: a relation and a person, an organization or a project, the Murmurations triple.</dd>
+    <dt>visibility</dt><dd>Who may see this file. <code>local</code> means it never leaves your computer.</dd>
+    <dt>met_through</dt><dd>How you met a person, in a phrase.</dd>
+    <dt>first_exchange, last_exchange</dt><dd>Worked out from their exchanges, never typed.</dd>
+    <dt>elsewhere</dt><dd>Where the same person also lives: a profile, a contact card. A pointer, never a copy.</dd>
+    <dt>filed_at, filed_by</dt><dd>When this file was written, and what wrote it: you, a routine, the processor.</dd>
+    <dt>confidence</dt><dd>How sure you can be this is one real person or organization: verified, confident or unsure, and why. <a href="confidence.html">More</a>.</dd>
+    <dt>contact_preferences</dt><dd>A person's only. How they like to be reached and talked to, and how things made for them should look. <a href="contact-preferences.html">More</a>.</dd>
+  </dl>
+
+  </section>
+<section class="wiki-section" id="an-exchange" data-review-part data-review-label="An exchange"><h2>An exchange</h2>
+  <p class="note">What passed between you: an email, a call, a file, a set of links. One line each in <code>records/&lt;id&gt;/exchanges.jsonl</code>, added to and never rewritten.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>id</th><th>at</th><th>from</th><th>to</th><th>route</th><th>subject</th><th>carried</th><th>filed_by</th></tr></thead>
+      <tbody>
+        <tr><td><code>exc_3f9a1c0b2d</code></td><td>2026-10-08 10:10</td><td><code>per_kai-tran</code></td><td><code>per_priya-shah</code></td><td>email</td><td class="wrap">This week: three libraries</td><td>1 link, 1 ask</td><td>agent</td></tr>
+        <tr><td><code>exc_7d20e4a915</code></td><td>2026-10-09 12:00</td><td><code>per_priya-shah</code></td><td><code>per_sam-lee</code></td><td>file</td><td class="wrap">for-sam.md</td><td>1 file</td><td>agent</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span>Every line says when it happened (<code>at</code>) and, apart from that, when and how it was filed. The same event filed twice gets the same id.</span></div>
+
+  </section>
+<section class="wiki-section" id="what-the-file-looks-like-inside" data-review-part data-review-label="What the file looks like inside"><h2>What the file looks like inside</h2>
+  <p class="note">JSON, a plain text format. This is Ana's file, <code>records/per_ana-ruiz/person.json</code>.</p>
+<pre>{
+  "id": "per_ana-ruiz",
+  "linked_schemas": ["people_schema-v0.1.0", "contacts_person_addon-v0.2.0"],
+  "name": "Ana Ruiz",
+  "primary_url": "https://ana.example",
+  "email": ["ana@example.org", "ana@studio.example"],
+  "title": "Designer",
+  "organization": "Studio Ruiz",
+  "telephone": ["+1 713 555 0142"],
+  "tags": ["design"],
+  "relationships": [
+    { "predicate_url": "collaborator", "object_url": "per_sam-lee" }
+  ],
+  "elsewhere": [
+    { "system": "murmurations-profile", "ref": "ana-profile.json" },
+    { "system": "vcard", "ref": "phone-export.vcf" }
+  ],
+  "visibility": ["local"],
+  "filed_at": "2026-10-08T13:09:49-05:00",
+  "filed_by": "intake:json",
+  "confidence": {
+    "level": "verified",
+    "because": ["On 2 email threads with you, latest 2026-10-02"],
+    "set_at": "2026-10-09",
+    "set_by": "experiment-01:levels"
+  },
+  "contact_preferences": {
+    "reach_by": ["email"],
+    "how_to_talk": "Direct. Lead with the ask.",
+    "from": "notes/people/Ana Ruiz.md"
+  }
+}</pre>
+  <p class="note">And one line of Kai's exchanges, <code>records/per_kai-tran/exchanges.jsonl</code>, spread out here to read. In the file it is one line.</p>
+<pre>{
+  "id": "exc_3f9a1c0b2d",
+  "at": "2026-10-08T10:10:16-05:00",
+  "from": "per_kai-tran",
+  "to": ["per_priya-shah"],
+  "route": "email",
+  "subject": "This week: three libraries",
+  "carried": [
+    { "kind": "link", "title": "Activity guides", "url": "https://example.org/guides" },
+    { "kind": "ask", "title": "Feedback on the practice prompts" }
+  ],
+  "source_ref": "mail:1a11c10b3ced9ea2",
+  "filed_at": "2026-10-08T11:41:00-05:00",
+  "filed_by": "agent",
+  "how_filed": "Typed into an intake note from the email; links copied as sent.",
+  "visibility": ["local"]
+}</pre>
+
+  </section>
+<section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 230" role="img" aria-label="A person file points at an organization by id and a project by id. Their exchanges sit in the same folder. A send is logged in the manifest and, as an exchange, against the person.">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="file" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">person.json</text><text x="400" y="100" class="muted" font-size="13">who they are</text>
+      <path class="line" d="M490 120 L490 150" marker-end="url(#b)"/>
+      <rect class="file" x="380" y="154" width="220" height="62" rx="6"/><text x="400" y="180" font-weight="600">exchanges.jsonl</text><text x="400" y="200" class="muted" font-size="13">same folder, one line each</text>
+      <path class="line" d="M604 70 L704 40" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="14" width="230" height="52" rx="6"/><text x="730" y="38" font-weight="600">organization, by id</text><text x="730" y="56" class="muted" font-size="13">org_, in this folder</text>
+      <path class="line" d="M604 100 L704 120" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="94" width="230" height="52" rx="6"/><text x="730" y="118" font-weight="600">project, by id</text><text x="730" y="136" class="muted" font-size="13">prj_, in projects.json</text>
+      <path class="line dash" d="M376 185 L276 185" marker-end="url(#b)"/>
+      <rect class="box" x="40" y="154" width="230" height="62" rx="6"/><text x="60" y="180" font-weight="600">manifest row</text><text x="60" y="200" class="muted" font-size="13">the same send, logged there too</text>
+    </svg>
+  </div>
+  <a class="go" href="getting-started.html">Getting started →</a><br>
+  <a class="go" href="confidence.html">How sure we are →</a><br>
+  <a class="go" href="contact-preferences.html">How someone likes to be reached →</a><br>
+  <a class="go" href="projects.html">Projects →</a><br>
+  <a class="go" href="manifest.html">What the manifest is →</a>
+</section></article>
+    <nav class="pager" aria-label="Previous and next page">
+      <a class="pager-prev" href="getting-started.html" rel="prev"><span class="pager-k">Previous</span><span class="pager-t"><span aria-hidden="true">&#8592;</span> Getting started</span></a>
+      <a class="pager-next" href="confidence.html" rel="next"><span class="pager-k">Next</span><span class="pager-t">How sure we are <span aria-hidden="true">&#8594;</span></span></a>
+    </nav>
+    <footer class="foot">Everyone on these pages is made up to show the shape. The Community Legibility Spec is written in the open by Houston Bloom, CC BY 4.0.</footer>
+  </main>
+</div>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

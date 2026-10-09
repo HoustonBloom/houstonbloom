@@ -1,0 +1,81 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   design-system/components/copy-block/component.css
+   version  0.0.0
+   refresh  node sync.mjs copy-block "<this folder>"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   copy-block · v1.0.0 · molecule
+
+   Text the reader copies into somewhere else, most often a prompt for their own
+   AI: a heading, one line on what it does, the text, and one Copy button. Built
+   2026-10-09 for the insight update, a memo that ends with a section for the
+   reader's agent. The same shape was already written twice, as .ob-prompt in
+   onboarding and .lu-copy in gallery; this is the shared form of both.
+
+   Markup
+     <div class="copy-block" data-component="copy-block">
+       <h3>Answer this, and adopt the template</h3>
+       <p>One line on what pasting it does.</p>
+       <pre data-slot="text" id="cb-1">The text to copy.</pre>
+       <button type="button" class="btn btn--outline" data-component="button" data-copy="cb-1">
+         <span data-slot="label">Copy</span></button>
+     </div>
+   behavior.js wires every [data-copy] on the page: the button copies the
+   textContent of the element it names and shows "Copied" for 1.4s. The two
+   labels can be replaced with data-copy-label and data-copied-label on the
+   button. Without script the text is still there to select by hand.
+
+   The text scrolls inside its box past --copyblock-max, so a long prompt does
+   not push the rest of the page down. Print shows it whole and drops the button.
+
+   Token surface, every one falling back to layer 2:
+     --copyblock-ground   the text's ground      --color-bg
+     --copyblock-rule     its edge               --color-border
+     --copyblock-ink      its text               --color-text
+     --copyblock-font     its face               --font-mono
+     --copyblock-size     its size               --text-caption
+     --copyblock-radius   its corners            --radius-md
+     --copyblock-pad      its padding            --space-base
+     --copyblock-gap      between the parts      --space-sm
+     --copyblock-max      height before scroll   16rem
+
+   At 375px the text wraps at any character, so a long URL never widens the page.
+   ============================================================================ */
+
+.copy-block {
+  --copyblock-ground: var(--color-bg);
+  --copyblock-rule: var(--color-border);
+  --copyblock-ink: var(--color-text);
+  --copyblock-font: var(--font-mono);
+  --copyblock-size: var(--text-caption);
+  --copyblock-radius: var(--radius-md);
+  --copyblock-pad: var(--space-base);
+  --copyblock-gap: var(--space-sm);
+  --copyblock-max: 16rem;
+  display: grid;
+  gap: var(--copyblock-gap);
+  min-width: 0;
+}
+.copy-block > h3, .copy-block > p { margin: 0; }
+.copy-block [data-slot="text"] {
+  margin: 0;
+  padding: var(--copyblock-pad);
+  border: var(--border-width) var(--border-style) var(--copyblock-rule);
+  border-radius: var(--copyblock-radius);
+  background: var(--copyblock-ground);
+  color: var(--copyblock-ink);
+  font-family: var(--copyblock-font);
+  font-size: var(--copyblock-size);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: var(--copyblock-max);
+  overflow: auto;
+}
+.copy-block > [data-copy] { justify-self: start; }
+@media print {
+  .copy-block [data-slot="text"] { max-height: none; overflow: visible; }
+  .copy-block > [data-copy] { display: none; }
+}

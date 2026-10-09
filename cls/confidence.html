@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How sure we are · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/templates/wiki.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki" data-style="bloom" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility Spec <small>How it works</small></p>
+    <nav class="nav" aria-label="Community Legibility Spec">
+      <a href="index.html">Overview</a>
+      <span class="nav-section">Start</span>
+      <a href="getting-started.html">Getting started</a>
+      <span class="nav-section">Your contacts</span>
+      <a href="contact.html">What a contact is</a>
+      <a href="confidence.html" class="active" aria-current="true">How sure we are</a>
+      <a href="contact-preferences.html">How someone likes to be reached</a>
+      <a href="projects.html">Projects</a>
+      <a href="wants-and-offers.html">Wants and offers</a>
+      <span class="nav-section">Your manifest</span>
+      <a href="manifest.html">What the manifest is</a>
+      <a href="sharing.html">Sharing something</a>
+      <a href="redacted-copy.html">What a person gets</a>
+      <a href="impact-report.html">Impact report</a>
+    </nav>
+    <a class="back-link" href="../index.html">Houston Bloom</a>
+  </aside>
+  <main class="main">
+<style>
+.tpl--wiki .sidebar { top: 0; }
+.tpl--wiki .main { min-width: 0; }
+.cls-feature { max-width: 100%; }
+.cls-feature > h1:first-child { margin-top: 0; }
+.cls-overview .why { list-style: none; padding: 0; margin: 0 0 var(--space-xl); display: grid; gap: var(--space-sm); }
+.cls-overview .why li { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; color: var(--color-heading, var(--color-text)); }
+.cls-overview .state { display: inline-block; padding: 2px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); white-space: nowrap; }
+.cls-overview .state[data-state="not met"] { color: var(--color-text-muted); border-color: var(--color-border); }
+.cls-overview .state[data-state="close"], .cls-overview .state[data-state="can be met now"] { background: var(--color-accent-soft); }
+.cls-overview .packet { margin: 0 0 var(--space-xl); padding: var(--space-base) var(--space-lg); border-radius: var(--radius-lg); border: var(--border-width) dashed var(--color-border-strong); color: var(--color-text-muted); }
+.cls-overview .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+.cls-overview .feats a { display: block; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.cls-overview .feats a:hover { border-color: var(--color-accent); }
+.cls-overview .feats strong { display: block; font-family: var(--font-display); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-base); margin-top: var(--space-2xl); }
+.pager a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.pager a:hover { border-color: var(--color-accent); }
+.pager a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.pager-next { text-align: right; grid-column: 2; }
+.pager-k { font-family: var(--font-mono); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case); color: var(--color-text-faint); }
+.pager-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-body-lg); color: var(--color-heading, var(--color-text)); }
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+.cls-overview .feats span { color: var(--color-text-muted); font-size: var(--text-body-sm); }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+</style>
+<article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
+  <h1>How sure we are</h1>
+  <p class="lede">Every person and organization gets one of three levels: verified, confident or unsure. The sure ones go into your records on their own; the unsure ones wait for you to look.</p>
+  <p class="note">The people below are made up to show the shape. Each level carries its reasons, one line each, saying where the evidence was found. You, the owner, get no level.</p>
+
+  </section>
+<section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 400" role="img" aria-label="Evidence on the left. On an email thread with you, or named with a role on a page you made, makes a record verified. A full name, with stores that agree or a way to reach them, makes it confident. Anything less is unsure. Verified and confident records go into records without asking. Unsure records stay out and show on the dashboard to look at.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">The evidence</text>
+      <rect class="box" x="20" y="44" width="250" height="44" rx="6"/><text x="36" y="64" font-size="14">On an email thread with you</text>
+      <text x="36" y="80" class="muted" font-size="12">From, To or Cc</text>
+      <rect class="box" x="20" y="96" width="250" height="44" rx="6"/><text x="36" y="116" font-size="14">Named on a page you made</text>
+      <text x="36" y="132" class="muted" font-size="12">with a role</text>
+
+      <rect class="box" x="20" y="168" width="250" height="38" rx="6"/><text x="36" y="192" font-size="14">A full name</text>
+      <text x="20" y="226" class="muted" font-size="12">and either</text>
+      <rect class="box" x="20" y="234" width="250" height="38" rx="6"/><text x="36" y="258" font-size="14">The stores that hold them agree</text>
+      <rect class="box" x="20" y="280" width="250" height="38" rx="6"/><text x="36" y="304" font-size="14">A way to reach them</text>
+
+      <text x="20" y="346" class="muted" font-size="13">Anything less: one word for a name, stores that</text>
+      <text x="20" y="363" class="muted" font-size="13">disagree with nothing to settle it, or one store</text>
+      <text x="20" y="380" class="muted" font-size="13">and no way to reach them.</text>
+
+      <path class="line" d="M274 66 L340 80" marker-end="url(#a)"/>
+      <path class="line" d="M274 118 L340 98" marker-end="url(#a)"/>
+      <path class="line" d="M274 187 L320 187 L320 214 L340 214" marker-end="url(#a)"/>
+      <path class="line" d="M274 253 L320 253 L320 222 L340 222"/>
+      <path class="line" d="M274 299 L320 299 L320 253"/>
+      <path class="line dash" d="M330 362 L340 362" marker-end="url(#a)"/>
+
+      <rect class="yes" x="346" y="62" width="170" height="52" rx="6"/><text x="366" y="86" font-weight="600">verified</text>
+      <text x="366" y="104" class="muted" font-size="12">or you settled it</text>
+      <rect class="yes" x="346" y="192" width="170" height="52" rx="6"/><text x="366" y="216" font-weight="600">confident</text>
+      <text x="366" y="234" class="muted" font-size="12">set for you</text>
+      <rect class="box" x="346" y="336" width="170" height="52" rx="6" stroke-dasharray="4 4"/><text x="366" y="360" font-weight="600">unsure</text>
+      <text x="366" y="378" class="muted" font-size="12">never filed</text>
+
+      <path class="line" d="M520 88 L580 88 L580 150 L630 150" marker-end="url(#a)"/>
+      <path class="line" d="M520 218 L580 218 L580 150"/>
+      <path class="line dash" d="M520 362 L630 362" marker-end="url(#a)"/>
+
+      <rect class="file" x="636" y="114" width="220" height="72" rx="6"/>
+      <text x="652" y="140" font-weight="600" font-size="14">records/</text>
+      <text x="652" y="160" class="muted" font-size="12">goes in without asking</text>
+      <text x="652" y="176" font-size="12">You keep it</text>
+
+      <rect class="box" x="636" y="326" width="220" height="62" rx="6"/>
+      <text x="652" y="352" font-weight="600" font-size="14">dashboard</text>
+      <text x="652" y="372" class="muted" font-size="12">to look at, with its reason</text>
+
+      <text x="636" y="230" class="muted" font-size="13">A record already in records/</text>
+      <text x="636" y="247" class="muted" font-size="13">is never overwritten.</text>
+      <text x="636" y="280" class="muted" font-size="13">Move anyone up or down and say so:</text>
+      <text x="636" y="297" class="muted" font-size="13">the level and its reason go on their record.</text>
+    </svg>
+  </div>
+
+  </section>
+<section class="wiki-section" id="levels-as-a-table" data-review-part data-review-label="Levels, as a table"><h2>Levels, as a table</h2>
+  <p class="note">One row is one record. The reasons are written by the rules, in these words.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>id</th><th>name</th><th>level</th><th>because</th></tr></thead>
+      <tbody>
+        <tr><td><code>per_kai-tran</code></td><td>Kai Tran</td><td>verified</td><td class="wrap">On 3 email threads with you, latest 2026-09-30</td></tr>
+        <tr><td><code>per_jordan-ruiz</code></td><td>Jordan Ruiz</td><td>verified</td><td class="wrap">Co-host, in workshop-run-of-show.md</td></tr>
+        <tr><td><code>per_sam-lee</code></td><td>Sam Lee</td><td>confident</td><td class="wrap">In contact-book, murmurations-output, and they agree<br>A way to reach them on file</td></tr>
+        <tr><td><code>per_robin-park</code></td><td>Robin Park</td><td>confident</td><td class="wrap">Named on 1 email thread, not a participant</td></tr>
+        <tr class="waiting"><td><code>per_ana</code></td><td>Ana</td><td>unsure</td><td class="wrap">One word for a name: "Ana" could be more than one person</td></tr>
+        <tr class="waiting"><td><code>per_priya-shah</code></td><td>Priya Shah</td><td>unsure</td><td class="wrap">Merged from contact-book and murmurations-output by name, and they disagree on organization</td></tr>
+        <tr class="waiting"><td><code>org_eastside-tool-library</code></td><td>Eastside Tool Library</td><td>unsure</td><td class="wrap">Only in contact-book, with no way to reach them</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span><span class="swatch"></span>Unsure: left out of records/ and shown on the dashboard to look at.</span><span>An organization is not held to the full-name rule.</span></div>
+
+  </section>
+<section class="wiki-section" id="what-each-field-holds" data-review-part data-review-label="What each field holds"><h2>What each field holds</h2>
+  <dl class="fields">
+    <dt>confidence</dt><dd>On a person or organization file. How sure you can be that this record is one real person or organization with these details.</dd>
+    <dt>level</dt><dd>One of three: <code>verified</code>, <code>confident</code>, <code>unsure</code>.</dd>
+    <dt>because</dt><dd>The evidence for the level, one line each, naming where it was found.</dd>
+    <dt>set_at</dt><dd>When the level was set.</dd>
+    <dt>set_by</dt><dd>What set it: you, or a routine.</dd>
+  </dl>
+  <p class="note">Levels are set by the step that seeds your folder from the stores you already keep, and by intake for anyone new through the inbox. Through the inbox, the rules are shorter.</p>
+  <dl class="fields">
+    <dt>verified</dt><dd>An exchange with you in the same file. Filed.</dd>
+    <dt>confident</dt><dd>A full name, or any name for an organization, and a way to reach them. Filed.</dd>
+    <dt>unsure</dt><dd>Anything less. Not filed. Held in <code>inbox/_unsure/&lt;id&gt;.json</code> with the reason, and shown on the dashboard to look at.</dd>
+  </dl>
+  <p class="note">A note may set the level itself, with its own reasons. That is kept.</p>
+
+  </section>
+<section class="wiki-section" id="what-the-file-looks-like-inside" data-review-part data-review-label="What the file looks like inside"><h2>What the file looks like inside</h2>
+  <p class="note">JSON, a plain text format. This is Sam's file, <code>records/per_sam-lee/person.json</code>, filed because it is confident.</p>
+<pre>{
+  "id": "per_sam-lee",
+  "linked_schemas": ["people_schema-v0.1.0", "contacts_person_addon-v0.2.0"],
+  "name": "Sam Lee",
+  "email": ["sam@example.org"],
+  "tags": ["builder", "houston"],
+  "elsewhere": [
+    { "system": "store", "ref": "contact-book" },
+    { "system": "store", "ref": "murmurations-output" }
+  ],
+  "visibility": ["local"],
+  "filed_at": "2026-10-09T09:12:00-05:00",
+  "filed_by": "experiment-01:contact-book",
+  "confidence": {
+    "level": "confident",
+    "because": [
+      "In contact-book, murmurations-output, and they agree",
+      "A way to reach them on file"
+    ],
+    "set_at": "2026-10-09",
+    "set_by": "experiment-01:levels"
+  }
+}</pre>
+
+  </section>
+<section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 170" role="img" aria-label="The confidence level sits on a person or organization file. Sure records go into records. Unsure ones show on the dashboard.">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="box" x="60" y="54" width="210" height="62" rx="6"/><text x="80" y="80" font-weight="600">your stores</text><text x="80" y="100" class="muted" font-size="13">what the seed read</text>
+      <path class="line" d="M274 85 L376 85" marker-end="url(#b)"/>
+      <rect class="file" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">confidence</text><text x="400" y="100" class="muted" font-size="13">level and because</text>
+      <path class="line" d="M604 70 L704 40" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="14" width="230" height="52" rx="6"/><text x="730" y="38" font-weight="600">person or organization</text><text x="730" y="56" class="muted" font-size="13">verified, confident: filed</text>
+      <path class="line dash" d="M604 100 L704 130" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="104" width="230" height="52" rx="6"/><text x="730" y="128" font-weight="600">dashboard</text><text x="730" y="146" class="muted" font-size="13">unsure: to look at</text>
+    </svg>
+  </div>
+  <a class="go" href="contact.html">What a contact is →</a><br>
+  <a class="go" href="contact-preferences.html">How someone likes to be reached →</a><br>
+  <a class="go" href="getting-started.html">Getting started →</a><br>
+  <a class="go" href="manifest.html">What the manifest is →</a>
+</section></article>
+    <nav class="pager" aria-label="Previous and next page">
+      <a class="pager-prev" href="contact.html" rel="prev"><span class="pager-k">Previous</span><span class="pager-t"><span aria-hidden="true">&#8592;</span> What a contact is</span></a>
+      <a class="pager-next" href="contact-preferences.html" rel="next"><span class="pager-k">Next</span><span class="pager-t">How someone likes to be reached <span aria-hidden="true">&#8594;</span></span></a>
+    </nav>
+    <footer class="foot">Everyone on these pages is made up to show the shape. The Community Legibility Spec is written in the open by Houston Bloom, CC BY 4.0.</footer>
+  </main>
+</div>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

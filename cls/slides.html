@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slides · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../vendor/templates/slides.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+</head>
+<body>
+<div class="tpl tpl--slides deck" data-acts="19" data-style="bloom">
+  <header class="deck-head">
+    <p class="deck-name">Community Legibility Spec · Getting started</p>
+    <div class="deck-controls"><div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Slides. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div></div>
+  </header>
+  <div class="rail" aria-hidden="true"><span data-on="1"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="deck-stage">
+<style>
+.tpl--slides .sl-hidden { display: none; }
+.tpl--slides .sl-lines, .tpl--slides .sl-links, .tpl--slides .sl-cards, .tpl--slides .sl-steps { margin: var(--space-lg) 0 0; padding: 0; display: grid; gap: var(--space-base); }
+.tpl--slides .sl-lines { list-style: none; }
+.tpl--slides .sl-lines li { font-family: var(--font-display); font-size: var(--text-heading-md); font-weight: 600; line-height: var(--leading-display); }
+.tpl--slides .sl-steps { padding-left: 1.6em; font-size: var(--text-body-lg); }
+.tpl--slides .sl-links { list-style: none; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.tpl--slides .sl-links a, .tpl--slides .sl-cards a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; font-size: var(--text-body-lg); font-weight: 600; }
+.tpl--slides .sl-links a:hover, .tpl--slides .sl-cards a:hover { border-color: var(--color-accent); }
+.tpl--slides .sl-cards { list-style: none; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.tpl--slides .sl-cards span { font-size: var(--text-body); font-weight: 400; color: var(--color-text-muted); }
+.tpl--slides .sl-copy { margin: var(--space-lg) 0 var(--space-base); }
+.tpl--slides .sl-pre { margin: 0; padding: var(--space-base); background: var(--color-surface-alt); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: var(--text-body-sm); white-space: pre-wrap; overflow-wrap: anywhere; color: var(--color-text); }
+.tpl--slides .act-more dl { margin: 0; display: grid; gap: var(--space-xs); }
+.tpl--slides .act-more dt { font-weight: 600; color: var(--color-text); }
+.tpl--slides .act-more dd { margin: 0 0 var(--space-sm); }
+.tpl--slides .sl-figure { max-width: 100%; }
+.tpl--slides .sl-figure svg { width: 100%; height: auto; max-height: 52dvh; }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+
+</style>
+    <section class="act act--title" data-act="0" id="slide-1">
+      
+      <h1 class="act-title">Community Legibility Spec</h1>
+      <p class="act-claim">At the end you have your own folder with your contacts in it, your contact card, a dashboard, and a manifest that starts with this packet and logs what you share.</p>
+    </section>
+    <section class="act" data-act="1" id="slide-2" hidden>
+      <p class="act-note">Why</p>
+      <h2 class="act-title">Why</h2>
+      <ul class="sl-lines"><li>Make your thinking legible to others.</li><li>Keep a tight pulse on what your system is doing, sending or needing.</li><li>Cancel your subscriptions.</li></ul>
+    </section>
+    <section class="act" data-act="2" id="slide-3" hidden>
+      <p class="act-note">What you will make</p>
+      <h2 class="act-title">What you end up with</h2>
+      <p class="act-claim">The packet is a folder you copy. One prompt to your agent, or eleven steps by hand, turn it into your contacts, your card and your manifest, all on your own machine.</p><div class="act-figure cls-feature sl-figure"><svg viewBox="0 0 980 400" role="img" aria-label="The packet arrives from Houston Bloom: PACKET.md, SETUP.md, the skills and the contacts processor. You run setup. It writes .claude/cls.json, which names your two folders; the contacts folder, with you as the owner and your first person; your own card as a .vcf file; and your manifest, whose first row is the packet, received from Houston Bloom.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">The packet arrives</text>
+      <rect class="file" x="20" y="44" width="200" height="56" rx="6"/><text x="36" y="68" font-weight="600">PACKET.md</text>
+      <text x="36" y="88" class="muted" font-size="13">from Houston Bloom</text>
+      <rect class="box" x="20" y="108" width="200" height="38" rx="6"/><text x="36" y="132">SETUP.md, 11 steps</text>
+      <rect class="box" x="20" y="154" width="200" height="38" rx="6"/><text x="36" y="178">skills/, four of them</text>
+      <rect class="box" x="20" y="200" width="200" height="38" rx="6"/><text x="36" y="224" font-size="14">00_contacts-processor/</text>
+      <text x="20" y="264" class="muted" font-size="13">A folder you were given.</text>
+      <text x="20" y="281" class="muted" font-size="13">Nothing in it sends anything.</text>
+
+      <path class="line" d="M226 150 L284 150" marker-end="url(#a)"/>
+      <rect class="box" x="290" y="122" width="150" height="56" rx="28"/><text x="340" y="146" font-weight="600">setup</text>
+      <text x="314" y="164" class="muted" font-size="12">you run each step</text>
+      <text x="290" y="204" class="muted" font-size="13">in a folder you choose</text>
+
+      <path class="line" d="M444 150 L470 150 L470 58 L494 58" marker-end="url(#a)"/>
+      <path class="line" d="M470 150 L494 150" marker-end="url(#a)"/>
+      <path class="line" d="M470 150 L470 254 L494 254" marker-end="url(#a)"/>
+      <path class="line" d="M470 150 L470 344 L494 344" marker-end="url(#a)"/>
+
+      <rect class="file" x="500" y="28" width="240" height="60" rx="6"/>
+      <text x="516" y="52" font-weight="600" font-size="14">.claude/cls.json</text>
+      <text x="516" y="72" class="muted" font-size="12">names your two folders</text>
+
+      <rect class="box" x="500" y="104" width="240" height="116" rx="6"/>
+      <text x="516" y="126" font-weight="600" font-size="14">00_contacts/</text>
+      <rect class="yes" x="512" y="136" width="216" height="36" rx="4"/>
+      <text x="524" y="159" font-size="13">per_priya-shah: you, the owner</text>
+      <text x="524" y="192" font-size="13">per_sam-lee: your first person</text>
+      <text x="524" y="210" class="muted" font-size="12">and dashboard.html to see them</text>
+
+      <rect class="file" x="500" y="226" width="240" height="56" rx="6"/>
+      <text x="516" y="250" font-weight="600" font-size="14">per_priya-shah.vcf</text>
+      <text x="516" y="270" class="muted" font-size="12">your card, for your phone or anyone</text>
+
+      <rect class="file" x="500" y="298" width="240" height="90" rx="6"/>
+      <text x="516" y="322" font-weight="600" font-size="14">manifest/manifest.json</text>
+      <rect class="yes" x="512" y="332" width="216" height="44" rx="4"/>
+      <text x="524" y="350" font-size="13">row 1: PACKET.md</text>
+      <text x="524" y="368" class="muted" font-size="12">received from Houston Bloom</text>
+
+      <path class="line dash" d="M744 58 L790 58 L790 162 L746 162" marker-end="url(#a)"/>
+      <path class="line dash" d="M790 162 L790 320 L746 320" marker-end="url(#a)"/>
+      <text x="804" y="100" class="muted" font-size="13">Every skill reads</text>
+      <text x="804" y="117" class="muted" font-size="13">its folders here.</text>
+      <text x="804" y="134" class="muted" font-size="13">Move a folder: change</text>
+      <text x="804" y="151" class="muted" font-size="13">one line.</text>
+      <text x="804" y="346" class="muted" font-size="13">Then your folders,</text>
+      <text x="804" y="363" class="muted" font-size="13">and what you send.</text>
+    </svg></div>
+    </section>
+    <section class="act" data-act="3" id="slide-4" hidden>
+      <p class="act-note">Before you start</p>
+      <h2 class="act-title">Before you start</h2>
+      <ul class="sl-links"><li><a href="https://nodejs.org/en/download">Node.js <span aria-hidden="true">&#8599;</span></a></li><li><a href="https://docs.claude.com/en/docs/claude-code/overview">Claude Code <span aria-hidden="true">&#8599;</span></a></li><li><a href="https://get.kiwix.org/en/solutions/applications/">Kiwix <span aria-hidden="true">&#8599;</span></a></li><li><a href="https://tailscale.com/download">Tailscale <span aria-hidden="true">&#8599;</span></a></li></ul>
+      <details class="act-more"><summary>What each one is for</summary><dl><dt>Node.js</dt><dd>Runs the packet’s tools. Version 18 or later; step 1 checks it.</dd><dt>Claude Code</dt><dd>An AI agent that works with the files on your computer. It runs the setup prompt. Codex in the ChatGPT desktop app also works.</dd><dt>Kiwix</dt><dd>Opens a shareable sent as one packed .zim file, offline, on a phone, tablet or computer. For someone who keeps a library or has no steady connection.</dd><dt>Tailscale</dt><dd>A private network between your computer and a community server, for Local Assembly. Local Assembly is not built yet; its setup prompts are on <a href="../spec-local-assembly.html">its page</a>.</dd></dl></details>
+    </section>
+    <section class="act" data-act="4" id="slide-5" hidden>
+      <p class="act-note">The steps</p>
+      <h2 class="act-title">Steps 1 to 6</h2>
+      <ol class="sl-steps" start="1"><li><strong>Check Node.js</strong></li><li><strong>Make your folder</strong></li><li><strong>Bring in the packet</strong></li><li><strong>Copy the skills and tell them your folders</strong></li><li><strong>Add yourself</strong></li><li><strong>Make your card</strong></li></ol>
+    </section>
+    <section class="act" data-act="5" id="slide-6" hidden>
+      <p class="act-note">The steps</p>
+      <h2 class="act-title">Steps 7 to 11</h2>
+      <ol class="sl-steps" start="7"><li><strong>Start your manifest</strong></li><li><strong>Add your first person</strong></li><li><strong>Open your dashboard</strong></li><li><strong>Share something</strong></li><li><strong>End a session</strong></li></ol>
+    </section>
+    <section class="act" data-act="6" id="slide-7" hidden>
+      <p class="act-note">The one prompt</p>
+      <h2 class="act-title">Or one prompt does steps 1 to 9</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-1">Set me up with the Community Legibility Spec packet at &lt;packet&gt;.
+My name is &lt;Your Name&gt; and my email is &lt;you@example.org&gt;.
+Follow &lt;packet&gt;/SETUP.md steps 1 to 9 in this folder, in order, using the By hand commands.
+After each step, check the output against &quot;You should see&quot; and stop if it differs.
+Do not send anything anywhere. When you are done, show me my dashboard and tell me where my card is.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-1"><span data-slot="label">Copy the prompt</span></button></p><details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">Set me up with the Community Legibility Spec packet at &lt;packet&gt;.
+My name is &lt;Your Name&gt; and my email is &lt;you@example.org&gt;.
+Follow &lt;packet&gt;/SETUP.md steps 1 to 9 in this folder, in order, using the By hand commands.
+After each step, check the output against &quot;You should see&quot; and stop if it differs.
+Do not send anything anywhere. When you are done, show me my dashboard and tell me where my card is.</pre></details>
+    </section>
+    <section class="act" data-act="7" id="slide-8" hidden>
+      <p class="act-note">Step 1 of 11</p>
+      <h2 class="act-title">Check Node.js</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-2">Check that Node.js 18 or later is installed.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-2"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">Check that Node.js 18 or later is installed.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">`v18` or higher, such as `v24.13.0`. If not, install the LTS version from nodejs.org and open a new terminal.</pre></details>
+    </section>
+    <section class="act" data-act="8" id="slide-9" hidden>
+      <p class="act-note">Step 2 of 11</p>
+      <h2 class="act-title">Make your folder</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-3">Make 00_inbox, 00_contacts and notes in this folder.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-3"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">Make 00_inbox, 00_contacts and notes in this folder.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">three empty folders. `00_inbox` is where you drop anything you want captured: a contact card, a note about someone, an export. `00_contacts` is where your people are kept. `notes` is for things you make. They are yours: an update to the packet never touches them.</pre></details>
+    </section>
+    <section class="act" data-act="9" id="slide-10" hidden>
+      <p class="act-note">Step 3 of 11</p>
+      <h2 class="act-title">Bring in the packet</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-4">Copy &lt;packet&gt;/PACKET.md here.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-4"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">Copy &lt;packet&gt;/PACKET.md here.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">`PACKET.md` in your folder. The tools stay in the packet, in `&lt;packet&gt;/contacts-tools`, and are updated there.</pre></details>
+    </section>
+    <section class="act" data-act="10" id="slide-11" hidden>
+      <p class="act-note">Step 4 of 11</p>
+      <h2 class="act-title">Copy the skills and tell them your folders</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-5">Copy &lt;packet&gt;/skills into .claude/skills here, then write .claude/cls.json naming my folders:
+contacts, tools, manifest, spec, skills and inbox, as SETUP.md step 4 shows.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-5"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">Copy &lt;packet&gt;/skills into .claude/skills here, then write .claude/cls.json naming my folders:
+contacts, tools, manifest, spec, skills and inbox, as SETUP.md step 4 shows.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">`.claude/skills` holding `capture-connection`, `contacts`, `map`, `share`, and `.claude/cls.json` with six paths. Every skill reads its folders from that file; to move a folder, change one line there.</pre></details>
+    </section>
+    <section class="act" data-act="11" id="slide-12" hidden>
+      <p class="act-note">Step 5 of 11</p>
+      <h2 class="act-title">Add yourself</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-6">Add me as the owner of my contacts folder: &lt;Your Name&gt;, &lt;you@example.org&gt;.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-6"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">Add me as the owner of my contacts folder: &lt;Your Name&gt;, &lt;you@example.org&gt;.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">per_your-name is the owner of this folder (&quot;me&quot; in intake notes).
+filed    me.json: 1 people, 0 organizations, 0 exchanges</pre></details>
+    </section>
+    <section class="act" data-act="12" id="slide-13" hidden>
+      <p class="act-note">Step 6 of 11</p>
+      <h2 class="act-title">Make your card</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-7">Make my contact card from my record and put it in this folder.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-7"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">Make my contact card from my record and put it in this folder.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">`1 cards written to ...`, and `per_your-name.vcf` in your folder. It is your own contact card: open it on your phone, or send it to anyone.</pre></details>
+    </section>
+    <section class="act" data-act="13" id="slide-14" hidden>
+      <p class="act-note">Step 7 of 11</p>
+      <h2 class="act-title">Start your manifest</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-8">/map Start my manifest: log PACKET.md as received from Houston Bloom, then map 00_contacts and notes.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-8"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">/map Start my manifest: log PACKET.md as received from Houston Bloom, then map 00_contacts and notes.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">received from Houston Bloom: id 3f9a1c22
+full id: 3f9a1c22...
+mapped 00_contacts: private, id bb2e07e6
+mapped notes: private, id 7050a4ec</pre></details>
+    </section>
+    <section class="act" data-act="14" id="slide-15" hidden>
+      <p class="act-note">Step 8 of 11</p>
+      <h2 class="act-title">Add your first person</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-9">/capture-connection Sam Lee, sam.lee@example.org. Runs workshops for founders. We are working on First project together.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-9"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">/capture-connection Sam Lee, sam.lee@example.org. Runs workshops for founders. We are working on First project together.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">filed    sam-lee.json: 1 people, 0 organizations, 0 exchanges
+note     new project &quot;First project&quot; (prj_...); rename it in projects.json</pre></details>
+    </section>
+    <section class="act" data-act="15" id="slide-16" hidden>
+      <p class="act-note">Step 9 of 11</p>
+      <h2 class="act-title">Open your dashboard</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-10">Check my contacts folder, build my dashboard and my activity view, then open them.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-10"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">Check my contacts folder, build my dashboard and my activity view, then open them.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">`PASS · 7 schemas describe every field and pass their own examples · 2 people ...`, then `2 people · 0 organizations · 0 exchanges ...`, then `wrote activity.html · ...`, and the dashboard with you and Sam on it. `00_contacts/activity.html` is your activity: everything that passed between you and people, and everything you mapped, made, shared and got back, newest first. Rebuild it any time with the same command.</pre></details>
+    </section>
+    <section class="act" data-act="16" id="slide-17" hidden>
+      <p class="act-note">Step 10 of 11</p>
+      <h2 class="act-title">Share something</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-11">/share I made notes/for-sam.md for First project and sent it to Sam Lee. Log the make and the send, and record it against Sam.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-11"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">/share I made notes/for-sam.md for First project and sent it to Sam Lee. Log the make and the send, and record it against Sam.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">made: for-sam.md, private, id 9ebdc246
+full id: 9ebdc246...
+sent for-sam.md: now Sam Lee, id 9ebdc246
+full id: 9ebdc246...
+filed    sent-to-sam.json: 0 people, 0 organizations, 1 exchanges</pre></details>
+    </section>
+    <section class="act" data-act="17" id="slide-18" hidden>
+      <p class="act-note">Step 11 of 11</p>
+      <h2 class="act-title">End a session</h2>
+      <p class="sl-copy"><pre class="sl-hidden" id="sl-copy-12">/map End of session: check my manifest.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="sl-copy-12"><span data-slot="label">Copy the prompt</span></button></p>
+      <details class="act-more"><summary>See the prompt</summary><pre class="sl-pre">/map End of session: check my manifest.</pre></details>
+      <details class="act-more"><summary>You should see</summary><pre class="sl-pre">checked 4 · changed 0 · missing 0
+offer a transformation note: PACKET.md, id 3f9a1c22, from Houston Bloom
+offer a transformation note: for-sam.md, id 9ebdc246, sent to Sam Lee</pre></details>
+    </section>
+    <section class="act" data-act="18" id="slide-19" hidden>
+      <p class="act-note">Help</p>
+      <h2 class="act-title">Where to go next</h2>
+      <ul class="sl-cards"><li><a href="index.html"><strong>The wiki</strong><span>Every part, one page each.</span></a></li><li><a href="getting-started.html"><strong>Getting started</strong><span>These steps, with the commands to run by hand.</span></a></li><li><a href="activity.html"><strong>Activity</strong><span>When each part was worked on.</span></a></li><li><a href="../links.html"><strong>All Houston Bloom links</strong><span>Templates, papers, talks and where to join.</span></a></li></ul>
+    </section>
+  </div>
+  <div class="deck-bar">
+    <button type="button" class="btn btn--outline btn--icon deck-prev" data-component="button" aria-label="Previous slide"><span data-slot="glyph" aria-hidden="true">&larr;</span></button>
+    <p class="deck-pos"><span class="deck-at">01</span> / 19</p>
+    <button type="button" class="btn btn--outline btn--icon deck-next" data-component="button" aria-label="Next slide"><span data-slot="glyph" aria-hidden="true">&rarr;</span></button>
+  </div>
+</div>
+<script>
+(() => {
+  /* The deck behaviour from design-system/templates/_fixtures/slides-reference.html, plus #slide-N in the address. */
+  const deck = document.querySelector('.deck');
+  const acts = [...deck.querySelectorAll('.act')];
+  const ticks = [...deck.querySelectorAll('.rail span')];
+  const at = deck.querySelector('.deck-at');
+  const pad = n => String(n).padStart(2, '0');
+  let i = 0;
+  const show = n => {
+    i = Math.max(0, Math.min(acts.length - 1, n));
+    acts.forEach((a, k) => a.toggleAttribute('hidden', k !== i));
+    ticks.forEach((t, k) => t.toggleAttribute('data-on', k <= i));
+    at.textContent = pad(i + 1);
+    history.replaceState(null, '', '#slide-' + (i + 1));
+    if (window.DSReview) DSReview.setCurrent(acts[i].id);
+  };
+  deck.querySelector('.deck-prev').addEventListener('click', () => show(i - 1));
+  deck.querySelector('.deck-next').addEventListener('click', () => show(i + 1));
+  addEventListener('keydown', e => {
+    if (e.target.closest('input, textarea, [contenteditable]')) return;
+    if (e.key === 'ArrowLeft') show(i - 1);
+    if (e.key === 'ArrowRight') show(i + 1);
+  });
+  const m = location.hash.match(/^#slide-(\d+)$/);
+  show(m ? Number(m[1]) - 1 : 0);
+})();
+</script>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

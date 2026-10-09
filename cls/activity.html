@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activity · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/time-scrubber/component.css">
+<link rel="stylesheet" href="../vendor/node-graph/component.css">
+<link rel="stylesheet" href="../vendor/orbit-map/component.css">
+<link rel="stylesheet" href="../vendor/category-list/component.css">
+<link rel="stylesheet" href="../vendor/detail-panel/component.css">
+<link rel="stylesheet" href="../vendor/templates/activity-map.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<style>
+html, body { height: 100%; }
+body.hb-am { display: flex; flex-direction: column; height: 100dvh; margin: 0; overflow: hidden; background: var(--color-bg); }
+.hb-am > .nav-bar { flex: none; }
+.am-wrap { flex: 1; min-height: 0; display: flex; flex-direction: column; padding: var(--space-base) var(--space-lg) var(--space-lg); gap: var(--space-sm); }
+.am-wrap > h1 { margin: 0; font-family: var(--font-body); font-size: var(--text-body-sm); font-weight: 600; color: var(--color-text-muted); }
+#app { flex: 1; min-height: 0; background: var(--color-bg); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); overflow: hidden; }
+#app > .tpl--activity-map { height: 100%; }
+@media (max-width: 600px) { .am-wrap { padding: var(--space-xs); } }
+</style>
+<body class="hb-am">
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Activity. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<main class="am-wrap">
+  <h1>The Community Legibility Spec, over time: each day a part of it was worked on, from the changelog</h1>
+  <div id="app"></div>
+</main>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/time-scrubber/behavior.js"></script>
+<script src="../vendor/node-graph/behavior.js"></script>
+<script src="../vendor/orbit-map/behavior.js"></script>
+<script src="../vendor/templates/activity-map.js"></script>
+<script src="activity.data.js"></script>
+<script>
+  DSActivityMap.mount(document.getElementById('app'), window.CLS_WIKI_ACTIVITY, { url: 'hash', graphs: ['nodes'], detail: 'drawer', title: 'Community Legibility Spec', head: '', keyStyle: 'outline' });
+</script>
+</body>
+</html>

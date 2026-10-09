@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/templates/wiki.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki" data-style="bloom" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility Spec <small>How it works</small></p>
+    <nav class="nav" aria-label="Community Legibility Spec">
+      <a href="index.html" class="active" aria-current="true">Overview</a>
+      <span class="nav-section">Start</span>
+      <a href="getting-started.html">Getting started</a>
+      <span class="nav-section">Your contacts</span>
+      <a href="contact.html">What a contact is</a>
+      <a href="confidence.html">How sure we are</a>
+      <a href="contact-preferences.html">How someone likes to be reached</a>
+      <a href="projects.html">Projects</a>
+      <a href="wants-and-offers.html">Wants and offers</a>
+      <span class="nav-section">Your manifest</span>
+      <a href="manifest.html">What the manifest is</a>
+      <a href="sharing.html">Sharing something</a>
+      <a href="redacted-copy.html">What a person gets</a>
+      <a href="impact-report.html">Impact report</a>
+    </nav>
+    <a class="back-link" href="../index.html">Houston Bloom</a>
+  </aside>
+  <main class="main">
+<style>
+.tpl--wiki .sidebar { top: 0; }
+.tpl--wiki .main { min-width: 0; }
+.cls-feature { max-width: 100%; }
+.cls-feature > h1:first-child { margin-top: 0; }
+.cls-overview .why { list-style: none; padding: 0; margin: 0 0 var(--space-xl); display: grid; gap: var(--space-sm); }
+.cls-overview .why li { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; color: var(--color-heading, var(--color-text)); }
+.cls-overview .state { display: inline-block; padding: 2px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); white-space: nowrap; }
+.cls-overview .state[data-state="not met"] { color: var(--color-text-muted); border-color: var(--color-border); }
+.cls-overview .state[data-state="close"], .cls-overview .state[data-state="can be met now"] { background: var(--color-accent-soft); }
+.cls-overview .packet { margin: 0 0 var(--space-xl); padding: var(--space-base) var(--space-lg); border-radius: var(--radius-lg); border: var(--border-width) dashed var(--color-border-strong); color: var(--color-text-muted); }
+.cls-overview .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+.cls-overview .feats a { display: block; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.cls-overview .feats a:hover { border-color: var(--color-accent); }
+.cls-overview .feats strong { display: block; font-family: var(--font-display); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-base); margin-top: var(--space-2xl); }
+.pager a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.pager a:hover { border-color: var(--color-accent); }
+.pager a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.pager-next { text-align: right; grid-column: 2; }
+.pager-k { font-family: var(--font-mono); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case); color: var(--color-text-faint); }
+.pager-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-body-lg); color: var(--color-heading, var(--color-text)); }
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+.cls-overview .feats span { color: var(--color-text-muted); font-size: var(--text-body-sm); }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+</style>
+<article class="cls-overview">
+  <section class="wiki-section" id="overview" data-review-part data-review-label="Overview">
+    <h1>Community Legibility Spec</h1>
+    <p class="lede">Your people and your work, kept as plain files on your own computer, with a record of what you share and with whom.</p>
+    <ul class="why"><li>Make your thinking legible to others.</li><li>Keep a tight pulse on what your system is doing, sending or needing.</li><li>Cancel your subscriptions.</li></ul>
+    <p class="packet">The packet you install is not published yet. When it is, the link goes here.</p>
+  </section>
+  <section class="wiki-section" id="where-it-stands" data-review-part data-review-label="Where it stands">
+    <h2>Where it stands</h2>
+    <p class="lede">Five conditions. The spec is done when all five are met.</p>
+    <dl class="defs">
+      <div class="def"><dt>1. Your last contact book</dt><dd><span class="state" data-state="close">close</span> The contacts format is drafted and its checks pass. Shown here as a draft: a person and their connections.</dd></div>
+      <div class="def"><dt>2. Make your system legible</dt><dd><span class="state" data-state="started">started</span> The tools that map your folders and log what you share are built and tested. Four folders are mapped.</dd></div>
+      <div class="def"><dt>3. See your progress over time</dt><dd><span class="state" data-state="can be met now">can be met now</span> A changelog, tagged by project, draws the activity view on this site.</dd></div>
+      <div class="def"><dt>4. Share your thinking</dt><dd><span class="state" data-state="started">started</span> The share tool is built and tested on a test folder. It has not yet gone to a person.</dd></div>
+      <div class="def"><dt>5. Co-create with others</dt><dd><span class="state" data-state="not met">not met</span></dd></div>
+    </dl>
+  </section>
+  <div class="cls-feature"><section class="wiki-section" id="what-you-end-up-with" data-review-part data-review-label="What you end up with"><h2>What you end up with</h2>
+  
+  <p class="lede">The packet is a folder you copy. One prompt to your agent, or eleven steps by hand, turn it into your contacts, your card and your manifest, all on your own machine.</p>
+  <p class="note">The person setting up below is Priya Shah, and their first contact is Sam Lee. Both are made up to show the shape. You need Node.js 18 or later. Nothing in the packet sends anything anywhere.</p>
+
+  <h3>The picture</h3>
+  <div class="card">
+    <svg viewBox="0 0 980 400" role="img" aria-label="The packet arrives from Houston Bloom: PACKET.md, SETUP.md, the skills and the contacts processor. You run setup. It writes .claude/cls.json, which names your two folders; the contacts folder, with you as the owner and your first person; your own card as a .vcf file; and your manifest, whose first row is the packet, received from Houston Bloom.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">The packet arrives</text>
+      <rect class="file" x="20" y="44" width="200" height="56" rx="6"/><text x="36" y="68" font-weight="600">PACKET.md</text>
+      <text x="36" y="88" class="muted" font-size="13">from Houston Bloom</text>
+      <rect class="box" x="20" y="108" width="200" height="38" rx="6"/><text x="36" y="132">SETUP.md, 11 steps</text>
+      <rect class="box" x="20" y="154" width="200" height="38" rx="6"/><text x="36" y="178">skills/, four of them</text>
+      <rect class="box" x="20" y="200" width="200" height="38" rx="6"/><text x="36" y="224" font-size="14">00_contacts-processor/</text>
+      <text x="20" y="264" class="muted" font-size="13">A folder you were given.</text>
+      <text x="20" y="281" class="muted" font-size="13">Nothing in it sends anything.</text>
+
+      <path class="line" d="M226 150 L284 150" marker-end="url(#a)"/>
+      <rect class="box" x="290" y="122" width="150" height="56" rx="28"/><text x="340" y="146" font-weight="600">setup</text>
+      <text x="314" y="164" class="muted" font-size="12">you run each step</text>
+      <text x="290" y="204" class="muted" font-size="13">in a folder you choose</text>
+
+      <path class="line" d="M444 150 L470 150 L470 58 L494 58" marker-end="url(#a)"/>
+      <path class="line" d="M470 150 L494 150" marker-end="url(#a)"/>
+      <path class="line" d="M470 150 L470 254 L494 254" marker-end="url(#a)"/>
+      <path class="line" d="M470 150 L470 344 L494 344" marker-end="url(#a)"/>
+
+      <rect class="file" x="500" y="28" width="240" height="60" rx="6"/>
+      <text x="516" y="52" font-weight="600" font-size="14">.claude/cls.json</text>
+      <text x="516" y="72" class="muted" font-size="12">names your two folders</text>
+
+      <rect class="box" x="500" y="104" width="240" height="116" rx="6"/>
+      <text x="516" y="126" font-weight="600" font-size="14">00_contacts/</text>
+      <rect class="yes" x="512" y="136" width="216" height="36" rx="4"/>
+      <text x="524" y="159" font-size="13">per_priya-shah: you, the owner</text>
+      <text x="524" y="192" font-size="13">per_sam-lee: your first person</text>
+      <text x="524" y="210" class="muted" font-size="12">and dashboard.html to see them</text>
+
+      <rect class="file" x="500" y="226" width="240" height="56" rx="6"/>
+      <text x="516" y="250" font-weight="600" font-size="14">per_priya-shah.vcf</text>
+      <text x="516" y="270" class="muted" font-size="12">your card, for your phone or anyone</text>
+
+      <rect class="file" x="500" y="298" width="240" height="90" rx="6"/>
+      <text x="516" y="322" font-weight="600" font-size="14">manifest/manifest.json</text>
+      <rect class="yes" x="512" y="332" width="216" height="44" rx="4"/>
+      <text x="524" y="350" font-size="13">row 1: PACKET.md</text>
+      <text x="524" y="368" class="muted" font-size="12">received from Houston Bloom</text>
+
+      <path class="line dash" d="M744 58 L790 58 L790 162 L746 162" marker-end="url(#a)"/>
+      <path class="line dash" d="M790 162 L790 320 L746 320" marker-end="url(#a)"/>
+      <text x="804" y="100" class="muted" font-size="13">Every skill reads</text>
+      <text x="804" y="117" class="muted" font-size="13">its folders here.</text>
+      <text x="804" y="134" class="muted" font-size="13">Move a folder: change</text>
+      <text x="804" y="151" class="muted" font-size="13">one line.</text>
+      <text x="804" y="346" class="muted" font-size="13">Then your folders,</text>
+      <text x="804" y="363" class="muted" font-size="13">and what you send.</text>
+    </svg>
+  </div>
+
+  <h3>The manifest after setup</h3>
+  <p class="note">One row per folder you named and per thing you made or received. The ids are random, so yours differ.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>id</th><th>visibility</th><th>kind</th><th>path</th><th>from</th><th>sent</th></tr></thead>
+      <tbody>
+        <tr class="waiting"><td><code>3f9a1c22…</code></td><td>Houston Bloom</td><td>shareable</td><td>PACKET.md</td><td>Houston Bloom</td><td></td></tr>
+        <tr><td><code>bb2e07e6…</code></td><td>private</td><td>folder</td><td>00_contacts</td><td></td><td></td></tr>
+        <tr><td><code>7050a4ec…</code></td><td>private</td><td>folder</td><td>notes</td><td></td><td></td></tr>
+        <tr><td><code>9ebdc246…</code></td><td>Sam Lee</td><td>shareable</td><td>notes/for-sam.md</td><td></td><td>2026-10-09 to Sam Lee</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span><span class="swatch"></span>The first row: the packet itself, received on the day you installed it.</span><span>A path is the full path on your machine; it is cut short here.</span></div>
+
+  <h3>What each field holds</h3>
+  <dl class="fields">
+    <dt>contacts</dt><dd>In <code>cls.json</code>. The full path of your contacts folder.</dd>
+    <dt>manifest</dt><dd>In <code>cls.json</code>. The full path of your manifest file. It must sit outside every folder it maps.</dd>
+    <dt>me</dt><dd>In <code>00_contacts/settings.json</code>. Your own id, set by step 5. Lets an intake note say <code>me</code> for you.</dd>
+    <dt>N, FN</dt><dd>On your card. Your name split into family and given, then your name as you write it.</dd>
+    <dt>EMAIL</dt><dd>On your card. One line for each address on your record.</dd>
+    <dt>TEL, URL, ORG, TITLE</dt><dd>On your card when your record has them: phone, links, where you work, your job title.</dd>
+    <dt>CATEGORIES, NOTE</dt><dd>On your card when your record has them: your tags and your description.</dd>
+    <dt>UID</dt><dd>On your card. <code>urn:00contacts:</code> plus your id, so the card comes back to the same record.</dd>
+  </dl>
+
+  <h3>What the file looks like inside</h3>
+  <p class="note">JSON, a plain text format. This is <code>.claude/cls.json</code>, written by step 4.</p>
+<pre>{
+  "contacts": "/home/priya/cls/00_contacts",
+  "manifest": "/home/priya/cls/manifest/manifest.json",
+  "spec": "/home/priya/cls/.claude/skills/map/Manifest Spec.md",
+  "skills": "/home/priya/cls/.claude/skills",
+  "inbox": "/home/priya/cls/00_inbox"
+}</pre>
+  <p class="note">And the card, <code>per_priya-shah.vcf</code>, written by step 6. A plain text vCard 3.0 that any phone opens.</p>
+<pre>BEGIN:VCARD
+VERSION:3.0
+N:Shah;Priya;;;
+FN:Priya Shah
+EMAIL;TYPE=INTERNET:priya@example.org
+UID:urn:00contacts:per_priya-shah
+END:VCARD</pre>
+
+  <h3>How it connects</h3>
+  <div class="card">
+    <svg viewBox="0 0 980 170" role="img" aria-label="The four skills read cls.json, which names the contacts folder and the manifest.">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="box" x="40" y="54" width="290" height="62" rx="6"/><text x="60" y="80" font-weight="600">the four skills</text><text x="60" y="100" class="muted" font-size="13">capture-connection, contacts, map, share</text>
+      <path class="line" d="M334 85 L376 85" marker-end="url(#b)"/>
+      <rect class="file" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">cls.json</text><text x="400" y="100" class="muted" font-size="13">where your folders are</text>
+      <path class="line" d="M604 70 L704 40" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="14" width="250" height="52" rx="6"/><text x="730" y="38" font-weight="600">contacts folder</text><text x="730" y="56" class="muted" font-size="13">people, organizations, exchanges</text>
+      <path class="line" d="M604 100 L704 130" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="104" width="250" height="52" rx="6"/><text x="730" y="128" font-weight="600">manifest</text><text x="730" y="146" class="muted" font-size="13">folders and what you share</text>
+    </svg>
+  </div>
+  <p class="note">Not in the packet yet: your ChatGPT or Claude history in the activity view <span class="tag">not built yet</span>; the view itself is built, <code>00_contacts/activity.html</code>, by step 9; reading from your email <span class="tag">not built yet</span>, which needs an email connector in your agent; the community side of the dual ledger <span class="tag">not built yet</span>; Local Assembly <span class="tag">not built yet</span>.</p>
+  <a class="go" href="contact.html">What a contact is →</a><br>
+  <a class="go" href="confidence.html">How sure we are →</a><br>
+  <a class="go" href="contact-preferences.html">How someone likes to be reached →</a><br>
+  <a class="go" href="manifest.html">What the manifest is →</a>
+</section></div>
+  <section class="wiki-section" id="start" data-review-part data-review-label="Start">
+    <h2>Start</h2>
+    <ol class="feats"><li><a href="getting-started.html"><strong>Getting started</strong><span>Every prompt to set up the packet, in order, and what to install first: Node.js, an AI agent, Kiwix and Tailscale.</span></a></li></ol>
+  </section>
+  <section class="wiki-section" id="your-contacts" data-review-part data-review-label="Your contacts">
+    <h2>Your contacts</h2>
+    <ol class="feats"><li><a href="contact.html"><strong>What a contact is</strong><span>One folder per person or organization. Inside, one text file that says who they are, and one line for each exchange you had with them.</span></a></li><li><a href="confidence.html"><strong>How sure we are</strong><span>Every person and organization gets one of three levels: verified, confident or unsure. The sure ones go into your records on their own; the unsure ones wait for you to look.</span></a></li><li><a href="contact-preferences.html"><strong>How someone likes to be reached</strong><span>A few lines on a person's file: how they like to be reached and talked to, and how things made for them should look.</span></a></li><li><a href="projects.html"><strong>Projects</strong><span>One list of every project, each with an id that never changes. People and organizations point at the id, so a project's name lives in one place.</span></a></li><li><a href="wants-and-offers.html"><strong>Wants and offers</strong><span>A want is something still open between you and someone: they need something from you. An offer is something they put out. Both use the Murmurations offers and wants shape.</span></a></li></ol>
+  </section>
+  <section class="wiki-section" id="your-manifest" data-review-part data-review-label="Your manifest">
+    <h2>Your manifest</h2>
+    <ol class="feats"><li><a href="manifest.html"><strong>What the manifest is</strong><span>One file on your computer. One row per top-level folder you name, and one per thing you make to share.</span></a></li><li><a href="sharing.html"><strong>Sharing something</strong><span>Something you make to send gets a row in your manifest. Each step after that is logged: who it went to, whether it was published, what came back.</span></a></li><li><a href="redacted-copy.html"><strong>What a person gets</strong><span>A redacted copy of your manifest for one person: when you were active together, and the rows that name them. It is the only file that leaves.</span></a></li><li><a href="impact-report.html"><strong>Impact report</strong><span>A report on what someone's information did to your work after it reached you. Drafted from your records, finished by you, sent by you.</span></a></li></ol>
+  </section>
+</article>
+    <nav class="pager" aria-label="Previous and next page">
+      <span></span>
+      <a class="pager-next" href="getting-started.html" rel="next"><span class="pager-k">Next</span><span class="pager-t">Getting started <span aria-hidden="true">&#8594;</span></span></a>
+    </nav>
+    <footer class="foot">Everyone on these pages is made up to show the shape. The Community Legibility Spec is written in the open by Houston Bloom, CC BY 4.0.</footer>
+  </main>
+</div>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sharing something · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/templates/wiki.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki" data-style="bloom" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility Spec <small>How it works</small></p>
+    <nav class="nav" aria-label="Community Legibility Spec">
+      <a href="index.html">Overview</a>
+      <span class="nav-section">Start</span>
+      <a href="getting-started.html">Getting started</a>
+      <span class="nav-section">Your contacts</span>
+      <a href="contact.html">What a contact is</a>
+      <a href="confidence.html">How sure we are</a>
+      <a href="contact-preferences.html">How someone likes to be reached</a>
+      <a href="projects.html">Projects</a>
+      <a href="wants-and-offers.html">Wants and offers</a>
+      <span class="nav-section">Your manifest</span>
+      <a href="manifest.html">What the manifest is</a>
+      <a href="sharing.html" class="active" aria-current="true">Sharing something</a>
+      <a href="redacted-copy.html">What a person gets</a>
+      <a href="impact-report.html">Impact report</a>
+    </nav>
+    <a class="back-link" href="../index.html">Houston Bloom</a>
+  </aside>
+  <main class="main">
+<style>
+.tpl--wiki .sidebar { top: 0; }
+.tpl--wiki .main { min-width: 0; }
+.cls-feature { max-width: 100%; }
+.cls-feature > h1:first-child { margin-top: 0; }
+.cls-overview .why { list-style: none; padding: 0; margin: 0 0 var(--space-xl); display: grid; gap: var(--space-sm); }
+.cls-overview .why li { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; color: var(--color-heading, var(--color-text)); }
+.cls-overview .state { display: inline-block; padding: 2px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); white-space: nowrap; }
+.cls-overview .state[data-state="not met"] { color: var(--color-text-muted); border-color: var(--color-border); }
+.cls-overview .state[data-state="close"], .cls-overview .state[data-state="can be met now"] { background: var(--color-accent-soft); }
+.cls-overview .packet { margin: 0 0 var(--space-xl); padding: var(--space-base) var(--space-lg); border-radius: var(--radius-lg); border: var(--border-width) dashed var(--color-border-strong); color: var(--color-text-muted); }
+.cls-overview .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+.cls-overview .feats a { display: block; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.cls-overview .feats a:hover { border-color: var(--color-accent); }
+.cls-overview .feats strong { display: block; font-family: var(--font-display); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-base); margin-top: var(--space-2xl); }
+.pager a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.pager a:hover { border-color: var(--color-accent); }
+.pager a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.pager-next { text-align: right; grid-column: 2; }
+.pager-k { font-family: var(--font-mono); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case); color: var(--color-text-faint); }
+.pager-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-body-lg); color: var(--color-heading, var(--color-text)); }
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+.cls-overview .feats span { color: var(--color-text-muted); font-size: var(--text-body-sm); }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+</style>
+<article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
+  <h1>Sharing something</h1>
+  <p class="lede">Something you make to send gets a row in your manifest. Each step after that is logged: who it went to, whether it was published, what came back.</p>
+  <p class="note">Sam Lee and the files are made up. The ids, printed lines and log lines came from a real run of the tool on a test folder. Nothing is sent by the tool. You send it.</p>
+
+  </section>
+<section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 370" role="img" aria-label="Four steps. Make: local-assembly.html gets a row, private. Share: it went to Sam Lee and was published, so its visibility widens to Sam Lee plus public. Receive: Sam Lee's notes come back as their own row, visible to Sam Lee, pointing back at what they answer. Session end: each shareable made, sent or answered is offered a transformation note, once. Each step writes a line to manifest.log.jsonl.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="box" x="45" y="20" width="150" height="42" rx="21"/><text x="98" y="46" font-weight="600">make</text>
+      <rect class="box" x="285" y="20" width="150" height="42" rx="21"/><text x="336" y="46" font-weight="600">share</text>
+      <rect class="box" x="525" y="20" width="150" height="42" rx="21"/><text x="570" y="46" font-weight="600">receive</text>
+      <rect class="box" x="765" y="20" width="150" height="42" rx="21"/><text x="790" y="46" font-weight="600">session end</text>
+      <path class="line" d="M120 66 L120 86" marker-end="url(#a)"/>
+      <path class="line" d="M360 66 L360 86" marker-end="url(#a)"/>
+      <path class="line" d="M600 66 L600 86" marker-end="url(#a)"/>
+      <path class="line" d="M840 66 L840 86" marker-end="url(#a)"/>
+
+      <rect class="box" x="20" y="92" width="200" height="118" rx="6"/>
+      <text x="36" y="118" font-weight="600" font-size="15">local-assembly.html</text>
+      <text x="36" y="142" font-size="13">visibility: private</text>
+      <text x="36" y="162" class="muted" font-size="13">id 25097f4c</text>
+      <text x="36" y="182" class="muted" font-size="13">project Relational Spaces</text>
+
+      <path class="line" d="M224 151 L254 151" marker-end="url(#a)"/>
+      <rect class="file" x="260" y="92" width="200" height="118" rx="6"/>
+      <text x="276" y="118" font-weight="600" font-size="15">local-assembly.html</text>
+      <text x="276" y="142" font-size="13">visibility: Sam Lee + public</text>
+      <text x="276" y="162" class="muted" font-size="13">sent 2026-10-08</text>
+      <text x="276" y="182" class="muted" font-size="13">to Sam Lee, published</text>
+
+      <path class="line" d="M464 151 L494 151" marker-end="url(#a)"/>
+      <rect class="box" x="500" y="92" width="200" height="118" rx="6"/>
+      <text x="516" y="118" font-weight="600" font-size="15">sam-notes.md</text>
+      <text x="516" y="142" font-size="13">visibility: Sam Lee</text>
+      <text x="516" y="162" class="muted" font-size="13">from Sam Lee</text>
+      <text x="516" y="182" class="muted" font-size="13">relates_to 25097f4c</text>
+
+      <path class="line" d="M704 151 L734 151" marker-end="url(#a)"/>
+      <rect class="yes" x="740" y="92" width="220" height="118" rx="6"/>
+      <text x="756" y="118" font-weight="600" font-size="15">transformation note</text>
+      <text x="756" y="142" font-size="13">offered once per shareable</text>
+      <text x="756" y="162" class="muted" font-size="13">note attaches it</text>
+      <text x="756" y="182" class="muted" font-size="13">a no is not asked again</text>
+
+      <path class="line dash" d="M600 214 C 600 256, 360 256, 360 218" marker-end="url(#a)"/>
+      <text x="420" y="270" class="muted" font-size="13">answers what was sent</text>
+
+      <text x="20" y="306" font-size="13" font-weight="600">log: made</text>
+      <text x="260" y="306" font-size="13" font-weight="600">log: sent</text>
+      <text x="500" y="306" font-size="13" font-weight="600">log: received</text>
+      <text x="740" y="306" font-size="13" font-weight="600">log: transformation</text>
+      <text x="260" y="326" class="muted" font-size="13">capture-connection files</text>
+      <text x="260" y="343" class="muted" font-size="13">the send against Sam Lee</text>
+      <text x="500" y="326" class="muted" font-size="13">capturing Sam Lee here:</text>
+      <text x="500" y="343" class="muted" font-size="13">not built yet</text>
+      <text x="740" y="326" class="muted" font-size="13">a filled Impact line goes to</text>
+      <text x="740" y="343" class="muted" font-size="13">capture-connection, kind: impact</text>
+    </svg>
+  </div>
+
+  </section>
+<section class="wiki-section" id="each-step-as-a-table" data-review-part data-review-label="Each step, as a table"><h2>Each step, as a table</h2>
+  <p class="note">One row per step: the command, what it printed, and what changed in the manifest. Ids are shown by their first 8 characters; the tool accepts that too.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>step</th><th>command</th><th>it printed</th><th>visibility after</th><th>log line</th></tr></thead>
+      <tbody>
+        <tr><td>make</td><td><code>make local-assembly.html --project "Relational Spaces"</code></td><td><code>made: local-assembly.html, private, id 25097f4c</code></td><td>private</td><td><code>made</code></td></tr>
+        <tr class="waiting"><td>share</td><td><code>share 25097f4c --to "Sam Lee" --public</code></td><td><code>sent local-assembly.html: now Sam Lee + public, id 25097f4c</code></td><td>Sam Lee + public</td><td><code>sent</code></td></tr>
+        <tr><td>receive</td><td><code>receive Downloads/sam-notes.md --from "Sam Lee" --relates-to 25097f4c</code></td><td><code>received from Sam Lee: id f130a5e4, answers 25097f4c</code></td><td>Sam Lee</td><td><code>received</code></td></tr>
+        <tr><td>session end</td><td><code>update</code></td><td class="wrap"><code>offer a transformation note: local-assembly.html, id 25097f4c, sent to Sam Lee</code><br><code>offer a transformation note: sam-notes.md, id f130a5e4, answers 25097f4c, from Sam Lee</code></td><td>no change</td><td></td></tr>
+        <tr><td>note</td><td><code>note 25097f4c transformations/2026-10-09_sam-lee.md</code></td><td><code>transformation note on local-assembly.html, id 25097f4c</code></td><td>no change</td><td><code>transformation</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span><span class="swatch"></span>The send is the step that widens who may see it.</span><span>Sent to several people: <code>--to "Sam Lee, Robin Park"</code>, one row, each name added. Sending a file never made logs the make first.</span></div>
+
+  </section>
+<section class="wiki-section" id="what-each-field-holds" data-review-part data-review-label="What each field holds"><h2>What each field holds</h2>
+  <dl class="fields">
+    <dt>kind</dt><dd><code>shareable</code>, for something made to send and for something that came back.</dd>
+    <dt>visibility</dt><dd>Starts <code>["private"]</code> on make. Each send drops private and adds each person, and <code>public</code> with <code>--public</code>. Something received starts visible to the people it came from.</dd>
+    <dt>madeAt</dt><dd>The day it was made or received.</dd>
+    <dt>sent</dt><dd>Each send: <code>on</code>, the day; <code>to</code>, the names; <code>public</code>, when it was published.</dd>
+    <dt>from</dt><dd>Who sent back something you received.</dd>
+    <dt>relates_to</dt><dd>The id of the shareable this one answers, so the two read as one exchange.</dd>
+    <dt>project</dt><dd>The project it belongs to, when you give one.</dd>
+    <dt>hash</dt><dd>A fingerprint of the contents, to tell an edit from a touch. Never shared.</dd>
+    <dt>offered</dt><dd>The day session end offered a transformation note. It is not offered again.</dd>
+    <dt>notes</dt><dd>Transformation notes attached with <code>note</code>: the day and the note's path.</dd>
+  </dl>
+  <p class="note">The transformation note is a short file you fill in, from the template <code>skills/share/transformation.md</code>. Its parts: what I sent or made, what came back, what changed in my work, what changed in theirs, and impact. "Nothing" is an answer.</p>
+
+  </section>
+<section class="wiki-section" id="what-the-file-looks-like-inside" data-review-part data-review-label="What the file looks like inside"><h2>What the file looks like inside</h2>
+  <p class="note">Each step adds one line to <code>manifest/manifest.log.jsonl</code>. These are the lines for the steps above.</p>
+<pre>{"at":"2026-10-08T13:43:04.496Z","change":"made","id":"25097f4ce5d30f94c088f824e14bd1c9792b2e07256b26d9e7d19bfbaf797b9c","project":"Relational Spaces"}
+{"at":"2026-10-08T13:43:05.011Z","change":"sent","id":"25097f4ce5d30f94c088f824e14bd1c9792b2e07256b26d9e7d19bfbaf797b9c","people":["Sam Lee"],"public":true,"visibility":["Sam Lee","public"]}
+{"at":"2026-10-09T13:43:05.268Z","change":"received","id":"f130a5e423761c2d6465139f885e5db3bdf1c2dc3c3c549fa63625df35b42f8e","people":["Sam Lee"],"relates_to":"25097f4ce5d30f94c088f824e14bd1c9792b2e07256b26d9e7d19bfbaf797b9c"}
+{"at":"2026-10-09T13:43:07.467Z","change":"transformation","id":"25097f4ce5d30f94c088f824e14bd1c9792b2e07256b26d9e7d19bfbaf797b9c"}</pre>
+  <p class="note">And the two rows in <code>manifest/manifest.json</code> after the note. The real file holds the full path; it is shortened here.</p>
+<pre>{ "id": "25097f4ce5d30f94c088f824e14bd1c9792b2e07256b26d9e7d19bfbaf797b9c", "kind": "shareable",
+  "path": "Local Brain/03_outbox/frames/local-assembly.html",
+  "visibility": ["Sam Lee", "public"], "madeAt": "2026-10-08", "lastActive": "2026-10-08",
+  "hash": "b18105d0da7c", "project": "Relational Spaces",
+  "sent": [{ "on": "2026-10-08", "to": ["Sam Lee"], "public": true }],
+  "offered": "2026-10-09",
+  "notes": [{ "on": "2026-10-09", "path": "manifest/transformations/2026-10-09_sam-lee.md" }] },
+{ "id": "f130a5e423761c2d6465139f885e5db3bdf1c2dc3c3c549fa63625df35b42f8e", "kind": "shareable",
+  "path": "Downloads/sam-notes.md",
+  "visibility": ["Sam Lee"], "madeAt": "2026-10-09", "lastActive": "2026-10-09",
+  "hash": "4c3c378e09be", "from": ["Sam Lee"],
+  "relates_to": "25097f4ce5d30f94c088f824e14bd1c9792b2e07256b26d9e7d19bfbaf797b9c",
+  "sent": [], "offered": "2026-10-09" }</pre>
+  <p class="note">These lines show in your activity view, <code>00_contacts/activity.html</code>, built by <code>activity.mjs</code>. Capturing the person something came back from: <span class="tag">not built yet</span> A Local Brain cut that reads the manifest: <span class="tag">not built yet</span></p>
+
+  </section>
+<section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 170" role="img" aria-label="A shareable is a row in the manifest. A send is filed against the person in contacts. The person it names may get a redacted copy with its id and lastActive.">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="file" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">a shareable</text><text x="400" y="100" class="muted" font-size="13">made, sent, answered</text>
+      <path class="line" d="M376 85 L276 85" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="54" width="210" height="62" rx="6"/><text x="80" y="80" font-weight="600">manifest row</text><text x="80" y="100" class="muted" font-size="13">one per shareable</text>
+      <path class="line" d="M604 70 L704 40" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="14" width="230" height="52" rx="6"/><text x="730" y="38" font-weight="600">contact</text><text x="730" y="56" class="muted" font-size="13">the send, as an exchange</text>
+      <path class="line" d="M604 100 L704 130" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="104" width="230" height="52" rx="6"/><text x="730" y="128" font-weight="600">redacted copy</text><text x="730" y="146" class="muted" font-size="13">rows that name the person</text>
+    </svg>
+  </div>
+  <a class="go" href="manifest.html">What the manifest is →</a><br>
+  <a class="go" href="contact.html">What a contact is →</a><br>
+  <a class="go" href="redacted-copy.html">What a person gets →</a><br>
+  <a class="go" href="impact-report.html">Impact report →</a>
+</section></article>
+    <nav class="pager" aria-label="Previous and next page">
+      <a class="pager-prev" href="manifest.html" rel="prev"><span class="pager-k">Previous</span><span class="pager-t"><span aria-hidden="true">&#8592;</span> What the manifest is</span></a>
+      <a class="pager-next" href="redacted-copy.html" rel="next"><span class="pager-k">Next</span><span class="pager-t">What a person gets <span aria-hidden="true">&#8594;</span></span></a>
+    </nav>
+    <footer class="foot">Everyone on these pages is made up to show the shape. The Community Legibility Spec is written in the open by Houston Bloom, CC BY 4.0.</footer>
+  </main>
+</div>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

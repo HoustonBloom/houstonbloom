@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/templates/wiki.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki" data-style="bloom" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility Spec <small>How it works</small></p>
+    <nav class="nav" aria-label="Community Legibility Spec">
+      <a href="index.html">Overview</a>
+      <span class="nav-section">Start</span>
+      <a href="getting-started.html">Getting started</a>
+      <span class="nav-section">Your contacts</span>
+      <a href="contact.html">What a contact is</a>
+      <a href="confidence.html">How sure we are</a>
+      <a href="contact-preferences.html">How someone likes to be reached</a>
+      <a href="projects.html" class="active" aria-current="true">Projects</a>
+      <a href="wants-and-offers.html">Wants and offers</a>
+      <span class="nav-section">Your manifest</span>
+      <a href="manifest.html">What the manifest is</a>
+      <a href="sharing.html">Sharing something</a>
+      <a href="redacted-copy.html">What a person gets</a>
+      <a href="impact-report.html">Impact report</a>
+    </nav>
+    <a class="back-link" href="../index.html">Houston Bloom</a>
+  </aside>
+  <main class="main">
+<style>
+.tpl--wiki .sidebar { top: 0; }
+.tpl--wiki .main { min-width: 0; }
+.cls-feature { max-width: 100%; }
+.cls-feature > h1:first-child { margin-top: 0; }
+.cls-overview .why { list-style: none; padding: 0; margin: 0 0 var(--space-xl); display: grid; gap: var(--space-sm); }
+.cls-overview .why li { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; color: var(--color-heading, var(--color-text)); }
+.cls-overview .state { display: inline-block; padding: 2px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); white-space: nowrap; }
+.cls-overview .state[data-state="not met"] { color: var(--color-text-muted); border-color: var(--color-border); }
+.cls-overview .state[data-state="close"], .cls-overview .state[data-state="can be met now"] { background: var(--color-accent-soft); }
+.cls-overview .packet { margin: 0 0 var(--space-xl); padding: var(--space-base) var(--space-lg); border-radius: var(--radius-lg); border: var(--border-width) dashed var(--color-border-strong); color: var(--color-text-muted); }
+.cls-overview .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+.cls-overview .feats a { display: block; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.cls-overview .feats a:hover { border-color: var(--color-accent); }
+.cls-overview .feats strong { display: block; font-family: var(--font-display); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-base); margin-top: var(--space-2xl); }
+.pager a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.pager a:hover { border-color: var(--color-accent); }
+.pager a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.pager-next { text-align: right; grid-column: 2; }
+.pager-k { font-family: var(--font-mono); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case); color: var(--color-text-faint); }
+.pager-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-body-lg); color: var(--color-heading, var(--color-text)); }
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+.cls-overview .feats span { color: var(--color-text-muted); font-size: var(--text-body-sm); }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+</style>
+<article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
+  <h1>Projects</h1>
+  <p class="lede">One list of every project, each with an id that never changes. People and organizations point at the id, so a project's name lives in one place.</p>
+  <p class="note">The people and projects below are made up to show the shape. Mapping an exchange to a project on its own, the Relate step, is <span class="tag">not built yet</span>.</p>
+
+  </section>
+<section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 340" role="img" aria-label="An intake note names a project, Tool shed. The processor gives it a random prj_ id and writes it to projects.json, the only place the name lives. Sam Lee, Ana Ruiz and the organization Eastside Makers point at the id, never the name. Renaming the project to Tool library changes one line in projects.json and keeps the old name as an alias. No person file changes, and nothing breaks.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">A project is named</text>
+      <rect class="box" x="20" y="56" width="210" height="88" rx="6"/>
+      <text x="36" y="82" font-weight="600">intake note</text>
+      <text x="36" y="104" font-size="13">"projects":</text>
+      <text x="36" y="124" font-size="13">["Tool shed"]</text>
+
+      <path class="line" d="M234 100 L274 100" marker-end="url(#a)"/>
+      <rect class="box" x="280" y="72" width="150" height="56" rx="28"/><text x="304" y="96" font-weight="600">processor</text>
+      <text x="304" y="114" class="muted" font-size="12">new name, new prj_ id</text>
+
+      <path class="line" d="M434 100 L484 100" marker-end="url(#a)"/>
+      <rect class="file" x="490" y="40" width="220" height="120" rx="6"/>
+      <text x="506" y="64" font-weight="600">projects.json</text>
+      <text x="506" y="88" font-size="13">prj_3fa21c9e0b4d</text>
+      <text x="506" y="108" font-size="13">name: Tool shed</text>
+      <text x="506" y="136" class="muted" font-size="12">the only place the name lives</text>
+
+      <path class="line" d="M714 100 L754 100" marker-end="url(#a)"/>
+      <text x="716" y="90" class="muted" font-size="12">rename</text>
+      <rect class="yes" x="760" y="40" width="200" height="120" rx="6"/>
+      <text x="776" y="64" font-weight="600">After a rename</text>
+      <text x="776" y="88" font-size="13">name: Tool library</text>
+      <text x="776" y="108" font-size="13">aliases: Tool shed</text>
+      <text x="776" y="136" class="muted" font-size="12">id unchanged: one line</text>
+
+      <text x="20" y="250" font-weight="600">People and organizations</text>
+      <text x="20" y="270" class="muted" font-size="13">point at the id, never the name:</text>
+      <text x="20" y="290" class="muted" font-size="13">affiliated, prj_3fa21c9e0b4d</text>
+
+      <rect class="box" x="380" y="236" width="150" height="56" rx="6"/><text x="396" y="260" font-weight="600">Sam Lee</text><text x="396" y="278" class="muted" font-size="12">per_sam-lee</text>
+      <rect class="box" x="545" y="236" width="150" height="56" rx="6"/><text x="561" y="260" font-weight="600">Ana Ruiz</text><text x="561" y="278" class="muted" font-size="12">per_ana-ruiz</text>
+      <rect class="box" x="710" y="236" width="170" height="56" rx="6"/><text x="726" y="260" font-weight="600">Eastside Makers</text><text x="726" y="278" class="muted" font-size="12">org_eastside-makers</text>
+      <path class="line" d="M455 232 L570 166" marker-end="url(#a)"/>
+      <path class="line" d="M620 232 L600 166" marker-end="url(#a)"/>
+      <path class="line" d="M795 232 L640 166" marker-end="url(#a)"/>
+
+      <text x="380" y="326" class="muted" font-size="13">On a rename, no person or organization file changes. Every record shows the new name.</text>
+    </svg>
+  </div>
+
+  </section>
+<section class="wiki-section" id="the-projects-list-as-a-table" data-review-part data-review-label="The projects list, as a table"><h2>The projects list, as a table</h2>
+  <p class="note">One row is one project in <code>projects.json</code>. A field is one column.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>id</th><th>name</th><th>aliases</th><th>from</th><th>created_at</th></tr></thead>
+      <tbody>
+        <tr><td><code>prj_3fa21c9e0b4d</code></td><td>Tool library</td><td>Tool shed</td><td>agent</td><td>2026-10-08T21:30:00-05:00</td></tr>
+        <tr><td><code>prj_8c1e5a7d2f90</code></td><td>Neighborhood Workshop</td><td></td><td>intake:json<br>agent</td><td>2026-10-09T09:12:04-05:00</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span>Tool library was first named Tool shed. A note that still says Tool shed lands on the same project, because the old name is an alias.</span></div>
+
+  </section>
+<section class="wiki-section" id="what-each-field-holds" data-review-part data-review-label="What each field holds"><h2>What each field holds</h2>
+  <dl class="fields">
+    <dt>id</dt><dd><code>prj_</code> plus 12 random hex characters. Given once and never changed. Not made from the name, so a rename never breaks a link.</dd>
+    <dt>name</dt><dd>The name shown everywhere. Change it here to rename the project.</dd>
+    <dt>aliases</dt><dd>Earlier names. A store or note that still uses an old name lands on the same project.</dd>
+    <dt>from</dt><dd>The stores or routes that named it. A route that names it again is added here.</dd>
+    <dt>created_at</dt><dd>When it was first named.</dd>
+  </dl>
+  <p class="note">In a person or organization file, the link is one entry in <code>relationships</code>, a Murmurations triple:</p>
+  <dl class="fields">
+    <dt>predicate_url</dt><dd>How they relate to the project, in your own word. <code>affiliated</code> unless the store or note says otherwise, such as <code>collaborator</code>.</dd>
+    <dt>object_url</dt><dd>The project's <code>prj_</code> id. The same field can hold a person (<code>per_</code>) or an organization (<code>org_</code>).</dd>
+  </dl>
+
+  </section>
+<section class="wiki-section" id="what-the-file-looks-like-inside" data-review-part data-review-label="What the file looks like inside"><h2>What the file looks like inside</h2>
+  <p class="note">JSON, a plain text format. This is <code>projects.json</code>, one file for the whole folder.</p>
+<pre>{
+  "about": "Every project people and organizations point at. Rename a project by changing its name here; its id never changes.",
+  "projects": [
+    {
+      "id": "prj_3fa21c9e0b4d",
+      "name": "Tool library",
+      "aliases": ["Tool shed"],
+      "from": ["agent"],
+      "created_at": "2026-10-08T21:30:00-05:00"
+    },
+    {
+      "id": "prj_8c1e5a7d2f90",
+      "name": "Neighborhood Workshop",
+      "from": ["intake:json", "agent"],
+      "created_at": "2026-10-09T09:12:04-05:00"
+    }
+  ]
+}</pre>
+  <p class="note">An intake note names a project by name. The processor looks the name up, ignoring case and checking aliases. A name it has never seen gets a new random id, and the report says to rename it in <code>projects.json</code>.</p>
+<pre>{
+  "filed_by": "agent",
+  "how_filed": "From a note the owner gave the agent.",
+  "people": [
+    { "name": "Sam Lee", "email": ["sam@example.org"], "projects": ["Tool shed"] }
+  ]
+}</pre>
+  <p class="note">Sam's person file then holds the id, not the name:</p>
+<pre>"relationships": [
+  { "predicate_url": "affiliated", "object_url": "prj_3fa21c9e0b4d" }
+]</pre>
+
+  </section>
+<section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 170" role="img" aria-label="A project id is pointed at by a person or an organization, and by a want on that project, whose is the prj_ id. People and organizations who can meet the want point at its ow_ id with can-meet. The impact report lists the projects a person points at.">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="file" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">project, by id</text><text x="400" y="100" class="muted" font-size="13">projects.json</text>
+      <path class="line" d="M276 40 L376 74" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="14" width="210" height="52" rx="6"/><text x="80" y="38" font-weight="600">person, organization</text><text x="80" y="56" class="muted" font-size="13">relationships</text>
+      <path class="line" d="M276 130 L376 98" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="104" width="210" height="52" rx="6"/><text x="80" y="128" font-weight="600">a want on a project</text><text x="80" y="146" class="muted" font-size="13">whose: the prj_ id</text>
+      <path class="line" d="M604 85 L704 85" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="59" width="230" height="52" rx="6"/><text x="730" y="83" font-weight="600">impact report</text><text x="730" y="101" class="muted" font-size="13">lists the projects it relates to</text>
+    </svg>
+  </div>
+  <p class="note">Your own want on a project is one file in <code>offers-wants/</code>, and its <code>whose</code> is the project's <code>prj_</code> id. People and organizations who can meet it are named in the note's <code>with</code> list. Each gets a <code>can-meet</code> connection on their own record, pointing at the want's <code>ow_</code> id.</p>
+  <a class="go" href="contact.html">What a contact is →</a><br>
+  <a class="go" href="wants-and-offers.html">Wants and offers →</a><br>
+  <a class="go" href="impact-report.html">Impact report →</a>
+</section></article>
+    <nav class="pager" aria-label="Previous and next page">
+      <a class="pager-prev" href="contact-preferences.html" rel="prev"><span class="pager-k">Previous</span><span class="pager-t"><span aria-hidden="true">&#8592;</span> How someone likes to be reached</span></a>
+      <a class="pager-next" href="wants-and-offers.html" rel="next"><span class="pager-k">Next</span><span class="pager-t">Wants and offers <span aria-hidden="true">&#8594;</span></span></a>
+    </nav>
+    <footer class="foot">Everyone on these pages is made up to show the shape. The Community Legibility Spec is written in the open by Houston Bloom, CC BY 4.0.</footer>
+  </main>
+</div>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wants and offers · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/templates/wiki.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki" data-style="bloom" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility Spec <small>How it works</small></p>
+    <nav class="nav" aria-label="Community Legibility Spec">
+      <a href="index.html">Overview</a>
+      <span class="nav-section">Start</span>
+      <a href="getting-started.html">Getting started</a>
+      <span class="nav-section">Your contacts</span>
+      <a href="contact.html">What a contact is</a>
+      <a href="confidence.html">How sure we are</a>
+      <a href="contact-preferences.html">How someone likes to be reached</a>
+      <a href="projects.html">Projects</a>
+      <a href="wants-and-offers.html" class="active" aria-current="true">Wants and offers</a>
+      <span class="nav-section">Your manifest</span>
+      <a href="manifest.html">What the manifest is</a>
+      <a href="sharing.html">Sharing something</a>
+      <a href="redacted-copy.html">What a person gets</a>
+      <a href="impact-report.html">Impact report</a>
+    </nav>
+    <a class="back-link" href="../index.html">Houston Bloom</a>
+  </aside>
+  <main class="main">
+<style>
+.tpl--wiki .sidebar { top: 0; }
+.tpl--wiki .main { min-width: 0; }
+.cls-feature { max-width: 100%; }
+.cls-feature > h1:first-child { margin-top: 0; }
+.cls-overview .why { list-style: none; padding: 0; margin: 0 0 var(--space-xl); display: grid; gap: var(--space-sm); }
+.cls-overview .why li { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; color: var(--color-heading, var(--color-text)); }
+.cls-overview .state { display: inline-block; padding: 2px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); white-space: nowrap; }
+.cls-overview .state[data-state="not met"] { color: var(--color-text-muted); border-color: var(--color-border); }
+.cls-overview .state[data-state="close"], .cls-overview .state[data-state="can be met now"] { background: var(--color-accent-soft); }
+.cls-overview .packet { margin: 0 0 var(--space-xl); padding: var(--space-base) var(--space-lg); border-radius: var(--radius-lg); border: var(--border-width) dashed var(--color-border-strong); color: var(--color-text-muted); }
+.cls-overview .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+.cls-overview .feats a { display: block; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.cls-overview .feats a:hover { border-color: var(--color-accent); }
+.cls-overview .feats strong { display: block; font-family: var(--font-display); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-base); margin-top: var(--space-2xl); }
+.pager a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.pager a:hover { border-color: var(--color-accent); }
+.pager a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.pager-next { text-align: right; grid-column: 2; }
+.pager-k { font-family: var(--font-mono); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case); color: var(--color-text-faint); }
+.pager-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-body-lg); color: var(--color-heading, var(--color-text)); }
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+.cls-overview .feats span { color: var(--color-text-muted); font-size: var(--text-body-sm); }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+</style>
+<article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
+  <h1>Wants and offers</h1>
+  <p class="lede">A want is something still open between you and someone: they need something from you. An offer is something they put out. Both use the Murmurations offers and wants shape.</p>
+  <p class="note">Built 2026-10-09. The field names below come from the published Murmurations offers and wants schema. Five more are ours. The people and items are made up to show the shape.</p>
+
+  </section>
+<section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 340" role="img" aria-label="An exchange is what passed between you, dated and done, for example Kai Tran sent a link. Your note decides whether it asks something of you. If yes, it opens a want, linked to their record, that stays open until it is done. A link shared with no ask stays an exchange only. An offer is something they put out, listed in your note. Open wants show at the top of the dashboard, with each person's open count, and each record lists its open wants and offers.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">Something passed between you</text>
+      <rect class="file" x="20" y="110" width="200" height="80" rx="6"/>
+      <text x="36" y="134" font-weight="600">exchange</text>
+      <text x="36" y="154" font-size="13">Kai Tran sent a link</text>
+      <text x="36" y="174" class="muted" font-size="12">2026-10-08, dated and done</text>
+
+      <path class="line" d="M224 150 L276 150" marker-end="url(#a)"/>
+      <polygon class="yes" points="360,96 446,150 360,204 274,150"/>
+      <text x="326" y="146" font-weight="600" font-size="14">An ask</text>
+      <text x="320" y="164" font-weight="600" font-size="14">of you?</text>
+      <text x="272" y="232" class="muted" font-size="13">your note decides;</text>
+      <text x="272" y="249" class="muted" font-size="13">the agent suggests</text>
+
+      <path class="line" d="M446 150 L476 150 L476 82 L500 82" marker-end="url(#a)"/>
+      <text x="482" y="70" class="muted" font-size="12">yes</text>
+      <rect class="box" x="506" y="44" width="200" height="80" rx="6"/>
+      <text x="522" y="68" font-weight="600">want</text>
+      <text x="522" y="88" font-size="13">exchange_type: want</text>
+      <text x="522" y="108" class="muted" font-size="12">open; done when met</text>
+
+      <text x="272" y="266" class="muted" font-size="13">no ask: an exchange only</text>
+      <rect class="box" x="506" y="178" width="200" height="80" rx="6"/>
+      <text x="522" y="202" font-weight="600">offer</text>
+      <text x="522" y="222" font-size="13">exchange_type: offer</text>
+      <text x="522" y="242" class="muted" font-size="12">listed in your note</text>
+
+      <path class="line" d="M710 84 L760 84" marker-end="url(#a)"/>
+      <rect class="box" x="766" y="44" width="194" height="80" rx="6"/>
+      <text x="782" y="68" font-weight="600">dashboard</text>
+      <text x="782" y="88" class="muted" font-size="12">open wants at the top,</text>
+      <text x="782" y="104" class="muted" font-size="12">each person's open count</text>
+
+      <path class="line" d="M710 110 L760 196" marker-end="url(#a)"/>
+      <path class="line" d="M710 218 L760 218" marker-end="url(#a)"/>
+      <rect class="box" x="766" y="178" width="194" height="80" rx="6"/>
+      <text x="782" y="202" font-weight="600">their record</text>
+      <text x="782" y="222" class="muted" font-size="12">lists their open</text>
+      <text x="782" y="238" class="muted" font-size="12">wants and offers</text>
+
+      <text x="20" y="300" class="muted" font-size="13">Each want or offer is one file, offers-wants/&lt;id&gt;.json.</text>
+      <text x="20" y="318" class="muted" font-size="13">The exchange stays an exchange either way. One exchange can open one want.</text>
+    </svg>
+  </div>
+
+  </section>
+<section class="wiki-section" id="wants-and-offers-as-a-table" data-review-part data-review-label="Wants and offers, as a table"><h2>Wants and offers, as a table</h2>
+  <p class="note">One row is one want or offer. The first columns are Murmurations fields. The last three are fields this system adds: <code>whose</code>, <code>opened_by</code> and <code>status</code>.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>exchange_type</th><th>title</th><th>tags</th><th>transaction_type</th><th>geographic_scope</th><th>whose</th><th>opened_by</th><th>status</th></tr></thead>
+      <tbody>
+        <tr class="waiting"><td>want</td><td class="wrap">Look at the tool list for the library</td><td>tools, library</td><td>receive-donate</td><td>local</td><td><code>per_kai-tran</code></td><td><code>exc_3f9a1c0b2d</code></td><td>open</td></tr>
+        <tr><td>offer</td><td class="wrap">Bike repair guide</td><td>repair, bikes</td><td>receive-donate</td><td>local</td><td><code>per_robin-park</code></td><td></td><td>open</td></tr>
+        <tr><td>want</td><td class="wrap">Notes on the workshop plan</td><td>workshop</td><td>receive-donate</td><td>local</td><td><code>per_priya-shah</code></td><td><code>exc_7b20e4d91a</code></td><td>done</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span><span class="swatch"></span>An open want: Kai needs you to look at something. It shows on the dashboard until you have looked.</span></div>
+
+  </section>
+<section class="wiki-section" id="what-each-field-holds" data-review-part data-review-label="What each field holds"><h2>What each field holds</h2>
+  <p class="note">From the published Murmurations offers and wants schema, version 0.1.0. Required there: <code>linked_schemas</code>, <code>exchange_type</code>, <code>transaction_type</code>, <code>tags</code>, <code>title</code>, <code>description</code>, <code>geographic_scope</code>, <code>contact_details</code>.</p>
+  <dl class="fields">
+    <dt>linked_schemas</dt><dd>The formats this file follows: <code>offers_wants_schema-v0.1.0</code>.</dd>
+    <dt>exchange_type</dt><dd><code>offer</code> or <code>want</code>. An offer is something to lend, lease, sell or donate. A want is something to borrow, rent, buy or receive.</dd>
+    <dt>item_type</dt><dd><code>good</code>, something made, or <code>service</code>, something performed.</dd>
+    <dt>transaction_type</dt><dd>On what basis: <code>borrow-lend</code>, <code>rent-lease</code>, <code>buy-sell</code>, <code>receive-donate</code>. A list; more than one is allowed.</dd>
+    <dt>title</dt><dd>A few words saying what it is.</dd>
+    <dt>description</dt><dd>One to three sentences. For a want opened from a note, the note's context goes here.</dd>
+    <dt>tags</dt><dd>Words to find it by.</dd>
+    <dt>details_url</dt><dd>A web page with more about it. For a shared link, the link.</dd>
+    <dt>image</dt><dd>An image address for it.</dd>
+    <dt>geographic_scope</dt><dd>Where it is available or wanted: <code>local</code>, <code>regional</code>, <code>national</code>, <code>international</code>.</dd>
+    <dt>geolocation</dt><dd>Where it is, as <code>lat</code> and <code>lon</code>.</dd>
+    <dt>contact_details</dt><dd>How to reach whoever offers or wants it: an <code>email</code>, a <code>contact_form</code> address, or both.</dd>
+    <dt>expires_at</dt><dd>When it expires, as a Unix timestamp: seconds since 1970, a number.</dd>
+  </dl>
+  <p class="note">Five fields are ours, because the Murmurations schema has none for them. Required: <code>id</code>, <code>whose</code>, <code>status</code>.</p>
+  <dl class="fields">
+    <dt>id</dt><dd><code>ow_</code> and 10 hex characters. The same want filed twice gets the same id.</dd>
+    <dt>whose</dt><dd>Whose want or offer it is: a person (<code>per_</code>), an organization (<code>org_</code>), or a project (<code>prj_</code>) for your own want.</dd>
+    <dt>opened_by</dt><dd>The exchange that opened it, by its <code>exc_</code> id, when one did.</dd>
+    <dt>status</dt><dd><code>open</code> until it is met, then <code>done</code>. A done want stays on file.</dd>
+    <dt>closed_at</dt><dd>When it was marked done.</dd>
+  </dl>
+
+  </section>
+<section class="wiki-section" id="what-the-file-looks-like-inside" data-review-part data-review-label="What the file looks like inside"><h2>What the file looks like inside</h2>
+  <p class="note">JSON, a plain text format. This is Kai's want: the Murmurations fields, plus ours. It is stored as one file, <code>offers-wants/&lt;id&gt;.json</code>. It points at Kai by <code>whose</code> and at the exchange by <code>opened_by</code>.</p>
+<pre>{
+  "id": "ow_9d4e2b71c0",
+  "linked_schemas": ["offers_wants_schema-v0.1.0", "contacts_offer_want_addon-v0.1.0"],
+  "whose": "per_kai-tran",
+  "opened_by": "exc_3f9a1c0b2d",
+  "status": "open",
+  "exchange_type": "want",
+  "item_type": "service",
+  "transaction_type": ["receive-donate"],
+  "title": "Look at the tool list for the library",
+  "description": "Kai sent the tool list for the library and asked for a look before it goes out.",
+  "tags": ["tools", "library"],
+  "details_url": "https://example.org/tool-list",
+  "geographic_scope": "local",
+  "contact_details": { "email": "kai@example.org" },
+  "expires_at": 1793491200,
+  "filed_at": "2026-10-08T11:41:00-05:00",
+  "filed_by": "agent"
+}</pre>
+  <p class="note">The exchange it came from stays as it is, one line in Kai's <code>exchanges.jsonl</code>.</p>
+<pre>{"id": "exc_3f9a1c0b2d", "at": "2026-10-08T10:10:16-05:00", "from": "per_kai-tran", "to": ["per_robin-park"], "route": "email", "subject": "Tool list", "carried": [{"kind": "link", "title": "Tool list", "url": "https://example.org/tool-list"}, {"kind": "ask", "title": "A look before it goes out"}], "filed_at": "2026-10-08T11:41:00-05:00", "filed_by": "agent", "how_filed": "From a note the owner gave the agent."}</pre>
+
+  </section>
+<section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 170" role="img" aria-label="A want or offer points at a person by id, at the exchange that opened it, and can sit on a project. Whose it is goes in whose, the exchange in opened_by.">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="box" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">want or offer</text><text x="400" y="100" class="muted" font-size="13">offers-wants/&lt;id&gt;.json</text>
+      <path class="line" d="M376 85 L276 85" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="59" width="210" height="52" rx="6"/><text x="80" y="83" font-weight="600">person, by id</text><text x="80" y="101" class="muted" font-size="13">whose it is</text>
+      <path class="line" d="M604 70 L704 40" marker-end="url(#b)"/>
+      <rect class="file" x="710" y="14" width="230" height="52" rx="6"/><text x="730" y="38" font-weight="600">exchange, by id</text><text x="730" y="56" class="muted" font-size="13">opened_by: what opened it</text>
+      <path class="line" d="M604 100 L704 130" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="104" width="230" height="52" rx="6"/><text x="730" y="128" font-weight="600">project, by id</text><text x="730" y="146" class="muted" font-size="13">your own want, on a project</text>
+    </svg>
+  </div>
+  <p class="note">Your own want works the same way: one record on a project, with the people who might meet it pointing at it, each saying how they relate. A note's <code>with</code> list does this: each person or organization named gets a connection, <code>can-meet</code> for a want or <code>offered-to</code> for an offer, pointing at the <code>ow_</code> id.</p>
+
+  </section>
+<section class="wiki-section" id="how-a-note-opens-and-closes-one" data-review-part data-review-label="How a note opens and closes one"><h2>How a note opens and closes one</h2>
+  <dl class="fields">
+    <dt>opens</dt><dd>On an exchange in the note. Opens a want. Whose it is: the other party. The exchange is what opened it.</dd>
+    <dt>wants, offers</dt><dd>Lists in the note, for ones no exchange opened. Each says <code>whose</code>, and can say <code>with</code>.</dd>
+    <dt>done</dt><dd>A list of ids, for example <code>["ow_9d4e2b71c0"]</code>. Each is marked done with the time. Nothing is removed.</dd>
+  </dl>
+  <a class="go" href="contact.html">What a contact is →</a><br>
+  <a class="go" href="projects.html">Projects →</a><br>
+  <a class="go" href="impact-report.html">Impact report →</a>
+</section></article>
+    <nav class="pager" aria-label="Previous and next page">
+      <a class="pager-prev" href="projects.html" rel="prev"><span class="pager-k">Previous</span><span class="pager-t"><span aria-hidden="true">&#8592;</span> Projects</span></a>
+      <a class="pager-next" href="manifest.html" rel="next"><span class="pager-k">Next</span><span class="pager-t">What the manifest is <span aria-hidden="true">&#8594;</span></span></a>
+    </nav>
+    <footer class="foot">Everyone on these pages is made up to show the shape. The Community Legibility Spec is written in the open by Houston Bloom, CC BY 4.0.</footer>
+  </main>
+</div>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

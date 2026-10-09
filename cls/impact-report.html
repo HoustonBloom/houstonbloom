@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en" data-style="bloom">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impact report · Community Legibility Spec</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../vendor/fonts.css">
+<link rel="stylesheet" href="../vendor/styles.css">
+<link rel="stylesheet" href="../vendor/nav-bar/component.css">
+<link rel="stylesheet" href="../vendor/template-menu/component.css">
+<link rel="stylesheet" href="../vendor/templates/wiki.css">
+<link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/copy-block/component.css">
+<link rel="stylesheet" href="../views.css">
+<script defer src="../vendor/nav-bar/behavior.js"></script>
+<script defer src="../site.js"></script>
+</head>
+<body>
+<header class="nav-bar" data-style="editorial" data-component="nav-bar"><div class="inner">
+    <a class="brand" href="../index.html" aria-label="Houston Bloom, home"><span class="brand-logo" aria-hidden="true"><img src="../_assets/houston-bloom-wordmark-accent.png" width="369" height="71" alt=""></span></a>
+    <nav aria-label="Main">
+        <a href="../index.html">Houston Bloom</a>
+        <a href="../gardening-tools.html">Gardens not Platforms</a>
+        <a href="../cls/index.html" class="active" aria-current="page">Community Legibility Spec</a>
+        <a href="../index.html#s-close">Get Involved</a>
+    </nav>
+    <div class="header-actions">
+      <div class="template-menu" data-component="template-menu">
+        <button type="button" data-slot="trigger" aria-haspopup="true" aria-expanded="false" aria-controls="view-list" aria-label="View: Wiki. Change">
+          <svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span><svg data-slot="caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3h8L5 8z" fill="currentColor"/></svg>
+        </button>
+        <ul id="view-list" data-slot="list" hidden>
+          <li><a href="index.html" aria-current="page"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 1.5h7l3 3v10H3z"/><path d="M10 1.5v3h3"/><path d="M5.5 8h5M5.5 10.5h5M5.5 13h3"/></svg><span data-slot="label">Wiki</span></a></li>
+          <li><a href="slides.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3" width="13" height="8.5" rx="1.5"/><path d="M6.5 5.5l3 1.75-3 1.75z"/><path d="M5 14h6"/></svg><span data-slot="label">Slides</span></a></li>
+          <li><a href="activity.html"><svg data-slot="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 13.5h13"/><path d="M4 13.5V9M8 13.5V3.5M12 13.5V6.5"/><circle cx="4" cy="6.5" r="1"/><circle cx="12" cy="3.5" r="1"/></svg><span data-slot="label">Activity</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div></header>
+<div class="tpl tpl--wiki" data-style="bloom" id="main">
+  <aside class="sidebar">
+    <p class="brand">Community Legibility Spec <small>How it works</small></p>
+    <nav class="nav" aria-label="Community Legibility Spec">
+      <a href="index.html">Overview</a>
+      <span class="nav-section">Start</span>
+      <a href="getting-started.html">Getting started</a>
+      <span class="nav-section">Your contacts</span>
+      <a href="contact.html">What a contact is</a>
+      <a href="confidence.html">How sure we are</a>
+      <a href="contact-preferences.html">How someone likes to be reached</a>
+      <a href="projects.html">Projects</a>
+      <a href="wants-and-offers.html">Wants and offers</a>
+      <span class="nav-section">Your manifest</span>
+      <a href="manifest.html">What the manifest is</a>
+      <a href="sharing.html">Sharing something</a>
+      <a href="redacted-copy.html">What a person gets</a>
+      <a href="impact-report.html" class="active" aria-current="true">Impact report</a>
+    </nav>
+    <a class="back-link" href="../index.html">Houston Bloom</a>
+  </aside>
+  <main class="main">
+<style>
+.tpl--wiki .sidebar { top: 0; }
+.tpl--wiki .main { min-width: 0; }
+.cls-feature { max-width: 100%; }
+.cls-feature > h1:first-child { margin-top: 0; }
+.cls-overview .why { list-style: none; padding: 0; margin: 0 0 var(--space-xl); display: grid; gap: var(--space-sm); }
+.cls-overview .why li { font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 600; color: var(--color-heading, var(--color-text)); }
+.cls-overview .state { display: inline-block; padding: 2px var(--space-sm); border-radius: var(--radius-full); border: var(--border-width) var(--border-style) var(--color-border-strong); font-size: var(--text-caption); white-space: nowrap; }
+.cls-overview .state[data-state="not met"] { color: var(--color-text-muted); border-color: var(--color-border); }
+.cls-overview .state[data-state="close"], .cls-overview .state[data-state="can be met now"] { background: var(--color-accent-soft); }
+.cls-overview .packet { margin: 0 0 var(--space-xl); padding: var(--space-base) var(--space-lg); border-radius: var(--radius-lg); border: var(--border-width) dashed var(--color-border-strong); color: var(--color-text-muted); }
+.cls-overview .feats { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+.cls-overview .feats a { display: block; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.cls-overview .feats a:hover { border-color: var(--color-accent); }
+.cls-overview .feats strong { display: block; font-family: var(--font-display); }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-base); margin-top: var(--space-2xl); }
+.pager a { display: flex; flex-direction: column; gap: var(--space-xs); min-height: 44px; padding: var(--space-base) var(--space-lg); background: var(--color-surface); border: var(--border-width) var(--border-style) var(--color-border); border-radius: var(--radius-lg); color: var(--color-text); text-decoration: none; }
+.pager a:hover { border-color: var(--color-accent); }
+.pager a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.pager-next { text-align: right; grid-column: 2; }
+.pager-k { font-family: var(--font-mono); font-size: var(--text-eyebrow); letter-spacing: var(--tracking-eyebrow); text-transform: var(--eyebrow-case); color: var(--color-text-faint); }
+.pager-t { font-family: var(--font-display); font-weight: 600; font-size: var(--text-body-lg); color: var(--color-heading, var(--color-text)); }
+@media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager-next { grid-column: 1; } }
+.cls-overview .feats span { color: var(--color-text-muted); font-size: var(--text-body-sm); }
+.cls-feature h1, .cls-feature h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+.cls-feature h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.cls-feature h2 { font-size: 1.6rem; margin-top: 56px; }
+.cls-feature .lede { color: var(--color-text-muted); font-size: 1.15rem; max-width: 60ch; margin: 12px 0 0; }
+.cls-feature .note { color: var(--color-text-muted); font-size: .95rem; max-width: 70ch; margin: 8px 0 0; }
+.cls-feature .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; margin-top: 20px; }
+.cls-feature svg { width: 100%; height: auto; display: block; }
+.cls-feature svg text { font-family: var(--font-body); fill: var(--color-text); }
+.cls-feature svg .muted { fill: var(--color-text-muted); }
+.cls-feature svg .box { fill: var(--color-surface-alt); stroke: var(--color-border-strong); }
+.cls-feature svg .file { fill: var(--color-accent-soft); stroke: var(--color-accent); }
+.cls-feature svg .yes { fill: var(--color-surface); stroke: var(--color-accent); stroke-width: 2; }
+.cls-feature svg .line { stroke: var(--color-text-muted); fill: none; stroke-width: 1.5; }
+.cls-feature svg .dash { stroke-dasharray: 5 5; }
+.cls-feature svg .arrow { fill: var(--color-text-muted); }
+.cls-feature .scroll { overflow-x: auto; margin-top: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.cls-feature table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+.cls-feature th, .cls-feature td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; white-space: nowrap; }
+.cls-feature th { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; background: var(--color-surface-alt); }
+.cls-feature td.wrap { white-space: normal; min-width: 200px; }
+.cls-feature td code, .cls-feature .mono { font-family: var(--font-mono); font-size: .85rem; }
+.cls-feature tr.waiting td { background: var(--color-accent-soft); }
+.cls-feature .tag { display: inline-block; font-family: var(--font-mono); font-size: .72rem; padding: 1px 8px; border-radius: var(--radius-full); border: 1px solid var(--color-border-strong); color: var(--color-text-muted); }
+.cls-feature .key { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: .9rem; color: var(--color-text-muted); }
+.cls-feature .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; background: var(--color-accent-soft); border: 1px solid var(--color-accent); }
+.cls-feature dl.fields { display: grid; grid-template-columns: minmax(130px, max-content) 1fr; gap: 10px 24px; margin: 20px 0 0; }
+.cls-feature dl.fields dt { font-family: var(--font-mono); font-size: .9rem; }
+.cls-feature dl.fields dd { margin: 0; color: var(--color-text-muted); }
+.cls-feature pre { font-family: var(--font-mono); font-size: .82rem; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; margin: 20px 0 0; }
+.cls-feature a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 4px; }
+@media (max-width: 600px) {
+.cls-feature dl.fields { grid-template-columns: 1fr; gap: 2px 0; }
+.cls-feature dl.fields dd { margin-bottom: 10px; }
+}
+</style>
+<article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
+  <h1>Impact report</h1>
+  <p class="lede">A report on what someone's information did to your work after it reached you. Drafted from your records, finished by you, sent by you.</p>
+  <p class="note">The people below are made up to show the shape. The drafter is built: you run it for one person. Nothing is ever sent by it.</p>
+
+  </section>
+<section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 320" role="img" aria-label="One person's file and their exchanges go into the drafter, impact.mjs. It fills in what the records hold and writes a draft to reports, as markdown to edit and a page to read. You finish the parts marked yours to fill in, then send it to them yourself. Nothing is sent by the drafter.">
+      <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <text x="20" y="28" font-weight="600">One person, on record</text>
+      <rect class="file" x="20" y="48" width="200" height="70" rx="6"/>
+      <text x="36" y="72" font-weight="600" font-size="14">person.json</text>
+      <text x="36" y="92" class="muted" font-size="12">who they are,</text>
+      <text x="36" y="108" class="muted" font-size="12">their projects</text>
+      <rect class="file" x="20" y="146" width="200" height="70" rx="6"/>
+      <text x="36" y="170" font-weight="600" font-size="14">exchanges.jsonl</text>
+      <text x="36" y="190" class="muted" font-size="12">what passed between you,</text>
+      <text x="36" y="206" class="muted" font-size="12">what it carried</text>
+
+      <path class="line" d="M224 83 L264 124" marker-end="url(#a)"/>
+      <path class="line" d="M224 181 L264 140" marker-end="url(#a)"/>
+      <rect class="box" x="270" y="104" width="160" height="56" rx="28"/><text x="294" y="128" font-weight="600">impact.mjs</text>
+      <text x="294" y="146" class="muted" font-size="12">fills what is on record</text>
+
+      <path class="line" d="M434 132 L474 132" marker-end="url(#a)"/>
+      <rect class="file" x="480" y="72" width="170" height="120" rx="6"/>
+      <text x="496" y="96" font-weight="600">the draft</text>
+      <text x="496" y="118" font-size="13">reports/</text>
+      <text x="496" y="140" font-size="13">.md to edit</text>
+      <text x="496" y="160" font-size="13">.html to read</text>
+      <text x="496" y="180" class="muted" font-size="12">status: draft</text>
+
+      <path class="line" d="M654 132 L694 132" marker-end="url(#a)"/>
+      <rect class="yes" x="700" y="82" width="130" height="100" rx="6"/>
+      <text x="716" y="108" font-weight="600">You finish it</text>
+      <text x="716" y="130" class="muted" font-size="12">every part marked</text>
+      <text x="716" y="146" class="muted" font-size="12">Yours to fill in</text>
+
+      <path class="line" d="M834 132 L854 132" marker-end="url(#a)"/>
+      <rect class="box" x="860" y="97" width="110" height="70" rx="6"/>
+      <text x="874" y="126" font-weight="600">You send it</text>
+      <text x="874" y="146" class="muted" font-size="12">yourself</text>
+
+      <text x="270" y="250" class="muted" font-size="13">Nothing is sent. The draft says so at the top. The agent drafts; it never sends.</text>
+      <text x="270" y="270" class="muted" font-size="13">A folder with no design system still gets a readable page, from a small built-in stylesheet.</text>
+    </svg>
+  </div>
+
+  </section>
+<section class="wiki-section" id="what-gets-filled-in-as-a-table" data-review-part data-review-label="What gets filled in, as a table"><h2>What gets filled in, as a table</h2>
+  <p class="note">One row is one part of the report. A drafted report for Kai Tran, from Robin Park, the owner.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>section</th><th>part</th><th>filled from</th><th>in the draft</th></tr></thead>
+      <tbody>
+        <tr><td>Header</td><td>From</td><td class="wrap">the owner's person file</td><td>Robin Park</td></tr>
+        <tr><td>Header</td><td>To</td><td class="wrap">their person file</td><td>Kai Tran</td></tr>
+        <tr><td>Header</td><td>First received</td><td class="wrap">the first exchange from them</td><td>2026-09-14</td></tr>
+        <tr><td>Header</td><td>What it refers to</td><td class="wrap">that exchange's subject</td><td>Tool list</td></tr>
+        <tr><td>Header</td><td>Report number</td><td class="wrap">earlier reports for them, plus one</td><td>1</td></tr>
+        <tr><td>Header</td><td>Visibility</td><td class="wrap">their person file</td><td>local</td></tr>
+        <tr><td>Contact</td><td>What they shared</td><td class="wrap">what their exchanges carried</td><td>Tool list (https://example.org/tool-list), 2026-09-14</td></tr>
+        <tr><td>Contact</td><td>Projects it relates to</td><td class="wrap">their relationships</td><td><code>prj_3fa21c9e0b4d</code> (affiliated)</td></tr>
+        <tr class="waiting"><td>Contact</td><td>Questions or needs it spoke to</td><td class="wrap">you</td><td>Yours to fill in.</td></tr>
+        <tr><td>Activity</td><td>Each exchange</td><td class="wrap">every exchange, oldest first</td><td>2026-09-14 · from them · email · Tool list</td></tr>
+        <tr class="waiting"><td>Impact</td><td>Did it get integrated?</td><td class="wrap">you</td><td>Yours to fill in.</td></tr>
+        <tr><td>Impact</td><td>Did it change your system?</td><td class="wrap">anything carried marked <code>impact</code></td><td>Loan rules rewritten (2026-10-01)</td></tr>
+        <tr class="waiting"><td>Mission</td><td>All four parts</td><td class="wrap">you</td><td>Yours to fill in.</td></tr>
+        <tr><td>Next check-in</td><td>Date</td><td class="wrap"><code>--checkin</code> when you give it</td><td>2026-11-09</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="key"><span><span class="swatch"></span>Yours to fill in. The records cannot hold these, so the draft leaves them to you.</span></div>
+
+  </section>
+<section class="wiki-section" id="what-each-field-holds" data-review-part data-review-label="What each field holds"><h2>What each field holds</h2>
+  <p class="note">Four layers: contact, activity, impact, then mission and design principles. A header comes first and a next check-in last.</p>
+  <dl class="fields">
+    <dt>From, To</dt><dd>You, and the person the report is for.</dd>
+    <dt>First received</dt><dd>The date of the first exchange from them. "Nothing on record from them yet" when there is none.</dd>
+    <dt>What it refers to</dt><dd>The subject of that first exchange.</dd>
+    <dt>Report date, number</dt><dd>Today, and which report this is for them: first, then number 2, 3.</dd>
+    <dt>Visibility</dt><dd>Who may see it, from their person file. <code>local</code> unless it says otherwise.</dd>
+    <dt>What they shared</dt><dd>Every link or file their exchanges carried, with its date.</dd>
+    <dt>Projects it relates to</dt><dd>Their relationships, as an id and how they relate.</dd>
+    <dt>Questions or needs</dt><dd>What it spoke to. Yours.</dd>
+    <dt>Lexicon overlap</dt><dd>Their term next to your term for the same thing. Yours.</dd>
+    <dt>Activity</dt><dd>One line per exchange: date, from them or to them, route, subject. <code>--since</code> leaves out older ones.</dd>
+    <dt>Did it get integrated?</dt><dd>Integrated, partly integrated, held for later, or not used, and where it lives now. Yours.</dd>
+    <dt>Did it change your system?</dt><dd>Filled from anything an exchange carried with kind <code>impact</code>. Otherwise yours.</dd>
+    <dt>What came back out</dt><dd>Anything you made from it that they may want, with credit where their idea fed it. Yours.</dd>
+    <dt>Mission and principles</dt><dd>Your mission as you state it now, the principles it supported, the ones it challenged, where it moved you. Yours.</dd>
+    <dt>Next check-in</dt><dd>A date, and what you will watch for.</dd>
+  </dl>
+  <p class="note">The ritual, from the template: set a check-in date when it arrives. On that date, fill out the report. Make a cut holding only what fits their visibility. Send it yourself. Log the send as an activity. Nothing runs on the check-in date by itself: you run the drafter, <code>node _build/impact.mjs per_kai-tran</code>.</p>
+
+  </section>
+<section class="wiki-section" id="what-the-file-looks-like-inside" data-review-part data-review-label="What the file looks like inside"><h2>What the file looks like inside</h2>
+  <p class="note">The report is Markdown, plain text with light marks. This is the start of Kai's draft, <code>reports/20261009_per_kai-tran_impact-1.md</code>. A page to read is written beside it.</p>
+<pre>---
+type: impact-report
+person: per_kai-tran
+report: 1
+date: 2026-10-09
+status: draft
+---
+
+# Impact report · Kai Tran · first
+
+Drafted from the records on 2026-10-09. What the records hold is filled in; the rest is yours. Nothing has been sent.
+
+## Contact
+
+- **What they shared:**
+  - Tool list (https://example.org/tool-list), 2026-09-14
+- **Projects it relates to:**
+  - prj_3fa21c9e0b4d (affiliated)
+- **Questions or needs it spoke to:** _Yours to fill in._</pre>
+  <p class="note">It is drafted from lines like this one, in JSON, from Kai's <code>exchanges.jsonl</code>. A carried item with kind <code>impact</code> fills "Did it change your system?".</p>
+<pre>{"id": "exc_8d41b7a0c3", "at": "2026-10-01T16:02:00-05:00", "from": "per_robin-park", "to": ["per_kai-tran"], "route": "email", "subject": "What we did with the tool list", "carried": [{"kind": "impact", "title": "Loan rules rewritten"}], "filed_at": "2026-10-01T16:30:00-05:00", "filed_by": "agent", "how_filed": "From a note the owner gave the agent."}</pre>
+
+  </section>
+<section class="wiki-section" id="how-it-connects" data-review-part data-review-label="How it connects"><h2>How it connects</h2>
+  <div class="card">
+    <svg viewBox="0 0 980 170" role="img" aria-label="An impact report reads one person by id, their exchanges, and the projects they point at. Sending only what fits their visibility is a step you take yourself.">
+      <defs><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+      <rect class="file" x="380" y="54" width="220" height="62" rx="6"/><text x="400" y="80" font-weight="600">impact report</text><text x="400" y="100" class="muted" font-size="13">a draft you finish</text>
+      <path class="line" d="M376 70 L276 40" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="14" width="210" height="52" rx="6"/><text x="80" y="38" font-weight="600">person, by id</text><text x="80" y="56" class="muted" font-size="13">and their exchanges</text>
+      <path class="line" d="M376 100 L276 130" marker-end="url(#b)"/>
+      <rect class="box" x="60" y="104" width="210" height="52" rx="6"/><text x="80" y="128" font-weight="600">projects, by id</text><text x="80" y="146" class="muted" font-size="13">from relationships</text>
+      <path class="line dash" d="M604 85 L704 85" marker-end="url(#b)"/>
+      <rect class="box" x="710" y="59" width="230" height="52" rx="6"/><text x="730" y="83" font-weight="600">sharing it</text><text x="730" y="101" class="muted" font-size="13">only what fits their visibility</text>
+    </svg>
+  </div>
+  <a class="go" href="contact.html">What a contact is →</a><br>
+  <a class="go" href="projects.html">Projects →</a><br>
+  <a class="go" href="sharing.html">Sharing →</a>
+</section></article>
+    <nav class="pager" aria-label="Previous and next page">
+      <a class="pager-prev" href="redacted-copy.html" rel="prev"><span class="pager-k">Previous</span><span class="pager-t"><span aria-hidden="true">&#8592;</span> What a person gets</span></a>
+      <span></span>
+    </nav>
+    <footer class="foot">Everyone on these pages is made up to show the shape. The Community Legibility Spec is written in the open by Houston Bloom, CC BY 4.0.</footer>
+  </main>
+</div>
+<script src="../vendor/template-menu/behavior.js"></script>
+<script src="../vendor/copy-block/behavior.js"></script>
+</body>
+</html>

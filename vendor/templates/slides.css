@@ -1,0 +1,356 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   design-system/templates/slides.css
+   version  1.2.0
+   refresh  node sync.mjs --template slides "<this folder>"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* ============================================================================
+   slides.css · v1.2.0 · the stage, as templates/CONTRACT.md specifies it
+
+   1.2.0 (Megan, 2026-10-09: "no one should be making new buttons"): this
+   file no longer draws a button. Previous and Next are the button atom,
+   .btn.btn--outline.btn--icon with data-component="button". A deck's head
+   row (.deck-head, .deck-name, .deck-controls) is template CSS, and the
+   style menu goes in it, so no deck writes its own switcher. The .switchbar
+   rules are deprecated and stay only until no deck uses them; a deck that
+   still does fails check-page.mjs --render on its hand-made buttons.
+
+   1.1.0 (Megan, 2026-10-09: "kill the small mono eyebrows"): nothing on a
+   slide or its chrome is under 14px. The eyebrow, the act note, the style
+   switcher and the position read --text-body-sm, 14px or more in every
+   registered style, where they read --text-eyebrow (11 to 12px) and
+   --text-caption (12 to 13px). The spines that choose which slides a deck
+   has are templates/slides-spines.md.
+
+   Same version, same day: three patterns from templates/slides-spines.md get
+   layouts. .act-number (20, one figure as the whole slide), .act-table (21,
+   a small table that stacks on a phone instead of scrolling) and .act-more
+   (9, detail folded in place). Fixture: templates/_fixtures/slides-patterns.html,
+   with the style menu and light and dark.
+
+   Promoted 2026-09-24 from templates/_fixtures/slides.css, which said it was
+   the promotion candidate "if a second deck needs it". A consumer site's slides
+   view is that second deck. Both fixtures now link this file, so the fit gate
+   still proves it.
+
+   Every selector is scoped under .tpl--slides, and the viewport lock under
+   html:has(.tpl--slides), so a page that renders a deck as one of several
+   views loses its scroll only while the deck is on screen. The fixture version
+   set html and body globally, which a single-purpose deck can afford and a
+   page with a website view cannot.
+
+   This is template CSS, so it sets composition and nothing else: no colour, no
+   typeface, no shadow. Every visual value reads a semantic token.
+
+   The three rules that make it a stage rather than a page:
+
+     the deck root is 100dvh and does not grow
+     the chrome rows are fixed, the act region takes the remainder with
+       min-height: 0 and overflow: hidden
+     the chrome is one compact row at a height no style can change, because a
+       style that changes the stage height hands one style less room than
+       another and the fit gate then reads a style difference as a content one
+   ============================================================================ */
+
+html:has(.tpl--slides),
+html:has(.tpl--slides) body { height: 100%; margin: 0; overflow: hidden; }
+
+html:has(.tpl--slides) body {
+  background: var(--color-bg);
+  background-image: var(--atmosphere-layer, none);
+  background-size: var(--atmosphere-size, auto);
+  background-position: var(--atmosphere-position, 0 0);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+}
+
+.tpl--slides, .tpl--slides *, .tpl--slides *::before, .tpl--slides *::after { box-sizing: border-box; }
+
+/* ---- the stage ----------------------------------------------------------- */
+
+.tpl--slides.deck {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* A host may put its own header in the deck as the first fixed row. It must
+   not grow, or the stage loses height to it. It also sits a layer above the
+   stage: the stage is positioned and comes later, so without this a menu
+   opening from the header draws under the slide and no pick lands on it
+   (found 2026-09-29, every item on the template and style menus). */
+.tpl--slides > .deck-head { flex: none; position: relative; z-index: 2; }
+/* The head row every deck carries: the deck's name on the left, the style menu
+   (components/style-menu) on the right. Fixed px height, so no style changes
+   the stage height. */
+.tpl--slides > .deck-head {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0 var(--gutter);
+  border-bottom: var(--border-width) var(--border-style) var(--color-border);
+}
+.tpl--slides .deck-name {
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-body-lg);
+  color: var(--color-heading, var(--color-text));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tpl--slides .deck-controls { flex: none; display: flex; align-items: center; gap: var(--space-sm); }
+
+/* Fixed row. The height is in px on purpose: see the header note. */
+/* Deprecated 1.2.0: a deck puts style-menu in .deck-head instead. */
+.tpl--slides .switchbar {
+  flex: none;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0 var(--gutter);
+  border-bottom: var(--border-width) var(--border-style) var(--color-border);
+  overflow: hidden;
+}
+
+.tpl--slides .switchbar b {
+  font-family: var(--font-eyebrow, var(--font-body));
+  font-size: var(--text-body-sm);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case, uppercase);
+  color: var(--color-text-faint);
+  font-weight: 400;
+}
+
+.tpl--slides .switchbar button {
+  font: inherit;
+  font-size: var(--text-body-sm);
+  line-height: 1;
+  padding: 4px 10px;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+.tpl--slides .switchbar button[aria-pressed="true"] {
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+.tpl--slides .switchbar button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+/* Fixed row. */
+.tpl--slides .rail {
+  flex: none;
+  display: flex;
+  gap: 4px;
+  padding: var(--space-xs) var(--gutter);
+}
+.tpl--slides .rail span {
+  flex: 1;
+  height: 2px;
+  background: var(--color-border);
+}
+.tpl--slides .rail span[data-on] { background: var(--color-accent); }
+
+/* The remainder. Nothing scrolls. */
+.tpl--slides .deck-stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  padding: var(--space-lg) var(--gutter);
+  display: flex;
+}
+
+.tpl--slides .act {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-sm);
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+.tpl--slides .act[hidden] { display: none; }
+
+.tpl--slides .act-note {
+  margin: 0;
+  font-family: var(--font-eyebrow, var(--font-body));
+  font-size: var(--text-body-sm);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: var(--eyebrow-case, uppercase);
+  color: var(--color-text-muted);
+}
+
+.tpl--slides .act-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--title-size, var(--text-heading-xl));
+  font-weight: var(--heading-weight, 700);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-heading, var(--color-text));
+  text-wrap: balance;
+}
+
+.tpl--slides .act--title .act-title { font-size: var(--text-display); }
+
+.tpl--slides .act-claim {
+  margin: 0;
+  font-size: var(--text-body-lg);
+  color: var(--color-text-muted);
+  max-width: var(--reading);
+}
+
+/* The one supporting object an act is allowed. */
+.tpl--slides .act-object {
+  margin: 0;
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border: var(--border-width) var(--border-style) var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-rest);
+}
+.tpl--slides .act-object dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: var(--space-xs) var(--space-md); }
+.tpl--slides .act-object dt { font-family: var(--font-mono, var(--font-body)); font-size: var(--text-body-sm); color: var(--color-text-faint); }
+.tpl--slides .act-object dd { margin: 0; font-size: var(--text-body); }
+.tpl--slides .act-object .stat { font-family: var(--font-display); font-size: var(--text-heading-lg); line-height: 1; color: var(--color-accent-deep, var(--color-accent)); }
+
+/* An image as the act's one object. It takes what the stage leaves after the
+   title and never pushes the act past it: the figure shrinks, the title does
+   not. Added 2026-09-24 for a consumer deck whose acts are case studies. */
+.tpl--slides .act-figure {
+  flex: 0 1 auto;
+  min-height: 0;
+  margin: 0;
+  display: flex;
+}
+/* The cap is in viewport units, not a percentage: a percentage of an
+   auto-height act resolves to nothing, so the image took its natural height
+   and a consumer's case-study acts measured 214% of the stage on the first
+   fit run, 2026-09-24. --act-figure-max lets a deck with a taller chrome
+   lower it. */
+.tpl--slides .act-figure img {
+  max-width: 100%;
+  max-height: var(--act-figure-max, 42dvh);
+  width: auto;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+/* ---- 20 · one number ---------------------------------------------------
+   One figure is the whole slide. The figure is the largest thing on screen,
+   the title says what it counts, and the source sits under it. A figure
+   without its source does not ship (the vault's no-fabricated-data rule). */
+.tpl--slides .act-figure-num {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--heading-weight, 700);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--color-accent-deep, var(--color-accent));
+}
+.tpl--slides .act-source {
+  margin: 0;
+  font-size: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+/* ---- 21 · a small table --------------------------------------------------
+   Four columns and five rows at most; anything more is a fold or two slides.
+   The column the slide is about carries .is-key. Numbers align right. Below
+   600px each row stacks into label and value, because a slide never scrolls,
+   sideways included. */
+.tpl--slides .act-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-body);
+}
+.tpl--slides .act-table th,
+.tpl--slides .act-table td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: var(--border-width) var(--border-style) var(--color-border);
+}
+.tpl--slides .act-table th {
+  font-size: var(--text-body-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  border-bottom-color: var(--color-border-strong);
+}
+.tpl--slides .act-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.tpl--slides .act-table .is-key { font-weight: 700; color: var(--color-text); }
+.tpl--slides .act-table th.is-key { color: var(--color-accent-deep, var(--color-accent)); }
+@media (max-width: 599.98px) {
+  .tpl--slides .act-table thead { display: none; }
+  .tpl--slides .act-table tr { display: block; padding: var(--space-xs) 0; border-bottom: var(--border-width) var(--border-style) var(--color-border); }
+  .tpl--slides .act-table td { display: flex; justify-content: space-between; gap: var(--space-md); padding: 2px 0; border: 0; text-align: right; }
+  .tpl--slides .act-table td::before { content: attr(data-label); font-size: var(--text-body-sm); color: var(--color-text-muted); text-align: left; }
+}
+
+/* ---- 9 · a fold ----------------------------------------------------------
+   What the presenter may need and the room does not. Closed, it is one pill
+   and the slide fits; open, its body takes the room the stage has left and
+   scrolls inside itself, never the page. */
+.tpl--slides .act-more { min-height: 0; display: flex; flex-direction: column; gap: var(--space-sm); }
+.tpl--slides .act-more > summary {
+  align-self: flex-start;
+  list-style: none;
+  cursor: pointer;
+  font-family: var(--font-mono, var(--font-body));
+  font-size: var(--text-body-sm);
+  padding: 4px 14px;
+  color: var(--color-text);
+  border: var(--border-width) var(--border-style) var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+.tpl--slides .act-more > summary::-webkit-details-marker { display: none; }
+.tpl--slides .act-more > summary::after { content: " +"; }
+.tpl--slides .act-more[open] > summary::after { content: " \2212"; }
+.tpl--slides .act-more > summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.tpl--slides .act-more > :not(summary) { margin: 0; min-height: 0; overflow: auto; font-size: var(--text-body); color: var(--color-text-muted); max-width: var(--reading); }
+
+/* Fixed row. */
+/* Height in px for the same reason as the switchbar: the buttons take the
+   style's face, and before this line the bar measured 5px taller in editorial
+   than in grid, so grid's stage was 5px shorter (a consumer deck, 2026-09-24). */
+.tpl--slides .deck-bar {
+  flex: none;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0 var(--gutter);
+  border-top: var(--border-width) var(--border-style) var(--color-border);
+}
+/* Previous and Next are the button atom (.btn.btn--outline.btn--icon); this
+   file sets only where they sit. */
+.tpl--slides .deck-pos {
+  margin: 0;
+  font-family: var(--font-mono, var(--font-body));
+  font-size: var(--text-body-sm);
+  color: var(--color-text-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl--slides * { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+}
