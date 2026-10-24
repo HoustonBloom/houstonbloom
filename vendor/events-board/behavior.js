@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------
    VENDORED COPY. Do not edit here.
    source   design-system/components/events-board/behavior.js
-   version  0.0.0
+   version  1.0.0
    refresh  node sync.mjs events-board "<this folder>"
    warning  An edit made in this copy is lost on the next sync.
    -------------------------------------------------------------------------- */
