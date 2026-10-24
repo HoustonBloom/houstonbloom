@@ -715,12 +715,12 @@ html{scroll-padding-top:var(--topbar-h)}
 /* two photos side by side under the fade: the speaker left, the room right.
    On a phone the room photo drops and the speaker fills the card. */
 .ev-photos{position:absolute;inset:0;display:grid;grid-template-columns:1fr;z-index:-2}
-.ev-photos{overflow:hidden}
+.ev-photos{overflow:hidden;grid-template-rows:100%}
 .ev-photos img{width:100%;height:100%;object-fit:cover;display:block}
-/* both photos are wider than their half, so the crop is sideways only and nobody is cut at the head.
-   left: the speaker with the microphone, the man beside her at the edge. right: pinned to the right
-   edge so the woman in red and the woman in navy both stay in frame. */
-.ev-photos img:first-child{object-position:30% 50%}
+/* room shot, Founder's Couch Episode 3. Wide card: crop from the top so the circle of people sits in
+   frame. Narrow card: crop sideways and pin right so the host in the end armchair stays in frame. */
+.ev-photos img:first-child{object-position:50% 62%}
+@media (max-width:819px){.ev-photos img:first-child{object-position:84% 50%}}
 .ev-feature::before{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(to top,color-mix(in oklch,var(--green-deep) 92%,transparent) 0%,color-mix(in oklch,var(--green-deep) 84%,transparent) 42%,transparent 85%)}
 .ev-feature-body{width:100%;max-width:64ch;padding:var(--card-pad);text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s3)}
@@ -1049,6 +1049,68 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 /* a lighter fade on the Speaking Series that starts lower, so more of the room shows */
 .ev-feature::before{background:linear-gradient(to top,color-mix(in oklch,var(--green-night) 82%,transparent) 0%,color-mix(in oklch,var(--green-night) 55%,transparent) 30%,transparent 58%)}
 @media (max-width:819px){.ev-block{grid-template-columns:1fr}}
+/* events board, 2026-10-23: a pinboard carousel. Every poster the same size, a square sticky on each:
+   green for coming up, grey for been there, upcoming first. Board-only colours are mixed from page
+   tokens; the design system has no board, sticky or carousel component yet. */
+.ev-block > .ev-board{grid-column:1 / -1}
+.ev-board{--board-shadow:color-mix(in oklch,var(--ink) 28%,transparent);--pin-w:260px;--sticky:196px;
+  position:relative;border:1px solid var(--ink);border-radius:18px;overflow:hidden;
+  background-color:var(--cream-3);
+  background-image:radial-gradient(color-mix(in oklch,var(--ink) 12%,transparent) 1px,transparent 1.6px);
+  background-size:14px 14px;box-shadow:inset 0 0 0 6px color-mix(in oklch,var(--cream-2) 70%,transparent)}
+.ev-board-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--s3);padding:var(--s4) var(--s5) 0}
+.ev-legend{grid-column:2;justify-content:center}
+.ev-board-nav{grid-column:3;justify-self:end}
+.ev-legend{margin:0;display:flex;align-items:center;gap:var(--s2);font-family:var(--script);font-size:var(--t-lg);color:var(--ink)}
+.ev-key{display:inline-block;width:16px;height:16px;border:1px solid color-mix(in oklch,var(--ink) 25%,transparent)}
+.ev-key--past{margin-left:var(--s3)}
+.ev-key--next,.ev-sticky--next{background:color-mix(in oklch,var(--palette-brand) 48%,var(--palette-card))}
+.ev-key--past,.ev-sticky--past{background:color-mix(in oklch,var(--ink) 9%,var(--palette-card))}
+.ev-board-nav{display:flex;gap:var(--s2)}
+.ev-board-nav[hidden]{display:none}
+.ev-board-btn{padding:0;width:44px;min-width:44px;min-height:44px;justify-content:center}
+.ev-board-btn:disabled{opacity:.35;cursor:default}
+.ev-track{list-style:none;margin:0;display:flex;gap:var(--s5);overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scroll-padding-inline:var(--s5);padding:var(--s6) var(--s5) var(--s6);
+  scrollbar-width:thin;scrollbar-color:color-mix(in oklch,var(--ink) 30%,transparent) transparent}
+.ev-pin{position:relative;flex:0 0 var(--pin-w);scroll-snap-align:start;transform:rotate(var(--tilt,0deg));transition:transform var(--dur-base) var(--ease)}
+.ev-pin:nth-child(3n+1){--tilt:-1.5deg}
+.ev-pin:nth-child(3n+2){--tilt:1.6deg}
+.ev-pin:nth-child(3n){--tilt:-.8deg}
+.ev-pin:hover,.ev-pin:focus-within{transform:rotate(0deg) translateY(-3px)}
+.ev-pin:first-child{margin-left:auto}
+.ev-pin:last-child{margin-right:auto}
+@media (prefers-reduced-motion:reduce){.ev-pin{transition:none}}
+.ev-pin-link{display:block;cursor:pointer}
+.ev-pin > img,.ev-pin-link > img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 0;
+  border:1px solid color-mix(in oklch,var(--ink) 20%,transparent);box-shadow:0 10px 18px -8px var(--board-shadow),0 2px 4px var(--board-shadow)}
+.ev-tack{position:absolute;z-index:2;top:-9px;left:50%;width:20px;height:20px;margin-left:-10px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,color-mix(in oklch,var(--palette-brand) 35%,var(--palette-card)) 0 18%,var(--palette-brand) 55%,var(--palette-green-deep) 100%);
+  box-shadow:2px 4px 4px var(--board-shadow)}
+.ev-tack--grey{background:radial-gradient(circle at 35% 30%,var(--palette-card) 0 18%,color-mix(in oklch,var(--ink) 40%,var(--palette-card)) 55%,var(--ink-soft) 100%)}
+.ev-tape{position:absolute;z-index:2;top:-12px;left:50%;width:96px;height:26px;margin-left:-48px;transform:rotate(-4deg);
+  background:color-mix(in oklch,var(--butter-wash) 72%,transparent);border-left:1px dashed color-mix(in oklch,var(--ink) 12%,transparent);border-right:1px dashed color-mix(in oklch,var(--ink) 12%,transparent);
+  box-shadow:0 1px 2px var(--board-shadow)}
+.ev-sticky{position:relative;z-index:1;width:var(--sticky);aspect-ratio:1;margin:calc(-1 * (var(--s6) + var(--s3))) calc(-1 * var(--s3)) 0 auto;
+  padding:var(--s4) var(--s3) var(--s3);color:var(--ink);transform:rotate(3deg);box-shadow:0 8px 14px -6px var(--board-shadow);
+  display:flex;flex-direction:column;align-items:flex-start;gap:var(--s1);overflow:hidden}
+.ev-pin:nth-child(even) .ev-sticky{transform:rotate(-2.5deg)}
+.ev-sticky::before{content:"";position:absolute;inset:0 0 auto 0;height:12px;background:color-mix(in oklch,var(--ink) 6%,transparent)}
+.ev-sticky p{margin:0}
+.ev-sticky-kicker{font-family:var(--script);font-size:var(--t-lg);line-height:1;color:var(--ink-soft)}
+.ev-sticky--next .ev-sticky-kicker{color:var(--green-deep, var(--palette-green-deep))}
+.ev-sticky h3{font-family:var(--script);font-size:var(--t-xl);line-height:1.02;margin:0;color:var(--ink)}
+.ev-sticky-when{font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.02em;color:var(--ink-soft)}
+.ev-sticky .btn{margin-top:auto}
+.ev-sticky-link{margin-top:auto;font-weight:600;color:var(--green);text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:flex-end}
+@media (max-width:479px){
+  .ev-board{--pin-w:min(250px,72vw);--sticky:min(196px,56vw)}
+  .ev-sticky h3{font-size:var(--t-lg)}
+  .ev-sticky{padding:var(--s3)}
+  .ev-board-head{grid-template-columns:1fr;justify-items:center;padding:var(--s3) var(--s3) 0}
+  .ev-legend,.ev-board-nav{grid-column:1;justify-self:center}
+  .ev-track{gap:var(--s4);padding:var(--s5) var(--s4);scroll-padding-inline:var(--s4)}
+}
 </style>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -1144,7 +1206,7 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 
     <article class="ev-feature" data-tone="inverse" aria-labelledby="ss-title">
       <div class="ev-photos">
-        <img src="_assets/hb-speaker-pair.webp" width="890" height="500" alt="A woman in an armchair, smiling, speaking into a microphone, with a man seated beside her" loading="lazy">
+        <img src="_assets/hb-speaking-room.webp" width="1600" height="900" alt="A woman in an armchair at the end of a coffee table, with a circle of people seated on couches around her, listening" loading="lazy">
       </div>
       <div class="ev-feature-body">
         <span class="ev-state">Gardens not Platforms</span>
@@ -1164,15 +1226,67 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 
 
     <div class="ev-block" id="events">
-      <article class="ev-upcoming" data-ends="2026-10-07T20:00:00-05:00" aria-labelledby="next-title">
-        <img src="https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,anim=false,background=white,quality=75,width=480,height=480/uploads/99/84125b98-084d-4e70-84b6-5a1caa6ed363.jpg" width="480" height="480" alt="A collage: two riders on horseback under a red and violet sky beside an obelisk and palm trees, with the words We are in an imagination battle. A battle for the story of the future of the world." loading="lazy">
-        <div class="ev-upcoming-body">
-          <h3 id="next-title">Three Horizons for AI: Where We Are and Where We&#8217;re Going</h3>
-          <p class="ev-when"><time datetime="2026-10-07T19:00-05:00">Wed 7 Oct, 7:00 to 8:00 pm CDT</time></p>
-          <p>As AI speeds up how work gets done, what happens to the people doing the work?</p>
-          <a class="btn" data-component="button" href="https://luma.com/9gh0c2o1" target="_blank" rel="noopener"><span data-slot="label">Register on Luma</span></a>
+      <section class="ev-board" aria-label="Events board">
+        <div class="ev-board-head">
+          <p class="ev-legend"><span class="ev-key ev-key--next" aria-hidden="true"></span>Coming up <span class="ev-key ev-key--past" aria-hidden="true"></span>Been there</p>
+          <div class="ev-board-nav">
+            <button type="button" class="btn btn--outline ev-board-btn" data-component="button" data-dir="-1" aria-label="Scroll the board back"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button type="button" class="btn btn--outline ev-board-btn" data-component="button" data-dir="1" aria-label="Scroll the board forward"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
         </div>
-      </article>
+        <ul class="ev-track">
+          <li class="ev-pin ev-pin--next" data-ends="2026-10-30T15:30:00-05:00">
+            <span class="ev-tack" aria-hidden="true"></span>
+            <a class="ev-pin-link" href="https://www.stripecommunity.com/public/clubs/houston/events/stripe-community-houston-x-founders-couch-ti18f8ypas" target="_blank" rel="noopener" tabindex="-1"><img src="_assets/fc-ep4-all-the-hats.webp" width="1080" height="1350" alt="Founder's Couch poster: Friday, October 30th. Hats labelled sales, fundraising, vision, builder and operations around a microphone on a couch. Theme: All the Hats." loading="lazy"></a>
+            <div class="ev-sticky ev-sticky--next">
+              <p class="ev-sticky-kicker">Up next</p>
+              <h3>Founder&#8217;s Couch: All the Hats</h3>
+              <p class="ev-sticky-when"><time datetime="2026-10-30T13:00-05:00">Fri 30 Oct · 1 to 3:30 pm</time></p>
+              <a class="btn" data-component="button" href="https://www.stripecommunity.com/public/clubs/houston/events/stripe-community-houston-x-founders-couch-ti18f8ypas" target="_blank" rel="noopener" aria-label="Register for Founder's Couch on Stripe Community"><span data-slot="label">Register</span></a>
+            </div>
+          </li>
+          <li class="ev-pin ev-pin--past">
+            <span class="ev-tape" aria-hidden="true"></span>
+            <img src="_assets/gnp-code4yall-poster.webp" width="1024" height="1536" alt="Gardens Not Platforms at Code4Y'all poster: magnolias over the Houston skyline, with the speaker's photo. Relational technology in the age of agents. Tuesday, Oct 20 2026, SparkHQ." loading="lazy">
+            <div class="ev-sticky ev-sticky--past">
+              <p class="ev-sticky-kicker">Been there</p>
+              <h3>Gardens Not Platforms at Code4Y&#8217;all</h3>
+              <p class="ev-sticky-when"><time datetime="2026-10-20">Tue 20 Oct</time> · SparkHQ</p>
+            </div>
+          </li>
+          <li class="ev-pin ev-pin--past">
+            <span class="ev-tack ev-tack--grey" aria-hidden="true"></span>
+            <a class="ev-pin-link" href="https://www.youtube.com/live/rGSTU8zDbFM" target="_blank" rel="noopener" tabindex="-1"><img src="_assets/fc-ep3-poster.webp" width="1080" height="1211" alt="Founder's Couch poster: Friday, September 25th, networking 1 to 2 pm, live show 2 to 3:30 pm." loading="lazy"></a>
+            <div class="ev-sticky ev-sticky--past">
+              <p class="ev-sticky-kicker">Been there</p>
+              <h3>Founder&#8217;s Couch, Episode Three</h3>
+              <p class="ev-sticky-when"><time datetime="2026-09-25">Fri 25 Sep</time> · Innovation Studio</p>
+              <a class="ev-sticky-link" href="https://www.youtube.com/live/rGSTU8zDbFM" target="_blank" rel="noopener">Watch the episode</a>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <script>
+      /* events board: arrows step one poster at a time; they hide when everything already fits */
+      (function () {
+        var board = document.querySelector('.ev-board'); if (!board) return;
+        var track = board.querySelector('.ev-track'), nav = board.querySelector('.ev-board-nav');
+        var btns = board.querySelectorAll('.ev-board-btn');
+        function step() { var p = track.querySelector('.ev-pin'); return p ? p.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : 280; }
+        function sync() {
+          var max = track.scrollWidth - track.clientWidth;
+          nav.hidden = max < 4;
+          btns[0].disabled = track.scrollLeft < 4; btns[1].disabled = track.scrollLeft > max - 4;
+        }
+        btns.forEach(function (b) { b.addEventListener('click', function () {
+          var from = track.scrollLeft, d = step() * Number(b.dataset.dir), calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          track.scrollBy({ left: d, behavior: calm ? 'auto' : 'smooth' });
+          /* if smooth scrolling did not start, jump */
+          setTimeout(function () { if (Math.abs(track.scrollLeft - from) < 2) track.scrollBy({ left: d, behavior: 'auto' }); sync(); setTimeout(sync, 400); }, 450);
+        }); });
+        track.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); addEventListener('load', sync); sync();
+      })();
+      </script>
       <div class="ev-subscribe">
         <div>
           <h3>Get future events in your inbox.</h3>
