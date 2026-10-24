@@ -41,8 +41,9 @@
     addEventListener('load', sync);
     sync();
   }
-  /* See poster: brings the poster in front of its sticky until the pointer leaves the pin, the poster is
-     tapped again, or Escape is pressed. Hover does the same on a mouse; this is the touch and keyboard way. */
+  /* See poster: brings the poster in front of its sticky until the pointer leaves the pin or Escape is pressed.
+     Hover does the same on a mouse; this is the touch and keyboard way. A click on the poster itself always
+     follows its link and never flips back: every poster is a link, to its event or to the full-size poster. */
   function wirePosters(board) {
     board.querySelectorAll('.eb-pin').forEach(function (pin) {
       var btn = pin.querySelector('[data-eb-see-poster]');
@@ -54,8 +55,6 @@
       btn.addEventListener('click', function (e) { e.preventDefault(); show(!pin.classList.contains('is-poster')); });
       pin.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') show(false); });
       pin.addEventListener('keydown', function (e) { if (e.key === 'Escape' && pin.classList.contains('is-poster')) { show(false); btn.focus(); } });
-      var poster = pin.querySelector('.eb-poster');
-      if (poster && poster.tagName !== 'A') poster.addEventListener('click', function () { show(false); });
     });
   }
   /* DSEventsBoard.mount(scope) wires every board under scope once; a page that renders after load calls it
