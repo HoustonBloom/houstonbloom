@@ -1,0 +1,240 @@
+/* --------------------------------------------------------------------------
+   VENDORED COPY. Do not edit here.
+   source   design-system/components/events-board/component.css
+   version  0.0.0
+   refresh  node sync.mjs events-board "<this folder>"
+   warning  An edit made in this copy is lost on the next sync.
+   -------------------------------------------------------------------------- */
+
+/* events-board 1.0.0
+   Event posters pinned to a dotted board, each with a square sticky note centred over its top and one
+   pin through both: one colour for coming up, grey for been there, upcoming first. The sticky is in
+   front until the poster is hovered or focused; on every swap the pin pulls out and goes back in.
+   The track scrolls sideways with snap, like a carousel; behavior.js adds the arrow buttons and hides
+   them while every poster fits. Reads semantic tokens only; every --eb-* token falls back to layer 2.
+   Markup: see components/_fixtures/events-board-reference.html. */
+
+.events-board {
+  --eb-board: var(--eb-board-ground, color-mix(in oklch, var(--color-text) 13%, var(--color-bg)));
+  --eb-dot: color-mix(in oklch, var(--color-text) 14%, transparent);
+  --eb-edge: var(--color-border-strong, var(--color-border));
+  --eb-frame: color-mix(in oklch, var(--color-surface) 45%, transparent);
+  --eb-sticky-next: var(--eb-sticky-next-ground, color-mix(in oklch, var(--color-brand, var(--color-accent)) 42%, var(--color-surface)));
+  --eb-sticky-past: var(--eb-sticky-past-ground, color-mix(in oklch, var(--color-text) 9%, var(--color-surface)));
+  --eb-ink: var(--color-text);
+  --eb-ink-soft: var(--color-text-muted);
+  --eb-accent: var(--color-accent-text, var(--color-accent));
+  --eb-tack-next: var(--color-brand, var(--color-accent));
+  --eb-tack-past: var(--color-text-muted);
+  /* the darker of text and ground in each mode, so shadows never glow on a dark style */
+  --eb-shade: light-dark(var(--color-text), var(--color-bg));
+  --eb-shadow: 0 10px 18px -8px color-mix(in oklch, var(--eb-shade) 45%, transparent), 0 2px 4px color-mix(in oklch, var(--eb-shade) 28%, transparent);
+  --eb-pin-w: 260px;
+  --eb-sticky: 212px;
+  --eb-gap: var(--space-xl);
+
+  /* the track is wider than the page on purpose; keep that from widening a grid or flex parent */
+  contain: inline-size;
+  min-width: 0;
+  position: relative;
+  border: 1px solid var(--eb-edge);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background-color: var(--eb-board);
+  background-image: radial-gradient(var(--eb-dot) 1px, transparent 1.6px);
+  background-size: 14px 14px;
+  box-shadow: inset 0 0 0 6px var(--eb-frame);
+  color: var(--eb-ink);
+}
+
+/* the key, centred, with the arrows at the right */
+.events-board .eb-head {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-xl) 0;
+}
+.events-board .eb-legend {
+  grid-column: 2;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-hand, var(--font-display));
+  font-size: var(--text-body-lg);
+  color: var(--eb-ink);
+}
+.events-board .eb-key {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid color-mix(in oklch, var(--eb-ink) 25%, transparent);
+}
+.events-board .eb-key--past { margin-left: var(--space-md); }
+.events-board .eb-key--next { background: var(--eb-sticky-next); }
+.events-board .eb-key--past { background: var(--eb-sticky-past); }
+.events-board .eb-nav { grid-column: 3; justify-self: end; display: flex; gap: var(--space-sm); }
+.events-board .eb-nav[hidden] { display: none; }
+.events-board .eb-nav .btn:disabled { opacity: .35; cursor: default; }
+
+/* the track */
+.events-board .eb-track {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  gap: var(--eb-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--space-xl);
+  padding: var(--space-2xl) var(--space-xl);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--eb-ink) 30%, transparent) transparent;
+}
+
+/* a pinned poster: the sticky sits centred over the top of the poster, one pin through both.
+   The sticky is in front until the poster is hovered or focused; then the pin pulls out, the two
+   swap, and the pin goes back in. Leaving the poster swaps them back the same way. */
+.events-board .eb-pin {
+  --eb-lift: var(--space-lg);                            /* how far the sticky rises above the poster */
+  --eb-swap: calc(var(--dur-slow) * 1.8);                /* the whole pin-out, swap, pin-in */
+  position: relative;
+  flex: 0 0 var(--eb-pin-w);
+  scroll-snap-align: start;
+  padding-top: var(--eb-lift);
+  transform: rotate(var(--eb-tilt, 0deg));
+  transition: transform var(--dur-base) var(--ease);
+}
+.events-board .eb-pin:first-child { margin-left: auto; }
+.events-board .eb-pin:last-child { margin-right: auto; }
+.events-board .eb-pin:nth-child(3n+1) { --eb-tilt: -1.5deg; }
+.events-board .eb-pin:nth-child(3n+2) { --eb-tilt: 1.6deg; }
+.events-board .eb-pin:nth-child(3n) { --eb-tilt: -.8deg; }
+.events-board .eb-pin:hover,
+.events-board .eb-pin:focus-within { transform: rotate(0deg); }
+
+/* the poster, linked or not */
+.events-board .eb-poster {
+  position: relative; z-index: 1; display: block;
+  transition: z-index 0s linear calc(var(--eb-swap) / 2), transform var(--dur-base) var(--ease) calc(var(--eb-swap) / 2);
+}
+.events-board a.eb-poster { cursor: pointer; }
+.events-board .eb-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 0;
+  border: 1px solid color-mix(in oklch, var(--eb-ink) 20%, transparent);
+  box-shadow: var(--eb-shadow);
+}
+
+/* the square sticky, centred over the top of the poster */
+.events-board .eb-sticky {
+  position: absolute; z-index: 2; top: 0; left: 50%;
+  width: var(--eb-sticky); min-height: var(--eb-sticky);
+  margin-left: calc(var(--eb-sticky) / -2);
+  padding: calc(var(--space-lg) + var(--space-xs)) var(--space-md) var(--space-md);
+  color: var(--eb-ink);
+  transform: rotate(var(--eb-sticky-tilt, 2.5deg));
+  box-shadow: var(--eb-shadow);
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs);
+  overflow-wrap: break-word;
+  transition: z-index 0s linear calc(var(--eb-swap) / 2), transform var(--dur-base) var(--ease) calc(var(--eb-swap) / 2);
+}
+.events-board .eb-pin:nth-child(even) { --eb-sticky-tilt: -2.5deg; }
+.events-board .eb-sticky::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 12px;
+  background: color-mix(in oklch, var(--eb-ink) 6%, transparent);
+}
+.events-board .eb-pin--next .eb-sticky { background: var(--eb-sticky-next); }
+.events-board .eb-pin--past .eb-sticky { background: var(--eb-sticky-past); }
+.events-board .eb-sticky p { margin: 0; }
+.events-board .eb-kicker { font-family: var(--font-hand, var(--font-display)); font-size: var(--text-body-lg); line-height: 1; color: var(--eb-ink-soft); }
+.events-board .eb-pin--next .eb-kicker { color: var(--eb-ink); }
+.events-board .eb-sticky h3 { font-family: var(--font-hand, var(--font-display)); font-size: var(--text-card); line-height: 1.05; margin: 0; color: var(--eb-ink); font-weight: 600; }
+.events-board .eb-when { font-family: var(--font-mono); font-size: var(--text-caption); color: var(--eb-ink-soft); }
+/* the sticky's actions: the one lead action is the default button, See poster is the clear one */
+.events-board .eb-actions { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-sm); }
+.events-board .eb-actions .btn { --btn-size: var(--text-caption); }
+
+/* the poster comes forward while it is hovered or focused, or after See poster; the sticky is in front
+   otherwise. .is-poster is set by behavior.js and cleared when the pointer leaves or Escape is pressed. */
+.events-board .eb-pin:has(.eb-poster:hover) .eb-poster,
+.events-board .eb-pin:has(.eb-poster:focus-visible) .eb-poster,
+.events-board .eb-pin.is-poster .eb-poster { z-index: 3; transform: translateY(-4px) scale(1.02); }
+.events-board .eb-pin:has(.eb-poster:hover) .eb-sticky,
+.events-board .eb-pin:has(.eb-poster:focus-visible) .eb-sticky,
+.events-board .eb-pin.is-poster .eb-sticky { transform: rotate(var(--eb-sticky-tilt, 2.5deg)) translateY(2px) scale(.98); }
+.events-board .eb-pin:not(.is-poster):has(.eb-sticky:hover) .eb-sticky { transform: rotate(0deg) translateY(-3px); }
+
+/* one pushpin through the sticky and the poster, its head standing proud of the sticky's top edge */
+.events-board .eb-tack {
+  --eb-tack-c: var(--eb-tack-next);
+  --eb-tack-lit: color-mix(in oklch, var(--eb-tack-c) 45%, var(--color-text-inverse, var(--color-surface)));
+  --eb-tack-dark: color-mix(in oklch, var(--eb-tack-c) 65%, var(--color-text));
+  position: absolute; z-index: 4;
+  top: calc(-1 * var(--space-md)); left: 50%;
+  width: 28px; height: 28px; margin-left: -14px;
+  border-radius: var(--radius-full);
+  background:
+    radial-gradient(circle at 34% 28%, var(--eb-tack-lit) 0 12%, transparent 30%),
+    radial-gradient(circle at 50% 45%, var(--eb-tack-c) 0 52%, var(--eb-tack-dark) 100%);
+  box-shadow:
+    inset 0 -3px 4px color-mix(in oklch, var(--eb-tack-dark) 70%, transparent),
+    0 2px 0 var(--eb-tack-dark);
+  animation: eb-repin-a var(--eb-swap) var(--ease) both;
+}
+.events-board .eb-pin--past .eb-tack { --eb-tack-c: var(--eb-tack-past); }
+/* the needle, angled down into the sticky and the poster under it */
+.events-board .eb-tack::before {
+  content: ""; position: absolute; z-index: -1;
+  left: 50%; top: 22px; width: 3px; height: var(--space-xl); margin-left: -1px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(var(--eb-needle, var(--color-text-muted)), color-mix(in oklch, var(--eb-needle, var(--color-text-muted)) 25%, transparent));
+  transform: rotate(14deg); transform-origin: 50% 0;
+}
+/* the cast shadow on the paper, down and to the right */
+.events-board .eb-tack::after {
+  content: ""; position: absolute; z-index: -2;
+  left: 55%; top: 60%; width: 30px; height: 14px; border-radius: 50%;
+  background: color-mix(in oklch, var(--eb-shade) 45%, transparent);
+  filter: blur(3px); transform: rotate(25deg);
+}
+
+/* a new animation name restarts it, so the pin pulls out and goes back in on every swap */
+.events-board .eb-pin:has(.eb-poster:hover) .eb-tack,
+.events-board .eb-pin:has(.eb-poster:focus-visible) .eb-tack,
+.events-board .eb-pin.is-poster .eb-tack { animation-name: eb-repin-b; }
+
+@keyframes eb-repin-a {
+  0%   { transform: translateY(0) rotate(0deg); }
+  30%  { transform: translateY(-22px) rotate(-16deg) scale(1.12); }
+  62%  { transform: translateY(-22px) rotate(10deg) scale(1.12); }
+  84%  { transform: translateY(3px) rotate(0deg) scale(.94); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+@keyframes eb-repin-b {
+  0%   { transform: translateY(0) rotate(0deg); }
+  30%  { transform: translateY(-22px) rotate(-16deg) scale(1.12); }
+  62%  { transform: translateY(-22px) rotate(10deg) scale(1.12); }
+  84%  { transform: translateY(3px) rotate(0deg) scale(.94); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .events-board .eb-pin, .events-board .eb-poster, .events-board .eb-sticky { transition: none; }
+  .events-board .eb-tack { animation: none; }
+}
+
+@media (max-width: 479px) {
+  .events-board { --eb-pin-w: min(250px, 72vw); --eb-sticky: min(212px, 60vw); --eb-gap: var(--space-lg); }
+  .events-board .eb-head { grid-template-columns: 1fr; justify-items: center; padding: var(--space-md) var(--space-md) 0; }
+  .events-board .eb-legend, .events-board .eb-nav { grid-column: 1; justify-self: center; }
+  .events-board .eb-track { padding: var(--space-xl) var(--space-lg); scroll-padding-inline: var(--space-lg); }
+  .events-board .eb-sticky { padding: calc(var(--space-lg) + var(--space-xs)) var(--space-md) var(--space-md); }
+  .events-board .eb-sticky h3 { font-size: var(--text-body-lg); }
+}
