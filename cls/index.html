@@ -1530,6 +1530,49 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
     </div>
   </div>
 </section>
+<section class="panel ov-principles" id="design-principles" data-review-label="Design principles">
+  <style>
+  .ov-principles{background:#14301f;color:var(--on-dark)}
+  .ov-principles .shell{max-width:52rem}
+  .ov-principles h2{color:var(--on-dark);margin:0 0 var(--s2)}
+  .ov-principles .ov-p-lede{color:var(--on-dark-soft,rgba(250,248,243,.78));margin:0 0 var(--s6)}
+  .ov-principles details{border-top:1px solid rgba(250,248,243,.18)}
+  .ov-principles details:last-of-type{border-bottom:1px solid rgba(250,248,243,.18)}
+  .ov-principles summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:var(--s3);align-items:baseline;padding:var(--s4) 0;min-height:48px}
+  .ov-principles summary::-webkit-details-marker{display:none}
+  .ov-principles .n{font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.1em;color:#85f8c0}
+  .ov-principles .nm{display:block;font-family:var(--display);font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.1;color:var(--on-dark)}
+  .ov-principles .pr{display:block;margin-top:6px;color:rgba(250,248,243,.72);font-size:var(--t-sm)}
+  .ov-principles .tg{width:32px;height:32px;border-radius:50%;border:2px solid #85f8c0;color:#85f8c0;display:grid;place-items:center;font:700 20px/1 system-ui,sans-serif;transition:transform .2s}
+  .ov-principles details[open] .tg{transform:rotate(45deg);background:#85f8c0;color:#14301f}
+  .ov-principles .body{padding:0 0 var(--s5) calc(2ch + var(--s3));max-width:40rem}
+  .ov-principles .body p{color:rgba(250,248,243,.9);margin:0 0 var(--s3);line-height:1.6}
+  .ov-principles .proof{margin-top:var(--s4);padding:var(--s3) var(--s4);border-left:3px solid #f3d88b;background:rgba(250,248,243,.06);border-radius:0 8px 8px 0}
+  .ov-principles .proof b{display:block;color:#f3d88b;font-weight:700;margin-bottom:4px}
+  .ov-principles .proof span{color:rgba(250,248,243,.85)}
+  @media (prefers-reduced-motion:reduce){.ov-principles .tg{transition:none}}
+  </style>
+  <div class="shell">
+    <h2>Design principles</h2>
+    <p class="ov-p-lede">Four questions we ask of anything we build. Open one for why.</p>
+    <details>
+      <summary><span class="n">01</span><span><span class="nm">Make harm legible.</span><span class="pr">You can't fix what you can't see.</span></span><span class="tg" aria-hidden="true">+</span></summary>
+      <div class="body"><p>You cannot organize against what you cannot see. You cannot fix what is invisible and deniable. Modern systems are designed to keep harm abstract. The algorithm doesn’t have a face. The supply chain has no address. The policy effect is statistical, not human.</p><p>The first act of any system worth building is to restore the feedback loop. Make the harm visible to the people it affects. Make it nameable. Make it countable.</p><p class="proof"><b>Where it shows: Meeting Lenses</b><span>Nine lenses on a meeting in real time. No install. Data dies when the session ends.</span></p></div>
+    </details>
+    <details>
+      <summary><span class="n">02</span><span><span class="nm">Provide an exit.</span><span class="pr">Your data is not yours.</span></span><span class="tg" aria-hidden="true">+</span></summary>
+      <div class="body"><p>Participation without exit is coercion. It just has better branding.</p><p>Real exit is not “you can always delete your account.” Real exit means you take what matters with you. Your data. Your relationships. Your community’s norms and harm records. Exit that leaves you empty-handed isn’t exit. It’s eviction.</p><p class="proof"><b>Where it shows: ChatGPT Data Transformer</b><span>No accounts. No storage. Process once, auto-download, nothing retained.</span></p></div>
+    </details>
+    <details>
+      <summary><span class="n">03</span><span><span class="nm">Design for sufficiency.</span><span class="pr">Your AI runs on someone else’s computer.</span></span><span class="tg" aria-hidden="true">+</span></summary>
+      <div class="body"><p>Growth is not the goal. Completion is.</p><p>Sufficiency means building in endpoints. Defining what enough looks like before you start. Designing cycles that complete: where value is distributed, rest is structural, and the next cycle begins from a place of having, not from manufactured scarcity designed to keep you running.</p><p>Sufficiency also means starting with what is already here. The people in front of you. The resources already present. The organizations already doing the work.</p><p class="proof"><b>Where it shows: Local Intelligence Packet</b><span>Personal infrastructure that runs on hardware you already own. Yours to fork, govern, and turn off.</span></p></div>
+    </details>
+    <details>
+      <summary><span class="n">04</span><span><span class="nm">Scale out, not up.</span><span class="pr">Every network becomes a platform.</span></span><span class="tg" aria-hidden="true">+</span></summary>
+      <div class="body"><p>Every merger in the history of the commons has eventually produced a lord.</p><p>Scaling out means federation: sovereign cells connecting laterally, sharing protocols not ownership, maintaining the ability to disconnect without collapsing. It is slower. It is harder to fund. It produces resilience instead of efficiency, and resilience is what actually survives.</p><p>The question to ask of any growing system: is power concentrating or distributing?</p><p class="proof"><b>Where it shows: Gardens, Not Platforms</b><span>A speaking series across Houston community meetups. The architectural answer to this principle, delivered in public.</span></p></div>
+    </details>
+  </div>
+</section>
 <section class="panel" id="what-you-end-up-with" data-review-label="What you end up with">
   <div class="shell ov-wide ov-end">
     <div>
