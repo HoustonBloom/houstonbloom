@@ -1184,6 +1184,7 @@ grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);max-width:760px;marg
 html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .cluster{scroll-margin-top:96px}
 /* the horizon sections read the bloom style for body and heading type instead of the old hand-set sizes (Megan, 2026-10-01) */
+.cls-import .hz-bullets{list-style:none;margin:var(--s3) 0 var(--s4);padding:0;display:grid;gap:var(--s2)}.cls-import .hz-bullets li{position:relative;padding-left:22px;font-size:var(--text-body);line-height:1.4;color:var(--ink-soft)}.cls-import .hz-bullets li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--h3,#2d5a3f)}.cls-import .hz-bullets strong{color:var(--ink);font-weight:700}
 .cls-import .lead{font-size:var(--text-body);line-height:var(--leading-body)}
 .cls-import .cluster h2{font-size:var(--text-heading-md);line-height:var(--leading-display)}
 /* each horizon: words on the left, its diagram on the right; a phone stacks them */
@@ -1386,7 +1387,13 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
       <div class="hz-text">
     <p class="hnum"><span class="hdot" style="background:var(--h3)"></span> Horizon 3 · far</p>
     <div class="status-row"><h2 style="margin:0">Enable emergent governance</h2><span class="badge design">Designed</span></div>
-    <p class="lead">A land trust needs a muralist and knows none. Emergent governance means two communities comparing what they stand for and what they have been doing, and recognizing the match themselves. No directory in the middle.</p>
+    <p class="lead">From rigid, immovable power hoarding structures to fluid, regenerative, and emergent ones.</p>
+    <ul class="hz-bullets">
+      <li><strong>Frictionless</strong> peer-to-peer exchange</li>
+      <li><strong>Needs and contexts</strong> legible to each other</li>
+      <li><strong>Tooling creators earn</strong> without extracting</li>
+      <li><strong>Revenue flows back</strong> to communities</li>
+    </ul>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="activity.html#map?cat=governance"><span data-slot="label">View on map</span></a></p>
       </div>
       <figure class="svg-figure gnp-scene gnp-scene--dark"><svg role="img" aria-label="From rigid structures to fluid, regenerative, emergent ones." viewBox="45 68 686 473" fill="none" xmlns="http://www.w3.org/2000/svg">
