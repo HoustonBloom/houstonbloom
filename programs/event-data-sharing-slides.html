@@ -890,6 +890,17 @@ svg .rss rect { fill: #2d5a3f; }
 .ec-build-cards .ec-cap { text-align: left; align-items: flex-start; }
 .ec-build-cards .ec-cap .tag:empty { display: none; }
 .ec-build-cards .ec-cap .h3, .ec-build-cards .ec-cap .body { text-align: left; margin-inline: 0; }
+/* Megan, 2026-11-12: "Turn cards back white, keep light green bottom section with bullets". */
+#s-build .ec-card { background: #fff !important; border-color: rgba(26,26,26,.12) !important; }
+#s-build .ec-card .ec-cap { background: #fff !important; }
+#s-build .ec-card .ec-cap .h3 { color: #1a1a1a !important; }
+#s-build .ec-card .ec-cap .body { color: #4a4439 !important; }
+#s-build .ec-cardpts { background: #dcefe2 !important; }
+#s-build .ec-cardpts li { color: #2e3b33 !important; }
+#s-build .ec-cardpts b { color: #1a1a1a !important; }
+#s-build .ec-cardpts li::before { background: #2d5a3f !important; }
+/* Megan, 2026-11-12: "Titles on them need to be bigger" (the capture cards) */
+#s-build .ec-card .ec-cap .h3 { font-size: clamp(24px, 3.6vmin, 36px) !important; line-height: 1.1; }
 </style>
 <style>@supports not (container-type: size) {
 :root { --cqh: calc((100vh - var(--bar)) / 100); }
@@ -1652,6 +1663,17 @@ svg .rss rect { fill: #2d5a3f; }
 .ec-build-cards .ec-cap { text-align: left; align-items: flex-start; }
 .ec-build-cards .ec-cap .tag:empty { display: none; }
 .ec-build-cards .ec-cap .h3, .ec-build-cards .ec-cap .body { text-align: left; margin-inline: 0; }
+
+#s-build .ec-card { background: #fff !important; border-color: rgba(26,26,26,.12) !important; }
+#s-build .ec-card .ec-cap { background: #fff !important; }
+#s-build .ec-card .ec-cap .h3 { color: #1a1a1a !important; }
+#s-build .ec-card .ec-cap .body { color: #4a4439 !important; }
+#s-build .ec-cardpts { background: #dcefe2 !important; }
+#s-build .ec-cardpts li { color: #2e3b33 !important; }
+#s-build .ec-cardpts b { color: #1a1a1a !important; }
+#s-build .ec-cardpts li::before { background: #2d5a3f !important; }
+
+#s-build .ec-card .ec-cap .h3 { font-size: clamp(24px, 3.6vmin, 36px) !important; line-height: 1.1; }
 
 }</style>
 </head>
