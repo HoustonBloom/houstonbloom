@@ -6,6 +6,8 @@
 <title>Gardens not Platforms · Houston Bloom</title>
 <meta name="description" content="Citizen infrastructure for Houston. Peer to peer education and matchmaking events, so we can co-create without a platform in the middle.">
 <link rel="stylesheet" href="vendor/button/component.css">
+<link rel="stylesheet" href="vendor/events-board/component.css">
+<script src="vendor/events-board/behavior.js" defer></script>
 <link rel="stylesheet" href="vendor/tool-list/component.css">
 <style>
 @font-face {
@@ -356,7 +358,8 @@ html{scroll-padding-top:var(--topbar-h)}
 .cls-import .tool-list[data-variant="shelf"] [data-slot="row"][data-static]:hover{background:transparent}
 .cls-import .tool-list[data-variant="shelf"] [data-slot="row"][data-static]:hover [data-slot="icon"]{transform:none;background:var(--tools-tile);color:var(--tools-icon)}
 .cls-import .tool-list[data-variant="shelf"] [data-slot="row"][data-static]:hover span[data-slot="go"]{border-color:var(--tools-rule)}
-.cls-import .tpl-lead{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 12px}.cls-import .panel.deep .tpl-lead{color:var(--deep-soft)}.cls-import .tpl-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:14px}.cls-import .tpl-grid>.tpl{flex:0 1 calc((100% - 28px)/3);min-width:0}@media (max-width:860px){.cls-import .tpl-grid>.tpl{flex-basis:calc((100% - 14px)/2)}}@media (max-width:560px){.cls-import .tpl-grid>.tpl{flex-basis:100%}}.cls-import .tpl{background:var(--card-bg);border:var(--card-border) solid var(--card-edge);border-top:var(--card-rule) solid var(--card-accent);border-radius:0 0 var(--card-radius) var(--card-radius);box-shadow:var(--card-shadow);padding:var(--card-pad);display:flex;flex-direction:column}.cls-import .panel.deep .tpl{--card-bg:rgba(255,255,255,.04);--card-edge:var(--deep-rule);--card-shadow:4px 4px 0 rgba(0,0,0,.35)}.cls-import .tpl-k{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px}.cls-import .tpl-n{font-family:var(--font-display);font-weight:700;font-size:1.02rem;line-height:1.2;margin:0 0 6px}.cls-import .tpl-d{margin:0 0 14px;font-size:.88rem;line-height:1.5;color:var(--ink-soft)}.cls-import .panel.deep .tpl-d{color:var(--deep-soft)}.cls-import .tpl-l{margin:auto 0 0;font-family:var(--font-mono);font-size:.72rem;overflow-wrap:anywhere}.cls-import .tpl-l a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--green);padding-bottom:1px}.cls-import .panel.deep .tpl-l a{color:var(--butter);border-bottom-color:var(--butter)}.cls-import .hz-fig{margin:22px 0 0;padding:14px 14px 0;background:#fffdf8;border:2px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 var(--ink);overflow-x:auto}.cls-import .panel.deep .hz-fig{border-color:var(--deep-rule);box-shadow:4px 4px 0 rgba(0,0,0,.35)}.cls-import .hz-svg{display:block;width:100%;min-width:460px;height:auto}.cls-import .hz-fig figcaption{margin:10px 0 0;padding:10px 0 12px;border-top:1px solid rgba(26,26,26,.12);font-family:var(--font-mono);font-size:.72rem;line-height:1.55;color:#4e5a4b;min-width:460px}.cls-import .actnote{margin:7px 0 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}.cls-import .panel.deep .actnote{color:var(--deep-soft)}.cls-import .act .actname{font-family:var(--font-display);font-weight:700;font-size:1rem;margin:0 0 3px;line-height:1.2}.cls-import .act .actbody{margin:0;font-size:.93rem;color:var(--ink-soft)}.cls-import .panel.deep .act .actbody{color:var(--deep-soft)}.cls-import .panel.deep .quote{color:var(--deep-ink)}.cls-import .panel.deep .quote .src{color:var(--deep-soft)}.cls-import svg{max-width:100%;height:auto}#s-horizons{text-align:center}#s-horizons .hz-title{margin:.35rem auto 1.6rem;max-width:22ch}#s-horizons .hz{text-align:left}.ev-grid{margin:0 0 var(--s5)}.ev-grid .ev-card{text-align:left}.ev-grid{--card-bg:var(--paper-deep,#e3dccb);--card-shadow:4px 4px 0 rgba(0,0,0,.35)}.ev-grid .ev-card p.ev-kicker{color:var(--green)}.ev-grid .ev-card h3{color:var(--ink)}.ev-grid .ev-card p.ev-desc{color:var(--ink-soft,#4a4439)}.ev-grid .ev-card p.ev-sub{color:var(--ink-faint,#5c5648)}.ev-grid .ev-card .ev-when{color:var(--ink)}.ev-grid .ev-card .ev-state{display:inline-block;align-self:flex-start;max-width:100%;white-space:normal;margin:0 0 .9rem;padding:5px 12px;border-radius:999px;font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.04em;text-transform:uppercase;line-height:1.4;color:var(--ink);border:1px solid var(--ev-c);background:transparent}.ev-grid .ev-card .ev-links a{color:var(--green)}.eseq-turn{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(22px,2.6vw,34px);line-height:1.2;margin:0;max-width:24ch;color:var(--butter)}.eseq-ask{max-width:18ch}.cls-import .badge{border:1.5px solid currentColor;border-radius:999px;padding:4px 11px;display:inline-flex;align-items:center;gap:7px;background:transparent}.cls-import .badge::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 auto}.cls-import .badge.run{color:var(--green)}.cls-import .badge.build{color:var(--ink);background:var(--butter);border-color:var(--butter)}.cls-import .badge.design{color:#35626f}.cls-import .badge.design::before{background:transparent;border:1.5px solid currentColor}.script{font-family:var(--script);font-size:var(--t-lg);color:var(--green);margin-bottom:var(--s2)}
+.cls-import .tpl-lead{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 12px}.cls-import .panel.deep .tpl-lead{color:var(--deep-soft)}.cls-import .tpl-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:14px}.cls-import .tpl-grid>.tpl{flex:0 1 calc((100% - 28px)/3);min-width:0}@media (max-width:860px){.cls-import .tpl-grid>.tpl{flex-basis:calc((100% - 14px)/2)}}@media (max-width:560px){.cls-import .tpl-grid>.tpl{flex-basis:100%}}.cls-import .tpl{background:var(--card-bg);border:var(--card-border) solid var(--card-edge);border-top:var(--card-rule) solid var(--card-accent);border-radius:0 0 var(--card-radius) var(--card-radius);box-shadow:var(--card-shadow);padding:var(--card-pad);display:flex;flex-direction:column}.cls-import .panel.deep .tpl{--card-bg:rgba(255,255,255,.04);--card-edge:var(--deep-rule);--card-shadow:4px 4px 0 rgba(0,0,0,.35)}.cls-import .tpl-k{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px}.cls-import .tpl-n{font-family:var(--font-display);font-weight:700;font-size:1.02rem;line-height:1.2;margin:0 0 6px}.cls-import .tpl-d{margin:0 0 14px;font-size:.88rem;line-height:1.5;color:var(--ink-soft)}.cls-import .panel.deep .tpl-d{color:var(--deep-soft)}.cls-import .tpl-l{margin:auto 0 0;font-family:var(--font-mono);font-size:.72rem;overflow-wrap:anywhere}.cls-import .tpl-l a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--green);padding-bottom:1px}.cls-import .panel.deep .tpl-l a{color:var(--butter);border-bottom-color:var(--butter)}.cls-import .hz-fig{margin:22px 0 0;padding:14px 14px 0;background:#fffdf8;border:2px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 var(--ink);overflow-x:auto}.cls-import .panel.deep .hz-fig{border-color:var(--deep-rule);box-shadow:4px 4px 0 rgba(0,0,0,.35)}.cls-import .hz-svg{display:block;width:100%;min-width:460px;height:auto}.cls-import .hz-fig figcaption{margin:10px 0 0;padding:10px 0 12px;border-top:1px solid rgba(26,26,26,.12);font-family:var(--font-mono);font-size:.72rem;line-height:1.55;color:#4e5a4b;min-width:460px}.cls-import .actnote{margin:7px 0 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}.cls-import .panel.deep .actnote{color:var(--deep-soft)}.cls-import .act .actname{font-family:var(--font-display);font-weight:700;font-size:1rem;margin:0 0 3px;line-height:1.2}.cls-import .act .actbody{margin:0;font-size:.93rem;color:var(--ink-soft)}.cls-import .panel.deep .act .actbody{color:var(--deep-soft)}.cls-import .panel.deep .quote{color:var(--deep-ink)}.cls-import .panel.deep .quote .src{color:var(--deep-soft)}.cls-import svg{max-width:100%;height:auto}#s-horizons{text-align:center}#s-horizons .hz-title{margin:.35rem auto 1.6rem;max-width:22ch}
+#s-horizons .hz-title:has(+ .hz-lede){margin-bottom:.6rem;max-width:none}#s-horizons .hz-lede{margin:0 auto 1.6rem}#s-horizons .hz{text-align:left}.ev-grid{margin:0 0 var(--s5)}.ev-grid .ev-card{text-align:left}.ev-grid{--card-bg:var(--paper-deep,#e3dccb);--card-shadow:4px 4px 0 rgba(0,0,0,.35)}.ev-grid .ev-card p.ev-kicker{color:var(--green)}.ev-grid .ev-card h3{color:var(--ink)}.ev-grid .ev-card p.ev-desc{color:var(--ink-soft,#4a4439)}.ev-grid .ev-card p.ev-sub{color:var(--ink-faint,#5c5648)}.ev-grid .ev-card .ev-when{color:var(--ink)}.ev-grid .ev-card .ev-state{display:inline-block;align-self:flex-start;max-width:100%;white-space:normal;margin:0 0 .9rem;padding:5px 12px;border-radius:999px;font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.04em;text-transform:uppercase;line-height:1.4;color:var(--ink);border:1px solid var(--ev-c);background:transparent}.ev-grid .ev-card .ev-links a{color:var(--green)}.eseq-turn{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(22px,2.6vw,34px);line-height:1.2;margin:0;max-width:24ch;color:var(--butter)}.eseq-ask{max-width:18ch}.cls-import .badge{border:1.5px solid currentColor;border-radius:999px;padding:4px 11px;display:inline-flex;align-items:center;gap:7px;background:transparent}.cls-import .badge::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 auto}.cls-import .badge.run{color:var(--green)}.cls-import .badge.build{color:var(--ink);background:var(--butter);border-color:var(--butter)}.cls-import .badge.design{color:#35626f}.cls-import .badge.design::before{background:transparent;border:1.5px solid currentColor}.script{font-family:var(--script);font-size:var(--t-lg);color:var(--green);margin-bottom:var(--s2)}
 .hero h1{margin-bottom:var(--s5)}
 .hero .lede{margin-inline:auto;text-align:center}
 
@@ -715,12 +718,12 @@ html{scroll-padding-top:var(--topbar-h)}
 /* two photos side by side under the fade: the speaker left, the room right.
    On a phone the room photo drops and the speaker fills the card. */
 .ev-photos{position:absolute;inset:0;display:grid;grid-template-columns:1fr;z-index:-2}
-.ev-photos{overflow:hidden}
+.ev-photos{overflow:hidden;grid-template-rows:100%}
 .ev-photos img{width:100%;height:100%;object-fit:cover;display:block}
-/* both photos are wider than their half, so the crop is sideways only and nobody is cut at the head.
-   left: the speaker with the microphone, the man beside her at the edge. right: pinned to the right
-   edge so the woman in red and the woman in navy both stay in frame. */
-.ev-photos img:first-child{object-position:30% 50%}
+/* room shot, Founder's Couch Episode 3. Wide card: crop from the top so the circle of people sits in
+   frame. Narrow card: crop sideways and pin right so the host in the end armchair stays in frame. */
+.ev-photos img:first-child{object-position:50% 62%}
+@media (max-width:819px){.ev-photos img:first-child{object-position:84% 50%}}
 .ev-feature::before{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(to top,color-mix(in oklch,var(--green-deep) 92%,transparent) 0%,color-mix(in oklch,var(--green-deep) 84%,transparent) 42%,transparent 85%)}
 .ev-feature-body{width:100%;max-width:64ch;padding:var(--card-pad);text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s3)}
@@ -731,6 +734,7 @@ html{scroll-padding-top:var(--topbar-h)}
 /* the events now follow the platforms table, and the hero's See the events button lands on them */
 #events{scroll-margin-top:calc(var(--topbar-h) + var(--s5))}
 .ev-eps{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--s4)}
+.ev-feature-desc{max-width:52ch;font-size:var(--t-sm);line-height:1.5;color:var(--on-dark)}
 .ev-eps>span{font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-soft)}
 
 /* ── the subscribe strip under the cards. A cream card on the dark panel, so
@@ -1039,7 +1043,9 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 .ev-block{border:0;border-radius:0;overflow:visible;background:transparent;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)}
 .ev-block > :is(.ev-upcoming,.ev-feature,.ev-subscribe){border:1px solid var(--ink);border-radius:18px;overflow:hidden}
 .ev-block > .ev-subscribe{grid-column:1 / -1}
-.ev-block > .ev-feature{border-top:var(--card-rule) solid var(--butter)}
+.ev-block > .ev-feature{border-top:var(--card-rule) solid var(--butter);grid-column:1 / -1;margin-bottom:var(--s5)}
+#s-past .ev-feature{margin-top:0}
+.btn-row--even .btn{min-width:13rem;justify-content:center}
 /* the Speaking Series card sits on the World view band under the table (Megan, 2026-10-05), as wide as the table */
 .world-band .ev-feature{width:100%;max-width:820px;margin-top:var(--s5);border:1px solid var(--ink);border-top:var(--card-rule) solid var(--butter);border-radius:18px;text-align:left}
 /* the next event in the Speaking Series shape: the picture across the top, no fade over it, the details below */
@@ -1049,6 +1055,8 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 /* a lighter fade on the Speaking Series that starts lower, so more of the room shows */
 .ev-feature::before{background:linear-gradient(to top,color-mix(in oklch,var(--green-night) 82%,transparent) 0%,color-mix(in oklch,var(--green-night) 55%,transparent) 30%,transparent 58%)}
 @media (max-width:819px){.ev-block{grid-template-columns:1fr}}
+/* events board: design-system events-board (vendor/events-board) across the full width of the events block */
+.ev-block > .events-board{grid-column:1 / -1} .events-board{--font-hand:var(--script)}
 </style>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -1150,11 +1158,16 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 .hz-events{margin:var(--s6) 0}.hz-events h3{margin:0 0 var(--s4)}.hz-events .cls-pcard{--pcard-bg:var(--paper)}.hz-events .cls-pcard [data-slot=title]{font-family:var(--display)}.hz-picture svg{display:block;width:100%;height:auto}
 .slides-lb{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--ink);overflow:hidden}
 .slides-lb::backdrop{background:var(--ink)}
-.slides-lb[open]{display:block}
-.slides-lb iframe{display:block;width:100%;height:100%;border:0}
-.slides-lb-close{position:absolute;top:var(--s3);right:var(--s3);z-index:2;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:999px;background:var(--ink);color:var(--paper);font:inherit;font-size:1.5rem;line-height:1;cursor:pointer;opacity:.85}
-.slides-lb-close:hover{opacity:1}
-.slides-lb-close:focus-visible{outline:2px solid var(--green);outline-offset:3px}</style>
+.slides-lb[open]{display:flex;flex-direction:column}
+.slides-lb iframe{display:block;width:100%;flex:1;min-height:0;border:0}
+.slides-lb-bar{flex:none;display:flex;justify-content:flex-end;gap:var(--s2);align-items:center;padding:var(--s2) var(--s3)}
+.slides-lb-btn{height:40px;padding:0 var(--s4);display:inline-flex;align-items:center;gap:var(--s2);border:1px solid color-mix(in oklch,var(--paper) 30%,transparent);border-radius:999px;background:transparent;color:var(--paper);font:inherit;font-size:var(--t-sm);font-weight:600;line-height:1;text-decoration:none;cursor:pointer;opacity:.9;white-space:nowrap}
+.slides-lb-btn svg{width:18px;height:18px;flex:none}
+.slides-lb-btn[hidden]{display:none}
+.slides-lb-close{width:40px;padding:0;justify-content:center;font-size:1.5rem}
+.slides-lb-btn:hover{opacity:1;background:color-mix(in oklch,var(--paper) 12%,transparent)}
+.slides-lb-btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+@media (max-width:600px){.slides-lb-bar{padding:var(--s2)}.slides-lb-btn{padding:0 var(--s3)}}</style>
 <style>
 /* Gardening Tools hero: the darkest green on the site, flat, with the field drifting in from both edges and fading out
    before the headline, as the World view band does. */
@@ -1164,6 +1177,8 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 .tools-hero > .shell{position:relative;z-index:1}
 .tools-hero h1{color:var(--on-dark)}
 .panel-dark.tools-hero .lede{color:var(--on-dark)}
+/* the CLS hero's action row (cls-wiki.mjs .ov-actions), Megan 2026-11-11: "should have same type styles also add button which is view tools" */
+.tools-actions{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:center;margin-top:var(--s6)}
 /* three jumps to the horizons below (Megan, 2026-10-01) */
 grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3);max-width:760px;margin:var(--s6) auto 0}
 html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -1177,6 +1192,8 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
 /* the diagram is one card: the drawing and its caption share a ground and an edge (Megan: layout is bad, 2026-10-01) */
 .cls-import .hz-split .svg-figure{margin:0;background:var(--paper);border:1px solid color-mix(in oklch,var(--ink) 14%,transparent);border-radius:14px;padding:var(--s4)}
 .cls-import .hz-split .svg-figure svg{background:transparent;padding:0;border-radius:0}
+.cls-import .hz-split .gnp-scene{padding:var(--s5)}.cls-import .hz-split .gnp-scene svg{display:block;width:100%;height:auto;max-height:360px;margin-inline:auto}.cls-import .hz-split:has(.gnp-scene){align-items:center}
+.cls-import .hz-split .gnp-scene--dark{background:#16301f;border-color:transparent}
 .cls-import .hz-split .svg-figure figcaption{margin:var(--s3) 0 0;padding-top:var(--s3);border-top:1px solid color-mix(in oklch,var(--ink) 10%,transparent);font-family:var(--sans);font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft)}
 /* two columns need the room: the horizon sections widen so the diagram is not shrunk to a thumbnail */
 .cls-import .wrap:has(.hz-split){max-width:1180px}
@@ -1213,90 +1230,8 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
   <div class="shell">
     <h1>Platforms you rent<br>Gardens you tend</h1>
     <p class="lede measure">Tools that help you move your data off of platforms and leverage it to build what you need for your local context.</p>
-    <nav class="hz-tiles hz-tiles--glass hz-tiles--deep" aria-label="The three horizons"><a href="#s-horizon-1"><span class="hz-tile-n">Horizon 1</span><span class="hz-tile-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-flower">
-<style>
-.hbi-flower .f-plant{transform-box:view-box;transform-origin:12px 22px}
-.hbi-flower .f-stem{stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
-.hbi-flower .f-leaf,.hbi-flower .f-core{fill:currentColor}
-.hbi-flower .f-petal{fill:currentColor;fill-opacity:.62;transform-box:view-box;transform-origin:12px 9.5px;transform:rotate(var(--a)) scale(1)}
-@media (prefers-reduced-motion:no-preference){
-.hbi-flower .f-plant{animation:hbi-sway 7s ease-in-out infinite}
-.hbi-flower .f-petal{animation:hbi-bloom 7s ease-in-out infinite}
-}
-@keyframes hbi-bloom{0%,12%{transform:rotate(calc(var(--a) * .12)) scale(.78)}42%,62%{transform:rotate(var(--a)) scale(1)}90%,100%{transform:rotate(calc(var(--a) * .12)) scale(.78)}}
-@keyframes hbi-sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
-</style>
-<g class="f-plant">
-<path data-stroke class="f-stem" d="M12 11v10.5"/>
-<path data-body class="f-leaf" d="M12 18.2c-2.9.1-4.8-1.4-5.3-4.2 2.9-.1 4.8 1.4 5.3 4.2z"/>
-<path data-body class="f-leaf" d="M12 16c.4-2.6 2.2-4.1 4.9-4.1-.4 2.6-2.2 4.1-4.9 4.1z"/>
-<ellipse data-body class="f-petal" style="--a:-68deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
-<ellipse data-body class="f-petal" style="--a:68deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
-<ellipse data-body class="f-petal" style="--a:-34deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
-<ellipse data-body class="f-petal" style="--a:34deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
-<ellipse data-body class="f-petal" style="--a:0deg" cx="12" cy="5.6" rx="1.8" ry="3.4"/>
-<circle data-body class="f-core" cx="12" cy="9.5" r="1.7"/>
-</g>
-</svg></span><span class="hz-tile-label">Cultivate your data</span><span class="hz-tile-go">More info</span></a><a href="#s-horizon-2"><span class="hz-tile-n">Horizon 2</span><span class="hz-tile-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-hs">
-<style>
-.hbi-hs path{fill:currentColor;transform-box:fill-box;transform-origin:50% 50%}
-.hbi-hs .h-shield{opacity:0;transform-box:fill-box;transform-origin:50% 50%}
-.hbi-hs .h-tint{fill-opacity:.62}
-@media (prefers-reduced-motion:no-preference){
-.hbi-hs .h-heart{animation:hbi-heart 6s ease-in-out infinite}
-.hbi-hs .h-shield{animation:hbi-shield 6s ease-in-out infinite}
-}
-@keyframes hbi-heart{0%,8%{opacity:1;transform:scale(1)}14%{opacity:1;transform:scale(1.08)}20%,32%{opacity:1;transform:scale(1)}46%,84%{opacity:0;transform:scale(.55)}100%{opacity:1;transform:scale(1)}}
-@keyframes hbi-shield{0%,32%{opacity:0;transform:scale(.55)}46%,84%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.55)}}
-</style>
-<path data-body class="h-heart" d="M12 20.2S4.5 15.6 4.5 9.8A4.1 4.1 0 0 1 12 7.4a4.1 4.1 0 0 1 7.5 2.4c0 5.8-7.5 10.4-7.5 10.4z"/>
-<defs><clipPath id="hbi-hs-left"><rect x="0" y="0" width="12" height="24"/></clipPath></defs>
-<g class="h-shield"><path data-body class="h-tint" d="M12 3.2l7 2.9v5.6c0 4.5-2.9 7.6-7 9.2-4.1-1.6-7-4.7-7-9.2V6.1z"/><path data-body d="M12 3.2l7 2.9v5.6c0 4.5-2.9 7.6-7 9.2-4.1-1.6-7-4.7-7-9.2V6.1z" clip-path="url(#hbi-hs-left)"/></g>
-</svg></span><span class="hz-tile-label">Protect community intelligence</span><span class="hz-tile-go">More info</span></a><a href="#s-horizon-3"><span class="hz-tile-n">Horizon 3</span><span class="hz-tile-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" class="hbi hbi-murm">
-<style>
-.hbi-murm path{fill:currentColor}
-.hbi-murm .b-wing,.hbi-murm .b-wing-back{transform-box:view-box;transform-origin:11.4px 12.4px}
-.hbi-murm .m-pass{opacity:.5}
-.hbi-murm .m-pass-2{opacity:.32}
-.hbi-murm .m-pass-1 .m-glide{transform:translate(4px,4.4px) scale(.36)}
-.hbi-murm .m-pass-2 .m-glide{transform:translate(14px,15.6px) scale(.28)}
-@media (prefers-reduced-motion:no-preference){
-.hbi-murm .b-wing{animation:hbi-wing .64s ease-in-out infinite alternate}
-.hbi-murm .b-wing-back{animation:hbi-wing-back .64s ease-in-out infinite alternate}
-.hbi-murm .m-lead{animation:hbi-bob .64s ease-in-out infinite alternate}
-.hbi-murm .m-pass-1 .m-glide{animation:hbi-pass-1 5.2s linear infinite}
-.hbi-murm .m-pass-2 .m-glide{animation:hbi-pass-2 7s linear infinite;animation-delay:-3.1s}
-.hbi-murm .m-pass .b-wing,.hbi-murm .m-pass .b-wing-back,.hbi-murm .m-pass .m-lead{animation-duration:.4s}
-}
-@keyframes hbi-wing{from{transform:scaleY(1)}to{transform:scaleY(-.45)}}
-@keyframes hbi-wing-back{from{transform:scaleY(1)}to{transform:scaleY(.35)}}
-@keyframes hbi-bob{from{transform:translateY(.5px)}to{transform:translateY(-.5px)}}
-@keyframes hbi-pass-1{from{transform:translate(-9px,5.4px) scale(.36)}to{transform:translate(25px,2.6px) scale(.36)}}
-@keyframes hbi-pass-2{from{transform:translate(-8px,16.4px) scale(.28)}to{transform:translate(25px,14.4px) scale(.28)}}
-.hbi-murm .m-glide{transform-box:view-box;transform-origin:0 0}
-</style>
-<defs><clipPath id="hbi-murm-clip"><rect width="24" height="24"/></clipPath><mask id="hbi-bird-eye-a" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><circle cx="18.4" cy="9.4" r=".62" fill="#000"/></mask><mask id="hbi-bird-eye-b" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><circle cx="18.4" cy="9.4" r=".62" fill="#000"/></mask><mask id="hbi-bird-eye-c" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><circle cx="18.4" cy="9.4" r=".62" fill="#000"/></mask></defs>
-<g clip-path="url(#hbi-murm-clip)">
-<g class="m-pass m-pass-1"><g class="m-glide"><g class="m-lead"><g mask="url(#hbi-bird-eye-b)">
-<path data-body class="b-wing-back" d="M12.6 11.6 15.2 4.6 16.2 11z"/>
-<path data-body d="M6.8 13.6c1.4-2.9 4.6-4.4 8.2-3.6.6-1.8 2.4-2.8 4.2-2.2 1 .3 1.6 1 1.9 1.6l1.9.5-2 .9c.2 3.6-2.6 6.4-6.6 7-2.9.4-5.6-.8-7.6-3.4z"/>
-<path data-body d="M8.4 14.6 3 19.6l3.2.2 4.4-3.6z"/>
-<path data-body class="b-wing" d="M9.4 12.6 6.2 3.4c3.6 1.4 6.4 4.6 7.6 8.4z"/>
-</g></g></g></g>
-<g class="m-pass m-pass-2"><g class="m-glide"><g class="m-lead"><g mask="url(#hbi-bird-eye-c)">
-<path data-body class="b-wing-back" d="M12.6 11.6 15.2 4.6 16.2 11z"/>
-<path data-body d="M6.8 13.6c1.4-2.9 4.6-4.4 8.2-3.6.6-1.8 2.4-2.8 4.2-2.2 1 .3 1.6 1 1.9 1.6l1.9.5-2 .9c.2 3.6-2.6 6.4-6.6 7-2.9.4-5.6-.8-7.6-3.4z"/>
-<path data-body d="M8.4 14.6 3 19.6l3.2.2 4.4-3.6z"/>
-<path data-body class="b-wing" d="M9.4 12.6 6.2 3.4c3.6 1.4 6.4 4.6 7.6 8.4z"/>
-</g></g></g></g>
-<g class="m-lead"><g mask="url(#hbi-bird-eye-a)">
-<path data-body class="b-wing-back" d="M12.6 11.6 15.2 4.6 16.2 11z"/>
-<path data-body d="M6.8 13.6c1.4-2.9 4.6-4.4 8.2-3.6.6-1.8 2.4-2.8 4.2-2.2 1 .3 1.6 1 1.9 1.6l1.9.5-2 .9c.2 3.6-2.6 6.4-6.6 7-2.9.4-5.6-.8-7.6-3.4z"/>
-<path data-body d="M8.4 14.6 3 19.6l3.2.2 4.4-3.6z"/>
-<path data-body class="b-wing" d="M9.4 12.6 6.2 3.4c3.6 1.4 6.4 4.6 7.6 8.4z"/>
-</g></g>
-</g>
-</svg></span><span class="hz-tile-label">Enable emergent governance</span><span class="hz-tile-go">More info</span></a></nav>
+    
+    <div class="tools-actions"><a class="btn" data-component="button" href="#s-horizon-1">View tools</a></div>
   </div>
 </section>
 <div class="cls-import" data-style="bloom">
@@ -1306,63 +1241,34 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
       <div class="hz-text">
     <p class="hnum"><span class="hdot" style="background:var(--h1)"></span> Horizon 1 · today · <span class="badge run">Running</span></p>
     <h2 style="margin:0 0 var(--s3)">Cultivate your data</h2>
-    <p class="lead">In the age of AI, anyone can build any tool. But to do this, we need to be able to leverage AI and harness it on our own data. Cultivating your data means moving your data off of platforms and building your own tools, ideally with your own local AI.</p>
+    <p class="lead">In the age of AI, anyone can build any tool. Cultivating your data means moving it off platforms and building your own tools, ideally with your own local AI.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="activity.html#map?cat=local"><span data-slot="label">View on map</span></a></p>
       </div>
-      <figure class="svg-figure hz-scene" role="img" aria-label="Two of your own files and a prompt make a new page of your own"><style>
-.cls-import .hz-split figure.hz-scene svg{display:block;width:100%;height:auto}
-.cls-import .hz-split figure.hz-scene .doc rect{fill:var(--paper);stroke:var(--ink-soft);stroke-width:1.6}
-.cls-import .hz-split figure.hz-scene .doc.warm rect{fill:var(--green-wash,var(--paper))}
-.cls-import .hz-split figure.hz-scene .doc line{stroke:var(--ink-soft);stroke-width:1.4;opacity:.6}
-.cls-import .hz-split figure.hz-scene .doc.out rect{fill:var(--paper);stroke:var(--green);stroke-width:2}
-.cls-import .hz-split figure.hz-scene .doc.out line{stroke:var(--green);opacity:.7}
-.cls-import .hz-split figure.hz-scene .box rect{fill:var(--green);stroke:none}
-.cls-import .hz-split figure.hz-scene .box text{font-family:var(--mono,var(--font-mono,monospace));font-size:10px;font-weight:600;fill:var(--paper);stroke:none;text-anchor:middle}
-.cls-import .hz-split figure.hz-scene .flow{stroke:var(--green);stroke-width:1.8}
-.cls-import .hz-split figure.hz-scene .ground{stroke:color-mix(in oklch,var(--ink) 12%,transparent);stroke-width:1.4}
-</style><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="doc "><rect x="14" y="22" width="30" height="38" rx="3"/><line x1="20" y1="32" x2="38" y2="32"/><line x1="20" y1="39" x2="32" y2="39"/><line x1="20" y1="46" x2="38" y2="46"/><line x1="20" y1="53" x2="32" y2="53"/></g><g class="doc warm"><rect x="14" y="70" width="30" height="38" rx="3"/><line x1="20" y1="80" x2="38" y2="80"/><line x1="20" y1="87" x2="32" y2="87"/><line x1="20" y1="94" x2="38" y2="94"/><line x1="20" y1="101" x2="32" y2="101"/></g><g class="box"><rect x="74" y="44" width="52" height="40" rx="6"/><text x="100" y="69">prompt</text></g><g class="doc out"><rect x="150" y="30" width="36" height="64" rx="3"/><line x1="156" y1="40" x2="180" y2="40"/><line x1="156" y1="47" x2="174" y2="47"/><line x1="156" y1="54" x2="180" y2="54"/><line x1="156" y1="61" x2="174" y2="61"/><line x1="156" y1="68" x2="180" y2="68"/><line x1="156" y1="75" x2="174" y2="75"/></g><line class="flow" x1="46" y1="41" x2="72" y2="58"/><line class="flow" x1="46" y1="89" x2="72" y2="72"/><line class="flow" x1="128" y1="64" x2="148" y2="64"/></svg></figure>
+      <figure class="svg-figure gnp-scene gnp-scene--dark"><svg role="img" aria-label="A plant growing from its roots." viewBox="41 183 774 698" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M65.9539 706.776H791.446" stroke="#EEEEE3" stroke-opacity="0.18" stroke-width="4.61677"/>
+<path d="M560.608 832.088C516.638 792.516 472.669 750.745 428.7 706.776C384.731 746.348 342.96 790.318 303.388 838.684M428.7 706.776V851.875" stroke="#E1A78F" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M428.7 706.776V423.175" stroke="#85F8C0" stroke-width="13.1908" stroke-linecap="round"/>
+<path d="M428.7 588.059C345.158 566.075 292.395 522.105 270.411 456.152C345.158 460.549 397.921 493.525 428.7 555.082V588.059Z" fill="#85F8C0" stroke="#85F8C0" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M428.7 522.105C512.241 500.121 565.005 456.152 586.989 390.198C512.241 394.595 459.478 427.572 428.7 489.129V522.105Z" fill="#85F8C0" stroke="#85F8C0" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M428.7 373.709C448.734 373.709 464.975 357.468 464.975 337.435C464.975 317.401 448.734 301.16 428.7 301.16C408.666 301.16 392.425 317.401 392.425 337.435C392.425 357.468 408.666 373.709 428.7 373.709Z" fill="#E1A78F" stroke="#B3AD9F" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M428.7 324.244C445.091 324.244 458.379 300.621 458.379 271.481C458.379 242.34 445.091 218.718 428.7 218.718C412.309 218.718 399.021 242.34 399.021 271.481C399.021 300.621 412.309 324.244 428.7 324.244Z" fill="#F3D88B" stroke="#F3D88B" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M441.245 333.358C446.31 348.947 472.883 354.285 500.597 345.28C528.311 336.275 546.672 316.338 541.606 300.749C536.541 285.16 509.968 279.822 482.254 288.827C454.54 297.832 436.18 317.769 441.245 333.358Z" fill="#F3D88B" stroke="#F3D88B" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M436.453 348.106C423.192 357.741 426.327 384.662 443.456 408.237C460.584 431.812 485.219 443.113 498.48 433.479C511.741 423.844 508.606 396.922 491.478 373.347C474.349 349.772 449.714 338.472 436.453 348.106Z" fill="#F3D88B" stroke="#F3D88B" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M420.947 348.106C407.686 338.472 383.05 349.772 365.922 373.347C348.794 396.922 345.659 423.844 358.92 433.479C372.181 443.113 396.816 431.812 413.944 408.237C431.072 384.662 434.208 357.741 420.947 348.106Z" fill="#F3D88B" stroke="#F3D88B" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M416.155 333.358C421.22 317.769 402.86 297.832 375.146 288.827C347.431 279.822 320.859 285.16 315.793 300.749C310.728 316.338 329.089 336.276 356.803 345.28C384.517 354.285 411.09 348.948 416.155 333.358Z" fill="#F3D88B" stroke="#F3D88B" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M646.348 258.29C653.633 258.29 659.539 252.384 659.539 245.099C659.539 237.814 653.633 231.908 646.348 231.908C639.063 231.908 633.157 237.814 633.157 245.099C633.157 252.384 639.063 258.29 646.348 258.29Z" fill="#F3D88B" stroke="#B3AD9F" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M692.515 311.053C699.801 311.053 705.706 305.147 705.706 297.862C705.706 290.577 699.801 284.672 692.515 284.672C685.23 284.672 679.325 290.577 679.325 297.862C679.325 305.147 685.23 311.053 692.515 311.053Z" fill="#F3D88B" stroke="#B3AD9F" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M732.088 238.504C739.373 238.504 745.279 232.598 745.279 225.313C745.279 218.028 739.373 212.122 732.088 212.122C724.803 212.122 718.897 218.028 718.897 225.313C718.897 232.598 724.803 238.504 732.088 238.504Z" fill="#F3D88B" stroke="#B3AD9F" stroke-width="9.89308" stroke-linecap="round"/>
+<path d="M481.463 304.458C547.417 256.091 597.982 236.305 633.157 245.099" stroke="#F3D88B" stroke-width="9.89308" stroke-linecap="round"/>
+</svg>
+</figure>
     </div>
-    <div class="hz-events"><h3>Events</h3><div class="cls-cards">
-<a class="project-card cls-pcard" data-slides="programs/icp-workshop-slides.html" data-slides-title="Help your network connect with their ICP" data-component="project-card" data-variant="media" href="spec-icp-workshop.html" id="sys-icp-workshop" data-kind="program" data-hz="community">
-  <div data-slot="body">
-    <p data-slot="role" class="cls-role"><span class="cls-hzchip" data-hz="2" title="Protect community intelligence">Horizon 2<span class="cls-sr"> · Protect community intelligence</span></span></p>
-    <h3 data-slot="title">Help your network connect with their ICP</h3>
-    <p data-slot="summary">Learn to define your ideal customer profile.</p>
-    <span class="cls-pcard-go">Read more</span>
-  </div>
-  <figure data-slot="media" class="cls-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="An ideal customer card above three people. Dashed lines run from the room to the card and one person waves a raised hand." class="hbi hbi-icp"><defs><linearGradient id="hbi-icp-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-icp .y,.hbi-icp .ys{fill:url(#hbi-icp-sun);stroke:none}.hbi-icp .yl{fill:none;stroke:none}.hbi-icp .f{fill:currentColor;stroke:none}.hbi-icp .d{stroke-dasharray:1.6 2.6}
-.hbi-icp .k{stroke-dasharray:1.6 2.2}
-.hbi-icp .arm{transform-box:view-box;transform-origin:42px 38.5px}
-@media (prefers-reduced-motion:no-preference){.hbi-icp .k{animation:hbi-icp-k 3s linear infinite}.hbi-icp .arm{animation:hbi-icp-a 5s ease-in-out infinite}}
-@keyframes hbi-icp-k{to{stroke-dashoffset:7.6}}
-@keyframes hbi-icp-a{0%,40%,100%{transform:rotate(0)}10%,30%{transform:rotate(-18deg)}20%{transform:rotate(8deg)}}</style><rect x="13" y="3.5" width="22" height="16" rx="2"/><circle class="y" cx="19" cy="9.5" r="2.3"/><circle cx="19" cy="9.5" r="2.3"/><path d="M15.4 16a3.6 3.6 0 0 1 7.2 0M25.5 8.5h6M25.5 12h4.5M25.5 15.5h6"/>
-<path class="k" d="M10 30c0-6 2-9 5.5-10.5M24 30v-10.5M38 30c0-6-2-9-5.5-10.5"/>
-<circle cx="10" cy="34" r="2.8"/><path d="M4.8 43.5a5.2 5.2 0 0 1 10.4 0"/>
-<circle cx="24" cy="34" r="2.8"/><path d="M18.8 43.5a5.2 5.2 0 0 1 10.4 0"/>
-<circle class="y" cx="38" cy="34" r="2.8"/><circle cx="38" cy="34" r="2.8"/><path d="M32.8 43.5a5.2 5.2 0 0 1 10.4 0"/>
-<g class="arm"><path d="M42 38.5l3.2-11"/><circle class="ys" cx="45.6" cy="25.6" r="1.8"/></g></svg></span></figure>
-</a><a class="project-card cls-pcard pitch-card" data-component="project-card" data-variant="media" href="programs/matchmaking-pitch.html" data-slides="programs/matchmaking-pitch-slides.html" data-slides-title="The matchmaking pitch">
-        <div data-slot="body">
-          <p data-slot="role" class="cls-role">Program · Slides</p>
-          <h3 data-slot="title">The matchmaking pitch</h3>
-          <p data-slot="summary">Everyone shares one thing. Everyone leaves with their own card.</p>
-          <span class="cls-pcard-go">See the slides</span>
-        </div>
-        <figure data-slot="media" class="cls-art" data-style="bloom" aria-hidden="true"><span class="cls-art-tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Two people, each in their own circle, drift together; the overlap fills yellow when they meet." class="hbi hbi-compare"><defs><linearGradient id="hbi-compare-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE680"/><stop offset="1" stop-color="#FFBE3B"/></linearGradient></defs><style>.hbi-compare .y,.hbi-compare .ys{fill:url(#hbi-compare-sun);stroke:none}.hbi-compare .yl{fill:none;stroke:none}.hbi-compare .f{fill:currentColor;stroke:none}.hbi-compare .d{stroke-dasharray:1.6 2.6}
-.hbi-compare .lf,.hbi-compare .rt{transform-box:view-box}
-@media (prefers-reduced-motion:no-preference){.hbi-compare .lf{animation:hbi-cmp-l 5s ease-in-out infinite}.hbi-compare .rt{animation:hbi-cmp-r 5s ease-in-out infinite}.hbi-compare .o{animation:hbi-cmp-o 5s ease-in-out infinite}}
-@keyframes hbi-cmp-l{0%,100%{transform:translateX(-3px)}40%,70%{transform:translateX(0)}}
-@keyframes hbi-cmp-r{0%,100%{transform:translateX(3px)}40%,70%{transform:translateX(0)}}
-@keyframes hbi-cmp-o{0%,20%,100%{opacity:0}40%,70%{opacity:1}}</style><path class="y o" d="M24 15.5A11 11 0 0 1 24 32.5A11 11 0 0 1 24 15.5z"/>
-<g class="lf"><circle cx="17" cy="24" r="11"/><circle cx="14" cy="21" r="2.4"/><path d="M10 29.5a4 4 0 0 1 8 0"/></g>
-<g class="rt"><circle cx="31" cy="24" r="11"/><circle cx="34" cy="21" r="2.4"/><path d="M30 29.5a4 4 0 0 1 8 0"/></g></svg></span></figure>
-      </a></div></div>
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8L12 4l8.5 4v8.5L12 20.5l-8.5-4z"/><path d="M3.5 8L12 12l8.5-4M12 12v8.5"/><path d="M7.8 6l8.4 4"/></svg></span>
             <span data-slot="text">
               <a data-slot="name" href="https://houstonbloom.github.io/local-legibility/" target="_blank" rel="noopener">Intelligence Packet</a>
-              <span data-slot="summary">An AI workflow system anyone can adopt to make their local systems more legible.</span>
+              <span data-slot="summary">An AI workflow system that makes your local systems more legible.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Get started</span></span>
           </li>
@@ -1370,23 +1276,25 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="13" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="18.5" cy="18" r="2"/><path d="M7.6 7.2l2.9 4.2M16.4 8.3l-3 3.3M10.4 14.2l-3.7 2.7M13.8 13.9l3.1 2.9M8 6.2h8"/></svg></span>
             <span data-slot="text">
               <a data-slot="name" href="https://github.com/HoustonBloom/node-app-template" target="_blank" rel="noopener">Node graph</a>
-              <span data-slot="summary">A map of your stuff, drawn as a web of connected dots. Your AI fills it from one of your apps and you get a single file you can open and share.</span>
+              <span data-slot="summary">A map of your stuff as connected dots, in one file you can share.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">View on GitHub</span></span>
           </li>
+          <!-- Hidden 2026-11-11, Megan: "videos discover and events should all be hidden". video-tools.html stays on disk, unlinked.
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10.5 8.5v5l4-2.5z"/><path d="M7 20h10"/><path d="M12 17v3"/></svg></span>
             <span data-slot="text">
               <a data-slot="name" href="video-tools.html" target="_blank" rel="noopener">Video tools</a>
-              <span data-slot="summary">Fourteen tools that run on your own computer. A video in, a page out, and a prompt for each thing you want cut.</span>
+              <span data-slot="summary">Fourteen tools that run on your own computer.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Open the tools</span></span>
           </li>
+          -->
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6l-1 5 3 3H7l3-3z"/><path d="M12 11v7"/><path d="M4 21h16"/></svg></span>
             <span data-slot="text">
               <a data-slot="name" href="https://github.com/HoustonBloom/PinboardMCP" target="_blank" rel="noopener">Pinboard MCP</a>
-              <span data-slot="summary">Members&#8217; bookmarks, tagged by a shared convention, become a commons you can query in Claude. No central database.</span>
+              <span data-slot="summary">Members&#8217; tagged bookmarks become a commons you can query in Claude.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">View on GitHub</span></span>
           </li>
@@ -1394,7 +1302,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3h7l3 3v6"/><path d="M11 3v3h3"/><path d="M4 3v16h6"/><circle cx="15" cy="16" r="1.6"/><circle cx="20" cy="12.5" r="1.6"/><circle cx="20" cy="20" r="1.6"/><path d="M16.4 15.1l2.2-1.6M16.4 16.9l2.2 2.1"/></svg></span>
             <span data-slot="text">
               <a data-slot="name" href="https://chatgpt-pdt.vercel.app/" target="_blank" rel="noopener">ChatGPT Data Transformer</a>
-              <span data-slot="summary">Turns your ChatGPT export into an MCP server, so Claude can search your past conversations.</span>
+              <span data-slot="summary">Search your past ChatGPT conversations from Claude.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Try it live</span></span>
           </li>
@@ -1407,68 +1315,41 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
       <div class="hz-text">
     <p class="hnum"><span class="hdot" style="background:var(--h2)"></span> Horizon 2 · near</p>
     <div class="status-row"><h2 style="margin:0">Protect community intelligence</h2><span class="badge build">Building</span></div>
-    <p class="lead">A tool you build on your own can only see what you put into it. Working with other people means connecting your data to theirs, and almost every way of doing that puts a platform in the middle holding both copies. Cultivating community legibility means information passes peer to peer and into the community data commons at in-person events. Two people record the same connection from their own side, each keeping their own half, so both have the history and neither had to hand it over.</p>
+    <p class="lead">Information passes peer to peer and into the community data commons at in-person events. Two people record the same connection from their own side, and each keeps their own half.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="activity.html#map?cat=community"><span data-slot="label">View on map</span></a></p>
       </div>
-      <figure class="svg-figure" data-lightbox>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="Two sovereign vaults holding one connection as two halves, over a faint mesh of bilateral edges">
-  <style>
-    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
-    .h2{fill:#b9791f}
-    .t{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:14px;fill:#1a1f1a}
-    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
-    .edge{stroke:#b9791f;stroke-width:3}
-    .mesh{stroke:#c9bfa8;stroke-width:1.2}
-    .node{fill:#d9cfba}
-  </style>
-  <!-- faint mesh behind -->
-  <g class="mesh" opacity="0.7">
-    <line x1="120" y1="250" x2="300" y2="210"/>
-    <line x1="300" y1="210" x2="520" y2="250"/>
-    <line x1="120" y1="250" x2="230" y2="278"/>
-    <line x1="520" y1="250" x2="410" y2="280"/>
-    <line x1="300" y1="210" x2="230" y2="278"/>
-    <line x1="300" y1="210" x2="410" y2="280"/>
-  </g>
-  <g class="node">
-    <circle cx="120" cy="250" r="6"/><circle cx="300" cy="210" r="6"/><circle cx="520" cy="250" r="6"/>
-    <circle cx="230" cy="278" r="6"/><circle cx="410" cy="280" r="6"/>
-  </g>
-
-  <!-- two vaults -->
-  <rect class="box" x="40" y="70" width="150" height="96" rx="10"/>
-  <rect class="h2" x="40" y="70" width="150" height="24" rx="10"/>
-  <rect class="h2" x="40" y="82" width="150" height="12"/>
-  <text class="t" x="60" y="88" fill="#fffdf8">vault A</text>
-  <text class="m" x="115" y="126" text-anchor="middle">holds its</text>
-  <text class="m" x="115" y="142" text-anchor="middle">own half</text>
-
-  <rect class="box" x="450" y="70" width="150" height="96" rx="10"/>
-  <rect class="h2" x="450" y="70" width="150" height="24" rx="10"/>
-  <rect class="h2" x="450" y="82" width="150" height="12"/>
-  <text class="t" x="470" y="88" fill="#fffdf8">vault B</text>
-  <text class="m" x="525" y="126" text-anchor="middle">holds its</text>
-  <text class="m" x="525" y="142" text-anchor="middle">own half</text>
-
-  <!-- the connection: two halves meeting -->
-  <line class="edge" x1="190" y1="118" x2="304" y2="118"/>
-  <line class="edge" x1="336" y1="118" x2="450" y2="118"/>
-  <circle cx="304" cy="118" r="12" fill="#b9791f"/>
-  <path d="M336,106 A12,12 0 0 0 336,130 Z" fill="#fffdf8" stroke="#b9791f" stroke-width="2"/>
-  <path d="M304,106 A12,12 0 0 1 304,130 Z" fill="#fffdf8" stroke="#b9791f" stroke-width="2"/>
-  <circle cx="336" cy="118" r="12" fill="#b9791f"/>
-  <text class="m" x="320" y="164" text-anchor="middle">one membership · two records</text>
+      <figure class="svg-figure gnp-scene gnp-scene--light"><svg role="img" aria-label="Deliver information directly to people, and share less." viewBox="60 168 736 621" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M131.907 340.732L428.7 228.611" stroke="#8B2A1A" stroke-width="6.59538"/>
+<path d="M291.846 271.481H268.762C266.03 271.481 263.815 273.695 263.815 276.427V292.916C263.815 295.648 266.03 297.862 268.762 297.862H291.846C294.578 297.862 296.792 295.648 296.792 292.916V276.427C296.792 273.695 294.578 271.481 291.846 271.481Z" fill="#F3D88B" stroke="#4A4439" stroke-width="3.29769"/>
+<path d="M428.7 228.611L725.493 340.732" stroke="#8B2A1A" stroke-width="6.59538"/>
+<path d="M588.638 271.481H565.554C562.822 271.481 560.607 273.695 560.607 276.427V292.916C560.607 295.648 562.822 297.862 565.554 297.862H588.638C591.37 297.862 593.584 295.648 593.584 292.916V276.427C593.584 273.695 591.37 271.481 588.638 271.481Z" fill="#F3D88B" stroke="#4A4439" stroke-width="3.29769"/>
+<path d="M131.907 340.732L230.838 670.502" stroke="#8B2A1A" stroke-width="6.59538"/>
+<path d="M192.915 492.426H169.831C167.099 492.426 164.885 494.641 164.885 497.373V513.861C164.885 516.593 167.099 518.808 169.831 518.808H192.915C195.647 518.808 197.862 516.593 197.862 513.861V497.373C197.862 494.641 195.647 492.426 192.915 492.426Z" fill="#F3D88B" stroke="#4A4439" stroke-width="3.29769"/>
+<path d="M725.492 340.732L626.562 670.502" stroke="#8B2A1A" stroke-width="6.59538"/>
+<path d="M687.568 492.426H664.485C661.753 492.426 659.538 494.641 659.538 497.373V513.861C659.538 516.593 661.753 518.808 664.485 518.808H687.568C690.3 518.808 692.515 516.593 692.515 513.861V497.373C692.515 494.641 690.3 492.426 687.568 492.426Z" fill="#F3D88B" stroke="#4A4439" stroke-width="3.29769"/>
+<path d="M230.839 670.502H626.562" stroke="#8B2A1A" stroke-width="6.59538"/>
+<path d="M440.242 657.311H417.158C414.427 657.311 412.212 659.525 412.212 662.257V678.746C412.212 681.478 414.427 683.692 417.158 683.692H440.242C442.974 683.692 445.189 681.478 445.189 678.746V662.257C445.189 659.525 442.974 657.311 440.242 657.311Z" fill="#F3D88B" stroke="#4A4439" stroke-width="3.29769"/>
+<path d="M428.7 228.611L626.562 670.502" stroke="#8B2A1A" stroke-width="6.59538"/>
+<path d="M539.173 436.365H516.089C513.357 436.365 511.143 438.58 511.143 441.312V457.8C511.143 460.532 513.357 462.747 516.089 462.747H539.173C541.905 462.747 544.119 460.532 544.119 457.8V441.312C544.119 438.58 541.905 436.365 539.173 436.365Z" fill="#F3D88B" stroke="#4A4439" stroke-width="3.29769"/>
+<path d="M131.908 362.497C147.936 362.497 160.928 349.505 160.928 333.477C160.928 317.45 147.936 304.458 131.908 304.458C115.881 304.458 102.889 317.45 102.889 333.477C102.889 349.505 115.881 362.497 131.908 362.497Z" fill="#2D5A3F"/>
+<path d="M84.751 435.046C84.751 396.353 100.47 377.007 131.908 377.007C163.346 377.007 179.065 396.353 179.065 435.046H84.751Z" fill="#2D5A3F"/>
+<path d="M428.7 250.376C444.727 250.376 457.72 237.383 457.72 221.356C457.72 205.329 444.727 192.336 428.7 192.336C412.673 192.336 399.681 205.329 399.681 221.356C399.681 237.383 412.673 250.376 428.7 250.376Z" fill="#6A6357"/>
+<path d="M381.543 322.925C381.543 284.232 397.262 264.885 428.7 264.885C460.138 264.885 475.857 284.232 475.857 322.925H381.543Z" fill="#6A6357"/>
+<path d="M725.492 362.497C741.519 362.497 754.512 349.505 754.512 333.477C754.512 317.45 741.519 304.458 725.492 304.458C709.465 304.458 696.473 317.45 696.473 333.477C696.473 349.505 709.465 362.497 725.492 362.497Z" fill="#6A6357"/>
+<path d="M678.335 435.046C678.335 396.353 694.054 377.007 725.492 377.007C756.93 377.007 772.649 396.353 772.649 435.046H678.335Z" fill="#6A6357"/>
+<path d="M230.839 692.266C246.866 692.266 259.859 679.274 259.859 663.247C259.859 647.219 246.866 634.227 230.839 634.227C214.812 634.227 201.819 647.219 201.819 663.247C201.819 679.274 214.812 692.266 230.839 692.266Z" fill="#6A6357"/>
+<path d="M183.682 764.816C183.682 726.123 199.401 706.776 230.839 706.776C262.277 706.776 277.996 726.123 277.996 764.816H183.682Z" fill="#6A6357"/>
+<path d="M626.562 692.266C642.589 692.266 655.581 679.274 655.581 663.247C655.581 647.219 642.589 634.227 626.562 634.227C610.535 634.227 597.542 647.219 597.542 663.247C597.542 679.274 610.535 692.266 626.562 692.266Z" fill="#6A6357"/>
+<path d="M579.404 764.816C579.404 726.123 595.123 706.776 626.561 706.776C657.999 706.776 673.718 726.123 673.718 764.816H579.404Z" fill="#6A6357"/>
 </svg>
-      <figcaption class="diagram-note">A membership is one connection recorded on both sides. Either side ends it by deleting its own half. The commons pools principles without names while each vault keeps the receipt. No platform saw the exchange.</figcaption>
-    </figure>
+</figure>
     </div>
-    
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row" data-static>
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><rect x="8.5" y="8.5" width="3" height="3"/><rect x="13" y="8.5" width="2.5" height="2.5"/><rect x="8.5" y="13" width="2.5" height="2.5"/><path d="M13 14h2.5M14.25 12.75v2.5"/></svg></span>
             <span data-slot="text">
               <span data-slot="name">Bloom Capture <span data-slot="kind">Template</span></span>
-              <span data-slot="summary">A single HTML file. Scan cards, build contacts, sort them, export a zip. Runs in the browser on your phone with nothing installed.</span>
+              <span data-slot="summary">One HTML file on your phone: scan cards, sort contacts, export a zip.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Coming soon</span></span>
           </li>
@@ -1476,7 +1357,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><circle cx="12" cy="9.5" r="2.4"/><path d="M7.8 17c.7-2.2 2.3-3.4 4.2-3.4s3.5 1.2 4.2 3.4"/></svg></span>
             <span data-slot="text">
               <span data-slot="name">The card <span data-slot="kind">Template</span></span>
-              <span data-slot="summary">A one-page profile rendered from your own vault, with your principles and an issue date inside the QR. Print two.</span>
+              <span data-slot="summary">A one-page profile from your own vault, with a QR. Print two.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Coming soon</span></span>
           </li>
@@ -1484,7 +1365,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="10" height="10" rx="2"/><rect x="10.5" y="9.5" width="10" height="10" rx="2"/></svg></span>
             <span data-slot="text">
               <a data-slot="name" href="https://houstonbloom.github.io/local-legibility/" target="_blank" rel="noopener">Two-vault attribution <span data-slot="kind">Template</span></a>
-              <span data-slot="summary">The smallest dual ledger. Two people, two vaults, each recording what they worked on, in what role, on what date, on what principle. The pattern the rest of this horizon grows from.</span>
+              <span data-slot="summary">The smallest dual ledger: two people, two vaults.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">Get started</span></span>
           </li>
@@ -1492,7 +1373,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/><path d="M8 11h6M11 8v6"/></svg></span>
             <span data-slot="text">
               <a data-slot="name" href="spec-relational-spaces.html">Relational Space <span data-slot="kind">Template</span></a>
-              <span data-slot="summary">See your friends&#8217; and collaborators&#8217; real-time activity without a platform in between. The file holds no data: it renders from whatever local data you point it at, and keeps nothing when you close it.</span>
+              <span data-slot="summary">See collaborators&#8217; activity with no platform in between.</span>
             </span>
             <span data-slot="actions"><span data-slot="go">See how it works</span></span>
           </li>
@@ -1505,49 +1386,34 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
       <div class="hz-text">
     <p class="hnum"><span class="hdot" style="background:var(--h3)"></span> Horizon 3 · far</p>
     <div class="status-row"><h2 style="margin:0">Enable emergent governance</h2><span class="badge design">Designed</span></div>
-    <p class="lead">Once your community keeps its own record, you still cannot see the groups outside it doing related work. A land trust needs a muralist and knows none. Every way of finding them today puts a directory in the middle. Emergent governance means two communities comparing what they stand for and what they have been doing, recognizing the match themselves, and acting on it. No directory, and nobody deciding for them.</p>
+    <p class="lead">A land trust needs a muralist and knows none. Emergent governance means two communities comparing what they stand for and what they have been doing, and recognizing the match themselves. No directory in the middle.</p>
     <p class="tools-map"><a class="btn btn--outline" data-component="button" href="activity.html#map?cat=governance"><span data-slot="label">View on map</span></a></p>
       </div>
-      <figure class="svg-figure" data-lightbox>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="An individual and a community compare the same structural fingerprint without sharing a document, authenticated by log comparison">
-  <style>
-    .h3{fill:#35626f;stroke:#35626f}
-    .dot{fill:#35626f}
-    .shape{fill:none;stroke:#35626f;stroke-width:2;stroke-dasharray:4 4}
-    .match{stroke:#35626f;stroke-width:1.6;stroke-dasharray:2 5}
-    .box{fill:#fffdf8;stroke:#1a1f1a;stroke-width:2}
-    .t{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:14px;fill:#1a1f1a}
-    .m{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;fill:#4e5a4b}
-  </style>
-  <!-- individual A constellation -->
-  <text class="t" x="120" y="42" text-anchor="middle">individual A</text>
-  <polygon class="shape" points="70,90 170,70 200,150 110,175 60,140"/>
-  <circle class="dot" cx="70" cy="90" r="6"/><circle class="dot" cx="170" cy="70" r="6"/>
-  <circle class="dot" cx="200" cy="150" r="6"/><circle class="dot" cx="110" cy="175" r="6"/>
-  <circle class="dot" cx="60" cy="140" r="6"/>
-
-  <!-- community A constellation (same shape, offset) -->
-  <text class="t" x="520" y="42" text-anchor="middle">community A</text>
-  <polygon class="shape" points="440,90 540,70 570,150 480,175 430,140"/>
-  <circle class="dot" cx="440" cy="90" r="6"/><circle class="dot" cx="540" cy="70" r="6"/>
-  <circle class="dot" cx="570" cy="150" r="6"/><circle class="dot" cx="480" cy="175" r="6"/>
-  <circle class="dot" cx="430" cy="140" r="6"/>
-
-  <!-- match lines between matching vertices -->
-  <line class="match" x1="170" y1="70" x2="440" y2="90"/>
-  <line class="match" x1="200" y1="150" x2="430" y2="140"/>
-  <line class="match" x1="110" y1="175" x2="480" y2="175"/>
-
-  <!-- log comparison auth -->
-  <rect class="box" x="250" y="212" width="140" height="46" rx="10"/>
-  <text class="t" x="320" y="233" text-anchor="middle">two logs</text>
-  <text class="m" x="320" y="250" text-anchor="middle">confirm each other</text>
-  <text class="m" x="320" y="196" text-anchor="middle" fill="#35626f">match on a principle and a timestamp</text>
+      <figure class="svg-figure gnp-scene gnp-scene--dark"><svg role="img" aria-label="From rigid structures to fluid, regenerative, emergent ones." viewBox="45 68 686 473" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M109.859 195.271C152.582 143.394 207.511 118.981 274.647 122.032" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M274.646 122.032C344.834 109.826 405.866 128.136 457.744 176.962" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M457.744 176.962C506.57 137.291 561.499 125.084 622.532 140.342" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M109.859 195.271C164.789 244.097 189.202 305.13 183.098 378.369" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M274.646 122.032C338.731 173.91 369.247 241.046 366.195 323.44" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M457.744 176.962C451.641 241.046 421.125 289.872 366.195 323.44" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M366.195 323.44C442.486 323.44 503.519 353.956 549.293 414.989" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M183.098 378.369C250.233 390.576 299.059 427.195 329.576 488.228" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M366.196 323.44C381.454 384.472 369.247 439.402 329.576 488.228" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M549.293 414.989C579.809 369.214 622.532 344.801 677.461 341.749" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M622.531 140.342C674.409 198.323 692.719 265.459 677.461 341.75" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M329.576 488.228C390.609 427.195 463.848 402.782 549.293 414.989" stroke="#4A8A62" stroke-width="7.3239" stroke-linecap="round"/>
+<path d="M109.858 231.891C130.082 231.891 146.477 215.496 146.477 195.271C146.477 175.047 130.082 158.652 109.858 158.652C89.6334 158.652 73.2383 175.047 73.2383 195.271C73.2383 215.496 89.6334 231.891 109.858 231.891Z" fill="#ECE5D6" stroke="#0F2A1C" stroke-width="7.3239"/>
+<path d="M274.647 147.666C288.804 147.666 300.281 136.189 300.281 122.032C300.281 107.875 288.804 96.3987 274.647 96.3987C260.49 96.3987 249.014 107.875 249.014 122.032C249.014 136.189 260.49 147.666 274.647 147.666Z" fill="#F3D88B" stroke="#0F2A1C" stroke-width="7.3239"/>
+<path d="M457.745 202.595C471.902 202.595 483.379 191.119 483.379 176.962C483.379 162.805 471.902 151.328 457.745 151.328C443.588 151.328 432.111 162.805 432.111 176.962C432.111 191.119 443.588 202.595 457.745 202.595Z" fill="#ECE5D6" stroke="#0F2A1C" stroke-width="7.3239"/>
+<path d="M622.532 176.962C642.756 176.962 659.151 160.567 659.151 140.342C659.151 120.118 642.756 103.723 622.532 103.723C602.307 103.723 585.912 120.118 585.912 140.342C585.912 160.567 602.307 176.962 622.532 176.962Z" fill="#F3D88B" stroke="#0F2A1C" stroke-width="7.3239"/>
+<path d="M183.099 404.003C197.256 404.003 208.732 392.526 208.732 378.369C208.732 364.212 197.256 352.735 183.099 352.735C168.941 352.735 157.465 364.212 157.465 378.369C157.465 392.526 168.941 404.003 183.099 404.003Z" fill="#ECE5D6" stroke="#0F2A1C" stroke-width="7.3239"/>
+<path d="M366.196 349.073C380.353 349.073 391.83 337.597 391.83 323.44C391.83 309.283 380.353 297.806 366.196 297.806C352.039 297.806 340.562 309.283 340.562 323.44C340.562 337.597 352.039 349.073 366.196 349.073Z" fill="#F3D88B" stroke="#0F2A1C" stroke-width="7.3239"/>
+<path d="M549.293 451.608C569.518 451.608 585.913 435.213 585.913 414.989C585.913 394.764 569.518 378.369 549.293 378.369C529.069 378.369 512.674 394.764 512.674 414.989C512.674 435.213 529.069 451.608 549.293 451.608Z" fill="#ECE5D6" stroke="#0F2A1C" stroke-width="7.3239"/>
+<path d="M329.575 513.861C343.732 513.861 355.209 502.385 355.209 488.228C355.209 474.071 343.732 462.594 329.575 462.594C315.418 462.594 303.941 474.071 303.941 488.228C303.941 502.385 315.418 513.861 329.575 513.861Z" fill="#F3D88B" stroke="#0F2A1C" stroke-width="7.3239"/>
+<path d="M677.462 367.383C691.619 367.383 703.095 355.907 703.095 341.749C703.095 327.592 691.619 316.116 677.462 316.116C663.305 316.116 651.828 327.592 651.828 341.749C651.828 355.907 663.305 367.383 677.462 367.383Z" fill="#ECE5D6" stroke="#0F2A1C" stroke-width="7.3239"/>
 </svg>
-      <figcaption class="diagram-note">Two records compared on principles and dated activity. No document shared, no index between. What forms after that can only be conditioned and watched for.</figcaption>
-    </figure>
+</figure>
     </div>
-    
     <ul class="tool-list" data-component="tool-list" data-variant="shelf">
           <li data-slot="row">
             <span data-slot="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span>
@@ -1693,30 +1559,75 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
 </script>
 <script src="vendor/template-menu/behavior.js"></script>
 <dialog class="slides-lb" aria-label="Slides">
-  <button type="button" class="slides-lb-close" aria-label="Close the slides">&times;</button>
+  <div class="slides-lb-bar">
+    <a class="slides-lb-btn slides-lb-register" target="_blank" rel="noopener" hidden>Register</a>
+    <button type="button" class="slides-lb-btn slides-lb-share" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span>Share</span></button>
+    <button type="button" class="slides-lb-btn slides-lb-close" aria-label="Close the slides">&times;</button>
+  </div>
   <iframe title="Slides"></iframe>
 </dialog>
 <script>
 (function () {
   var dlg = document.querySelector('.slides-lb'); if (!dlg) return;
-  var frame = dlg.querySelector('iframe'), opener = null;
+  var frame = dlg.querySelector('iframe'), opener = null, current = null;
+  var shareBtn = dlg.querySelector('.slides-lb-share'), shareLabel = shareBtn.querySelector('span');
+  var reg = dlg.querySelector('.slides-lb-register');
   var focusFrame = function () {
     try {
       frame.contentWindow.focus();
       frame.contentWindow.addEventListener('keydown', function (e) { if (e.key === 'Escape' && dlg.open) dlg.close(); });
     } catch (x) { frame.focus(); }
   };
+  var setHash = function (h) { try { history.replaceState(null, '', location.pathname + location.search + h); } catch (x) {} };
+  var open = function (a, slide) {
+    opener = a; current = a;
+    dlg.setAttribute('aria-label', a.dataset.slidesTitle || 'Slides'); frame.title = a.dataset.slidesTitle || 'Slides';
+    shareBtn.hidden = !a.dataset.slidesId;
+    if (a.dataset.register) { reg.href = a.dataset.register; reg.hidden = false; } else reg.hidden = true;
+    var src = a.dataset.slides + (slide ? '#' + slide : '');
+    var fresh = slide || frame.getAttribute('src') !== a.dataset.slides;
+    if (fresh) { frame.addEventListener('load', focusFrame, { once: true }); frame.setAttribute('src', src); }
+    if (!dlg.open) dlg.showModal();
+    if (!fresh) focusFrame();
+    if (a.dataset.slidesId) setHash('#slides=' + a.dataset.slidesId + (slide ? '&slide=' + slide : ''));
+  };
   document.addEventListener('click', function (e) {
     var a = e.target.closest('[data-slides]'); if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
-    e.preventDefault(); opener = a;
-    dlg.setAttribute('aria-label', a.dataset.slidesTitle || 'Slides'); frame.title = a.dataset.slidesTitle || 'Slides';
-    var fresh = frame.getAttribute('src') !== a.dataset.slides;
-    if (fresh) { frame.addEventListener('load', focusFrame, { once: true }); frame.setAttribute('src', a.dataset.slides); }
-    dlg.showModal();
-    if (!fresh) focusFrame();
+    e.preventDefault(); open(a);
+  });
+  var link = function () {
+    var h = '#slides=' + current.dataset.slidesId;
+    try { var n = parseInt((frame.contentWindow.location.hash || '').slice(1), 10); if (n > 1) h += '&slide=' + n; } catch (x) {}
+    return location.href.split('#')[0] + h;
+  };
+  var said = function (t) { shareLabel.textContent = t; clearTimeout(said.t); said.t = setTimeout(function () { shareLabel.textContent = 'Share'; }, 2200); };
+  var copy = function (url) {
+    var fallback = function () {
+      var ta = document.createElement('textarea'); ta.value = url; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      dlg.appendChild(ta); ta.select(); var ok = false; try { ok = document.execCommand('copy'); } catch (x) {} ta.remove();
+      said(ok ? 'Link copied' : 'Copy failed');
+    };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(function () { said('Link copied'); }, fallback);
+    else fallback();
+  };
+  shareBtn.addEventListener('click', function () {
+    if (!current) return;
+    var url = link(), title = current.dataset.slidesTitle || document.title;
+    if (navigator.share && matchMedia('(pointer: coarse)').matches) navigator.share({ title: title, url: url }).catch(function () {});
+    else copy(url);
   });
   dlg.querySelector('.slides-lb-close').addEventListener('click', function () { dlg.close(); });
-  dlg.addEventListener('close', function () { if (opener) opener.focus(); });
+  dlg.addEventListener('close', function () {
+    if (dlg.open) return;
+    if (/^#slides=/.test(location.hash)) setHash('');
+    if (opener && opener.isConnected && opener.offsetParent) opener.focus();
+  });
+  var fromHash = function () {
+    var m = location.hash.match(/^#slides=([\w-]+)(?:&slide=(\d+))?$/); if (!m) return;
+    var a = document.querySelector('[data-slides-id="' + m[1] + '"]'); if (a) open(a, m[2]);
+  };
+  fromHash();
+  addEventListener('hashchange', fromHash);
 })();
 </script>
 </body>

@@ -6,6 +6,8 @@
 <title>Community Legibility Spec · Houston Bloom</title>
 <meta name="description" content="Citizen infrastructure for Houston. Peer to peer education and matchmaking events, so we can co-create without a platform in the middle.">
 <link rel="stylesheet" href="../vendor/button/component.css">
+<link rel="stylesheet" href="../vendor/events-board/component.css">
+<script src="../vendor/events-board/behavior.js" defer></script>
 <link rel="stylesheet" href="../vendor/tool-list/component.css">
 <style>
 @font-face {
@@ -356,7 +358,8 @@ html{scroll-padding-top:var(--topbar-h)}
 .cls-import .tool-list[data-variant="shelf"] [data-slot="row"][data-static]:hover{background:transparent}
 .cls-import .tool-list[data-variant="shelf"] [data-slot="row"][data-static]:hover [data-slot="icon"]{transform:none;background:var(--tools-tile);color:var(--tools-icon)}
 .cls-import .tool-list[data-variant="shelf"] [data-slot="row"][data-static]:hover span[data-slot="go"]{border-color:var(--tools-rule)}
-.cls-import .tpl-lead{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 12px}.cls-import .panel.deep .tpl-lead{color:var(--deep-soft)}.cls-import .tpl-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:14px}.cls-import .tpl-grid>.tpl{flex:0 1 calc((100% - 28px)/3);min-width:0}@media (max-width:860px){.cls-import .tpl-grid>.tpl{flex-basis:calc((100% - 14px)/2)}}@media (max-width:560px){.cls-import .tpl-grid>.tpl{flex-basis:100%}}.cls-import .tpl{background:var(--card-bg);border:var(--card-border) solid var(--card-edge);border-top:var(--card-rule) solid var(--card-accent);border-radius:0 0 var(--card-radius) var(--card-radius);box-shadow:var(--card-shadow);padding:var(--card-pad);display:flex;flex-direction:column}.cls-import .panel.deep .tpl{--card-bg:rgba(255,255,255,.04);--card-edge:var(--deep-rule);--card-shadow:4px 4px 0 rgba(0,0,0,.35)}.cls-import .tpl-k{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px}.cls-import .tpl-n{font-family:var(--font-display);font-weight:700;font-size:1.02rem;line-height:1.2;margin:0 0 6px}.cls-import .tpl-d{margin:0 0 14px;font-size:.88rem;line-height:1.5;color:var(--ink-soft)}.cls-import .panel.deep .tpl-d{color:var(--deep-soft)}.cls-import .tpl-l{margin:auto 0 0;font-family:var(--font-mono);font-size:.72rem;overflow-wrap:anywhere}.cls-import .tpl-l a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--green);padding-bottom:1px}.cls-import .panel.deep .tpl-l a{color:var(--butter);border-bottom-color:var(--butter)}.cls-import .hz-fig{margin:22px 0 0;padding:14px 14px 0;background:#fffdf8;border:2px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 var(--ink);overflow-x:auto}.cls-import .panel.deep .hz-fig{border-color:var(--deep-rule);box-shadow:4px 4px 0 rgba(0,0,0,.35)}.cls-import .hz-svg{display:block;width:100%;min-width:460px;height:auto}.cls-import .hz-fig figcaption{margin:10px 0 0;padding:10px 0 12px;border-top:1px solid rgba(26,26,26,.12);font-family:var(--font-mono);font-size:.72rem;line-height:1.55;color:#4e5a4b;min-width:460px}.cls-import .actnote{margin:7px 0 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}.cls-import .panel.deep .actnote{color:var(--deep-soft)}.cls-import .act .actname{font-family:var(--font-display);font-weight:700;font-size:1rem;margin:0 0 3px;line-height:1.2}.cls-import .act .actbody{margin:0;font-size:.93rem;color:var(--ink-soft)}.cls-import .panel.deep .act .actbody{color:var(--deep-soft)}.cls-import .panel.deep .quote{color:var(--deep-ink)}.cls-import .panel.deep .quote .src{color:var(--deep-soft)}.cls-import svg{max-width:100%;height:auto}#s-horizons{text-align:center}#s-horizons .hz-title{margin:.35rem auto 1.6rem;max-width:22ch}#s-horizons .hz{text-align:left}.ev-grid{margin:0 0 var(--s5)}.ev-grid .ev-card{text-align:left}.ev-grid{--card-bg:var(--paper-deep,#e3dccb);--card-shadow:4px 4px 0 rgba(0,0,0,.35)}.ev-grid .ev-card p.ev-kicker{color:var(--green)}.ev-grid .ev-card h3{color:var(--ink)}.ev-grid .ev-card p.ev-desc{color:var(--ink-soft,#4a4439)}.ev-grid .ev-card p.ev-sub{color:var(--ink-faint,#5c5648)}.ev-grid .ev-card .ev-when{color:var(--ink)}.ev-grid .ev-card .ev-state{display:inline-block;align-self:flex-start;max-width:100%;white-space:normal;margin:0 0 .9rem;padding:5px 12px;border-radius:999px;font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.04em;text-transform:uppercase;line-height:1.4;color:var(--ink);border:1px solid var(--ev-c);background:transparent}.ev-grid .ev-card .ev-links a{color:var(--green)}.eseq-turn{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(22px,2.6vw,34px);line-height:1.2;margin:0;max-width:24ch;color:var(--butter)}.eseq-ask{max-width:18ch}.cls-import .badge{border:1.5px solid currentColor;border-radius:999px;padding:4px 11px;display:inline-flex;align-items:center;gap:7px;background:transparent}.cls-import .badge::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 auto}.cls-import .badge.run{color:var(--green)}.cls-import .badge.build{color:var(--ink);background:var(--butter);border-color:var(--butter)}.cls-import .badge.design{color:#35626f}.cls-import .badge.design::before{background:transparent;border:1.5px solid currentColor}.script{font-family:var(--script);font-size:var(--t-lg);color:var(--green);margin-bottom:var(--s2)}
+.cls-import .tpl-lead{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 12px}.cls-import .panel.deep .tpl-lead{color:var(--deep-soft)}.cls-import .tpl-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:14px}.cls-import .tpl-grid>.tpl{flex:0 1 calc((100% - 28px)/3);min-width:0}@media (max-width:860px){.cls-import .tpl-grid>.tpl{flex-basis:calc((100% - 14px)/2)}}@media (max-width:560px){.cls-import .tpl-grid>.tpl{flex-basis:100%}}.cls-import .tpl{background:var(--card-bg);border:var(--card-border) solid var(--card-edge);border-top:var(--card-rule) solid var(--card-accent);border-radius:0 0 var(--card-radius) var(--card-radius);box-shadow:var(--card-shadow);padding:var(--card-pad);display:flex;flex-direction:column}.cls-import .panel.deep .tpl{--card-bg:rgba(255,255,255,.04);--card-edge:var(--deep-rule);--card-shadow:4px 4px 0 rgba(0,0,0,.35)}.cls-import .tpl-k{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 7px}.cls-import .tpl-n{font-family:var(--font-display);font-weight:700;font-size:1.02rem;line-height:1.2;margin:0 0 6px}.cls-import .tpl-d{margin:0 0 14px;font-size:.88rem;line-height:1.5;color:var(--ink-soft)}.cls-import .panel.deep .tpl-d{color:var(--deep-soft)}.cls-import .tpl-l{margin:auto 0 0;font-family:var(--font-mono);font-size:.72rem;overflow-wrap:anywhere}.cls-import .tpl-l a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--green);padding-bottom:1px}.cls-import .panel.deep .tpl-l a{color:var(--butter);border-bottom-color:var(--butter)}.cls-import .hz-fig{margin:22px 0 0;padding:14px 14px 0;background:#fffdf8;border:2px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 var(--ink);overflow-x:auto}.cls-import .panel.deep .hz-fig{border-color:var(--deep-rule);box-shadow:4px 4px 0 rgba(0,0,0,.35)}.cls-import .hz-svg{display:block;width:100%;min-width:460px;height:auto}.cls-import .hz-fig figcaption{margin:10px 0 0;padding:10px 0 12px;border-top:1px solid rgba(26,26,26,.12);font-family:var(--font-mono);font-size:.72rem;line-height:1.55;color:#4e5a4b;min-width:460px}.cls-import .actnote{margin:7px 0 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}.cls-import .panel.deep .actnote{color:var(--deep-soft)}.cls-import .act .actname{font-family:var(--font-display);font-weight:700;font-size:1rem;margin:0 0 3px;line-height:1.2}.cls-import .act .actbody{margin:0;font-size:.93rem;color:var(--ink-soft)}.cls-import .panel.deep .act .actbody{color:var(--deep-soft)}.cls-import .panel.deep .quote{color:var(--deep-ink)}.cls-import .panel.deep .quote .src{color:var(--deep-soft)}.cls-import svg{max-width:100%;height:auto}#s-horizons{text-align:center}#s-horizons .hz-title{margin:.35rem auto 1.6rem;max-width:22ch}
+#s-horizons .hz-title:has(+ .hz-lede){margin-bottom:.6rem;max-width:none}#s-horizons .hz-lede{margin:0 auto 1.6rem}#s-horizons .hz{text-align:left}.ev-grid{margin:0 0 var(--s5)}.ev-grid .ev-card{text-align:left}.ev-grid{--card-bg:var(--paper-deep,#e3dccb);--card-shadow:4px 4px 0 rgba(0,0,0,.35)}.ev-grid .ev-card p.ev-kicker{color:var(--green)}.ev-grid .ev-card h3{color:var(--ink)}.ev-grid .ev-card p.ev-desc{color:var(--ink-soft,#4a4439)}.ev-grid .ev-card p.ev-sub{color:var(--ink-faint,#5c5648)}.ev-grid .ev-card .ev-when{color:var(--ink)}.ev-grid .ev-card .ev-state{display:inline-block;align-self:flex-start;max-width:100%;white-space:normal;margin:0 0 .9rem;padding:5px 12px;border-radius:999px;font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.04em;text-transform:uppercase;line-height:1.4;color:var(--ink);border:1px solid var(--ev-c);background:transparent}.ev-grid .ev-card .ev-links a{color:var(--green)}.eseq-turn{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(22px,2.6vw,34px);line-height:1.2;margin:0;max-width:24ch;color:var(--butter)}.eseq-ask{max-width:18ch}.cls-import .badge{border:1.5px solid currentColor;border-radius:999px;padding:4px 11px;display:inline-flex;align-items:center;gap:7px;background:transparent}.cls-import .badge::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;flex:0 0 auto}.cls-import .badge.run{color:var(--green)}.cls-import .badge.build{color:var(--ink);background:var(--butter);border-color:var(--butter)}.cls-import .badge.design{color:#35626f}.cls-import .badge.design::before{background:transparent;border:1.5px solid currentColor}.script{font-family:var(--script);font-size:var(--t-lg);color:var(--green);margin-bottom:var(--s2)}
 .hero h1{margin-bottom:var(--s5)}
 .hero .lede{margin-inline:auto;text-align:center}
 
@@ -715,12 +718,12 @@ html{scroll-padding-top:var(--topbar-h)}
 /* two photos side by side under the fade: the speaker left, the room right.
    On a phone the room photo drops and the speaker fills the card. */
 .ev-photos{position:absolute;inset:0;display:grid;grid-template-columns:1fr;z-index:-2}
-.ev-photos{overflow:hidden}
+.ev-photos{overflow:hidden;grid-template-rows:100%}
 .ev-photos img{width:100%;height:100%;object-fit:cover;display:block}
-/* both photos are wider than their half, so the crop is sideways only and nobody is cut at the head.
-   left: the speaker with the microphone, the man beside her at the edge. right: pinned to the right
-   edge so the woman in red and the woman in navy both stay in frame. */
-.ev-photos img:first-child{object-position:30% 50%}
+/* room shot, Founder's Couch Episode 3. Wide card: crop from the top so the circle of people sits in
+   frame. Narrow card: crop sideways and pin right so the host in the end armchair stays in frame. */
+.ev-photos img:first-child{object-position:50% 62%}
+@media (max-width:819px){.ev-photos img:first-child{object-position:84% 50%}}
 .ev-feature::before{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(to top,color-mix(in oklch,var(--green-deep) 92%,transparent) 0%,color-mix(in oklch,var(--green-deep) 84%,transparent) 42%,transparent 85%)}
 .ev-feature-body{width:100%;max-width:64ch;padding:var(--card-pad);text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s3)}
@@ -731,6 +734,7 @@ html{scroll-padding-top:var(--topbar-h)}
 /* the events now follow the platforms table, and the hero's See the events button lands on them */
 #events{scroll-margin-top:calc(var(--topbar-h) + var(--s5))}
 .ev-eps{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--s4)}
+.ev-feature-desc{max-width:52ch;font-size:var(--t-sm);line-height:1.5;color:var(--on-dark)}
 .ev-eps>span{font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-soft)}
 
 /* ── the subscribe strip under the cards. A cream card on the dark panel, so
@@ -1049,6 +1053,8 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 /* a lighter fade on the Speaking Series that starts lower, so more of the room shows */
 .ev-feature::before{background:linear-gradient(to top,color-mix(in oklch,var(--green-night) 82%,transparent) 0%,color-mix(in oklch,var(--green-night) 55%,transparent) 30%,transparent 58%)}
 @media (max-width:819px){.ev-block{grid-template-columns:1fr}}
+/* events board: design-system events-board (vendor/events-board) across the full width of the events block */
+.ev-block > .events-board{grid-column:1 / -1} .events-board{--font-hand:var(--script)}
 </style>
 <link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
@@ -1503,14 +1509,12 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 <section class="panel panel-dark hero ov-hero" style="padding-block:var(--s9) var(--s8)" id="overview" data-review-label="Overview">
   <canvas class="field" data-field data-density="6" aria-hidden="true"></canvas>
   <div class="shell">
-    <p class="ov-kicker">Houston Bloom</p>
     <h1>Community Legibility Spec</h1>
-    <p class="lede measure">Your people and your work, kept as plain files on your own computer, with a record of what you share and with whom.</p>
+    <p class="lede measure">Relational technology built to end data extraction and exploitation.</p>
     <div class="ov-actions">
       <a class="btn" data-component="button" href="getting-started.html">Get started</a>
-      <a class="btn btn--outline" data-component="button" href="slides.html" data-slides="slides.html" data-slides-title="Getting started, as slides">See the slides</a>
+      <a class="btn btn--outline" data-component="button" href="slides.html" data-slides="slides.html" data-slides-title="Getting started, as slides">Learn more</a>
     </div>
-    <ol class="ov-why"><li><span class="n">01</span><strong>Make your thinking legible to others.</strong></li><li><span class="n">02</span><strong>Keep a tight pulse on what your system is doing, sending or needing.</strong></li><li><span class="n">03</span><strong>Cancel your subscriptions.</strong></li></ol>
   </div>
 </section>
 <section class="panel" id="what-you-end-up-with" data-review-label="What you end up with">
@@ -2057,7 +2061,7 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
     <p class="lede measure">At the end you have your own folder with your contacts in it, your contact card, a dashboard, and a manifest that starts with this packet and logs what you share.</p>
     <div class="ov-actions">
       <a class="btn" data-component="button" href="getting-started.html">Get started</a>
-      <a class="btn btn--outline" data-component="button" href="slides.html" data-slides="slides.html" data-slides-title="Getting started, as slides">See the slides</a>
+      <a class="btn btn--outline" data-component="button" href="slides.html" data-slides="slides.html" data-slides-title="Getting started, as slides">Learn more</a>
     </div>
   </div>
 </section>

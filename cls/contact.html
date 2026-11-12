@@ -150,7 +150,7 @@
 <article class="cls-feature"><section class="wiki-section" id="intro" data-review-part data-review-label="Intro">
   <h1>What a contact is</h1>
   <p class="lede">One folder per person or organization. Inside, one text file that says who they are, and one line for each exchange you had with them.</p>
-  <p class="note">The people below are made up to show the shape. Priya Shah owns the folder; everyone else is a contact. Contract 0.2.0 for a person, 0.1.0 for an organization and an exchange.</p>
+  <p class="note">The people below are made up to show the shape. Priya Shah owns the folder; everyone else is a contact. Contract 0.3.0 for a person, 0.2.0 for an organization, 0.1.0 for an exchange.</p>
 
   </section>
 <section class="wiki-section" id="the-picture" data-review-part data-review-label="The picture"><h2>The picture</h2>
@@ -207,22 +207,22 @@
   <p class="note">One row is one person. A field is one column.</p>
   <div class="scroll">
     <table>
-      <thead><tr><th>id</th><th>name</th><th>organization</th><th>title</th><th>email</th><th>telephone</th><th>tags</th><th>confidence</th><th>filed_by</th></tr></thead>
+      <thead><tr><th>id</th><th>name</th><th>organization</th><th>job_title</th><th>contact_details.email</th><th>telephone</th><th>tags</th><th>confidence</th><th>filed_by</th></tr></thead>
       <tbody>
         <tr><td><code>per_sam-lee</code></td><td>Sam Lee</td><td><code>org_eastside-tool-library</code></td><td>Founder</td><td>sam@example.org</td><td>+1 713 555 0100</td><td>builder, houston</td><td>confident</td><td>intake:vcf</td></tr>
-        <tr><td><code>per_ana-ruiz</code></td><td>Ana Ruiz</td><td>Studio Ruiz</td><td>Designer</td><td>ana@example.org<br>ana@studio.example</td><td>+1 713 555 0142</td><td>design</td><td>verified</td><td>intake:json</td></tr>
+        <tr><td><code>per_ana-ruiz</code></td><td>Ana Ruiz</td><td>Studio Ruiz</td><td>Designer</td><td>ana@example.org</td><td>+1 713 555 0142</td><td>design</td><td>verified</td><td>intake:json</td></tr>
         <tr><td><code>per_kai-tran</code></td><td>Kai Tran</td><td></td><td></td><td>kai@example.org</td><td></td><td></td><td>verified</td><td>agent</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="key"><span>Sam's organization is on record, so their file points at its id. Ana's is not, so it is the name as their card gives it.</span><span>Ana came in twice, as a card and as their own profile. Their emails were merged; nothing on file was overwritten.</span></div>
+  <div class="key"><span>Sam's organization is on record, so their file points at its id. Ana's is not, so it is the name as their card gives it.</span><span>Ana came in twice, as a card and as their own profile. Their emails were merged: the first is the one to reach them at, the second is kept in emails. Nothing on file was overwritten.</span></div>
 
   </section>
 <section class="wiki-section" id="the-organization-file-as-a-table" data-review-part data-review-label="The organization file, as a table"><h2>The organization file, as a table</h2>
   <p class="note">The same local fields a person carries, on a Murmurations organizations profile.</p>
   <div class="scroll">
     <table>
-      <thead><tr><th>id</th><th>visibility</th><th>name</th><th>primary_url</th><th>email</th><th>tags</th><th>filed_by</th></tr></thead>
+      <thead><tr><th>id</th><th>visibility</th><th>name</th><th>primary_url</th><th>contact_details.email</th><th>tags</th><th>filed_by</th></tr></thead>
       <tbody>
         <tr><td><code>org_eastside-tool-library</code></td><td>local</td><td>Eastside Tool Library</td><td>eastside.example</td><td>hello@eastside.example</td><td>community</td><td>intake:vcf</td></tr>
       </tbody>
@@ -236,10 +236,12 @@
     <dt>linked_schemas</dt><dd>The formats this file follows: the Murmurations profile first, then this folder's add-on.</dd>
     <dt>name</dt><dd>The name they use, from their own signature or profile. Never guessed from a calendar title or an email address.</dd>
     <dt>primary_url</dt><dd>Their own site. Left out when they have none.</dd>
-    <dt>urls</dt><dd>Any further links, as the card gives them, so a card with two links comes back out with two.</dd>
-    <dt>email</dt><dd>Every address they have written from.</dd>
-    <dt>telephone</dt><dd>Phone numbers, as the card gives them.</dd>
-    <dt>title</dt><dd>A person's job title, as their card or signature gives it.</dd>
+    <dt>urls</dt><dd>Any further links, each with a name saying what it is, so a card with two links comes back out with two. Murmurations' shape.</dd>
+    <dt>contact_details.email</dt><dd>The address to reach them at. Murmurations keeps one, inside contact_details.</dd>
+    <dt>emails</dt><dd>Any further addresses they have written from. Ours, since Murmurations keeps one.</dd>
+    <dt>telephone</dt><dd>One phone number, as the card gives it. Murmurations' shape.</dd>
+    <dt>telephones</dt><dd>Any further numbers. Ours, since Murmurations keeps one.</dd>
+    <dt>job_title</dt><dd>A person's job title, as their card or signature gives it. Murmurations' name.</dd>
     <dt>organization</dt><dd>Where a person works. An <code>org_</code> id when the organization is on record, otherwise its name as the card gives it.</dd>
     <dt>description</dt><dd>One or two sentences on who they are, in your words.</dd>
     <dt>tags</dt><dd>Words you use to find them.</dd>
@@ -272,13 +274,14 @@
   <p class="note">JSON, a plain text format. This is Ana's file, <code>records/per_ana-ruiz/person.json</code>.</p>
 <pre>{
   "id": "per_ana-ruiz",
-  "linked_schemas": ["people_schema-v0.1.0", "contacts_person_addon-v0.2.0"],
+  "linked_schemas": ["people_schema-v0.1.0", "contacts_person_addon-v0.3.0"],
   "name": "Ana Ruiz",
   "primary_url": "https://ana.example",
-  "email": ["ana@example.org", "ana@studio.example"],
-  "title": "Designer",
+  "contact_details": { "email": "ana@example.org" },
+  "emails": ["ana@studio.example"],
+  "job_title": "Designer",
   "organization": "Studio Ruiz",
-  "telephone": ["+1 713 555 0142"],
+  "telephone": "+1 713 555 0142",
   "tags": ["design"],
   "relationships": [
     { "predicate_url": "collaborator", "object_url": "per_sam-lee" }

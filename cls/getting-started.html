@@ -162,9 +162,9 @@ Do not send anything anywhere. When you are done, show me my dashboard and tell 
 <p>You should see: <code>Python 3.</code> and a version, then <code>libzim ok</code>.</p>
 </section>
 <section class="wiki-section" id="2-make-your-folder" data-review-part data-review-label="2. Make your folder"><h2>2. Make your folder</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-6">Make 00_inbox, 00_contacts and notes in this folder.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-6"><span data-slot="label">Copy</span></button></div>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-6">Make 00_inbox, 00_contacts, 00_manifest and notes in this folder.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-6"><span data-slot="label">Copy</span></button></div>
 
-<p>You should see: three empty folders. <code>00_inbox</code> is where you drop anything you want captured: a contact card, a note about someone, an export. <code>00_contacts</code> is where your people are kept. <code>notes</code> is for things you make. They are yours: an update to the packet never touches them.</p>
+<p>You should see: four empty folders. <code>00_inbox</code> takes anything you want captured. <code>00_contacts</code> keeps your people. <code>00_manifest</code> logs what you share. <code>notes</code> holds what you make. An update never touches them.</p>
 </section>
 <section class="wiki-section" id="3-keep-a-note-of-where-this-came-from" data-review-part data-review-label="3. Keep a note of where this came from"><h2>3. Keep a note of where this came from</h2>
 <p><code>PACKET.md</code> is a one-page note: this packet, from Houston Bloom. A copy goes in your folder so step 7 can log it as the first thing you received. The tools themselves stay in the packet.</p>
@@ -172,11 +172,11 @@ Do not send anything anywhere. When you are done, show me my dashboard and tell 
 
 <p>You should see: <code>PACKET.md</code> in your folder.</p>
 </section>
-<section class="wiki-section" id="4-copy-the-skills-and-tell-them-your-folders" data-review-part data-review-label="4. Copy the skills and tell them your folders"><h2>4. Copy the skills and tell them your folders</h2>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-10">Copy &lt;packet&gt;/skills into .claude/skills here, then write .claude/cls.json naming my folders:
-contacts, tools, manifest, spec, skills and inbox, as SETUP.md step 4 shows.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-10"><span data-slot="label">Copy</span></button></div>
+<section class="wiki-section" id="4-link-the-skills-and-tell-them-your-folders" data-review-part data-review-label="4. Link the skills and tell them your folders"><h2>4. Link the skills and tell them your folders</h2>
+<p>The skills are linked, not copied, so an update reaches the skills you run. Your own changes to a skill go in <code>00_contacts/local/skills.md</code>, which every skill reads and no update touches.</p>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-10">Link the four skills in &lt;packet&gt;/skills into .claude/skills here, make 00_contacts/local/skills.md, then write .claude/cls.json, as SETUP.md step 4 shows.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-10"><span data-slot="label">Copy</span></button></div>
 
-<p>You should see: <code>.claude/skills</code> holding <code>capture-connection</code>, <code>contacts</code>, <code>map</code>, <code>share</code>, and <code>.claude/cls.json</code> with six paths. Every skill reads its folders from that file; to move a folder, change one line there.</p>
+<p>You should see: <code>.claude/skills</code> with four links, <code>00_contacts/local/skills.md</code>, and <code>.claude/cls.json</code> with eight paths. A skill you already had by the same name is left as it is.</p>
 </section>
 <section class="wiki-section" id="5-add-yourself" data-review-part data-review-label="5. Add yourself"><h2>5. Add yourself</h2>
 <div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-12">Add me as the owner of my contacts folder: &lt;Your Name&gt;, &lt;you@example.org&gt;.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-12"><span data-slot="label">Copy</span></button></div>
@@ -237,10 +237,10 @@ offer a transformation note: PACKET.md, id 3f9a1c22, from Houston Bloom
 offer a transformation note: for-sam.md, id 9ebdc246, sent to Sam Lee</pre>
 </section>
 <section class="wiki-section" id="updating" data-review-part data-review-label="Updating"><h2>Updating</h2>
-<p>Your folders (<code>00_contacts</code>, <code>00_inbox</code>, <code>manifest</code>, <code>notes</code>) are yours; the packet holds only tools. To update:</p>
-<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-33">Update the CLS packet at &lt;packet&gt; with git pull, then copy &lt;packet&gt;/skills into .claude/skills again.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-33"><span data-slot="label">Copy</span></button></div>
+<p>Your folders (<code>00_contacts</code>, <code>00_inbox</code>, <code>00_manifest</code>, <code>notes</code>) and your own rules (<code>00_contacts/local/skills.md</code>) are yours; the packet holds only the system. To update:</p>
+<div class="copy-block" data-component="copy-block"><h3>Ask your agent</h3><pre data-slot="text" id="cb-33">Read &lt;packet&gt;/CHANGELOG.md for what is new since my last update and tell me what changes for me, skill by skill. If I say yes, run git pull in &lt;packet&gt;. If git says my local changes would be overwritten, move my change into 00_contacts/local/skills.md first.</pre><button type="button" class="btn btn--outline" data-component="button" data-copy="cb-33"><span data-slot="label">Copy</span></button></div>
 
-<p>You should see: git list the files it changed, or <code>Already up to date.</code> Nothing in your own folders changes.</p>
+<p>You should see: git list the files it changed, or <code>Already up to date.</code> The skills are linked, so they are current at once. Nothing in your own folders changes.</p>
 </section>
 <section class="wiki-section" id="later" data-review-part data-review-label="Later"><h2>Later</h2>
 <ul><li><strong>Anything in 00_inbox.</strong> Ask: <code>/capture-connection whatever is in 00_inbox</code>. A contact card (<code>.vcf</code>) can also go straight into <code>00_contacts/inbox/</code> and be filed with <code>node &quot;&lt;packet&gt;/contacts-tools/_build/intake.mjs&quot;</code>.</li><li><strong>An impact report for a person.</strong> Ask: <code>Draft an impact report for Sam Lee.</code> By hand: <code>node &quot;&lt;packet&gt;/contacts-tools/_build/impact.mjs&quot; per_sam-lee</code>. It writes to <code>00_contacts/reports/</code>.</li><li><strong>A copy for a person.</strong> Ask: <code>/map Make Sam Lee's redacted copy.</code> By hand: <code>node .claude/skills/map/map.mjs redact --to &quot;Sam Lee&quot; --person per_sam-lee</code>. You should see: <code>copy for Sam Lee: 1 times you were active together, ...</code>.</li><li><strong>A transformation note.</strong> Ask: <code>/share Write the transformation note for for-sam.md.</code> By hand: copy <code>.claude/skills/share/transformation.md</code> to <code>notes/for-sam-note.md</code>, fill it in, then <code>node .claude/skills/map/map.mjs note notes/for-sam.md notes/for-sam-note.md</code>.</li></ul>
