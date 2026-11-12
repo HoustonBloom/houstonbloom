@@ -1622,7 +1622,8 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
     var src = a.dataset.slides + (slide ? '#' + slide : '');
     var fresh = slide || frame.getAttribute('src') !== a.dataset.slides;
     if (fresh) { frame.addEventListener('load', focusFrame, { once: true }); frame.setAttribute('src', src); }
-    if (!dlg.open) dlg.showModal();
+    // Megan, 2026-11-12: the page behind the slides must not scroll while they are open
+    if (!dlg.open) { document.documentElement.style.overflow = 'hidden'; document.body.style.overflow = 'hidden'; dlg.showModal(); }
     if (!fresh) focusFrame();
     if (a.dataset.slidesId) setHash('#slides=' + a.dataset.slidesId + (slide ? '&slide=' + slide : ''));
   };
@@ -1653,6 +1654,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
   });
   dlg.querySelector('.slides-lb-close').addEventListener('click', function () { dlg.close(); });
   dlg.addEventListener('close', function () {
+    document.documentElement.style.overflow = ''; document.body.style.overflow = '';
     if (dlg.open) return;
     if (/^#slides=/.test(location.hash)) setHash('');
     if (opener && opener.isConnected && opener.offsetParent) opener.focus();
