@@ -1101,6 +1101,9 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
 .slides-lb-btn[hidden]{display:none}
 .slides-lb-logo{margin-right:auto;display:flex;align-items:center}.slides-lb-logo img{display:block;height:24px;width:auto}
 .slides-lb-btn:hover{opacity:1;background:color-mix(in oklch,var(--paper) 12%,transparent)}
+/* Megan, 2026-11-11: "The register button should be a primary button that stands out". The site default button fill. */
+.slides-lb-register{opacity:1;background:var(--btn-default-fill,var(--color-accent));border-color:var(--btn-default-fill,var(--color-accent));color:var(--btn-default-text,var(--color-text-inverse,#fff))}
+.slides-lb-register:hover{background:var(--btn-default-fill-hover-inverse,var(--cream));border-color:var(--btn-default-fill-hover-inverse,var(--cream));color:var(--ink)}
 .slides-lb-btn:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 @media (max-width:600px){.slides-lb-bar{padding:var(--s2)}.slides-lb-btn{padding:0 var(--s3)}}
 [data-pic="getting-started"] h1, [data-pic="getting-started"] h2 { font-family: var(--font-display); font-weight: 600; margin: 0; }
