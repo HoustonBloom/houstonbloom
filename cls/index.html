@@ -1555,6 +1555,7 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
   .ov-principles .body{padding:0 0 var(--s5) calc(2ch + var(--s3));max-width:40rem}
   .ov-principles .body p{color:rgba(250,248,243,.9);margin:0 0 var(--s3);line-height:1.6}
   .ov-principles .body strong{color:#f3d88b;font-weight:700} /* Megan, 2026-11-11: "Remove the where it shows... scannability pass, bolding and potentially yellow" */
+  .ov-principles .ov-roots{margin:var(--s5) 0 0;color:rgba(250,248,243,.82);font-size:var(--t-sm)}.ov-principles .ov-roots a{color:#f3d88b;font-weight:700;text-decoration:underline;text-underline-offset:3px}
   .ov-principles .proof{margin-top:var(--s4);padding:var(--s3) var(--s4);border-left:3px solid #f3d88b;background:rgba(250,248,243,.06);border-radius:0 8px 8px 0}
   .ov-principles .proof b{display:block;color:#f3d88b;font-weight:700;margin-bottom:4px}
   .ov-principles .proof span{color:rgba(250,248,243,.85)}
@@ -1583,15 +1584,19 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
       <summary><span class="n">05</span><span><span class="nm">Make harm legible.</span><span class="pr">You can't fix what you can't see.</span></span><span class="tg" aria-hidden="true">+</span></summary>
       <div class="body"><p>You cannot organize against <strong>what you cannot see</strong>. Modern systems are designed to <strong>keep harm abstract</strong>. The algorithm doesn’t have a face. The supply chain has no address. The policy effect is statistical, not human.</p><p>We did not evolve to pay attention to <strong>large systems</strong>. We evolved for <strong>communities of about 150 people</strong>. So we need to start <strong>looking toward each other</strong> for what we should do, restoring humanity’s feedback loop.</p><p>Restoring the feedback loop means <strong>shortening the distance</strong> between the communities who are impacted and the impact they are able to have. Make the harm visible to the people it affects. Make it nameable. Make it countable. <strong>Make it actionable.</strong></p></div>
     </details>
+    <!-- Megan, 2026-11-11: "Sprouting from the fair care and ostrum principles hyperlink out to sources". FAIR: GO FAIR's
+         statement of the principles. CARE: the published paper (Carroll et al., Data Science Journal, 2020); the GIDA page
+         that used to hold them returns 404. Ostrom: her 2009 Nobel lecture, where the design principles are set out. -->
+    <p class="ov-roots">Sprouting from the <a href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener">FAIR</a>, <a href="https://datascience.codata.org/articles/10.5334/dsj-2020-043" target="_blank" rel="noopener">CARE</a> and <a href="https://www.nobelprize.org/prizes/economic-sciences/2009/ostrom/lecture/" target="_blank" rel="noopener">Ostrom</a> principles.</p>
   </div>
 </section>
 <section class="panel ov-relational" id="relational-technology" data-review-label="Relational technology">
   <style>
-  .ov-relational{background:#14301f;padding-block:0 var(--s9)}
+  .ov-relational{background:#fff;padding-block:var(--s9)} /* Megan, 2026-11-11: "Move to white background" */
   .ov-relational .shell{max-width:52rem}
-  .ov-relational h2{color:var(--on-dark);font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1.15;margin:0 0 var(--s5);max-width:30ch}
+  .ov-relational h2{color:#1E4630;font-size:clamp(1.5rem,3.6vw,2.1rem);line-height:1.15;margin:0 0 var(--s5);max-width:30ch}
   .ov-relational .rt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
-  .ov-relational .rt-card{background:#FAF8F3;color:#1E4630;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .ov-relational .rt-card{background:#FAF8F3;border:1px solid #E3DCCB;box-shadow:0 1px 0 rgba(15,42,28,.06),0 10px 24px -18px rgba(15,42,28,.45);color:#1E4630;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
   .ov-relational .rt-win{height:84px;display:grid;place-items:center;overflow:hidden}
   .ov-relational .rt-win svg{width:100%;height:100%;display:block}
   .ov-relational .k-offers .rt-win{background:#1E4630}.ov-relational .k-contacts .rt-win{background:#E3DCCB}.ov-relational .k-events .rt-win{background:#F3D88B}
