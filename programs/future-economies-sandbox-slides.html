@@ -275,6 +275,13 @@ svg .hand circle{fill:var(--rust)}
 /* A small drawing from the deck above a title. */
 .mini{width:clamp(180px,26vmin,280px);margin-bottom:clamp(8px,1.6vmin,16px)}.mini svg{display:block;width:100%;height:auto}.s-shot-r .art{justify-self:start}
 @media (max-width:720px){.s-shot{grid-template-columns:1fr;gap:16px}.s-shot .art{justify-self:start}.s-shot .phone{height:auto;max-height:50dvh}.s-branch .board{grid-template-columns:1fr}.s-branch .panel .pic svg{max-height:120px}}
+/* Cover buttons (Megan, 2026-11-11): primary Join the events, secondary Invite others. 48px tall. */
+.cover-ctas{display:flex;flex-wrap:wrap;gap:12px;margin:clamp(16px,3vmin,28px) 0 0}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:12px;font:700 clamp(15px,1.9vmin,18px)/1 'Plus Jakarta Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;border:2px solid #01634a}
+.cta-primary{background:#01634a;color:#fff}
+.cta-secondary{background:transparent;color:#01634a}
+.cta:hover{filter:brightness(1.08)}
+.body strong{color:var(--ink,#1a1a1a);font-weight:700}
 </style>
 </head>
 <body>
@@ -285,10 +292,13 @@ svg .hand circle{fill:var(--rust)}
 <div class="dateline"><span class="date-pill">Tuesday 17 November · 11:00 AM CST</span><span class="edition">On Zoom · open to everyone</span></div>
 <div class="title-col">
   <h1 class="t-xl">What can you offer, and what do you need?</h1>
-  <p class="lede">Bloom Network's Future Economies Sandbox. You don't need to be a Bloom member.</p>
+  <p class="lede">Bloom Network's Future Economies Sandbox.</p>
+  <!-- Megan, 2026-11-11: "Remove You don't need to be a Bloom member. Also the Bloom Network thing at the bottom is redundant.
+       We should add a button underneath the Future economy sandbox the primary button, join the events and then a secondary
+       that says invite others". Both go to the Luma page (luma.com/0n3pgrnj); Invite others shares it, or copies it. -->
+  <p class="cover-ctas"><a class="cta cta-primary" href="https://luma.com/0n3pgrnj" target="_blank" rel="noopener">Join the events</a><button type="button" class="cta cta-secondary" data-invite="https://luma.com/0n3pgrnj">Invite others</button></p>
 </div>
 <div class="art"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="who " transform="translate(40 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(160 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who you" transform="translate(100 112) scale(1.2)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><path class="arc" d="M 100 70 Q 70 30 44 76"/><circle class="dot" cx="100" cy="70" r="2.5"/><circle class="dot" cx="44" cy="76" r="2.5"/><path class="arc" d="M 100 70 Q 130 30 156 76"/><circle class="dot" cx="100" cy="70" r="2.5"/><circle class="dot" cx="156" cy="76" r="2.5"/><g class="check"><circle cx="100" cy="28" r="12"/><path d="M93 28 L98 33 L107 23"/></g></svg></div>
-<div class="sig"><span class="by">Bloom Network</span><span class="publisher">Future Economies Sandbox</span></div>
 </article>
 <article class="slide s-steward" data-slide="2" data-title="Introductions" aria-hidden="true">
 <div class="art"><svg viewBox="0 0 200 130" role="img" aria-hidden="true"><line class="ground" x1="8" y1="118" x2="192" y2="118"/><g class="who " transform="translate(24 112) scale(0.95)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who " transform="translate(62 112) scale(0.95)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who you" transform="translate(100 112) scale(0.95)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who " transform="translate(138 112) scale(0.95)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who " transform="translate(176 112) scale(0.95)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g></svg></div>
@@ -322,7 +332,9 @@ svg .hand circle{fill:var(--rust)}
 <article class="slide s-origin" data-slide="9" data-title="Your choice" aria-hidden="true">
 <div class="room"><svg viewBox="0 0 320 150" aria-hidden="true"><g class="who far" transform="translate(30 140) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(70 134) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(110 140) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(150 134) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who you" transform="translate(190 140) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(230 134) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="who far" transform="translate(270 140) scale(0.9)"><circle cx="0" cy="-22" r="8"/><path d="M-13 6 Q-13 -10 0 -10 Q13 -10 13 6 Z"/></g><g class="check"><circle cx="190" cy="70" r="12"/><path d="M183 70 L188 75 L197 65"/></g></svg></div>
 <h1 class="serif-xl">Nothing goes anywhere you did not choose.</h1>
-<p class="body">To move away from extractive systems, individuals and their communities must collaborate to build systems that support data sovereignty and community data governance.</p>
+<!-- Megan, 2026-11-11: "Add better scanability here and then we need a button that says learn more about the community legibility spec or just learn more" -->
+<p class="body">To move away from <strong>extractive systems</strong>, individuals and their communities must <strong>collaborate</strong> to build systems that support <strong>data sovereignty</strong> and <strong>community data governance</strong>.</p>
+<p class="cover-ctas"><a class="cta cta-primary" href="https://houstonbloom.github.io/houstonbloom/cls/index.html" target="_blank" rel="noopener">Learn more</a></p>
 </article>
 </div>
 </section>
@@ -374,5 +386,5 @@ svg .hand circle{fill:var(--rust)}
 <script>
 document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && window.parent !== window) window.parent.postMessage({ hbReel: 'close' }, '*'); });
 </script>
-</body>
+<script>document.addEventListener("click",function(e){var b=e.target.closest("[data-invite]");if(!b)return;var u=b.getAttribute("data-invite"),t=b.textContent;var done=function(){b.textContent="Link copied";setTimeout(function(){b.textContent=t},2000)};if(navigator.share){navigator.share({title:"Future Economies Sandbox",url:u}).catch(function(){});return}if(navigator.clipboard){navigator.clipboard.writeText(u).then(done,function(){prompt("Copy this link",u)})}else{prompt("Copy this link",u)}});</script></body>
 </html>
