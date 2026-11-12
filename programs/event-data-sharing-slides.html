@@ -1059,7 +1059,7 @@ body.no-bar .deck { bottom: auto; }
 </script>
 <script>(function(){var x0=null,y0=null;document.addEventListener('touchstart',function(e){if(e.target.closest&&e.target.closest('.ec-diagram .art')){x0=null;return}x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
 document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)document.getElementById(dx<0?'next':'prev').click()},{passive:true});
-function sync(){var s=document.querySelector('.slide.active');document.body.classList.toggle('no-bar',!!(s&&s.classList.contains('ec-diagram-slide')))}
+function sync(){document.body.classList.remove('no-bar')/* Megan, 2026-11-11: the last slide keeps the bottom navigation */}
 new MutationObserver(sync).observe(document.querySelector('.deck'),{subtree:true,attributes:true,attributeFilter:['class']});sync();})();</script>
 </body>
 </html>
