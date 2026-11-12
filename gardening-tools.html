@@ -1464,33 +1464,7 @@ html{scroll-behavior:smooth}@media (prefers-reduced-motion:reduce){html{scroll-b
   </div>
 </section>
 </div>
-<section class="cluster hz-deck" id="s-three-horizons-deck" aria-label="Three Horizons for AI, the slides">
-  <style>
-  .hz-deck .hzd-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:var(--s3)}
-  .hz-deck .hzd-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--ink);box-shadow:0 1px 0 rgba(0,0,0,.04)}
-  .hz-deck iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:auto}
-  .hz-deck .hzd-arrow{width:48px;height:48px;border-radius:50%;border:2px solid var(--brand-green-deep);background:transparent;color:var(--brand-green-deep);font:700 24px/1 system-ui,sans-serif;cursor:pointer;display:grid;place-items:center}
-  .hz-deck .hzd-arrow.next{background:var(--brand-green-deep);color:#fff}
-  .hz-deck .hzd-arrow:hover{filter:brightness(1.1)}
-  @media (max-width:700px){.hz-deck .hzd-row{grid-template-columns:1fr 1fr;row-gap:var(--s3)}.hz-deck .hzd-frame{grid-column:1/-1;grid-row:1;aspect-ratio:auto;height:calc(100svh - 150px);min-height:520px}.hz-deck .hzd-arrow.prev{grid-row:2;justify-self:start}.hz-deck .hzd-arrow.next{grid-row:2;justify-self:end}}
-  </style>
-  <div class="wrap">
-    <div class="hzd-row">
-      <button type="button" class="hzd-arrow prev" aria-label="Previous slide">&lsaquo;</button>
-      <div class="hzd-frame"><iframe src="programs/three-horizons-for-ai-slides.html" title="Three Horizons for AI, the slides" loading="lazy"></iframe></div>
-      <button type="button" class="hzd-arrow next" aria-label="Next slide">&rsaquo;</button>
-    </div>
-  </div>
-  <script>
-  (function(){
-    var s=document.getElementById('s-three-horizons-deck'); if(!s) return;
-    var f=s.querySelector('iframe');
-    var press=function(id,key){ try{ var d=f.contentWindow.document, b=d.getElementById(id); if(b){ b.click(); return; } d.dispatchEvent(new KeyboardEvent('keydown',{key:key,bubbles:true})); }catch(e){} };
-    s.querySelector('.hzd-arrow.prev').addEventListener('click',function(){ press('prev','ArrowLeft'); });
-    s.querySelector('.hzd-arrow.next').addEventListener('click',function(){ press('next','ArrowRight'); });
-  })();
-  </script>
-</section>
+
 </main>
 <footer data-tone="inverse" class="foot" id="s-foot" data-dot="Find us">
   <div class="shell">
