@@ -860,6 +860,11 @@ body.no-bar .deck { bottom: auto; }
 #s-build .ec-cardpts li { color: #4a4439; }
 #s-build .ec-cardpts b { color: #1a1a1a; }
 #s-build .ec-cardpts li::before { background: #2d5a3f; }
+/* Megan, 2026-11-12, on the two mesh slides: "Instead of green the blue, swap title and image". Sky ground, drawing on top. */
+.slide.g-garden:has(.ec-after) { background: linear-gradient(180deg, #e3f0f5 0%, #f4f1ea 100%); --bg: #eef2ee; --bg2: #e3f0f5; }
+#s-fanin .in.ec-center, #s-mesh .in.ec-center { grid-template-rows: minmax(0, 1fr) auto auto; }
+#s-fanin .in > .art, #s-mesh .in > .art { order: -1; }
+@media (max-width: 700px) { #s-fanin .in.ec-center, #s-mesh .in.ec-center { grid-template-rows: auto auto auto; } }
 </style>
 <style>@supports not (container-type: size) {
 :root { --cqh: calc((100vh - var(--bar)) / 100); }
@@ -1594,6 +1599,11 @@ body.no-bar .deck { bottom: auto; }
 #s-build .ec-cardpts li { color: #4a4439; }
 #s-build .ec-cardpts b { color: #1a1a1a; }
 #s-build .ec-cardpts li::before { background: #2d5a3f; }
+
+.slide.g-garden:has(.ec-after) { background: linear-gradient(180deg, #e3f0f5 0%, #f4f1ea 100%); --bg: #eef2ee; --bg2: #e3f0f5; }
+#s-fanin .in.ec-center, #s-mesh .in.ec-center { grid-template-rows: minmax(0, 1fr) auto auto; }
+#s-fanin .in > .art, #s-mesh .in > .art { order: -1; }
+@media (max-width: 700px) { #s-fanin .in.ec-center, #s-mesh .in.ec-center { grid-template-rows: auto auto auto; } }
 
 }</style>
 </head>
