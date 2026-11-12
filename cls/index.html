@@ -1612,11 +1612,13 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
   .ov-relational h3{font-family:var(--display);font-size:1.15rem;line-height:1.15;margin:4px 0 2px;color:#1E4630}
   .ov-relational .rt-desc{margin:0;font-size:14px;line-height:1.4;color:#55605A}
   @media (max-width:640px){.ov-relational .rt-grid{grid-template-columns:1fr}.ov-relational .rt-card{flex-direction:row}.ov-relational .rt-win{width:96px;height:auto;min-height:88px;flex:none}}
+  a.rt-card{text-decoration:none;transition:transform .15s,box-shadow .15s}a.rt-card:hover{transform:translateY(-2px)}a.rt-card:focus-visible{outline:3px solid #01634a;outline-offset:3px}
+  .rt-flash{outline:3px solid #f3d88b;outline-offset:4px;border-radius:12px;transition:outline-color 1.2s}
   </style>
   <div class="shell">
     <h2>Relational technology brings you closer to your contacts, community and environment.</h2>
     <div class="rt-grid">
-      <div class="rt-card k-offers"><div class="rt-win"><svg viewBox="0 0 240 160" aria-hidden="true" fill="none" stroke="#ECE5D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <a class="rt-card k-offers" href="#your-contacts" data-rt-to="wants-and-offers.html"><div class="rt-win"><svg viewBox="0 0 240 160" aria-hidden="true" fill="none" stroke="#ECE5D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M24 130 Q120 120 216 130" opacity=".7"/>
         <path d="M36 140 Q120 132 204 140" opacity=".35"/>
         <path d="M84 129 C84 112 86 98 84 80"/>
@@ -1634,8 +1636,8 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
         <circle cx="46" cy="128" r="2.4" fill="#F3D88B" stroke="none"/>
         <circle cx="56" cy="125" r="2" fill="#F3D88B" stroke="none"/>
         <circle cx="198" cy="127" r="2" fill="#F3D88B" stroke="none"/>
-      </svg></div><div class="rt-body"><span class="rt-kind"><i></i>Consent gate</span><h3>Offers &amp; Requests</h3><p class="rt-desc">What you offer and what you need.</p></div></div>
-      <div class="rt-card k-contacts"><div class="rt-win"><svg viewBox="0 0 240 160" aria-hidden="true" fill="none" stroke="#1E4630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      </svg></div><div class="rt-body"><span class="rt-kind"><i></i>Consent gate</span><h3>Offers &amp; Requests</h3><p class="rt-desc">What you offer and what you need.</p></div></a>
+      <a class="rt-card k-contacts" href="#your-contacts" data-rt-to="contact.html"><div class="rt-win"><svg viewBox="0 0 240 160" aria-hidden="true" fill="none" stroke="#1E4630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M24 132 Q120 124 216 132" opacity=".6"/>
         <path d="M40 142 Q120 135 200 142" opacity=".3"/>
         <path d="M112 92 L120 140 L128 92" fill="#FAF8F3"/>
@@ -1652,8 +1654,8 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
         <path d="M70 102 C72 92 80 86 88 86 C86 95 79 101 70 102 Z" fill="#2D5A3F" stroke="#2D5A3F"/>
         <path d="M182 132 C182 120 178 112 170 106"/>
         <path d="M178 116 C186 110 194 110 198 114 C192 120 184 120 178 116 Z" fill="#2D5A3F" stroke="#2D5A3F"/>
-      </svg></div><div class="rt-body"><span class="rt-kind"><i></i>Consent gate</span><h3>Contacts</h3><p class="rt-desc">Your contact card, with what you share.</p></div></div>
-      <div class="rt-card k-events"><div class="rt-win"><svg viewBox="0 0 240 160" aria-hidden="true" fill="none" stroke="#1E4630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      </svg></div><div class="rt-body"><span class="rt-kind"><i></i>Consent gate</span><h3>Contacts</h3><p class="rt-desc">Your contact card, with what you share.</p></div></a>
+      <a class="rt-card k-events" href="#your-manifest" data-rt-to=""><div class="rt-win"><svg viewBox="0 0 240 160" aria-hidden="true" fill="none" stroke="#1E4630" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M40 124 A80 80 0 0 1 200 124" stroke-dasharray="1 7" stroke-width="2.6" opacity=".7"/>
         <circle cx="160" cy="62" r="13" fill="#A0522D" stroke="#A0522D"/>
         <path d="M160 40 V35 M160 89 V84 M138 62 H133 M187 62 H182 M144.5 46.5 L141 43 M175.5 46.5 L179 43 M144.5 77.5 L141 81 M175.5 77.5 L179 81" stroke="#A0522D"/>
@@ -1665,9 +1667,21 @@ html:has(.home-map .tpl--activity-map),html:has(.home-map .tpl--activity-map) bo
         <path d="M152 123 V112 M152 116 C146 115 143 111 143 107 M152 114 C157 113 160 109 160 105"/>
         <path d="M184 125 V114 M184 118 C178 117 175 113 175 109 M184 116 C189 115 192 111 192 107"/>
         <circle cx="120" cy="104" r="17" stroke="#A0522D" stroke-dasharray="3 4"/>
-      </svg></div><div class="rt-body"><span class="rt-kind"><i></i>Data source</span><h3>Events</h3><p class="rt-desc">Calendars your routine checks daily.</p></div></div>
+      </svg></div><div class="rt-body"><span class="rt-kind"><i></i>Data source</span><h3>Events</h3><p class="rt-desc">Calendars your routine checks daily.</p></div></a>
     </div>
   </div>
+  <script>
+  /* Each card scrolls to its part of this page and marks it for a moment; with no script the link still lands on the section. */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a.rt-card'); if (!a) return;
+    var sec = document.querySelector(a.getAttribute('href')); if (!sec) return;
+    var to = a.getAttribute('data-rt-to'), hit = to && sec.querySelector('a[href="' + to + '"]');
+    var el = hit || sec;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: hit ? 'center' : 'start' });
+    el.classList.add('rt-flash'); setTimeout(function () { el.classList.remove('rt-flash') }, 1600);
+  });
+  </script>
 </section>
 <section class="panel" id="what-you-end-up-with" data-review-label="What you end up with">
   <div class="shell ov-wide ov-end">
