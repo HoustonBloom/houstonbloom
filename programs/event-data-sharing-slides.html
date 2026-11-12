@@ -808,6 +808,15 @@ body.no-bar .deck { bottom: auto; }
 .top.ec-center { grid-template-rows: auto minmax(0, 1fr) auto; }
 .top.ec-center > .art, .top.ec-center > .ec-cols { justify-self: stretch; width: 100%; }
 @media (max-width: 700px) { .top.ec-center { grid-template-rows: auto auto auto; align-content: center; } }
+/* Megan, 2026-11-12: "fill the space well... put icon left and big and bullets right", and "bottom background for these make
+   blue like the cover sky on home page" (the Event data sharing card, #e3f0f5 to #f4f1ea). */
+.ec-band > .band { background: linear-gradient(180deg, #e3f0f5 0%, #f4f1ea 100%); }
+@media (min-width: 701px) {
+  .ec-band > .band { flex-direction: row; align-items: stretch; gap: max(24px, calc(5 * var(--u))); }
+  .ec-band > .band .art { flex: 1 1 0; height: auto; max-width: none; }
+  .ec-band > .band .ec-points { flex: 0 1 46ch; align-self: center; font-size: 1.05em; }
+  .ec-band > .band .ec-points li { font-size: max(17px, calc(2.9 * var(--u))); }
+}
 </style>
 <style>@supports not (container-type: size) {
 :root { --cqh: calc((100vh - var(--bar)) / 100); }
@@ -1494,6 +1503,14 @@ body.no-bar .deck { bottom: auto; }
 .top.ec-center { grid-template-rows: auto minmax(0, 1fr) auto; }
 .top.ec-center > .art, .top.ec-center > .ec-cols { justify-self: stretch; width: 100%; }
 @media (max-width: 700px) { .top.ec-center { grid-template-rows: auto auto auto; align-content: center; } }
+
+.ec-band > .band { background: linear-gradient(180deg, #e3f0f5 0%, #f4f1ea 100%); }
+@media (min-width: 701px) {
+  .ec-band > .band { flex-direction: row; align-items: stretch; gap: max(24px, calc(5 * var(--u))); }
+  .ec-band > .band .art { flex: 1 1 0; height: auto; max-width: none; }
+  .ec-band > .band .ec-points { flex: 0 1 46ch; align-self: center; font-size: 1.05em; }
+  .ec-band > .band .ec-points li { font-size: max(17px, calc(2.9 * var(--u))); }
+}
 
 }</style>
 </head>
