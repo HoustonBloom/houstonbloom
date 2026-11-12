@@ -773,6 +773,15 @@ body.no-bar .deck { bottom: auto; }
 .ec-band > .txt { order: 1; }
 .ec-band > .band { order: 2; border-bottom: 0; border-top: 1px solid var(--line); }
 .ec-band > .txt .ec-points { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: max(12px, calc(1.8 * var(--u))) max(16px, calc(2.4 * var(--u))); max-width: 52ch; margin-top: max(4px, calc(.6 * var(--u))); }
+/* Megan, 2026-11-12: "keep its composition but update the coloring" to match the Event data sharing card on the home page
+   (Houston Bloom/Website/_build/event-covers.mjs): the person black, the lines and their dots green, the commons black with
+   cream type and a mint knob. Hills and tree already share the card's sage. */
+.ec-cover svg .who.you circle, .ec-cover svg .who.you path { fill: #1c1b19; }
+.ec-cover svg .arc { stroke: #2d5a3f; stroke-width: 2.4; }
+.ec-cover svg .dot { fill: #2d5a3f; }
+.ec-cover svg .box path { fill: #1c1b19; }
+.ec-cover svg .box text { fill: #ece5d6; }
+.ec-cover svg .box circle { fill: #85f8c0; }
 </style>
 <style>@supports not (container-type: size) {
 :root { --cqh: calc((100vh - var(--bar)) / 100); }
@@ -1428,6 +1437,13 @@ body.no-bar .deck { bottom: auto; }
 .ec-band > .txt { order: 1; }
 .ec-band > .band { order: 2; border-bottom: 0; border-top: 1px solid var(--line); }
 .ec-band > .txt .ec-points { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: max(12px, calc(1.8 * var(--u))) max(16px, calc(2.4 * var(--u))); max-width: 52ch; margin-top: max(4px, calc(.6 * var(--u))); }
+
+.ec-cover svg .who.you circle, .ec-cover svg .who.you path { fill: #1c1b19; }
+.ec-cover svg .arc { stroke: #2d5a3f; stroke-width: 2.4; }
+.ec-cover svg .dot { fill: #2d5a3f; }
+.ec-cover svg .box path { fill: #1c1b19; }
+.ec-cover svg .box text { fill: #ece5d6; }
+.ec-cover svg .box circle { fill: #85f8c0; }
 
 }</style>
 </head>
