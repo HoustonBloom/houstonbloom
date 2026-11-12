@@ -853,6 +853,13 @@ body.no-bar .deck { bottom: auto; }
 .ec-cardpts li { position: relative; padding-left: 16px; font: 400 max(13px, calc(1.7 * var(--u)))/1.45 'Plus Jakarta Sans', sans-serif; color: var(--soft); }
 .ec-cardpts li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: #85f8c0; }
 .ec-cardpts b { color: var(--ink); font-weight: 700; }
+/* Megan, 2026-11-12, on "Ways to build your capture": "bullets need lighter background... top images should be on blue".
+   The drawing half of each card takes the cover sky and the light-ground drawing colours; the points sit in a white box. */
+#s-build .ec-card > .art { background: linear-gradient(180deg, #e3f0f5 0%, #f4f1ea 100%); --bg: #eef2ee; --bg2: #e3f0f5; --ink: #1a1a1a; --soft: #4a4439; --softer: #6a6357; --accent: #2d5a3f; --accent2: #8B2A1A; --hi: #4a8a62; --line: rgba(26,26,26,.18); --card: #ffffff; --card-line: rgba(26,26,26,.14); --mute: #d8d1bf; color: #1a1a1a; }
+#s-build .ec-cardpts { background: #fff; border: 0; border-radius: 12px; padding: 10px 12px; margin-top: 10px; }
+#s-build .ec-cardpts li { color: #4a4439; }
+#s-build .ec-cardpts b { color: #1a1a1a; }
+#s-build .ec-cardpts li::before { background: #2d5a3f; }
 </style>
 <style>@supports not (container-type: size) {
 :root { --cqh: calc((100vh - var(--bar)) / 100); }
@@ -1581,6 +1588,12 @@ body.no-bar .deck { bottom: auto; }
 .ec-cardpts li { position: relative; padding-left: 16px; font: 400 max(13px, calc(1.7 * var(--u)))/1.45 'Plus Jakarta Sans', sans-serif; color: var(--soft); }
 .ec-cardpts li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: #85f8c0; }
 .ec-cardpts b { color: var(--ink); font-weight: 700; }
+
+#s-build .ec-card > .art { background: linear-gradient(180deg, #e3f0f5 0%, #f4f1ea 100%); --bg: #eef2ee; --bg2: #e3f0f5; --ink: #1a1a1a; --soft: #4a4439; --softer: #6a6357; --accent: #2d5a3f; --accent2: #8B2A1A; --hi: #4a8a62; --line: rgba(26,26,26,.18); --card: #ffffff; --card-line: rgba(26,26,26,.14); --mute: #d8d1bf; color: #1a1a1a; }
+#s-build .ec-cardpts { background: #fff; border: 0; border-radius: 12px; padding: 10px 12px; margin-top: 10px; }
+#s-build .ec-cardpts li { color: #4a4439; }
+#s-build .ec-cardpts b { color: #1a1a1a; }
+#s-build .ec-cardpts li::before { background: #2d5a3f; }
 
 }</style>
 </head>
